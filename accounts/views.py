@@ -32,11 +32,11 @@ def signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).encode().decode(),
                 'token': account_activation_token.make_token(user),
             })
-            mail_subject = "[SOT] 회원가입 인증 메일입니다."
+            mail_subject = "[buytogether] 회원가입 인증 메일입니다."
             user_email = user.email
             email = EmailMessage(mail_subject, message, to=[user_email])
             email.send()
-            return HttpResponse(
+            return HttpResponse( #페이지 새로만드는것도 괜찮을듯
                 '<div style="font-size: 40px; width: 100%; height:100%; display:flex; text-align:center; '
                 'justify-content: center; align-items: center;">'
                 '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'

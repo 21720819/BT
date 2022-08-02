@@ -6,8 +6,20 @@ class User(AbstractUser):
 #     # blank=True: 폼(입력양식)에서 빈채로 저장되는 것을 허용, DB에는 ''로 저장
 #     # CharField 및 TextField는 blank=True만 허용, null=True 허용 X # null=True: DB에 NULL로 저장
 #     nickname = models.CharField(max_length=50)
-    email = models.EmailField(blank=False, null=False,unique=True)
-    username = models.CharField(max_length=30)
+    email = models.EmailField(
+        blank=False, 
+        null=False,
+        unique=True,
+        error_messages={
+            'unique': "이미 존재하는 ID 입니다.",
+        },
+        )
+    username = models.CharField(
+        max_length=30, 
+        unique=True,
+        error_messages={
+            'unique': "이미 존재하는 닉네임입니다.",
+        },)
     level = models.IntegerField(null=True,default=0)
     point = models.IntegerField(null=True,default=0)
     first_name = None
