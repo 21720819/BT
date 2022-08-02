@@ -1,0 +1,67 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+
+<div class="jb-box">
+  <video muted autoplay loop  width="100%">
+    <source src="{%static 'images/buytogether.mp4' %}" type="video/mp4">
+    <strong>Your browser does not support the video tag.</strong>
+  </video>
+</div>
+
+<!-- <video src="/buy_together/buyTogether/video/바이투게더.mp4" type="video/mp4" width="100%" height="300px" autoplay muted controls> 
+</video> -->
+
+<!-- <section id="gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-6" style="margin-bottom: 10px;">
+        <div class="card" style="text-align: center">
+          <img src="{#static 'images/생필품.jpg' #}" alt="이미지 안나옴" class="card-img-top" style="height: 350px;">
+          <div class="card-body">
+            <h5 class="card-title"><b>생필품</b></h5>
+            <p class="card-text">필요한 생필품을 사보세요</p>
+          <a href="{# url 'category' 'necessity' #}" class="btn btn-outline-success btn-sm">생필품 게시판으로 이동</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6" style="margin-bottom: 10px;">
+        <div class="card" style="text-align: center">
+          <img src="{#static 'images/식재료.png' #}" alt="이미지 안나옴" class="card-img-top"  style="height: 350px;">
+          <div class="card-body">
+            <h5 class="card-title"><b>식재료</b></h5>
+            <p class="card-text">필요한 식재료를 사보세요</p>
+            <a href="{# url 'category' 'food' #}" class="btn btn-outline-success btn-sm">식재료 게시판으로 이동</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card" style="text-align: center" style="margin-bottom: 20px;">
+        <img src="{#static 'images/OTT.jpg' #}" alt="이미지 안나옴" class="card-img-top"  style="height: 350px;">
+        <div class="card-body">
+          <h5 class="card-title"><b>OTT</b></h5>
+          <p class="card-text">OTT를 공유해보세요</p>
+          <a href="{# url 'category' 'ott' #}" class="btn btn-outline-success btn-sm">OTT 게시판으로 이동</a>
+        </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card" style="text-align: center" style="margin-bottom: 20px;">
+        <img src="{#static 'images/배달.jpeg' #}" alt="이미지 안나옴" class="card-img-top" style="height: 350px;">
+        <div class="card-body">
+          <h5 class="card-title"><b>배달</b></h5>
+          <p class="card-text">배달비를 공유해보세요</p>
+          <a href="{# url 'category' 'delivery' #}" class="btn btn-outline-success btn-sm">배달 게시판으로 이동</a>
+        </div>
+        </div>
+        <br/>
+      </div>
+
+  </div>
+</div>
+</section> -->
+
+{% endblock %}

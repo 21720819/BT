@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>로그인</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  </head>
+  <body class="nav_body">
+    <div class="login-form">
+        <form method="post" action="{% url 'login' %}">
+          <div class="form-icon">
+              <span><i class="icon icon-user"></i></span>
+          </div>
+          {% csrf_token %}
+          <div class="form-group">
+          <!-- {{form.userID}} -->
+          <input type="text" class="form-control" name="email"  placeholder="아이디" id="userID" value="{{ form.email.value | default_if_none:'' }}">
+          </div>
+          <div class="form-group">
+          <!-- {{form.password}} -->
+          <input type="password" class="form-control" name="password" placeholder="비밀번호" id="password" value="{{ form.password.value | default_if_none:'' }}">
+          </div>
+          <div class="form-group">
+          <button type="submit" value="로그인" class="btn btn-block create-account">로그인 하기</button>
+          </div>
+          <div class="signup">
+            아직 회원이 아니신가요? <a href="{% url 'signup' %}">회원가입</a>
+          </div>
+        </form>
+        <div class="social-media">
+            <h5>소셜 로그인 하기</h5>
+            <div class="social-icons">
+                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

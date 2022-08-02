@@ -1,0 +1,640 @@
+/* !!!선택자는 class나 id로 하기!!! */
+/* class,id 명은 "파트명_자유" */
+
+/* 그리고 섞이면 복잡하니까 주석으로 영역나눠서 작업해주세영 */
+/* ---------파트명---------- */
+
+/* ------ main -------*/
+.jb-box {
+   width: 100%;
+  height: 50%; 
+  overflow: hidden;
+  margin: 0px auto;
+  position: relative; }
+
+  video { width: 100%; }
+
+
+/* ---------detail---------- */
+.detail_container {
+    width: 900px;
+    /*border: 1px solid;
+    border-color: lightgrey;
+    border-radius: 10px 10px; */
+
+    padding-top: 50px;
+    /* margin-top: 20px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+.detail_division {
+  width: 900px;
+  border: 1px solid;
+  border-color: lightgrey;
+  border-radius: 10px 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.detail_division_t {
+  width: 900px;
+  border: 1px solid;
+  border-color: lightgrey;
+  border-radius: 10px 10px;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.detail_lev {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px 20px;
+    background-color: grey;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detail_img {
+    width: 900px;
+    height: 500px;
+    border-radius: 10px 10px;
+    object-fit: contain; /*여백 O*/
+    /* object-fit: cover; /*여백 X*/
+    background-color: grey;
+    margin-bottom: 30px;
+}
+.detail_title {
+    font-size: 50px;
+    margin: 0 0 0 0;
+}
+/* .detail_img_default {
+    width: 858px;
+    height: 600 px;
+    border-radius: 10px 10px;
+    object-fit: cover;
+    background-color: lightgrey;
+    margin-top: 20px;
+} */
+#purbd_detail_price {
+    font-size: 30px;
+    margin: 10px 0 0 0;
+}
+.detail_td {
+    width: 299.6px;
+    padding: 5px;
+}
+.detail_table_line {
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+}
+.detail_context {
+  word-wrap: break-word;
+  font-size: 20px;
+  margin: 20px 0 0 0;
+  line-height: 1.3;
+}
+.new_post_button {
+	width: 100px; height: 40px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: #E98197;
+	color: white;
+	font-weight: bold;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.new_post_button:hover {
+	background: #f09fb0;
+}
+
+
+/* ---------chat---------- */
+.chat_img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px 10px;
+  background-color: grey;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat_list_text {
+  width: 700px;
+  padding-left: 15px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------profile---------- */
+.profile_img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px 30px;
+  background-color: grey;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile_half_division {
+  width: 435px;
+  height: 500px;
+  border: 1px solid;
+  border-color: lightgrey;
+  border-radius: 10px 10px;
+  margin-bottom: 30px;
+  float: left;
+}
+.division_table {
+  width: 898px;
+  text-align: center;
+  border-collapse: collapse;
+}
+.half_division_title {
+  padding: 20px;
+}
+.half_division_info {
+  padding: 0 20px 20px 20px;
+}
+.profile_list {
+  font-size: 20px;
+}
+
+/* ---------font---------- */
+
+
+/* ---------nav---------- */
+.nav_body {
+	font-family: 'Gowun Dodum', sans-serif;
+}
+
+.nav_change_color:hover {
+    color: pink;
+}
+
+/* ---------create---------- */
+.crt_post_button{
+  background-color: #E98197;
+  color:white;
+  width: 75px;
+}
+
+.crt_post_button:hover{
+  background-color: #f09fb0;
+  color:white;
+}
+
+.crt_div{
+  border:1px solid lightgray;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+.crt_div_2{
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+
+/* ---------registeration---------- */
+
+.registration-form{
+	padding: 50px 0;
+}
+
+.registration-form form{
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.registration-form .form-icon{
+	text-align: center;
+    background-color: #E98197;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+}
+
+.registration-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+}
+
+.registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #E98197;
+    border: none;
+    color: white;
+    margin-top: 20px;
+}
+
+.registration-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.registration-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+}
+
+.registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}
+
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+}
+
+/* ---------login---------- */
+.login-form{
+	padding: 50px 0;
+}
+
+.login-form form{
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.login-form .form-icon{
+	text-align: center;
+    background-color: #E98197;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+}
+
+.login-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+}
+
+.login-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #E98197;
+    border: none;
+    color: white;
+    margin-top: 20px;
+}
+
+.login-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.login-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.login-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+}
+
+.login-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}
+
+@media (max-width: 576px) {
+    .login-form form{
+        padding: 50px 20px;
+    }
+
+    .login-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+}
+
+/* ---------purbd-home---------- */
+.purbd_home_inline{
+  display: inline;
+}
+
+.purbd_home_div_search{
+  margin-top:20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align : center;
+}
+
+.purbd_home_div{
+  margin-top:20px;
+  margin-bottom:20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.purbd_home_title {
+  display: inline-block;
+  width: 80%;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.purbd_home_location {
+  display: inline-block;
+  width: 40%;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.purbd_home_meetTime {
+  display: inline-block;
+  width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pink_window {
+	display: inline-block;
+	width: 350px;
+	border: 3px solid #E98197;
+  border-radius: 15px;
+}
+.input_text {
+	width: calc( 100% - 14px );
+	margin: 6px 7px;
+	border: 0;
+	font-weight: bold;
+	font-size: 16px;
+	outline: none;
+}
+.sch_smit {
+	width: 54px; height: 40px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: #E98197;
+	color: white;
+	font-weight: bold;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.sch_smit:hover {
+	background: #f09fb0;
+}
+
+.new_post_button {
+	width: 100px; height: 40px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: #E98197;
+	color: white;
+	font-weight: bold;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.new_post_button:hover {
+	background: #f09fb0;
+}
+
+.purbd_home_div_category{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.catBtn{
+  background: #E98197;
+  border-color: white;
+  color : white;
+}
+
+.catBtn:hover{
+  background: #f3bcc8;
+  border-color: white;
+  color : white;
+}
+
+.catBtn-active{
+  background: #c23352;
+  color: white;
+  border-color: white;
+  
+}
+
+.catBtn-active:hover{
+  background: #c698a2;
+  color: white;
+  border-color: white;
+  
+}
+
+
+
+/* ---------freebd-home---------- */
+.freebd-home-div{
+  margin-top:200px;
+}
+
+.freebd-home-board{
+  width: 35rem; 
+  height: 15rem;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#fix_AI {
+  position: fixed;
+  right: 75px;
+  bottom: 140px;
+}
+
+#fix_create {
+  position: fixed;
+  right: 75px;
+  bottom: 80px;
+}
+
+#fixed {
+  position: fixed;
+  right: 40px;
+  bottom: 50px;
+}
+
+.post_button {
+	width: 50px; height: 50px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: #E98197;
+	color: white;
+	font-weight: bold;
+	border-radius: 25px;
+	cursor: pointer;
+}
+
+.post_button:hover {
+	background: #f09fb0;
+}
+.space{
+  margin-right: 10px;
+}
+
+/* --------- auth ---------- */
+
+.authBtn_section{
+  position: fixed;
+  display: table;
+  bottom:0;
+  background-color: rgb(248, 249, 250);
+  width: 100%;
+  height: 4rem;
+  text-align: center;
+}
+
+.authBtn_section > div{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.rejectBtn{
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: red;
+  border-color: white;
+  color: white;
+  margin-right: 20px;
+}
+.rejectBtn:hover{
+  background-color: rgb(255, 103, 103);
+  color: white;
+}
+
+.appBtn{
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  margin-right: 10px;
+  border-color: white;
+}
+
+.appBtn:hover{
+  background-color: rgb(109, 109, 250);
+  border-color: white;
+}
+
+.auth_th{
+  border: 1px solid white;
+  text-align: center;
+  background-color:#e556ae ;
+  height: 20px;
+  color : white;
+}
+
+.auth_td{
+  text-align: center;
+  border: 1px solid white;
+  color:black;
+}
+
+.auth_tbody_tr  { 
+  background-color: #ffdfeb; 
+}
+
+
+
+
+
+
+
