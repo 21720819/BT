@@ -1,0 +1,40 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div class="detail_container">
+    <div class="detail_division">
+        <table style="width: 858px;">
+                <tr>
+                    <td style="width: 30px; padding-left: 2px;"><img class="detail_lev"></td>
+                    <td style="font-size: 25px; text-align: left; padding-left: 10px;">{{detail.ID.username}} {{detail.ID.level}}</td>
+                </tr>
+        </table>
+    </div>
+    
+    {% if detail.photo %}
+    <img src="{{ detail.photo.url }}" alt="" class="detail_img">
+    {% endif %} 
+
+    <div class="detail_division">
+        <div style="font-size: 13px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate}}</div>
+
+        <h3 class="detail_title">{{detail.title}}</h3>
+
+        <p class="detail_context">{{detail.body}}</p>
+    </div>
+
+    <div class="detail_division">
+        <form method="POST" action="{% url 'create_comment' detail.id %}">
+            {% csrf_token %}
+            {{comment_form.body}}
+            <input type="submit" value="등록" class="new_post_button" style="width: 92px; margin-left: 15px;">
+        </form>
+
+        {% for comment in detail.comment_set.all %}
+        {% comment %} <hr style="width: 858px; margin: 20px 0;"> {% endcomment %}
+        <div style="margin-top: 15px;">{{comment.ID.username}} {{comment.writeDate}}</div>
+        <p style="margin: 0;">{{ comment.body }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

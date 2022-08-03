@@ -1,0 +1,46 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-end" id="fix_create">
+  <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
+      <input type="button"  class='post_button' value="+" onClick=" location.href='create'">
+  </div>
+</div>
+
+<div class="container">
+    <div class="row">
+      <div class="row purbd_home_div_search" >
+        <div class="col-12">
+            <span class='pink_window'>
+                <input type='text' class='input_text' placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'"/>
+            </span>
+            <button type='submit' class='sch_smit'>검색</button>
+        </div>    
+    </div>
+ 
+{% for post in posts %}
+  <div col="col-12">
+          <div class="card freebd-home-board">
+            <div class="card-header">
+              <h4 class="card-title purbd_home_title"><a href="{% url 'freeDetail' post.id %}" class="stretched-link" style=" text-decoration : none; color : black;">{{post.title}}</a></h4>
+
+            </div>          
+              <div class="card-body">              
+                <h4 class="card-title purbd_home_title"><a href="{% url 'freeDetail' post.id %}" class="stretched-link" style=" text-decoration : none; color : black;">{{post.title}}</a></h4>
+        
+
+              <!-- <h5 class="card-subtitle mb-2 " style="text-align:left; margin-top: 10px; ">{{post.ID.username}}</h5> -->
+              <!--<h5 class="card-subtitle mb-2 " style="text-align:left; margin-top: 10px; ">{{post.body}}</h5> -->
+              
+            </div> 
+            <div class="card-footer">
+              <span class="space">{{post.ID.username}}</span><span class="space">.</span><span >{{post.writeDate}}</span>
+
+
+        </div>
+  </div>
+{% endfor %}
+  </div>
+</div>
+{% endblock %}
