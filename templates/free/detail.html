@@ -17,7 +17,10 @@
 
     <div class="detail_division">
         <div style="font-size: 13px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate}}</div>
-
+        {%if detail.ID.id == user.id%}
+        <a href="{% url 'freeDelete' detail.id %}">삭제</a>
+        <a href="{% url 'freeEdit' detail.id %}">수정</a>
+        {% endif %}
         <h3 class="detail_title">{{detail.title}}</h3>
 
         <p class="detail_context">{{detail.body}}</p>
