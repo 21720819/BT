@@ -7,4 +7,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('', views.home, name='home'),
     path('free/',include('free.urls')),
+    path('buy/',include('buy.urls')),
 ]

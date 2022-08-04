@@ -35,14 +35,14 @@
                             거래게시판</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item nav_change_color" href="/purhome">전체</a></li>
+                            <li><a class="dropdown-item nav_change_color" href="{% url 'buyHome'%}">전체</a></li>
                             <li><a class="dropdown-item nav_change_color"
-                                href="{# url 'category' 'necessity' #}">생필품</a></li>
-                            <li><a class="dropdown-item nav_change_color" href="{# url 'category' 'ott' #}">OTT</a></li>
-                            <li><a class="dropdown-item nav_change_color" href="{# url 'category' 'delivery' #}">배달</a>
+                                href="{% url 'category' 'necessity' %}">생필품</a></li>
+                            <li><a class="dropdown-item nav_change_color" href="{% url 'category' 'ott' %}">OTT</a></li>
+                            <li><a class="dropdown-item nav_change_color" href="{% url 'category' 'delivery' %}">배달</a>
                             </li>
                             <!-- <li><hr class="dropdown-divider"></li> -->
-                            <li><a class="dropdown-item nav_change_color" href="{# url 'category' 'food' #}">식료품</a>
+                            <li><a class="dropdown-item nav_change_color" href="{% url 'category' 'food' %}">식료품</a>
                             </li>
                         </ul>
                     </li>

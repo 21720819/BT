@@ -1,0 +1,74 @@
+
+{% extends 'nav.html' %}
+
+
+{% block content %}
+<div class="detail_container">
+    {% comment %} {% if detail.photo %}
+        <img src="{{ detail.photo.url }}" alt="" id="purbd_detail_img">
+    {% endif %} {% endcomment %}
+    <div class="detail_division">
+        <table style="width: 858px;">
+                <tr>
+                    <td style="width: 40px; padding-left: 2px;"><img class="detail_lev"></td>
+                    <td style="font-size: 25px; text-align: left; padding-left: 10px;">{{detail.ID.username}} {{detail.ID.level}}</td>
+                    <td style="text-align: right;"><input type="button" value="좋아요 {{detail.good}}" class="new_post_button"></td>
+                </tr>
+        </table>
+        {%if detail.ID.id == user.id%}
+        <a href="{% url 'buyDelete' detail.id %}">삭제</a>
+        <a href="{% url 'buyEdit' detail.id %}">수정</a>
+        {% endif %}
+    </div>
+
+    {% comment %} <hr style="height: 1px; border: none; background-color: grey; margin: 15px 0;"> {% endcomment %}
+
+    {% if detail.photo %}
+    <img src="{{ detail.photo.url }}" alt="" class="detail_img">
+    {% endif %} 
+
+    <div class="detail_division">
+        <div style="font-size: 13px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate}}</div>
+
+        <h3 class="detail_title">{{detail.title}}</h3>
+
+        <h2 id="purbd_detail_price">{{detail.price}}원</h2>
+        
+        <p class="detail_context">{{detail.body}}</p>
+    </div>
+    <!-- <hr style="height: 0.5px; border: none; background-color: lightgrey; margin-bottom: 20px; margin: 13px 0;"> -->
+
+    <div class="detail_division_t">
+        <table class="division_table">
+            <tr>
+                <td class="detail_td">
+                    <div>거래 장소</div>
+                    <div style="margin-top: 10px; font-size: 20px;">{{detail.location}}</div>
+                </td>
+                <td class="detail_td, detail_table_line">
+                    <div>거래 시간</div>
+                    <div style="margin-top: 10px; font-size: 20px;">{{detail.date}}</div>
+                </td>
+                <td class="detail_td">
+                    <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.people}}/{{detail.wpeople}}</div>
+
+                    {% if detail.ID.id == user.id %}
+                    <button class="new_post_button">
+                        <a href="{# url 'auth' #}" style="text-decoration: none; color: white;">신청자 보기</a>
+                    </button>
+                    {% else  %}
+                    <button class="new_post_button" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
+                        <a href="{# url 'join' user.userID #}" style="text-decoration: none; color: white;">참가하기</a>
+                    </button>
+                    {% endif %}
+
+                </td>
+            {% comment %} </tr>
+            <tr>
+                <td class="purbd_detail_td" style="font-size: 30px;">위치</td>
+                <td class="purbd_detail_td, purbd_detail_table_line">00:00:00</td>
+            </tr> {% endcomment %}
+        </table>
+    </div>
+</div>
+{% endblock %}

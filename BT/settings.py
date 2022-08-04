@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #apps
     'accounts',
     'free',
+    'buy',
 ]
 
 MIDDLEWARE = [
