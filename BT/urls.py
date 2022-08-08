@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('free/',include('free.urls')),
     path('buy/',include('buy.urls')),
+    path('chat/',include('chat.urls')),
 ]
