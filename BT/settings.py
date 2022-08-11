@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'free',
     'buy',
     'chat',
+    'profiles',
 ]
 
 MIDDLEWARE = [

@@ -9,4 +9,5 @@ urlpatterns = [
     path('free/',include('free.urls')),
     path('buy/',include('buy.urls')),
     path('chat/',include('chat.urls')),
+    path('profile/',include('profiles.urls')),
 ]

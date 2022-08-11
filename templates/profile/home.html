@@ -1,0 +1,69 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+<div class="detail_container">
+    <table style="width: 900px; margin: 20px auto 40px auto;">
+        <tr>
+            <td style="width: 60px; padding: 0 0 15px 2px;"><img class="profile_img"></td>
+            <td style="font-size: 20px; text-align: left; padding-bottom: 15px;">
+                <h3 class="chat_list_text">{{user.username}}</h3>
+                <!-- <h4 class="chat_list_text" style="font-size: 17px;">{{user.username}}</h4> -->
+            </td>
+        </tr>
+    </table>
+
+    <div class="detail_division_t">
+        <table class="division_table">
+            <tr>
+                <td class="detail_td">
+                    <div style="padding-top: 5px;">레벨</div>
+                    <div style="margin-top: 10px; font-size: 30px;">{{user.level}}</div>
+                </td>
+                <td class="detail_td, detail_table_line">
+                    <div style="padding-top: 5px;">최근 방문일</div>
+                    <div style="margin-top: 10px; font-size: 30px;">{{user.last_login.date}}</div>
+                </td>
+                <td class="detail_td">
+                    <div style="padding-top: 5px;">휴대폰 인증 여부</div>
+
+                    <div style="margin-top: 10px; font-size: 30px;">미인증</div>
+                </td>
+        </table>        
+    </div>
+    
+    <div style="width: 900px; position: absolute;">
+        <div class="profile_half_division" style="margin-right: 30px;">
+            <div class="half_division_title">작성한 거래 글</div>
+            <hr style="margin: 0;">
+            <div class="half_division_info">
+                {% for post in p_post %}
+                    <br><a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="profile_half_division">
+            <div class="half_division_title">다른 사용자의 평가</div>
+            <hr style="margin: 0;">
+        </div>
+        <div style="clear: both;"></div>
+        
+        <div class="detail_division">
+            <a class="nav-link nav_change_color fw-bold" href="{% url 'logout' %}">프로필 수정</a>    
+        </div>
+
+        <div class="detail_division">
+            <a class="nav-link nav_change_color fw-bold" href="{% url 'logout' %}">상세정보</a>    
+        </div>
+
+        <div class="detail_division">
+            <a class="nav-link nav_change_color fw-bold" href="{% url 'logout' %}">로그아웃</a>    
+        </div>
+        
+        <div class="detail_division">
+            <a class="nav-link nav_change_color fw-bold" href="{% url 'logout' %}">회원 탈퇴</a>    
+        </div>
+    </div>
+</div>
+{% endblock %}
