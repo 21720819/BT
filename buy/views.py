@@ -22,6 +22,10 @@ def p_category(request,category):
 
 def buyDetail(request, post_id):
     detail= get_object_or_404(Buy,id=post_id)
+    # try:
+    #     like = Bookmarks.objects.get(post=post_id)
+    #     return render(request, 'buy/detail.html',{'detail':detail, 'like':like.lenght})
+    # except:
     return render(request, 'buy/detail.html',{'detail':detail})
 
 def buyCreate(request):
@@ -71,3 +75,69 @@ def buyEdit(request, post_id):
             'now':'edit',
         }
         return render(request, 'buy/edit_post.html',context)
+
+
+def addBookmark(request, post_id):
+    detail = Buy.objects.get(pk=post_id)
+    uid = request.user.id
+    user = get_object_or_404(User, pk=uid)
+
+    check_like_post = user.like_posts.filter(id=post_id)
+
+    if request.method == 'POST':
+        # try:
+        #     mark = Bookmarks.objects.get(user=user, post=detail)
+        #     mark.delete()
+        # except:
+        #     mark = Bookmarks()
+        #     mark.post = detail
+        #     mark.user = user
+        #     mark.save()
+        if check_like_post.exists():
+            user.like_posts.remove(detail)
+            detail.like_count -= 1
+            detail.save()
+        else:
+            user.like_posts.add(detail)
+            detail.like_count += 1
+            detail.save()
+
+    
+    return redirect('buyDetail',str(post_id))
+
+
+# def delBookmark(request, toilet_id):
+#     post = Buy.objects.get(pk=toilet_id)
+#     uid = request.user.id
+#     user = get_object_or_404(User, pk=uid)
+
+#     if request.method == 'POST':
+#         mark = Bookmarks.objects.get(user=user, post=post)
+#         mark.delete()
+#         return redirect('profile/home.html', uid)
+
+# 신청자 목록 보여주는 함수
+def auth(request,post_id):
+    post = get_object_or_404(Buy, pk=post_id)
+    join_user = post.join_users.all()
+    return render(request,  'buy/auth.html',{'join_users':join_user})
+
+
+#거래 신청 함수
+def join(request,post_id):
+    post = get_object_or_404(Buy, pk=post_id)
+    uid = request.user.id
+    user = get_object_or_404(User, pk=uid)
+
+    check_join_users = user.join_posts.filter(id=post_id)
+    if check_join_users.exists():
+        user.join_posts.remove(post)
+        post.join_count -= 1
+        post.save()
+    else:
+        user.join_posts.add(post)
+        post.join_count += 1
+        post.save()
+
+    
+    return redirect('buyDetail',str(post_id))

@@ -1,7 +1,6 @@
 
 {% extends 'nav.html' %}
 
-
 {% block content %}
 <div class="detail_container">
     {% comment %} {% if detail.photo %}
@@ -12,7 +11,15 @@
                 <tr>
                     <td style="width: 40px; padding-left: 2px;"><img class="detail_lev"></td>
                     <td style="font-size: 25px; text-align: left; padding-left: 10px;">{{detail.ID.username}} {{detail.ID.level}}</td>
-                    <td style="text-align: right;"><input type="button" value="좋아요 {{detail.good}}" class="new_post_button"></td>
+                    <form action="{% url 'addBookmark' detail.id %}" method="post">
+                        {% csrf_token %}
+                        {% if detail in user.like_users.all %}
+                        <td style="text-align: right;"><input type="submit" value="취소 {{detail.like_count}}" class="new_post_button"></td>
+                        {% else %}
+                        <td style="text-align: right;"><input type="submit" value="좋아요 {{detail.like_count}}" class="new_post_button"></td>
+                        {% endif %}
+                        <!-- <td style="text-align: right;"><input type="submit" value="좋아요 0" class="new_post_button"></td> -->
+                    </form>
                 </tr>
         </table>
         {%if detail.ID.id == user.id%}
@@ -50,15 +57,15 @@
                     <div style="margin-top: 10px; font-size: 20px;">{{detail.date}}</div>
                 </td>
                 <td class="detail_td">
-                    <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.people}}/{{detail.wpeople}}</div>
+                    <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div>
 
                     {% if detail.ID.id == user.id %}
                     <button class="new_post_button">
-                        <a href="{# url 'auth' #}" style="text-decoration: none; color: white;">신청자 보기</a>
+                        <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>
                     </button>
                     {% else  %}
                     <button class="new_post_button" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                        <a href="{# url 'join' user.userID #}" style="text-decoration: none; color: white;">참가하기</a>
+                        <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">참가하기</a>
                     </button>
                     {% endif %}
 

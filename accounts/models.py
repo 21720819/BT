@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
-
+# from buy.models import Buy
 class User(AbstractUser):    
 #     # blank=True: 폼(입력양식)에서 빈채로 저장되는 것을 허용, DB에는 ''로 저장
 #     # CharField 및 TextField는 blank=True만 허용, null=True 허용 X # null=True: DB에 NULL로 저장
@@ -28,6 +28,9 @@ class User(AbstractUser):
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']#superuser 만들때 사용되는 필드 
+
+    like_posts = models.ManyToManyField('buy.Buy', blank=True, related_name='like_users')
+    join_posts = models.ManyToManyField('buy.Buy', blank=True, related_name='join_users')
 
     def __str__(self):
         return "<%d %s>" %(self.pk, self.email)

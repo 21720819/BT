@@ -44,8 +44,13 @@
         </div>
 
         <div class="profile_half_division">
-            <div class="half_division_title">다른 사용자의 평가</div>
+            <div class="half_division_title">좋아요한 글</div>
             <hr style="margin: 0;">
+            <div class="half_division_info">
+                {% for like in likes %}
+                    <br><a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
+                {% endfor %}
+            </div>
         </div>
         <div style="clear: both;"></div>
         
