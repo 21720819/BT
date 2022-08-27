@@ -11,6 +11,7 @@ class Free(models.Model):
     ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,
                                  null=False,
                                  default="")
+    like_count = models.PositiveIntegerField(default=0)  
     # good = models.IntegerField()
     def __str__(self):
         return self.title

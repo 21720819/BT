@@ -30,6 +30,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']#superuser 만들때 사용되는 필드 
 
     like_posts = models.ManyToManyField('buy.Buy', blank=True, related_name='like_users')
+    like_frees = models.ManyToManyField('free.Free', blank=True, related_name='freeLike_users')
     join_posts = models.ManyToManyField('buy.Buy', blank=True, related_name='join_users')
 
     def __str__(self):

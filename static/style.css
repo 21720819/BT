@@ -47,16 +47,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-.detail_lev {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px 20px;
-    background-color: grey;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .detail_img {
     width: 900px;
     height: 500px;
@@ -520,7 +511,7 @@
 
 
 /* ---------freebd-home---------- */
-.freebd-home-div{
+/* .freebd-home-div{
   margin-top:200px;
 }
 
@@ -566,7 +557,8 @@
 }
 .space{
   margin-right: 10px;
-}
+} */
+
 
 /* --------- auth ---------- */
 
@@ -634,7 +626,133 @@
 
 
 
+/* -------------minsol freehome------------- */
 
+.freeHomeDiv{
+  background-color:rgb(250, 247, 247);
+  width: 50vw;
+  border-radius: 20px;
+  padding: 5vh 5vw;
+  margin: 10vh auto;
+}
 
+.freeContent{
+  padding: 3% 0 0% 0;
+  border-bottom: 2px solid #fff;
+}
+.freeContentIcon{
+  display: flex;
+}
+.freeContentIcon span{
+  color: #767676;
+  font-size: smaller;
+}
+.icons{
+  margin-left: auto;
+}
+.freeRIcon{
+  display: inline-flex;
+}
+.freePost a{
+  text-decoration : none;
+  color: black;
+}
+.freeTitle{
+  font-size: 25px;
+  font-weight: bold;
+}
+.freeBody{
+  font-size: medium;
+}
+.freeRIcon img{
+  width: 15px;
+  height: 15px;
+  margin: auto;
+}
+.freeRIcon{
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
+.rightBtn{
+  background-color: #E98197;
+  color: #fff;
+  font-weight: bold;
+  width: 10vw;
+  height: 6vh;
+  border: none;
+  border-radius: 25px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
 
+/* free detail */
+.freeDetailDiv{
+  display: flex;
+  justify-content: space-around;
+  margin: 10vh auto;
+  width: 65vw;
+}
+.freeDtLeft{
+  background-color:rgb(250, 247, 247);
+  width: 35vw;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 3vh 2vw;
+  position: relative;
+}
+.freeDtLeft input {
+  top: 3vh;
+  right: 2vh;
+  position: absolute;
+  background-color: rgb(255, 103, 103);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  width: 25px;
+}
+.freeUser{
+  display: flex;
+  border-bottom: 2px solid #fff;
+}
+.freeDtRight{
+  background-color:rgb(250, 247, 247);
+  width: 25vw;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 3vh 0 0 0;
+}
+.comment {
+  padding: 0 3vw;
+}
+.comment p{
+  border-bottom: 2px solid #fff;
+  font-size: medium;
+  padding: 2vh 0;
+  margin: 0;
+}
+.comment span{
+  font-size: smaller;
+}
+.detail_lev {
+  width: 15x;
+  height: 15px;
+  border-radius: 20px 20px;
+  background-color: grey;
+/* 
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.freeDtRight form{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+.comment_btn{
+  background-color: rgb(255, 103, 103);
+  border: none;
+  border-radius: 0 20px 20px 0;
+}
