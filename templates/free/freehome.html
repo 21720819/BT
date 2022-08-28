@@ -8,7 +8,7 @@
   <div class="freeContent">
     <div class="freePost"><a href="{% url 'freeDetail' post.id %}">
       <p class="freeTitle">{{post.title}}</p>
-      <p class="freeBody">{{post.body}}</p>
+      <p class="freeBody">{{post.summary}}</p>
     </a></div>
     <div class="freeContentIcon">
       <span >{{post.writeDate}} </span>
@@ -20,7 +20,7 @@
         </div>
         <div class="freeRIcon">
           <img src="{%static 'images/freeC.png' %}" alt="">
-          <span style="color: #0083FF;margin-left : 5px">0</span>
+          <span style="color: #0083FF;margin-left : 5px">{{post.comment_set.all.count}}</span>
         </div>
         
       </div>
