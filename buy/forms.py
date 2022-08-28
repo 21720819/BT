@@ -37,6 +37,12 @@ class BuyModelform(forms.ModelForm):
 						'placeholder': '장소를 입력하세요. ',
 						'name' : 'place', 'id' : 'place' }
 			),
+			# 'lat' : forms.TextInput(
+			# 	attrs={'class' : 'form-control', 'type' : 'hidden',}
+			# 	),
+            # 'long' : forms.TextInput(
+			# 	attrs={'class' : 'form-control', 'type' : 'hidden',}
+			# 	),
 			'date' : forms.TextInput(
 				attrs={ 'class': 'form-control', 'class': 'detail_loca_time',
 						'style': 'width: 100%; border: 0; padding: 0;',

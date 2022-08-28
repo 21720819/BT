@@ -109,6 +109,13 @@
   white-space: pre-line;
   margin: 20px 0 40px 0;
 }
+.detailBtns{
+  display: flex;
+  align-items: center;
+}
+.detailLikeForm{
+  display: block;
+}
 .detail_likeButton {
   width: 50px;
   height: 50px;
@@ -965,6 +972,14 @@
 .freeUser{
   display: flex;
   border-bottom: 2px solid #fff;
+  align-items: center;
+}
+.freeUserName{
+  margin: auto 10px;
+}
+.freeUser span{
+  margin-left: auto;
+  font-size: smaller;
 }
 .freeDtRight{
   background-color:rgb(250, 247, 247);
@@ -984,6 +999,13 @@
 }
 .comment span{
   font-size: smaller;
+}
+.freecommentUser{
+  align-items: center;
+  display: flex;
+}
+.freedate{
+  margin-left: auto;
 }
 .detail_lev {
   width: 15x;

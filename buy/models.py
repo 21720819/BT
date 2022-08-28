@@ -21,8 +21,8 @@ class Buy(models.Model):
                                  null=False,)
     location=models.CharField(max_length=300)
     photo = models.ImageField(blank=True,null=True,upload_to='images/buy')
-    # lat = models.FloatField() #위도
-    # long = models.FloatField() #경도
+    # lat = models.FloatField(default=0) #위도
+    # long = models.FloatField(default=0) #경도
     ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,
                                  null=False,
                                  default="")# 글쓴이 

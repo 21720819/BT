@@ -29,7 +29,15 @@
     
     <!-- 내용 -->
     <div class="detail_main">
-        <h5 class="detail_category">거래게시판/해당 카테고리명</h5>
+        {%if detail.category == 0 %}
+        <h5 class="detail_category">거래게시판/식재료</h5>
+        {%elif detail.category == 1 %}
+        <h5 class="detail_category">거래게시판/생필품</h5>
+        {%elif detail.category == 2 %}
+        <h5 class="detail_category">거래게시판/OTT</h5>
+        {%elif detail.category == 3 %}
+        <h5 class="detail_category">거래게시판/배달</h5>
+        {%endif%}
         <h1 class="detail_title">{{detail.title}}</h1>
         <h3 class="detail_price">{{detail.price}}원</h3>
         <hr>
@@ -54,8 +62,8 @@
         <div style="font-size: 10px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate}}</div>
         <p class="detail_context">{{detail.body}}</p>
         
-        <div>
-        <form action="{% url 'addBookmark' detail.id %}" method="post">
+        <div class="detailBtns">
+        <form class="detailLikeForm"action="{% url 'addBookmark' detail.id %}" method="post">
             {% csrf_token %}
             {% if detail in user.like_users.all %}
             <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton">
@@ -63,7 +71,7 @@
             <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton">
             {% endif %}
         </form>
-        <--! <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div>-->
+        <!-- <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div> -->
             {% if detail.ID.id == user.id %}
                 <button class="detail_applyButton">
                     <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>

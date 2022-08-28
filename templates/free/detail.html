@@ -49,7 +49,8 @@
         </form>
         <div class="freeUser">
             <div class="detail_lev"></div>
-            <p>{{detail.ID.username}}</p>
+            <p class="freeUserName">{{detail.ID.username}}</p>
+            <span>{{detail.writeDate}}</span>
         </div>
         <p class="detail_context">{{detail.body}}</p>
     </div>
@@ -62,7 +63,7 @@
 
         <div class="comment">
         {% for comment in detail.comment_set.all %}
-            <div><span>{{comment.ID.username}}</span> <span>{{comment.writeDate}}</span></div>
+            <div class="freecommentUser"><span>{{comment.ID.username}}</span> <span class="freedate">{{comment.writeDate}}</span></div>
             <p >{{ comment.body }}</p>
         {% endfor %}
         </div>
