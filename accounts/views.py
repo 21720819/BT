@@ -10,6 +10,27 @@ from django.utils.encoding import force_str
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_str
+from django.conf import settings
+
+import json, requests
+
+#sendbird 정보 가져오기
+application_id = settings.SENDBIRD_APPLICATION_ID
+sendbird_api_token = settings.SENDBIRD_API_TOKEN
+
+
+def create_sendbird_user(user_id, nickname, profile_url=""):
+    url = f"https://api-{application_id}.sendbird.com/v3/users"
+    api_headers = {"Api-Token": sendbird_api_token}
+    data = {
+        "user_id": user_id,
+        "nickname": nickname,
+        "profile_url": profile_url,
+    }
+    res = requests.post(url, data=json.dumps(data), headers=api_headers)
+    res_data = json.loads(res._content.decode("utf-8"))
+    return json.dumps(res_data)
+
 
 def home(request):
     return render(request,'home.html')
@@ -21,6 +42,8 @@ def signup(request):
             user = User.objects.create_user(
                 email= request.POST['email'], password=request.POST['password'] ,username = request.POST['username']
             )
+            #센드버드 유저 등록 (나중에 메일 전송 문제 해결되면 active 쪽으로 옮길 예정)
+            create_sendbird_user(request.POST['email'],request.POST['username'])
             user.is_active = False
             user.save()
             current_site = get_current_site(request) 
