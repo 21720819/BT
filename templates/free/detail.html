@@ -1,7 +1,7 @@
 {% extends 'nav.html' %}
 
 {% block content %}
-<div class="detail_container">
+<!-- <div class="detail_container">
     <div class="detail_division">
         <table style="width: 858px;">
                 <tr>
@@ -38,6 +38,34 @@
         <div style="margin-top: 15px;">{{comment.ID.username}} {{comment.writeDate}}</div>
         <p style="margin: 0;">{{ comment.body }}</p>
         {% endfor %}
+    </div>
+</div> -->
+<div class="freeDetailDiv">
+    <div class="freeDtLeft">
+        <h2>{{detail.title}}</h3>
+        <form action="{% url 'freeLike' detail.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="{{detail.like_count}}" class="">
+        </form>
+        <div class="freeUser">
+            <div class="detail_lev"></div>
+            <p>{{detail.ID.username}}</p>
+        </div>
+        <p class="detail_context">{{detail.body}}</p>
+    </div>
+    <div class="freeDtRight">
+        <form method="POST" action="{% url 'create_comment' detail.id %}">
+            {% csrf_token %}
+            {{comment_form.body}}
+            <input type="submit" value="🤍" class="comment_btn">
+        </form>
+
+        <div class="comment">
+        {% for comment in detail.comment_set.all %}
+            <div><span>{{comment.ID.username}}</span> <span>{{comment.writeDate}}</span></div>
+            <p >{{ comment.body }}</p>
+        {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

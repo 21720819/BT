@@ -55,15 +55,22 @@
         <p class="detail_context">{{detail.body}}</p>
         
         <div>
-            <input type="button" value="❤&#10;{{detail.good}}" class="detail_likeButton">
-
+        <form action="{% url 'addBookmark' detail.id %}" method="post">
+            {% csrf_token %}
+            {% if detail in user.like_users.all %}
+            <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton">
+            {% else %}
+            <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton">
+            {% endif %}
+        </form>
+        <--! <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div>-->
             {% if detail.ID.id == user.id %}
                 <button class="detail_applyButton">
-                    <a href="{# url 'auth' #}" style="text-decoration: none; color: white;">신청자 보기</a>
+                    <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>
                 </button>
             {% else  %}
                 <button class="detail_applyButton" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                    <a href="{# url 'join' user.userID #}" style="text-decoration: none; color: white;">참가하기</a>
+                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">참가하기</a>
                 </button>
             {% endif %}
         </div>
