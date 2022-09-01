@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
@@ -17,65 +16,79 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 
-<body class="nav_body">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
+<body class="font_change">
+    <header>
+        헤더부분
+    </header>
 
-            <a class="navbar-brand nav_change_color" href="{% url 'home' %}">BuyTogether</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav_change_color fw-bold" href="" id="navbarDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            거래게시판</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <div class="l-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <div class="nav__brand">
+                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                    <a href="#" class="nav__logo">BuyTogether</a>
+                </div>
+                <div class="nav__list">
+                    <a href="#" class="nav__link active">
+                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">홈</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">채팅</span>
+                    </a>
 
-                            <li><a class="dropdown-item nav_change_color" href="{% url 'buyHome'%}">전체</a></li>
-                            <li><a class="dropdown-item nav_change_color"
-                                href="{% url 'category' 'necessity' %}">생필품</a></li>
-                            <li><a class="dropdown-item nav_change_color" href="{% url 'category' 'ott' %}">OTT</a></li>
-                            <li><a class="dropdown-item nav_change_color" href="{% url 'category' 'delivery' %}">배달</a>
-                            </li>
-                            <!-- <li><hr class="dropdown-divider"></li> -->
-                            <li><a class="dropdown-item nav_change_color" href="{% url 'category' 'food' %}">식료품</a>
-                            </li>
+                    <div href="#" class="nav__link showCollapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">거래게시판</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{% url 'freeHome' %}">자유게시판</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{% url 'chatHome' %}">채팅 </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{# url 'AIhome' #}">AI챗봇</a>
-                    </li>
-                    <li class="nav-item">
-                    {% if user.is_authenticated %}
-                    <!-- <a class="nav-link nav_change_color fw-bold" href="{# url 'profilehome' user.username #}">{{user.username}}</a> -->
-                    <a class="nav-link nav_change_color fw-bold" href="{% url 'profileHome' user.username %}">{{user.username}}</a>
-                    {% else %}
-                    <a class="nav-link nav_change_color fw-bold" href="{% url 'login' %}">로그인</a>
-                    {% endif %}
-                    </li>
-                </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Analytics</span>
+                    </a>
+
+                    <div href="#" class="nav__link showCollapse">
+                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Team</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Settings</span>
+                    </a>
+                </div>
+                <a href="#" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
             </div>
-        </div>
-    </nav>
-
-    <div class="row justify-content-end" id="fix_AI">
-        <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
-            <input type="button"  class='post_button' value="AI" onClick=" location.href='/AI'">
-        </div>
+        </nav>
     </div>
-    {% block content %}
-    {% endblock %}
 
+    <!-- 내용이 들어가는 공간 -->
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- js -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -85,5 +98,86 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+        
+        
+    <!-- 네비바 js -->
+    <script>
+        const showMenu = (toggleId, navbarId, bodyId) => {
+                const toggle = document.getElementById(toggleId),
+                    navbar = document.getElementById(navbarId),
+                    bodypadding = document.getElementById(bodyId)
+
+                if (toggle && navbar) {
+                    toggle.addEventListener('click', () => {
+                        navbar.classList.toggle('expander');
+
+                        bodypadding.classList.toggle('body-pd')
+                    })
+                }
+            }
+
+            showMenu('nav-toggle', 'navbar', 'body-pd')
+
+            /* LINK ACTIVE */
+            const linkColor = document.querySelectorAll('.nav__link')
+            function colorLink() {
+                linkColor.forEach(l => l.classList.remove('active'))
+                this.classList.add('active')
+            }
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+            /* COLLAPSE MENU */
+            const linkCollapse = document.getElementsByClassName('collapse__link')
+            var i
+
+            for (i = 0; i < linkCollapse.length; i++) {
+                linkCollapse[i].addEventListener('click', function () {
+                    const collapseMenu = this.nextElementSibling
+                    collapseMenu.classList.toggle('showCollapse')
+
+                    const rotate = collapseMenu.previousElementSibling
+                    rotate.classList.toggle('rotate')
+                });
+            }
+    </script>
+    <!-- 슬라이드 메뉴 js -->
+    <script>
+        $("#slide__1 a").on("click", function () {
+                var position = $(this)
+                    .parent().position();
+                var width = $(this)
+                    .parent().width();
+                $("#slide__1 .slide1").css({ opacity: 1, left: +position.left, width: width });
+            });
+    
+            $("#slide__1 a").on("mouseover", function () {
+                var position = $(this)
+                    .parent().position();
+                var width = $(this)
+                    .parent().width();
+                $("#slide__1 .slide2").css({
+                    opacity: 1, left: +position.left, width: width
+                })
+                    .addClass("squeeze");
+            });
+    
+            $("#slide__1 a").on("mouseout", function () {
+                $("#slide__1 .slide2").css({ opacity: 0 }).removeClass("squeeze");
+            });
+    
+            var currentWidth = $("#slide__1")
+                .find("li:nth-of-type(3) a")
+                .parent("li")
+                .width();
+            var current = $("li:nth-of-type(3) a").position();
+            $("#slide__1 .slide1").css({ left: +current.left, width: currentWidth });
+    </script> 
+
+<!-- 좋아요 버튼 js -->
+    <script>
+   
+    </script>
+    
 </body>
 </html>

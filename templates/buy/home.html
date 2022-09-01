@@ -1,87 +1,113 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 {% extends 'nav.html' %}
 {% load static %}
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% block content %}
+
+<ul id="slide__1"> 
+  <li class="slide1"></li>         
+  <li class="slide2"></li>
+  <li><a href="{% url 'buyHome' %}">전체</a></li>
+  <li><a href="{% url 'category' 'necessity' %}">생필품</a></li>
+  <li><a href="{% url 'category' 'food' %}">식료품</a></li>
+  <li><a href="{% url 'category' 'ott' %}">OTT</a></li>
+  <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
+</ul>
+
 <div class="row justify-content-end" id="fix_create">
   <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
-      <input type="button"  class='post_button' value="+" onClick=" location.href='create'">
+      <input type="button"  class='post_button' value="글쓰기" onClick=" location.href='create'">
   </div>
 </div>
 
-<div class="container">
-  <div class="row purbd_home_div_search" >
-    <div class="col-12">
-        <span class='pink_window'>
-            <input type='text' class='input_text' placeholder="Serch..." onfocus="this.placeholder=''" onblur="this.placeholder='Serch...'"/>
-        </span>
-        <button type='submit' class='sch_smit'>검색</button>
+<div class="buy_container">
+
+  <div class="row buy_body">
+    {% for post in posts %}
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="" />
+        </div>
+        <div class="card-body">
+          <span class="tag tag_purple">모집중</span>
+          <h4>포도 같이 사요~</h4>
+          <p>
+            포도 직배송 같이 삽시당!
+          </p>
+          <h6>거래시간 : </h6>
+          <h6>위치 : </h6>
+          <div class="like__container">
+            <button class="like__btn animated">
+              <i class="like__icon fa fa-heart"></i>
+              <span class="like__number">99</span>
+            </button>
+          </div>
+       
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-6 col-md-4 p-2 position-relative">
+      <div class="card" style="margin-top: 10px;">
+        <div class="card-header">
+          <h6 style="color: red;"><b>모집중</b></h6>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title purbd_home_title"><a href="{% url 'buyDetail' post.id %}" class="stretched-link"
+              style=" text-decoration : none; color : black;">{{post.title}}</a></h4>
+          <h5 class="card-subtitle mb-2 " style="text-align:left; margin-top: 10px; ">{{post.ID.username}}</h5>
+          <h6 class="card-subtitle mb-2" style="text-align:right"><b>{{post.price}}원</b></h6>
+
+          <div class="purbd_home_location"><img src="{%static 'images/location.png' %}"
+              style="padding-right: 5px;  height: 20px; ">{{post.location}}</div>
+          <div class="purbd_home_meetTime"> <img src="{%static 'images/clock.png' %}"
+              style="padding-right: 10px; height: 18px;">{{post.date}}</div>
+
+        </div>
+        <div class="card-footer">
+
+          <div style="text-align: right;">
+            <span style="margin-right: 15px;"><img src="{%static 'images/heart.png' %}"
+                style="padding-right: 3px;  height: 20px; "> {{post.good}} </span>
+            {{post.people}}<span style="color: red "><b> / {{post.wpeople}}</span></b>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="row justify-content-center">
+      <div class="col-sm-6 col-md-3 p-2 purbd_home_div">
+        {%if posts.has_previous%}
+        <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째
+            페이지</button></a>&nbsp&nbsp&nbsp
+        {%endif%}
+        {%if posts.has_next%}
+        <a href="?page={{posts.next_page_number}}"><button type="button"
+            class="btn btn-dark">다음</button></a>&nbsp&nbsp&nbsp
+        {%endif%}
+        <div style="text-align:center;">
+          <span>{{posts.number}}&nbsp</span>
+          <span>/&nbsp&nbsp{{posts.paginator.num_pages}}</span>
+        </div>
+        {%if posts.has_previous%}
+        <a href="?page={{posts.previous_page_number}}"><button type="button"
+            class="btn btn-dark">이전</button></a>&nbsp&nbsp&nbsp
+        {%endif%}
+        {%if posts.has_previous%}
+        <a class="listbutton" href="?page={{posts.previous_page_number}}"><button type="button" class="btn btn-dark">마지막
+            페이지</button></a>
+        {%endif%}
+      </div>
     </div>
   </div>
-      <div class = "row purbd_home_div_category ">
-        <div class = "col-12">
-              <div class="btn-group btn-group-lg">
-                <a href="{% url 'buyHome' %}" class="btn  catBtn-active" aria-current="page" id="all">전체</a>
-                <a href="{% url 'category' 'necessity' %}" class="btn catBtn" id="necessity">생필품</a>
-                <a href="{% url 'category' 'ott' %}" class="btn catBtn" id="ott">OTT</a>
-                <a href="{% url 'category' 'delivery' %}" class="btn catBtn" id="delivery">배달</a>
-                <a href="{% url 'category' 'food' %}" class="btn catBtn" id="food">식료품</a>
-              </div>
-      </div>
-      </div>
-     
+</>
 
-      <div class="row">
-       
-        {% for post in posts %}
-        <div class="col-sm-6 col-md-4 p-2 position-relative">
-            <div class="card" style="margin-top: 10px;">
-              <div class="card-header">
-                <h6 style="color: red;"><b>모집중</b></h6>
-              </div>
-                <div class="card-body">
-                  <h4 class="card-title purbd_home_title"><a href="{% url 'buyDetail' post.id %}" class="stretched-link" style=" text-decoration : none; color : black;">{{post.title}}</a></h4>
-                  <h5 class="card-subtitle mb-2 " style="text-align:left; margin-top: 10px; ">{{post.ID.username}}</h5>
-                  <h6 class="card-subtitle mb-2" style="text-align:right"><b>{{post.price}}원</b></h6>
-                 
-                  <div class="purbd_home_location" ><img src="{%static 'images/location.png' %}" style="padding-right: 5px;  height: 20px; ">{{post.location}}</div>
-                  <div  class="purbd_home_meetTime"> <img src="{%static 'images/clock.png' %}" style="padding-right: 10px; height: 18px;">{{post.date}}</div>
-                
-                </div> 
-                <div class="card-footer">
-                  
-                    <div style = "text-align: right;">
-                          <span style="margin-right: 15px;"><img src="{%static 'images/heart.png' %}" style="padding-right: 3px;  height: 20px; "> {{post.good}}  </span>
-                          {{post.people}}<span style="color: red "><b> / {{post.wpeople}}</span></b>
-                    </div>
-                   
-                </div>
-          </div>
-         
-        </div>
-        {% endfor %}
-        <div class="row justify-content-center">       
-          <div class="col-sm-6 col-md-3 p-2 purbd_home_div">    
-              {%if posts.has_previous%}
-              <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째 페이지</button></a>&nbsp&nbsp&nbsp
-            {%endif%}
-            {%if posts.has_next%}
-              <a href="?page={{posts.next_page_number}}"><button type="button" class="btn btn-dark">다음</button></a>&nbsp&nbsp&nbsp
-            {%endif%}
-          <div style="text-align:center;">
-            <span>{{posts.number}}&nbsp</span>
-            <span>/&nbsp&nbsp{{posts.paginator.num_pages}}</span>
-          </div>
-          {%if posts.has_previous%}
-              <a href="?page={{posts.previous_page_number}}"><button type="button" class="btn btn-dark">이전</button></a>&nbsp&nbsp&nbsp
-          {%endif%}
-            {%if posts.has_previous%}
-                <a class="listbutton" href="?page={{posts.previous_page_number}}"><button type="button" class="btn btn-dark">마지막 페이지</button></a>
-            {%endif%}
-          </div> 
-        </div>
-      </div>    
-          
+
 {% endblock %}
+
