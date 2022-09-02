@@ -56,6 +56,9 @@
                         <a class="nav-link nav_change_color fw-bold" href="{# url 'AIhome' #}">AI챗봇</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link nav_change_color fw-bold" href="{% url 'map' %}">지도</a>
+                    </li>
+                    <li class="nav-item">
                     {% if user.is_authenticated %}
                     <!-- <a class="nav-link nav_change_color fw-bold" href="{# url 'profilehome' user.username #}">{{user.username}}</a> -->
                     <a class="nav-link nav_change_color fw-bold" href="{% url 'profileHome' user.username %}">{{user.username}}</a>
@@ -68,11 +71,11 @@
         </div>
     </nav>
 
-    <div class="row justify-content-end" id="fix_AI">
+    <!-- <div class="row justify-content-end" id="fix_AI">
         <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
             <input type="button"  class='post_button' value="AI" onClick=" location.href='/AI'">
         </div>
-    </div>
+    </div> -->
     {% block content %}
     {% endblock %}
 

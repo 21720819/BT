@@ -65,4 +65,25 @@ def freeEdit(request, free_id):
             'writing':True,
             'now':'edit',
         }
-        return render(request, 'free/edit_post.html',context)
+        return render(request, 'free/freeCreate.html',context)
+
+def freeLike(request, free_id):
+    detail = Free.objects.get(pk=free_id)
+    uid = request.user.id
+    user = get_object_or_404(User, pk=uid)
+
+    check_like_post = user.like_frees.filter(id=free_id)
+
+    if request.method == 'POST':
+        if check_like_post.exists():
+            user.like_frees.remove(detail)
+            detail.like_count -= 1
+            detail.save()
+        else:
+            user.like_frees.add(detail)
+            detail.like_count += 1
+            detail.save()
+
+    
+    return redirect('freeDetail',str(free_id))
+

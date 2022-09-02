@@ -4,38 +4,44 @@
 {% load static %}
 
 <div class="detail_container">
+    <!-- 이건 네비바 밑에 -->
+    <div class="detail_nav">
+        {%if detail.ID.id == user.id%}
+        <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
+        <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
+        <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
+        {% endif %}
+    </div>
+    <div style="clear: both;"></div>
+
     <!-- 사진 -->
     {% if detail.photo %}
         <img src="{{ detail.photo.url }}" alt="" class="detail_img">
     {% endif %}
-
-    <!-- 지도 -->
-    <!-- <div class="detail_map">
-        지도
-    </div> -->
-    
-    <!-- 이건 네비바 밑에 -->
-    <!-- {%if detail.ID.id == user.id%}
-    <a href="{% url 'buyDelete' detail.id %}">삭제</a>
-    <a href="{% url 'buyEdit' detail.id %}">수정</a>
-    {% endif %} -->
-
-    <!-- 사진 -->
     <!-- {% if detail.photo %}
         <img src="{{ detail.photo.url }}" alt="" class="detail_img">
     {% else %}
         <img alt="" class="detail_img">
     {% endif %} -->
-    
+
+
     <!-- 내용 -->
     <div class="detail_main">
-        <h5 class="detail_category">거래게시판/해당 카테고리명</h5>
+        {%if detail.category == 0 %}
+        <h5 class="detail_category">거래게시판/식재료</h5>
+        {%elif detail.category == 1 %}
+        <h5 class="detail_category">거래게시판/생필품</h5>
+        {%elif detail.category == 2 %}
+        <h5 class="detail_category">거래게시판/OTT</h5>
+        {%elif detail.category == 3 %}
+        <h5 class="detail_category">거래게시판/배달</h5>
+        {%endif%}
         <h1 class="detail_title">{{detail.title}}</h1>
         <h3 class="detail_price">{{detail.price}}원</h3>
         <hr>
         <table>
             <tr>
-                <td style="width: 30px;"><img class="detail_lev" style="margin-left: -1px;"></td>
+                <td style="width: 30px;"><img class="detail__lev" style="margin-left: -1px;"></td>
                 <td><h3 style="font-size: 20px; margin: 0;">{{detail.ID.username}}</h3></td>
             </tr>
         </table>
@@ -44,6 +50,8 @@
             <tr>
                 <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td>
                 <td><h3 class="detail_loca_time">{{detail.location}}</h3></td>
+                <p style="display: none;" id="lat">{{detail.lat}}</p>
+                <p style="display: none;" id="long">{{detail.long}}</p>
             </tr>
             <tr>
                 <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td>
@@ -54,16 +62,23 @@
         <div style="font-size: 10px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate}}</div>
         <p class="detail_context">{{detail.body}}</p>
         
-        <div>
-            <input type="button" value="❤&#10;{{detail.good}}" class="detail_likeButton">
-
+        <div class="detailBtns">
+        <form class="detailLikeForm"action="{% url 'addBookmark' detail.id %}" method="post">
+            {% csrf_token %}
+            {% if detail in user.like_users.all %}
+            <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton">
+            {% else %}
+            <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton">
+            {% endif %}
+        </form>
+        <!-- <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div> -->
             {% if detail.ID.id == user.id %}
                 <button class="detail_applyButton">
-                    <a href="{# url 'auth' #}" style="text-decoration: none; color: white;">신청자 보기</a>
+                    <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>
                 </button>
             {% else  %}
                 <button class="detail_applyButton" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                    <a href="{# url 'join' user.userID #}" style="text-decoration: none; color: white;">참가하기</a>
+                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">참가하기</a>
                 </button>
             {% endif %}
         </div>
@@ -73,9 +88,12 @@
     <div id="map" class="detail_map"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
     <script>
+        const lat = document.querySelector('#lat')
+        const long = document.querySelector('#long')
+        console.log(lat.innerHTML)
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(lat.innerHTML, long.innerHTML), // 지도의 중심좌표
                 level: 3 // 지도의 확대 레벨
             };
 
@@ -91,6 +109,16 @@
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        
+        var markerPosition  = new kakao.maps.LatLng(lat.innerHTML, long.innerHTML); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
     </script>
 
 </div>

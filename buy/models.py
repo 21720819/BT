@@ -15,21 +15,22 @@ class Buy(models.Model):
                                  null=False,
                                  default=0)
     wpeople = models.IntegerField(blank=False,
-                                 null=False,)
-    people = models.IntegerField(null=True,default=1)
+                                 null=False,)#모집인원
+    people = models.IntegerField(null=True,default=1)# 모인사람 
     price = models.IntegerField(blank=False,
                                  null=False,)
     location=models.CharField(max_length=300)
-    photo = models.ImageField(blank=True,null=True,upload_to='pur_photo')
-    # lat = models.FloatField() #위도
-    # long = models.FloatField() #경도
+    photo = models.ImageField(blank=True,null=True,upload_to='images/buy')
+    lat = models.FloatField(default=0) #위도
+    long = models.FloatField(default=0) #경도
     ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,
                                  null=False,
-                                 default="")
-    good = models.IntegerField(null=True,default=0)
-    # joinID = ArrayField( 
-    #      models.CharField(max_length=200)
-    # )
+                                 default="")# 글쓴이 
+    like_count = models.PositiveIntegerField(default=0)    
+    join_count = models.PositiveIntegerField(default=1)    
     def __str__(self):
         return self.title
     
+# class Bookmarks(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     post = models.ForeignKey(Buy, on_delete=models.CASCADE)

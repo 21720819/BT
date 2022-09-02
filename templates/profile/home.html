@@ -2,13 +2,71 @@
 
 {% block content %}
 
-<div class="detail_container">
+<div class="detail_container" style="max-width: 768px;">
+    <table id="profile_table">
+        <tr>
+            <td style="width: 30px;"><img class="profile_img"></td>
+            <td style="font-size: 20px; text-align: left;">
+                <h3 class="profile_nick">{{user.username}}</h3>
+                <!-- <h4 class="profile_text" style="font-size: 15px;">{{user.level}}</h4> -->
+            </td>
+        </tr>
+    </table>
+
+    <div class="profile_summary">
+        <div class="profile_division">
+            <div class="profile_divUpParts profile_verticalHr">레벨</div>
+            <div class="profile_divDownParts profile_verticalHr">0</div>
+        </div>
+        <div class="profile_division">
+            <div class="profile_divUpParts profile_verticalHr">가입일</div>
+            <div class="profile_divDownParts profile_verticalHr">0</div>
+        </div><div class="profile_division">
+            <div class="profile_divUpParts">최근 접속일</div>
+            <div class="profile_divDownParts">{{user.last_login.date}}</div>
+        </div>
+    </div>
+
+    <div class="profile_summary" style="background-color: white; padding: 0;">
+        <div id="profile_myPost" class="profile_halfDiv">
+            <div class="profile_divUpParts profile_horizontalHr" style="margin-bottom: 10px; padding: 10px 0;">내가 쓴 글</div>
+            <div>
+                {% for post in p_post %}
+                    <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="profile_halfDiv">
+            <div class="profile_divUpParts profile_horizontalHr" style="margin-bottom: 10px; padding: 10px 0;">좋아요 누른 글</div>
+            <div>
+                {% for like in likes %}
+                    <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="profile_summary" style="padding: 20px;">
+        <a class="nav-link nav_change_color" href="">프로필 수정</a>
+    </div>
+
+    <div class="profile_summary" style="padding: 20px;">
+        <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
+    </div>
+    
+    <div id="profile_delete" class="profile_summary" style="padding: 20px;">
+        <a class="nav-link nav_change_color" href="">회원탈퇴</a>
+    </div>
+</div>
+
+
+<!-- <div class="detail_container">
     <table style="width: 900px; margin: 20px auto 40px auto;">
         <tr>
             <td style="width: 60px; padding: 0 0 15px 2px;"><img class="profile_img"></td>
             <td style="font-size: 20px; text-align: left; padding-bottom: 15px;">
                 <h3 class="chat_list_text">{{user.username}}</h3>
-                <!-- <h4 class="chat_list_text" style="font-size: 17px;">{{user.username}}</h4> -->
+                <h4 class="chat_list_text" style="font-size: 17px;">{{user.username}}</h4>
             </td>
         </tr>
     </table>
@@ -44,8 +102,13 @@
         </div>
 
         <div class="profile_half_division">
-            <div class="half_division_title">다른 사용자의 평가</div>
+            <div class="half_division_title">좋아요한 글</div>
             <hr style="margin: 0;">
+            <div class="half_division_info">
+                {% for like in likes %}
+                    <br><a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
+                {% endfor %}
+            </div>
         </div>
         <div style="clear: both;"></div>
         
@@ -65,5 +128,5 @@
             <a class="nav-link nav_change_color fw-bold" href="{% url 'logout' %}">회원 탈퇴</a>    
         </div>
     </div>
-</div>
+</div> -->
 {% endblock %}

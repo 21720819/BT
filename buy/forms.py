@@ -4,7 +4,7 @@ from .models import Buy
 class BuyModelform(forms.ModelForm):
 	class Meta:
 		model = Buy
-		fields = ['title','body','date','category','wpeople','price','location','photo']
+		fields = ['title','body','date','category','wpeople','price','location','photo','lat', 'long']
 
 		widgets = {
 			'photo' : forms.ClearableFileInput(
@@ -37,6 +37,17 @@ class BuyModelform(forms.ModelForm):
 						'placeholder': '장소를 입력하세요. ',
 						'name' : 'place', 'id' : 'place' }
 			),
+			'lat' : forms.TextInput(
+				attrs={'class' : 'form-control',
+				'type' : 'hidden',
+				'id' : 'lat'}
+				),
+            'long' : forms.TextInput(
+				attrs={'class' : 'form-control',
+				'type' : 'hidden',
+				 'id' : 'long'}
+				),
+				
 			'date' : forms.TextInput(
 				attrs={ 'class': 'form-control', 'class': 'detail_loca_time',
 						'style': 'width: 100%; border: 0; padding: 0;',
