@@ -175,9 +175,16 @@
     </script> 
 
 <!-- 좋아요 버튼 js -->
-    <script>
-   
-    </script>
+   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+   <script>
+    $(function() {
+      
+      $(".heart").on("click", function() {
+        $(this).toggleClass("heart-blast");
+      });
+    }); 
+      
+    </script> 
     
 </body>
 </html>
