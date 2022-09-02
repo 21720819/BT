@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lk+1gqp&8_05@24!d#5=81m)dv0rv9w4jq)r!2_ce^vf(e-ppb'
+
+
+env = environ.Env(DEBUG=(bool, True)) #환경변수를 불러올 수 있는 상태로 세팅
+
+#환경변수 파일 읽어오기
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
+
+SECRET_KEY = env('SECRET_KEY') #SECEREY_KEY 값 불러오기
+DEBUG = env('DEBUG') #DEBUG 값 불러오기
+
+#sendbird setting
+SENDBIRD_APPLICATION_ID=env("SENDBIRD_APPLICATION_ID")
+SENDBIRD_API_TOKEN=env("SENDBIRD_API_TOKEN")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -150,7 +166,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com' # 메일 호스트 서버
 EMAIL_PORT = '587' # gmail과 통신하는 포트 
 EMAIL_HOST_USER = 'buytogether1212@gmail.com' # 발신할 이메일
-EMAIL_HOST_PASSWORD = 'tqixlxcdayhwxoqa' # 발신할 메일의 비밀번호
+EMAIL_HOST_PASSWORD = 'vyglauptexxbggpe' # 발신할 메일의 비밀번호
 EMAIL_USE_TLS = True # TLS 보안 방법
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
