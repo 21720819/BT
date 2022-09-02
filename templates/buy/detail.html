@@ -4,29 +4,27 @@
 {% load static %}
 
 <div class="detail_container">
+    <!-- 이건 네비바 밑에 -->
+    <div class="detail_nav">
+        {%if detail.ID.id == user.id%}
+        <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
+        <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
+        <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
+        {% endif %}
+    </div>
+    <div style="clear: both;"></div>
+
     <!-- 사진 -->
     {% if detail.photo %}
         <img src="{{ detail.photo.url }}" alt="" class="detail_img">
     {% endif %}
-
-    <!-- 지도 -->
-    <!-- <div class="detail_map">
-        지도
-    </div> -->
-    
-    <!-- 이건 네비바 밑에 -->
-    <!-- {%if detail.ID.id == user.id%}
-    <a href="{% url 'buyDelete' detail.id %}">삭제</a>
-    <a href="{% url 'buyEdit' detail.id %}">수정</a>
-    {% endif %} -->
-
-    <!-- 사진 -->
     <!-- {% if detail.photo %}
         <img src="{{ detail.photo.url }}" alt="" class="detail_img">
     {% else %}
         <img alt="" class="detail_img">
     {% endif %} -->
-    
+
+
     <!-- 내용 -->
     <div class="detail_main">
         {%if detail.category == 0 %}
@@ -43,7 +41,7 @@
         <hr>
         <table>
             <tr>
-                <td style="width: 30px;"><img class="detail_lev" style="margin-left: -1px;"></td>
+                <td style="width: 30px;"><img class="detail__lev" style="margin-left: -1px;"></td>
                 <td><h3 style="font-size: 20px; margin: 0;">{{detail.ID.username}}</h3></td>
             </tr>
         </table>
