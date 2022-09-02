@@ -34,19 +34,20 @@
         </div>
         <div class="card-body">
           <span class="tag tag_purple">모집중</span>
-          <h4>포도 같이 사요~</h4>
+          <h4 class="card-title purbd_home_title"><a href="{% url 'buyDetail' post.id %}" class="stretched-link"
+            style=" text-decoration : none; color : black;">{{post.title}}</a></h4>
           <p>
-            포도 직배송 같이 삽시당!
+            {{post.body}}
           </p>
-          <h6>거래시간 : </h6>
-          <h6>위치 : </h6>
-          <h4>42000원</h4>
+          <h6>거래시간 : {{post.date}}</h6>
+          <h6>위치 : {{post.location}}</h6>
+          <h4>{{post.price}}원</h4>
           <button> <ion-icon name="heart-outline"></ion-icon></button>
       </div>
     </div>
 
 
-
+<!-- 
     <div class="col-sm-6 col-md-4 p-2 position-relative">
       <div class="card" style="margin-top: 10px;">
         <div class="card-header">
@@ -74,7 +75,7 @@
 
         </div>
       </div>
-    </div>
+    </div> -->
     {% endfor %}
     <div class="row justify-content-center">
       <div class="col-sm-6 col-md-3 p-2 purbd_home_div">
@@ -101,7 +102,7 @@
       </div>
     </div>
   </div>
-</>
+</div>
 
 
 {% endblock %}
