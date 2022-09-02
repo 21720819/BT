@@ -20,6 +20,8 @@
             <h1 class="detail_title">{{form.title}}</h1>
             <h3 class="detail_price">가격 : {{form.price}}명</h3>
             <h3 class="detail_price" style="padding: 0;">모집인원 : {{form.wpeople}}명</h3>
+            {{form.lat}}
+            {{form.long}}
             <!-- <hr>
             <table>
                 <tr>
@@ -69,6 +71,8 @@
         <!-- 지도 스크립트 -->
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
         <script>
+            let lat = document.querySelector('#lat');
+            let long = document.querySelector('#long');
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = { 
                     center: new kakao.maps.LatLng(35.836275171372904, 128.7529585430768), // 지도의 중심좌표
@@ -111,6 +115,8 @@
                 
                 var resultDiv = document.getElementById('clickLatlng'); 
                 resultDiv.innerHTML = message;*/
+                lat.value = latlng.getLat();
+                long.value = latlng.getLng();
                 
             });
         </script>

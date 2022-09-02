@@ -52,6 +52,8 @@
             <tr>
                 <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td>
                 <td><h3 class="detail_loca_time">{{detail.location}}</h3></td>
+                <p style="display: none;" id="lat">{{detail.lat}}</p>
+                <p style="display: none;" id="long">{{detail.long}}</p>
             </tr>
             <tr>
                 <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td>
@@ -88,9 +90,12 @@
     <div id="map" class="detail_map"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
     <script>
+        const lat = document.querySelector('#lat')
+        const long = document.querySelector('#long')
+        console.log(lat.innerHTML)
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(lat.innerHTML, long.innerHTML), // 지도의 중심좌표
                 level: 3 // 지도의 확대 레벨
             };
 
@@ -106,6 +111,16 @@
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        
+        var markerPosition  = new kakao.maps.LatLng(lat.innerHTML, long.innerHTML); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
     </script>
 
 </div>

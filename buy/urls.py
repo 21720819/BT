@@ -9,7 +9,7 @@ urlpatterns = [
     path('<int:post_id>/bookmark',views.addBookmark,name='addBookmark'),
      path('detail/<int:post_id>/delete',views.buyDelete,name='buyDelete'),
     path('detail/<int:post_id>/edit',views.buyEdit,name='buyEdit'),
-
+    path('map/', views.map, name='map'),
     path('auth/<str:post_id>',views.auth , name='auth'),
     path('join/<str:post_id>',views.join , name='join'),
 

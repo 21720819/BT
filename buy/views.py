@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from .forms import BuyModelform
 from .models import Buy
 from accounts.models import User
-
+import json
 
 def buyHome(request):
     purchase = Buy.objects
@@ -141,3 +141,21 @@ def join(request,post_id):
 
     
     return redirect('buyDetail',str(post_id))
+
+def map(request):
+    # 아이디, 글제목 , 위도 경도 
+    posts = Buy.objects.all()
+    buy = []
+    for post in posts:
+        dict = {
+            'id': post.id,
+            'title' : post.title,
+            'lat' : post.lat,
+            'long' : post.long,
+            'category' : post.category,
+        }
+
+        buy.append(dict)
+    positionsJson = json.dumps(buy)
+
+    return render(request, 'buy/map.html',{'positionsJson':positionsJson})
