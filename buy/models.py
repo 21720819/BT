@@ -20,7 +20,7 @@ class Buy(models.Model):
     price = models.IntegerField(blank=False,
                                  null=False,)
     location=models.CharField(max_length=300)
-    photo = models.ImageField(blank=True,null=True,upload_to='images/buy')
+    photo = models.ImageField(blank=True,null=True,upload_to='images/')
     lat = models.FloatField(default=0) #위도
     long = models.FloatField(default=0) #경도
     ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,

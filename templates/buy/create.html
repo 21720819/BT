@@ -4,7 +4,7 @@
 {% load static %}
 
 <div class="detail_container">
-    <form method="POST" role="form" action="{% url 'buyCreate' %}">
+    <form method="POST" role="form" action="{% url 'buyCreate' %}"  enctype="multipart/form-data">
         {% csrf_token %}
 
         <!-- 사진 -->
