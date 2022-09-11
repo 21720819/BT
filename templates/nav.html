@@ -17,7 +17,7 @@
 </head>
 
 <body class="font_change">
-    <header>
+    <header style="height: 90px; margin: 0;">
         헤더부분
     </header>
 
@@ -26,87 +26,61 @@
             <div>
                 <div class="nav__brand">
                     <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-                    <a href="#" class="nav__logo">BuyTogether</a>
+                    <a href="{% url 'home' %}" class="nav__logo">BuyTogether</a>
                 </div>
                 <div class="nav__list">
-                    <a href="#" class="nav__link active">
+                    <a href="{% url 'home' %}" class="nav__link active">
                         <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                         <span class="nav_name">홈</span>
                     </a>
-                    <a href="#" class="nav__link">
+                    <a href="{% url 'chatHome' %}" class="nav__link">
                         <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
                         <span class="nav_name">채팅</span>
                     </a>
-
-                    <div href="#" class="nav__link showCollapse">
-                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                    
+                    <div href="{% url 'buyHome' %}" class="nav__link showCollapse">
+                        <ion-icon name="bag-add-outline" class="nav__icon"></ion-icon>
                         <span class="nav_name">거래게시판</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
                         <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
-                            <a href="#" class="collapse__sublink">Group</a>
-                            <a href="#" class="collapse__sublink">Members</a>
+                            <a href="#" class="collapse__sublink">과일</a>
+                            <a href="#" class="collapse__sublink">채소</a>
+                            <a href="#" class="collapse__sublink">생선</a>
+                            <a href="#" class="collapse__sublink">고기</a>
+                            <a href="#" class="collapse__sublink">생필품</a>
+                            <a href="#" class="collapse__sublink">OTT</a>
+                            <a href="#" class="collapse__sublink">배달</a>
                         </ul>
                     </div>
 
-                    <a href="#" class="nav__link">
-                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">Analytics</span>
+                    <a href="{% url 'freeHome' %}" class="nav__link">
+                        <ion-icon name="earth-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">자유게시판</span>
                     </a>
 
-                    <div href="#" class="nav__link showCollapse">
-                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">Team</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
-                            <a href="#" class="collapse__sublink">Group</a>
-                            <a href="#" class="collapse__sublink">Members</a>
-                        </ul>
-
-                    </div>
-
-                    <a href="#" class="nav__link">
-                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">Settings</span>
+                    <a href="{% url 'map' %}" class="nav__link">
+                        <ion-icon name="navigate-circle-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">지도</span>
                     </a>
-                </div>
-                <a href="#" class="nav__link">
-                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-                    <span class="nav_name">Log out</span>
-                </a>
 
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{% url 'freeHome' %}">자유게시판</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{% url 'chatHome' %}">채팅 </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{# url 'AIhome' #}">AI챗봇</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav_change_color fw-bold" href="{% url 'map' %}">지도</a>
-                    </li>
-                    <li class="nav-item">
                     {% if user.is_authenticated %}
-                    <a class="nav-link nav_change_color fw-bold" href="{% url 'profileHome' user.username %}">{{user.username}}</a>
+                    <a class="nav-link" href="{% url 'profileHome' user.username %}">
+                        <ion-icon name="person-circle-outline" class="nav__icon"></ion-icon>
+                    </a>
                     {% else %}
-                    <a class="nav-link nav_change_color fw-bold" href="{% url 'login' %}">로그인</a>
+                    <a class="nav-link" href="{% url 'login' %}">
+                        <ion-icon name="login-outline" class="nav__icon"></ion-icon>
+                    </a>
                     {% endif %}
-                    </li>
-                </ul>
+                </div>       
             </div>
         </nav>
     </div>
 
     <!-- 내용이 들어가는 공간 -->
-    <div>
+    <div id="content_container">
         {% block content %}
         {% endblock %}
     </div>
