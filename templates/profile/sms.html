@@ -1,0 +1,16 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+<form action="{% url 'sendsms'%}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="phone_number">
+    <input type="submit" value="전송">
+</form>
+<form action="{% url 'checksms' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="auth_number">
+    <input type="submit" value="인증">
+</form>
+
+{% endblock %}

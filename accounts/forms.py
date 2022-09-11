@@ -19,3 +19,9 @@ class UserSignupform(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control item', 'placeholder':'이메일'}),
             'password' : forms.PasswordInput(attrs={'class': 'form-control item', 'placeholder':'비밀번호'}),
         }
+
+class smsform(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ['phone_number','auth_number']
+		
