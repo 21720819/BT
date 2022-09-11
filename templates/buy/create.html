@@ -3,6 +3,17 @@
 {% block content %}
 {% load static %}
 
+<style>
+    @media screen and (max-width: 1024px) {
+        body {
+            padding: 0;
+        }
+        .l-navbar {
+            display: none;
+        }
+    }
+</style>
+
 <div class="detail_container">
     <form method="POST" role="form" action="{% url 'buyCreate' %}">
         {% csrf_token %}
@@ -10,7 +21,7 @@
         <!-- 사진 -->
         <div class="detail_img create_img768" style="position: relative;">
             {{form.photo}}
-            <label id="create_pickButton" for="photo" style="z-index: 3;">+</label>
+            <label id="create_pickButton" class="buttonColor" for="photo" style="z-index: 3;">+</label>
             <img id="create_tempImage" class="create_img" style="z-index: 2;">
         </div>
 
@@ -18,7 +29,7 @@
         <div class="detail_main">
             <h5 class="detail_category">거래게시판/{{form.category}}</h5>
             <h1 class="detail_title">{{form.title}}</h1>
-            <h3 class="detail_price">가격 : {{form.price}}명</h3>
+            <h3 class="detail_price">가격 : {{form.price}}원</h3>
             <h3 class="detail_price" style="padding: 0;">모집인원 : {{form.wpeople}}명</h3>
             {{form.lat}}
             {{form.long}}
@@ -44,7 +55,7 @@
             <div>{{form.body}}</div>
             
             <div>
-                <input type="submit" class="create_submitButton" placeholder="작성" value="완료"></input>
+                <input type="submit" class="create_submitButton buttonColor" placeholder="작성" value="완료"></input>
             </div>
         </div>
 
