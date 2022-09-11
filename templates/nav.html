@@ -21,7 +21,7 @@
         헤더부분
     </header>
 
-    <div class="l-navbar" id="navbar">
+    <div class="l-navbar nav_body" id="navbar">
         <nav class="nav">
             <div>
                 <div class="nav__brand">
@@ -38,7 +38,7 @@
                         <span class="nav_name">채팅</span>
                     </a>
                     
-                    <div href="{% url 'buyHome' %}" class="nav__link showCollapse">
+                    <a href="{% url 'buyHome' %}" class="nav__link showCollapse">
                         <ion-icon name="bag-add-outline" class="nav__icon"></ion-icon>
                         <span class="nav_name">거래게시판</span>
 
@@ -53,7 +53,7 @@
                             <a href="#" class="collapse__sublink">OTT</a>
                             <a href="#" class="collapse__sublink">배달</a>
                         </ul>
-                    </div>
+                    </a>
 
                     <a href="{% url 'freeHome' %}" class="nav__link">
                         <ion-icon name="earth-outline" class="nav__icon"></ion-icon>
@@ -66,14 +66,23 @@
                     </a>
 
                     {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'profileHome' user.username %}">
+                    <a class="nav__link" href="{% url 'profileHome' user.username %}">
                         <ion-icon name="person-circle-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">프로필</span>
+                    </a>
+
+                    <a class="nav__link" href="{% url 'logout' %}">
+                        <ion-icon name="lock-closed" class="nav__icon"></ion-icon>
+                        <span class="nav_name">로그아웃</span>
                     </a>
                     {% else %}
-                    <a class="nav-link" href="{% url 'login' %}">
-                        <ion-icon name="login-outline" class="nav__icon"></ion-icon>
+
+                    <a class="nav__link" href="{% url 'login' %}">
+                        <ion-icon name="lock-open" class="nav__icon"></ion-icon>
+                        <span class="nav_name">로그인</span>
                     </a>
                     {% endif %}
+
                 </div>       
             </div>
         </nav>
