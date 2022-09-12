@@ -20,8 +20,8 @@ class UserSignupform(forms.ModelForm):
             'password' : forms.PasswordInput(attrs={'class': 'form-control item', 'placeholder':'비밀번호'}),
         }
 
-class smsform(forms.ModelForm):
-	class Meta:
-		model = User
-		fields = ['phone_number','auth_number']
+# class smsform(forms.ModelForm):
+# 	class Meta:
+# 		model = User
+# 		fields = ['phone_number','auth_number']
 		
