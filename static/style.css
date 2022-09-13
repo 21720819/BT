@@ -2,7 +2,25 @@
 /* class,id 명은 "파트명_자유" */
 
 /* 그리고 섞이면 복잡하니까 주석으로 영역나눠서 작업해주세영 */
+/* margin, padding -> 상우하좌 */
+
+/* ---------폰트 변경---------- */
+@font-face {
+  font-family: 'SEBANG_Gothic_Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* ---------파트명---------- */
+
+
+.buttonColor {
+  background: #E98197;
+}
+.buttonColor:hover {
+  background: #f09fb0;
+}
 
 /* ------ main -------*/
 .jb-box {
@@ -241,8 +259,143 @@
   .detail_applyButton {
     width: calc(100% - 75px);
   }
+  
+  
+
+
+
 }
 
+/* ---------map---------- */
+.map_main {
+  width: calc(100% - 80px);
+  /* height: 75vh; */
+  height: calc(100% - 80px);
+  /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) * 0.75); */
+  border-radius: 30px;
+
+  margin: 40px;
+
+  float: left;
+}
+.map_CustomOverlay {
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  width: 218px;
+  height: 132px;
+  margin-left: -109px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+  line-height: 1.5;
+}
+.map_CustomOverlay * {padding: 0; margin: 0;}
+.map_CustomOverlay .map_info {
+  width: 216px;
+  height: 120px;
+  border-radius: 5px;
+  border-bottom: 2px solid #ccc;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
+  background: #fff;
+}
+.map_CustomOverlay .map_info:nth-child(1) {border: 0; box-shadow: 0px 1px 2px #888;}
+
+.map_info .map_header {
+  padding: 5px 0 0 10px;
+  height: 35px;
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  /* background-color: blue; */
+  
+  /* cursor: pointer; */
+}
+.map_info .map_title {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration : none;
+  color : black;
+}
+.map_info .map_close {
+  position: absolute;
+  top: 11px;
+  right: 13px;
+  /* color: #888; */
+  width: 13px;
+  height: 13px;
+  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+  background-size: 100% 100%;
+  background-position: center;
+  /* background-color: blue; */
+}
+.map_info .map_close:hover {cursor: pointer;}
+.map_info .map_body {position: relative; overflow: hidden;}
+.map_info .map_desc {position: relative; margin: 15px 15px 0 15px; /*height: 55px;*/ font-size: 12px;}
+.map_desc .map_location {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+/* .map_desc .map_time {font-size: 11px;color: #888;margin-top: -2px;} */
+.map_info .map_imgDiv {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 55px;
+  height: 55px;
+  /* border: 1px solid #ddd; */
+  /* color: #888; */
+  border-radius: 5px;
+  overflow: hidden;
+
+  background-color: grey;
+}
+.map_info:after {
+  content: '';
+  position: absolute;
+  margin-left: -12px;
+  left: 50%;
+  bottom: 0;
+  width: 22px;
+  height: 12px;
+  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+/* .map_info .map_price {color: #5085BB;} */
+.map_detail {
+  display: none;
+}
+
+@media screen and (max-width:768px) {
+  .map_main {
+    /* --scrollbar-width: calc(100vw - 100%); */
+    width: calc(100% - 60px);
+    /* width: 100%; */
+    /* height: calc(calc(100vw - 15.15px) - 60px); */
+    /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
+    /* height: calc(100vw - var(--scrollbar-width)); */
+    border-radius: 20px;
+  
+    margin: 30px auto;
+    padding-bottom: calc(100% - 60px);
+
+    float: none;
+  }
+  .map_CustomOverlay {
+    display: none;
+  }
+  .map_detail {
+    width: calc(100% - 60px);
+    /* height: calc(calc(100vw - 15.15px) - 60px); 사이드바 없어지면 */
+    /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
+    /* height: calc(100% - 60px); */
+    height: 132px;
+    border-radius: 20px;
+    background-color: rgb(250, 247, 247);
+
+    margin: 0 auto 30px auto;
+
+    display: block;
+    /* float: left; */
+  }
+}
 
 
 /* ---------chat---------- */
@@ -336,238 +489,255 @@
 }
 
 
-/* ---------font---------- */
+/* ---------폰트 바꾸기---------- */
 .font_change {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'SEBANG_Gothic_Bold';
+  position: relative;
 }
-
 
 /* ---------nav---------- */
 
 :root {
- --nav--width: 110px;
+  --header-height: 4rem;
+  --nav-width: 4.5rem;
 
- /* Color */
- --first-color: pink;
- --bg-color: rgb(213, 124, 200);
- --sub-color: yellow;
- --white-color: #fff;
-
- /* 폰트 사이즈 설정 */
- --body-font: 'Gowun Dodum', sans-serif;
- --normal-font-size: 1rem;
- --small-font-size: 0.875rem;
-
- /* z index */
- --z-fixed: 100;
+  /*===== Colors =====*/
+  --first-color: #0a043c;
+  --first-color-light: #AFA5D9;
+  --white-color: #F7F6FB;
+  
+  /*===== Font and typography =====*/
+  --normal-font-size: 1rem;
+  
+  /*===== z index =====*/
+  --z-fixed: 100;
 }
 
-/* BASE */
-*, ::before, ::after {
- box-sizing: border-box;
+/*===== BASE =====*/
+*,::before,::after{
+  box-sizing: border-box;
 }
 
-nav_body {
- position: relative;
- margin: 0;
- padding: 0 0 0 var(--nav--width);
- font-family: var(--body-font);
- font-size: var(--normal-font-size);
- transition: .5s;
+/* ---------전체 스타일 설정---------- */
+
+body {
+  position: relative;
+  font-size: var(--normal-font-size);
+  transition: .5s;
 }
 
-h1 {
- margin: 0;
+ /* --------------------------------------- */
+
+.nav a {
+  text-decoration: none;
+} 
+
+.header{
+  width:100%;
+  height:var(--header-height);
+  position:fixed;
+  top:0;
+  left:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background-color: gray;
+  z-index: var(--z-fixed);
+  transition:.5s;
 }
 
-.collapse__menu {
- margin: 0;
- padding: 0;
- list-style: none;
+.header__toggle{
+  color:var(--first-color);
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-.collapse__menu > a {
- text-decoration: none;
+.header__img{
+  width:35px;
+  height:35px;
+  display:flex;
+  justify-content:center;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-/* l NAV */
-.l-navbar {
- position: fixed;
- top: 0;
- left: 0;
- width: var(--nav--width);
- height: 100vh;
- background-color: #FB2146;
- color: var(--white-color);
- padding: 1.5rem 1.5rem 2rem;
- transition: .5s;
- z-index: var(--z-fixed);
+.header__img img{
+  width:40px;
 }
 
-/* NAV */
+.l-navbar{
+  position:fixed;
+  top:0;
+  left:-30%;
+  width:var(--nav-width);
+  height:100vh;
+  background:var(--first-color);
+  padding:.5rem 1rem 0 0;
+  transition:.5s;
+  z-index: var(--z-fixed);
+}
+
 .nav {
- height: 100%;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- overflow: hidden;
- font-size: 1.5rem;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-between;
+  overflow:hidden;
 }
 
-.nav__brand {
- display: grid;
- grid-template-columns: max-content max-content;
- justify-content: space-between;
- align-items: center;
- margin-bottom: 1rem;
+.nav__logo,.nav__link{
+  display:grid;
+  grid-template-columns: max-content max-content;
+  align-items:center;
+  column-gap: 1rem;
+  padding:.5rem 0 .5rem 1.5rem;
 }
 
-.nav__toggle {
- font-size: 1.25rem;
- padding: .75rem;
- cursor: pointer;
+.nav__logo{
+  margin-bottom:2rem;
 }
 
-.nav__logo {
- color: var(--white-color);
- font-weight: 600;
- text-decoration-line: none;
+.nav__logo-icon {
+  font-size: 1.25rem;
+  color:var(--white-color);
 }
 
-.nav__logo:hover {
- text-decoration-line: none;
+.nav__logo-name {
+  font-weight: 700;
+  color:var(--white-color);
 }
 
-.nav__link {
- display: grid;
- grid-template-columns: max-content max-content;
- align-items: center;
- column-gap: .75rem;
- padding: .75rem;
- color: var(--white-color);
- border-radius: .5rem;
- margin-bottom: 1rem;
- transition: .3s;
- cursor: pointer;
- text-decoration-line: none;
+.nav__link{
+  position:relative;
+  color:var(--first-color-light);
+  margin-bottom:1.5rem;
+  transition:.3s;
 }
 
-.nav__link:hover {
- background-color: var(--first-color);
- text-decoration-line: none;
+.nav__link:hover{
+  color:var(--white-color);
 }
 
-.nav__icon {
- font-size: 1.5rem;
- text-decoration-line: none;
+.nav__icon{
+  font-size: 1.25rem;
 }
 
-.nav_name {
- font-size: 1.25rem;
+.show{
+  left:0;
 }
 
-/* Expander menu */
-.expander {
- width: calc(var(--nav--width) + 9.25rem);
-}
-
-/* Add padding body*/
 .body-pd {
- padding: 2rem 0 0 16rem;
+  padding-left:calc(var(--nav-width) + 1rem);
 }
 
-/* Active links menu */
 .active {
- background-color: skyblue;
+  color:var(--white-color);
 }
 
-/* COLLAPSE */
-.collapse {
- grid-template-columns: 20px max-content 1fr;
+.active::before {
+  content:'';
+  position:absolute;
+  left:0;
+  width:2px;
+  height:32px;
+  background-color: var(--white-color);
 }
 
-.collapse__link {
- justify-self: flex-end;
- transition: .5;
+@media screen and (min-width:768px) {
+  body {
+    margin:calc(var(--header-height) + 1rem) 0 0 0;
+    padding-left:calc(var(--nav-width) + 2rem);
+  }
+  .header{
+    height:calc(var(--header-height) + 1rem);
+    padding:0 2rem 0 calc(var(--nav-width) + 2rem);
+  }
+  .header__img{
+    width:40px;
+    height:40px;
+  }
+  .header__img img{
+    width:45px;
+  }
+  .l-navbar{
+    left:0;
+    padding:1rem 1rem 0 0;
+  }
+
+  .show{
+    width:calc(var(--nav-width) + 156px);
+  }
+
+  .body-pd{
+    padding-left:calc(var(--nav-width) + 188px);
+  }
 }
 
-.collapse__menu {
- display: none;
- padding: .75rem 2.25rem;
+/* --------sliding menu bar ------- */
+
+.menu {
+  text-align: center;
+  display: inline-flex;
+  position: absolute;
+  top: 4rem;
+  left: calc(50% - 7rem);
+  overflow: hidden;
+  max-width: 100%;
+  height: auto !important;
+  background-color: #fff;
+  padding: 0 20px;
+  border-radius: 40px;
+  box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
 }
 
-.collapse__sublink {
- color: var(--sub-color);
- font-size: var(--small-font-size);
+.menu-item {
+  color: #83818c;
+  padding: 20px;
+  text-decoration: none;
+  transition: .3s;
+  margin: 0 6px;
+  z-index: 1;
+  font-weight: 500;
+  position: relative;
+}
+.menu:before {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #dfe2ea;
+    border-radius: 8px 8px 0 0;
+    opacity: 0;
+    transition: .3s;
 }
 
-.collapse__sublink:hover {
- color: var(--white-color);
+.menu-item:not(.is-active):hover:before {
+  opacity: 1;
+  bottom: 0;
+  text-decoration-line: none;
 }
 
-/* Show collapse */
-.showCollapse {
- display: block;
+
+.menu-item:not(.is-active):hover { 
+  color: #333; 
+  text-decoration-line: none;
 }
 
-/* Rotate icon */
-.rotate {
- transform: rotate(180deg);
- transition: .5s;
+.menu-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  transition: .4s;
+  height: 5px;
+  z-index: 1;
+  border-radius: 8px 8px 0 0;
 }
 
-/* --------slide menu ------- */
-#slide__1 {
- position: relative;
- border: none;
- border-radius: 10em;
- display: flex;
- list-style: none;
- background: #f5f5f5;
- box-shadow: 20px 40px 40px #00000033;
- padding: 10px;
-}
-
-#slide__1 li {
- margin: 0px;
-}
-
-#slide__1 a {
- position: relative;
- padding: 0.6em 2em;
- font-size: 18px;
- border: none;
- outline:none;
- color: #333;
- display: inline-block;
- text-decoration: none;
- z-index: 3;   
-}
-
-.slide1
-{
- position: absolute;
- display: inline-block;
- height: 3em;
- border-radius: 10em;
- transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
- background-color: peru;
- z-index: 2;
-}
-
-.slide2 {
- position: absolute;
- display: inline-block;
- height: 3em;
- border-radius: 10em;
- transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
- opacity: 0;
- background: #ddd;
- z-index: 1;
-}
-
-.squeeze {
- transform: scale(0.9);
+@media (max-width: 768px) {
+  .menu { overflow: hidden; }
 }
 
 /* --------- buy ---------- */
@@ -647,34 +817,12 @@ h1 {
 
 /* ---------like button----- */
 
-.heart {
- position: relative;
- width: 100px;
- height: 100px;
- transform: translate(-50%, -50%);
- background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png) no-repeat;  
- cursor: pointer;
- 
-}
-
-.heart-blast {
- background-position: -2800px 0;
- transition: background 1s steps(28);
-}
-
-.nav_body {
-font-family: 'Gowun Dodum', sans-serif;
-}
-
-.nav_change_color:hover {
-  color: pink;
-
-}
 
 /* ---------create---------- */
 *:focus {
   outline: none;
 }
+
 .create_img768 {
   margin-top: 20px;
 }
@@ -751,6 +899,7 @@ font-family: 'Gowun Dodum', sans-serif;
     line-height: calc(calc(calc(92vw * 0.6) - 40px) * 0.2);
   }
  }
+
 @media screen and (max-width:768px) {
   .create_pick {
     margin-bottom: 10px;

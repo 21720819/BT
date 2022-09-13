@@ -6,90 +6,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 
-<body class="font_change">
-    <header style="height: 90px; margin: 0;">
-        헤더부분
-    </header>
+<body class="font_change" id="body-pd">
+    <header class="header" id="header">
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        <div class="header__img">
+            <img src="">
+        </div>
+    </header> 
 
-    <div class="l-navbar nav_body" id="navbar">
+    <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <div class="nav__brand">
-                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-                    <a href="{% url 'home' %}" class="nav__logo">BuyTogether</a>
-                </div>
+                <a href="" class="nav__logo">
+                    <i class='bx bx-layer nav__logo-icon'></i>
+                    <span class="nav__logo-name">BuyTogether</span>
+                </a>
                 <div class="nav__list">
                     <a href="{% url 'home' %}" class="nav__link active">
                         <ion-icon name="home-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">홈</span>
+                        <span class="nav__name">홈</span>
                     </a>
                     <a href="{% url 'chatHome' %}" class="nav__link">
-                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">채팅</span>
+                        <ion-icon name="chatbubbles" class="nav__icon"></ion-icon>
+                        <span class="nav__name">채팅</span>
                     </a>
-                    
-                    <a href="{% url 'buyHome' %}" class="nav__link showCollapse">
+                    <a href="{% url 'buyHome' %}" class="nav__link">
                         <ion-icon name="bag-add-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">거래게시판</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">과일</a>
-                            <a href="#" class="collapse__sublink">채소</a>
-                            <a href="#" class="collapse__sublink">생선</a>
-                            <a href="#" class="collapse__sublink">고기</a>
-                            <a href="#" class="collapse__sublink">생필품</a>
-                            <a href="#" class="collapse__sublink">OTT</a>
-                            <a href="#" class="collapse__sublink">배달</a>
-                        </ul>
+                        <span class="nav__name">거래게시판</span>
                     </a>
-
                     <a href="{% url 'freeHome' %}" class="nav__link">
                         <ion-icon name="earth-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">자유게시판</span>
+                        <span class="nav__name">자유게시판</span>
                     </a>
-
                     <a href="{% url 'map' %}" class="nav__link">
                         <ion-icon name="navigate-circle-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">지도</span>
+                        <span class="nav__name">지도</span>
                     </a>
-
                     {% if user.is_authenticated %}
-                    <a class="nav__link" href="{% url 'profileHome' user.username %}">
+                    <a href="{% url 'profileHome' user.username %}" class="nav__link">
                         <ion-icon name="person-circle-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">프로필</span>
+                        <span class="nav__name">프로필</span>
                     </a>
-
-                    <a class="nav__link" href="{% url 'logout' %}">
-                        <ion-icon name="lock-closed" class="nav__icon"></ion-icon>
-                        <span class="nav_name">로그아웃</span>
-                    </a>
-                    {% else %}
-
-                    <a class="nav__link" href="{% url 'login' %}">
-                        <ion-icon name="lock-open" class="nav__icon"></ion-icon>
-                        <span class="nav_name">로그인</span>
-                    </a>
-                    {% endif %}
-
-                </div>       
+                </div>
             </div>
+            <a href="{% url 'logout' %}" class="nav__link">
+                <ion-icon name="lock-closed" class="nav__icon"></ion-icon>
+                <span class="nav__name">로그아웃</span>
+            </a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="nav__link">
+                        <ion-icon name="person-circle-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">프로필</span>
+                    </a>
+                </div>
+            </div>
+            <a href="{% url 'login' %}" class="nav__link">
+                <ion-icon name="lock-open" class="nav__icon"></ion-icon>
+                <span class="nav__name">로그인</span>
+            </a>
+            {% endif %}
         </nav>
     </div>
 
     <!-- 내용이 들어가는 공간 -->
-    <div id="content_container">
+    <!--<div id="content_container">-->
+    <div>
         {% block content %}
         {% endblock %}
     </div>
@@ -104,93 +98,75 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
         crossorigin="anonymous"></script>
+
+    <!-- IONICONS 아이콘 js -->
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-        
-        
-    <!-- 네비바 js -->
+    <!-- navbar 추가 js -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- navbar js -->
     <script>
-        const showMenu = (toggleId, navbarId, bodyId) => {
-                const toggle = document.getElementById(toggleId),
-                    navbar = document.getElementById(navbarId),
-                    bodypadding = document.getElementById(bodyId)
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+            const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId),
+                bodypd = document.getElementById(bodyId),
+                headerpd = document.getElementById(headerId)
 
-                if (toggle && navbar) {
-                    toggle.addEventListener('click', () => {
-                        navbar.classList.toggle('expander');
+            if (toggle && nav && bodypd && headerpd) {
+                toggle.addEventListener('click', () => {
+                    nav.classList.toggle('show')
 
-                        bodypadding.classList.toggle('body-pd')
-                    })
-                }
+                    toggle.classList.toggle('bx-x')
+
+                    bodypd.classList.toggle('body-pd')
+
+                    headerpd.classList.toggle('body-pd')
+                })
             }
+        }
 
-            showMenu('nav-toggle', 'navbar', 'body-pd')
-
-            /* LINK ACTIVE */
-            const linkColor = document.querySelectorAll('.nav__link')
-            function colorLink() {
-                linkColor.forEach(l => l.classList.remove('active'))
-                this.classList.add('active')
-            }
-            linkColor.forEach(l => l.addEventListener('click', colorLink))
-
-            /* COLLAPSE MENU */
-            const linkCollapse = document.getElementsByClassName('collapse__link')
-            var i
-
-            for (i = 0; i < linkCollapse.length; i++) {
-                linkCollapse[i].addEventListener('click', function () {
-                    const collapseMenu = this.nextElementSibling
-                    collapseMenu.classList.toggle('showCollapse')
-
-                    const rotate = collapseMenu.previousElementSibling
-                    rotate.classList.toggle('rotate')
-                });
-            }
+        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
     </script>
+
+    <!-- navbar 새로고침 js -->
+    <script>
+        $(function () { 
+            var url = window.location.pathname, 
+            urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");
+                $('.nav__link').each(function () { 
+                    $(this).removeClass('active');
+                if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+                        $(this).addClass('active'); 
+                    } 
+                }); 
+            });
+    </script>
+
     <!-- 슬라이드 메뉴 js -->
     <script>
-        $("#slide__1 a").on("click", function () {
-                var position = $(this)
-                    .parent().position();
-                var width = $(this)
-                    .parent().width();
-                $("#slide__1 .slide1").css({ opacity: 1, left: +position.left, width: width });
-            });
-    
-            $("#slide__1 a").on("mouseover", function () {
-                var position = $(this)
-                    .parent().position();
-                var width = $(this)
-                    .parent().width();
-                $("#slide__1 .slide2").css({
-                    opacity: 1, left: +position.left, width: width
-                })
-                    .addClass("squeeze");
-            });
-    
-            $("#slide__1 a").on("mouseout", function () {
-                $("#slide__1 .slide2").css({ opacity: 0 }).removeClass("squeeze");
-            });
-    
-            var currentWidth = $("#slide__1")
-                .find("li:nth-of-type(3) a")
-                .parent("li")
-                .width();
-            var current = $("li:nth-of-type(3) a").position();
-            $("#slide__1 .slide1").css({ left: +current.left, width: currentWidth });
+    const indicator = document.querySelector('.menu-indicator');
+    const items = document.querySelectorAll('.menu-item');
+
+    function handleIndicator(el) {
+        items.forEach(item => {
+            item.classList.remove('is-active');
+            item.removeAttribute('style');
+        });
+
+        indicator.style.width = `${el.offsetWidth}px`;
+        indicator.style.left = `${el.offsetLeft}px`;
+        indicator.style.backgroundColor = el.getAttribute('active-color');
+
+        el.classList.add('is-active');
+        el.style.color = el.getAttribute('active-color');
+    }
+
+
+    items.forEach((item, index) => {
+        item.addEventListener('click', (e) => { handleIndicator(e.target) });
+        item.classList.contains('is-active') && handleIndicator(item);
+    });
     </script> 
 
-<!-- 좋아요 버튼 js -->
-   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-   <script>
-    $(function() {
-      
-      $(".heart").on("click", function() {
-        $(this).toggleClass("heart-blast");
-      });
-    }); 
-      
-    </script> 
-    
-</body>
+    </body>
 </html>
