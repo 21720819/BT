@@ -33,6 +33,16 @@ class User(AbstractUser):
     like_frees = models.ManyToManyField('free.Free', blank=True, related_name='freeLike_users')
     join_posts = models.ManyToManyField('buy.Buy', blank=True, related_name='join_users')
 
+    phone_number = models.CharField('휴대폰 번호', max_length=30)
+    auth_number = models.CharField('인증번호', max_length=30)
+
     def __str__(self):
         return "<%d %s>" %(self.pk, self.email)
 
+# class Authentication(models.Model):
+#     phone_number = models.CharField('휴대폰 번호', max_length=30)
+#     auth_number = models.CharField('인증번호', max_length=30)
+
+#     class Meta:
+#         db_table = 'authentications' # DB 테이블명
+#         verbose_name_plural = "휴대폰인증 관리 페이지" # Admin 페이지에서 나타나는 설명
