@@ -1,4 +1,4 @@
-<!-- Bootstrap CSS -->
+<!-- slidebar Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 {% extends 'nav.html' %}
@@ -7,15 +7,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% block content %}
 
-<ul id="slide__1"> 
-  <li class="slide1"></li>         
-  <li class="slide2"></li>
+<nav class="menu">
+  <a href="#" class="menu-item is-active" active-color="#FB2146">전체</a>
+  <a href="#" class="menu-item" active-color="#FB2146">식료품</a>
+  <a href="#" class="menu-item" active-color="#FB2146">생필품</a>
+  <a href="#" class="menu-item" active-color="#FB2146">OTT</a>
+  <a href="#" class="menu-item" active-color="#FB2146">배달</a>
+  <span class="menu-indicator"></span>
+</nav>
+
+<!-- <ul id=""> 
   <li><a href="{% url 'buyHome' %}">전체</a></li>
   <li><a href="{% url 'category' 'necessity' %}">생필품</a></li>
   <li><a href="{% url 'category' 'food' %}">식료품</a></li>
   <li><a href="{% url 'category' 'ott' %}">OTT</a></li>
   <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
-</ul>
+</ul> -->
 
 <div class="row justify-content-end" id="fix_create">
   <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
