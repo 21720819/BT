@@ -4,5 +4,7 @@ from profiles import views
 urlpatterns = [
     path('<str:user_name>/', views.profileHome, name='profileHome'),
     path('<str:user_name>/sms', views.sms, name='sms'),
+    path('checksms/<str:username>', views.checksms, name='checksms'),
+    path('sendsms/<str:username>', views.sendsms, name='sendsms'),
 
 ]

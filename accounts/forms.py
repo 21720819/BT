@@ -1,3 +1,4 @@
+from tkinter import Widget
 from django import forms
 from .models import User
 
@@ -20,8 +21,13 @@ class UserSignupform(forms.ModelForm):
             'password' : forms.PasswordInput(attrs={'class': 'form-control item', 'placeholder':'비밀번호'}),
         }
 
-# class smsform(forms.ModelForm):
-# 	class Meta:
-# 		model = User
-# 		fields = ['phone_number','auth_number']
+class Smsform(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ['phone_number']
+
+class Smscheckform(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ['auth_number']
 		

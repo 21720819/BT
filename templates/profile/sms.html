@@ -2,15 +2,22 @@
 
 {% block content %}
 
-<form action="{% url 'sendsms'%}" method="POST">
+<form action="{% url 'sendsms' user.username %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="phone_number">
-    <input type="submit" value="전송">
+    {{smsform.phone_number}}
+    <input type="submit" value="전송" >
 </form>
-<form action="{% url 'checksms' %}" method="POST">
+<form action="{% url 'checksms' user.username %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="auth_number">
+    {{checksmsform.auth_number}}
     <input type="submit" value="인증">
 </form>
 
+{% if messages %}
+    <div>
+        {%for message in messages %}
+            {{message.message}}
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}

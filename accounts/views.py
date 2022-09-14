@@ -107,14 +107,7 @@ def activate(request, uid64, token):
         return HttpResponse('비정상적인 접근입니다.')
 
 
-# #  sms 인증
-# # Python
-# import json, requests, time, random
 
-# # Django
-# from django.views import View
-# from django.http import JsonResponse
-# from .utils import make_signature
 # # from .models import Authentication
 
 # # 네이버 SMS 인증
@@ -131,7 +124,7 @@ def activate(request, uid64, token):
 #             "type": "SMS", 
 #             "contentType": "COMM",
 #             "from": "01092247763", # 사전에 등록해놓은 발신용 번호 입력, 타 번호 입력시 오류
-#             "content": f"[인증번호:{auth_number}]", # 메세지를 이쁘게 꾸며보자
+#             "content": f"[바이투게더]인증번호:{auth_number}", # 메세지를 이쁘게 꾸며보자
 #             "messages": [{"to": f"{phone_number}"}] # 네이버 양식에 따른 messages.to 입력
 #         }
 #         URL ='https://sens.apigw.ntruss.com/sms/v2/services/ncp:sms:kr:292298761053:buytogether/messages' 
@@ -140,19 +133,20 @@ def activate(request, uid64, token):
 #         # 발송 URI 부분에는 아래 URL을 넣어주면 된다.
 #         # 다만, 너무 길고 동시에 보안이슈가 있기에 별도로 분기해놓은 settings 파일에 넣어서 불러오는 것을 추천한다.
         
-#     def post(self, request):
+#     def post(self, request, username):
 #         data = request.POST.get("phone_number")
-#         try:
-#             input_mobile_num = data
-#             auth_num = random.randint(10000, 100000) # 랜덤숫자 생성, 5자리로 계획하였다.
-#             auth_mobile = Authentication.objects.get(phone_number=input_mobile_num)
+#         input_mobile_num = data
+#         auth_num = random.randint(10000, 100000) # 랜덤숫자 생성, 5자리로 계획하였다.
+#         try:##인증ㅇ번호 발송
+#             auth_mobile = User.objects.get(username=username)
 #             auth_mobile.auth_number = auth_num
+#             auth_mobile.phone_number = input_mobile_num
 #             auth_mobile.save()
 #             self.send_sms(phone_number=data, auth_number=auth_num)
 #             # return JsonResponse({'message': '인증번호 발송완료'}, status=200)
 #             return HttpResponse('인증번호 발송완료')
-#         except Authentication.DoesNotExist: # 인증요청번호 미 존재 시 DB 입력 로직 작성
-#             Authentication.objects.create(
+#         except User.DoesNotExist: # 인증요청번호 미 존재 시 DB 입력 로직 작성
+#             User.objects.update_or_create(
 #                 phone_number=input_mobile_num,
 #                 auth_number=auth_num,
 #             ).save()
@@ -160,13 +154,17 @@ def activate(request, uid64, token):
 #             # return JsonResponse({'message': '인증번호 발송 및 DB 입력완료'}, status=200)
 #             return HttpResponse('인증번호 발송완료 및 입력완료')
 
+
+
+
+
 # # 네이버 SMS 인증번호 검증
 # class SMSVerificationView(View):
-#     def post(self, request):
+#     def post(self, request, username):
 #         data = request.POST.get("auth_number")
-#         phone_number = request.POST.get("phone_number")
+#         # phone_number = request.POST.get("phone_number")
 #         try:
-#             verification = Authentication.objects.get(phone_number='01092247763')
+#             verification = User.objects.get(username=username)
 
 #             if verification.auth_number == data:
 #                 # return JsonResponse({'message': '인증 완료되었습니다.'}, status=200)
@@ -176,8 +174,9 @@ def activate(request, uid64, token):
 #                 # return JsonResponse({'message': '인증 실패입니다.'}, status=400)
 #                 return HttpResponse('인증실패')
 
-#         except Authentication.DoesNotExist:
-#             return JsonResponse({'message': '해당 휴대폰 번호가 존재하지 않습니다.'}, status=400)
+#         except User.DoesNotExist:
+#                 return HttpResponse('인증실패')
+#             # return JsonResponse({'message': '해당 휴대폰 번호가 존재하지 않습니다.'}, status=400)
     
 #     # def get(self, request):
 #     #     try:
