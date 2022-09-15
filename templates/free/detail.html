@@ -49,7 +49,7 @@
         </form>
         <div class="freeUser">
             <div class="detail_lev"></div>
-            <p class="freeUserName">{{detail.ID.username}}</p>
+            <a href="{% url 'userProfile' detail.ID.username %}" class="freeUserName">{{detail.ID.username}}</a>
             <span>{{detail.writeDate}}</span>
         </div>
         <p class="detail_context">{{detail.body}}</p>

@@ -55,7 +55,7 @@
         <table>
             <tr>
                 <td style="width: 30px;"><img class="detail__lev" style="margin-left: -1px;"></td>
-                <td><h3 style="font-size: 20px; margin: 0;">{{detail.ID.username}}</h3></td>
+                <td><a href="{% url 'userProfile' detail.ID.username %}" style="font-size: 20px; margin: 0;">{{detail.ID.username}}</a></td>
             </tr>
         </table>
         <hr>
