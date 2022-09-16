@@ -66,11 +66,11 @@
             </tr>
             <tr>
                 <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td>
-                <td><h3 class="detail_loca_time">{{detail.date}}</h3></td>
+                <td><h3 class="detail_loca_time">{{detail.date|date:'m월d일 H:i'}}</h3></td>
             </tr>
         </table>
         <hr>
-        <div style="font-size: 10px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate}}</div>
+        <div style="font-size: 10px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate|date:'m-d H:i'}}</div>
         <p class="detail_context">{{detail.body}}</p>
         
         <div class="detailBtns">

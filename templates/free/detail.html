@@ -50,7 +50,7 @@
         <div class="freeUser">
             <div class="detail_lev"></div>
             <a href="{% url 'userProfile' detail.ID.username %}" class="freeUserName">{{detail.ID.username}}</a>
-            <span>{{detail.writeDate}}</span>
+            <span>{{detail.writeDate|date:'m-d H:i'}}</span>
         </div>
         <p class="detail_context">{{detail.body}}</p>
     </div>
@@ -58,12 +58,12 @@
         <form method="POST" action="{% url 'create_comment' detail.id %}">
             {% csrf_token %}
             {{comment_form.body}}
-            <input type="submit" value="🤍" class="comment_btn">
+            <input type="submit" value="❤&#10;" class="comment_btn">
         </form>
 
         <div class="comment">
         {% for comment in detail.comment_set.all %}
-            <div class="freecommentUser"><span>{{comment.ID.username}}</span> <span class="freedate">{{comment.writeDate}}</span></div>
+            <div class="freecommentUser"><span>{{comment.ID.username}}</span> <span class="freedate">{{comment.writeDate|date:'m-d H:i'}}</span></div>
             <p >{{ comment.body }}</p>
         {% endfor %}
         </div>

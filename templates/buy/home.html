@@ -50,7 +50,7 @@
           <p>
             {{post.body}}
           </p>
-          <h6>거래시간 : {{post.date}}</h6>
+          <h6>거래시간 : {{post.date|date:'m월d일 H:i'}}</h6>
           <h6>위치 : {{post.location}}</h6>
           <h4>{{post.price}}원</h4>
           <button> <ion-icon name="heart-outline"></ion-icon></button>
