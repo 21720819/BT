@@ -19,7 +19,7 @@ def p_category(request,category):
     categorys={'food':0,'necessity':1,'ott':2,'delivery':3}
 
     posts = Buy.objects.filter(category=categorys[category]).order_by('-id') #최신순 나열
-    return render(request,'buy/category.html',{'category':category,'posts':posts})
+    return render(request,'buy/home.html',{'category':category,'posts':posts})
 
 def buyDetail(request, post_id):
     detail= get_object_or_404(Buy,id=post_id)
