@@ -105,5 +105,5 @@ def userProfile(request, username):
     posts =  Buy.objects.filter(ID=user).order_by('-writeDate')
     return render(request, 'profile/userprofile.html', {'user': user , 'posts' : posts})
 
-# def accuse(request, username):
+# def report(request, username):
 #     user = get_object_or_404(User, username=username)

@@ -69,9 +69,11 @@
         <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}">휴대폰인증</a>
     </div>
     
+    {% if user.is_staff %}
     <div id="profile_delete" class="profile_summary" style="padding: 20px;">
-        <a class="nav-link nav_change_color" href="{# url 'sms' #}">신고보기</a>
+        <a class="nav-link nav_change_color" href="{# url 'report' #}">신고보기</a>
     </div>
+    {% endif %}
 </div>
 
 

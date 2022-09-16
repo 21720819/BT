@@ -7,6 +7,6 @@ urlpatterns = [
     path('<str:user_name>/sms', views.sms, name='sms'),
     path('checksms/<str:username>', views.checksms, name='checksms'),
     path('sendsms/<str:username>', views.sendsms, name='sendsms'),
-    # path('accues/<str:username>', views.accues, name='accues'),
+    # path('report/<str:username>', views.report, name='report'),
 
 ]
