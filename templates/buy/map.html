@@ -3,23 +3,17 @@
 {% block content %}
 {% load static %}
 
-<style>    
+<style>
+    .mobileEle {
+        visibility: hidden;
+    }
     @media screen and (min-width: 768px) {
-        html {
+        html, body {
             height: 100%;
         }
-        body {
-            height: calc(100% - calc(var(--header-height) + 1rem));
-            padding-left: var(--nav-width);
-        }
-        #content_container {
+        #content__blur {
             height: 100%;   
             margin: 0;
-        }
-    }
-    @media screen and (max-width: 768px) {
-        #content_container{
-            padding-top: var(--header-height);
         }
     }
 </style>
@@ -27,13 +21,23 @@
 <div id="map" class="map_main"></div>
 
 <div class="map_detail">
-    <a id="mobileTitle"></a>
-    <div>
-        <div id="mobileLoca"></div>
-        <div id="mobileTime"></div>
-        <div id="mobilePrice"></div>
-    </div>
+    <div class="detail_title mobileEle""><a id="mobileTitle">제목</a></div>
+    <!-- <hr style="height: 2px; background: red; border: 0;"> -->
+    <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+    <table class="mobileEle">
+        <tr>
+            <td><ion-icon name="location-outline"" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+            <td><div id="mobileLoca" class="detail_loca_time">위치</div></td>
+        </tr>
+        <tr>
+            <td><ion-icon name="time-outline"" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+            <td><div id="mobileTime" class="detail_loca_time">시간</div></td>
+        </tr>
+    </table>
+    <div id="mobilePrice" class="detail_price mobileEle">가격</div>
 </div>
+
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
 <script>
@@ -201,7 +205,14 @@
 
         var close = document.createElement('div');
         close.className = 'map_close';
-        close.onclick = function() { overlay.setMap(null); };
+        close.onclick = function() {
+            overlay.setMap(null); //오버레이 닫기
+
+            //map_detail 초기화
+            let elements = document.getElementsByClassName('mobileEle');
+            for(let i = 0; i < elements.length; i++)
+                elements[i].style.visibility = 'hidden';
+        };
         close.setAttribute('title', '닫기');
         header.appendChild(close);
 
@@ -262,10 +273,14 @@
         let location = document.getElementById('mobileLoca');
         let time = document.getElementById('mobileTime');
         let price = document.getElementById('mobilePrice');
+        let elements = document.getElementsByClassName('mobileEle');
 
         kakao.maps.event.addListener(marker, 'click', function() {
             title.textContent = `${co_title}`;
             title.setAttribute('href', `${url}`);
+
+            for(let i = 0; i < elements.length; i++)
+                elements[i].style.visibility = 'visible';
 
             location.textContent = '위치위치위치위치위치위치위치위치위치';
             time.textContent = '시간';

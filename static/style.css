@@ -29,6 +29,13 @@
   background: #f09fb0;
 }
 
+
+@media screen and (max-width: 768px) {
+  #content__blur{
+      padding-top: var(--header-height);
+  }
+}
+
 /* ------ main -------*/
 .jb-box {
   width: 100%;
@@ -42,7 +49,7 @@
 
 /* ---------detail---------- */
 .detail_container {
-  max-width: 1024px;
+  max-width: var(--detail_container-width);
   width: 75vw;
   /*border: 1px solid;
   border-color: lightgrey;
@@ -79,7 +86,7 @@
 .detail_img {
   width: calc(60% - 40px);
   /* width: 100%; */
-  max-height: calc(calc(1024px * 0.6) - 40px);
+  max-height: calc(calc(var(--detail_container-width) * 0.6) - 40px);
   height: calc(calc(100vw * 0.75 * 0.6) - 40px);
   border-radius: 30px;
   /*object-fit: contain; /*여백 O*/
@@ -93,7 +100,7 @@
 .detail_map {
   width: calc(60% - 40px);
   /* width: 100%; */
-  max-height: calc(calc(calc(1024px * 0.6) - 40px) * 0.75);
+  max-height: calc(calc(calc(var(--detail_container-width) * 0.6) - 40px) * 0.75);
   height: calc(calc(calc(100vw * 0.75 * 0.6) - 40px) * 0.75);
   border-radius: 30px;
   background-color: grey;
@@ -272,6 +279,7 @@
 
 
 
+
 /* ---------create---------- */
 *:focus {
   outline: none;
@@ -289,7 +297,7 @@
   width: 100%;
   /* max-height: 792px;
   height: calc(calc(100vw * 0.7 * 0.65) - 40px); */
-  max-height: calc(calc(1024px * 0.6) - 40px);
+  max-height: calc(calc(var(--detail_container-width) * 0.6) - 40px);
   height: calc(calc(100vw * 0.75 * 0.6) - 40px);
   border-radius: 30px;
   /*object-fit: contain; /*여백 O*/
@@ -301,7 +309,7 @@
 }
 #create_pickButton {
   width: 20%;
-  max-height: calc(calc(calc(1024px * 0.6) - 40px) * 0.2);
+  max-height: calc(calc(calc(var(--detail_container-width) * 0.6) - 40px) * 0.2);
   height: 20%;
   margin: 0;
   border: 0;
@@ -492,17 +500,17 @@
     /* height: calc(calc(100vw - 15.15px) - 60px); 사이드바 없어지면 */
     /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
     /* height: calc(100% - 60px); */
-    height: 132px;
+    /* height: 164px; */
     border-radius: 20px;
     background-color: rgb(250, 247, 247);
 
     margin: 0 auto 30px auto;
+    padding: 20px;
 
     display: block;
     /* float: left; */
   }
 }
-
 
 /* ---------chat---------- */
 
@@ -595,6 +603,7 @@
 }
 
 
+
 /* ---------폰트 바꾸기---------- */
 .font_change {
   font-family: 'SEBANG_Gothic_Bold';
@@ -605,6 +614,7 @@
 /*===== VARIABLES CSS =====*/
 :root {
   --header-height: 3rem;
+  --detail_container-width: 1280px;
 
   /*===== Colors =====*/
   --first-color: #FB2146;
@@ -810,6 +820,7 @@ i {
 /* ===== 웹 NAV =====*/
 @media screen and (min-width: 768px) {
   body {
+    padding-top: calc(var(--header-height) + 1rem);
     margin: 0;
   }
   .header {
@@ -1549,3 +1560,9 @@ i {
   border-radius: 0 20px 20px 0;
 }
 
+@media screen and (max-width: 768px) {
+  .freeHomeDiv {
+    width: calc(100% - 60px);
+    margin: 30px auto;
+  }
+}
