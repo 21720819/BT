@@ -8,11 +8,11 @@
 {% block content %}
 
 <nav class="menu">
-  <a href="#" class="menu-item is-active" active-color="#FB2146">전체</a>
-  <a href="#" class="menu-item" active-color="#FB2146">식료품</a>
-  <a href="#" class="menu-item" active-color="#FB2146">생필품</a>
-  <a href="#" class="menu-item" active-color="#FB2146">OTT</a>
-  <a href="#" class="menu-item" active-color="#FB2146">배달</a>
+  <a href="{% url 'buyHome' %}" class="menu-item is-active" active-color="#FB2146">전체</a>
+  <a href="{% url 'category' 'food' %}" class="menu-item" active-color="#FB2146">식료품</a>
+  <a hreff="{% url 'category' 'necessity' %}" class="menu-item" active-color="#FB2146">생필품</a>
+  <a href="{% url 'category' 'ott' %}" class="menu-item" active-color="#FB2146">OTT</a>
+  <a href="{% url 'category' 'delivery' %}" class="menu-item" active-color="#FB2146">배달</a>
   <span class="menu-indicator"></span>
 </nav>
 

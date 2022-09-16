@@ -20,7 +20,7 @@
 
         <i class='bx bx-menu header__toggle' id="header-toggle"></i>
 
-        <nav class="nav" id="nav-menu">
+        <nav class="nav" id="nav-menu" >
             <div class="nav__content bd-grid">
                 <a href="{% url 'home' %}" class="nav__perfil">
                     <div>
@@ -36,10 +36,10 @@
                         <li class="nav__item dropdown">
                             <a href="{% url 'buyHome' %}" class="nav__link dropdown__link">거래게시판 <i class='bx bx-chevron-down dropdown__icon'></i></a>
                             <ul class="dropdown__menu">
-                                <li class="dropdown__item"><a href="#" class="nav__link">식료품</a></li>
-                                <li class="dropdown__item"><a href="#" class="nav__link">생필품</a></li>
-                                <li class="dropdown__item"><a href="#" class="nav__link">OTT</a></li>
-                                <li class="dropdown__item"><a href="#" class="nav__link">배달</a></li>
+                                <li class="dropdown__item"><a href="{% url 'category' 'food' %}" class="nav__link">식료품</a></li>
+                                <li class="dropdown__item"><a href="{% url 'category' 'necessity' %}" class="nav__link">생필품</a></li>
+                                <li class="dropdown__item"><a href="{% url 'category' 'ott' %}" class="nav__link">OTT</a></li>
+                                <li class="dropdown__item"><a href="{% url 'category' 'delivery' %}" class="nav__link">배달</a></li>
                             </ul>
                         </li>
 
