@@ -700,6 +700,7 @@ nav a {
   padding: 2rem 0;
   z-index: var(--z-fixed);
   transition: .5s;
+  overflow-y: auto;
   -ms-overflow-style: none;
   }
   .nav__name {
