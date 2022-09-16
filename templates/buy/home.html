@@ -4,18 +4,26 @@
 {% extends 'nav.html' %}
 {% load static %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% block content %}
 
-<nav class="menu">
-  <a href="{% url 'buyHome' %}" class="menu-item is-active" active-color="#FB2146">전체</a>
-  <a href="{% url 'category' 'food' %}" class="menu-item" active-color="#FB2146">식료품</a>
-  <a hreff="{% url 'category' 'necessity' %}" class="menu-item" active-color="#FB2146">생필품</a>
-  <a href="{% url 'category' 'ott' %}" class="menu-item" active-color="#FB2146">OTT</a>
-  <a href="{% url 'category' 'delivery' %}" class="menu-item" active-color="#FB2146">배달</a>
-  <span class="menu-indicator"></span>
-</nav>
+<div class="category__menu">
+  <div class="category-item">
+    <a href="#">전체</a>
+  </div>
+  <div class="category-item">
+    <a href="#">식료품</a>
+  </div>
+  <div class="category-item">
+    <a href="#">생필품</a>
+  </div>
+  <div class="category-item">
+    <a href="#">OTT</a>
+  </div>
+  <div class="category-item">
+    <a href="#">배달</a>
+  </div>
 
+</div>
 <!-- <ul id=""> 
   <li><a href="{% url 'buyHome' %}">전체</a></li>
   <li><a href="{% url 'category' 'necessity' %}">생필품</a></li>
