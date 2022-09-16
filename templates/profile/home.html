@@ -2,17 +2,6 @@
 
 {% block content %}
 
-<style>
-    @media screen and (max-width: 1024px) {
-        body {
-            padding: 0;
-        }
-        .l-navbar {
-            display: none;
-        }
-    }
-</style>
-
 <div class="detail_container" style="max-width: 768px;">
     <table id="profile_table">
         <tr>
@@ -60,20 +49,20 @@
     <div class="profile_summary" style="padding: 20px;">
         <a class="nav-link nav_change_color" href="">프로필 수정</a>
     </div>
-
-    <div class="profile_summary" style="padding: 20px;">
-        <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
-    </div>
     
-    <div id="profile_delete" class="profile_summary" style="padding: 20px;">
+    <div class="profile_summary" style="padding: 20px;">
         <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}">휴대폰인증</a>
     </div>
     
     {% if user.is_staff %}
-    <div id="profile_delete" class="profile_summary" style="padding: 20px;">
+    <div class="profile_summary" style="padding: 20px;">
         <a class="nav-link nav_change_color" href="{# url 'report' #}">신고보기</a>
     </div>
     {% endif %}
+
+    <div class="profile_summary" style="padding: 20px;">
+        <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
+    </div>
 </div>
 
 

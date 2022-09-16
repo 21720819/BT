@@ -9,21 +9,8 @@
             <div style = "text-align: right;">
                 <input type="submit" class="rightBtn" placeholder="작성"> </input>
             </div>
-            <div class="freeTitle">
-                <table style="margin:auto;">
-                    <tr>
-                        <td><label for="title">글 제목</label> </td><td colspan="3">{{form.title}}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="freeBody" style="margin-top: 10px">
-                <table style="margin:auto;">
-                    <tr>
-                        <td>{{form.body}}</td>
-
-                    </tr>
-                </table>  
-            </div>
+            <div class="freeTitle">{{form.title}}</div>
+            <div class="freeBody" style="margin-top: 10px">{{form.body}}</div>
         
         </form>
        
