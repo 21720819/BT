@@ -664,7 +664,7 @@ nav a {
 }
 
 /*===== 모바일 NAV =====*/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1440px) {
   .nav {
     font-size: 1.2rem;
     position: fixed;
@@ -676,15 +676,19 @@ nav a {
     padding: 2rem 0;
     z-index: var(--z-fixed);
     transition: .5s;
-    overflow-y: auto;
+    -ms-overflow-style: none;
   }
   .nav__name {
     font-size: 1.6rem;
   }
+  .nav::-webkit-scrollbar{
+    display:none;
+   }
 }
 
+
 /*===== 웹 NAV =====*/
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
 .nav {
   font-size: 2rem;
   position: fixed;
@@ -696,7 +700,7 @@ nav a {
   padding: 2rem 0;
   z-index: var(--z-fixed);
   transition: .5s;
-  overflow-y: auto;
+  -ms-overflow-style: none;
   }
   .nav__name {
     font-size: 2rem;
@@ -704,6 +708,9 @@ nav a {
   .nav__perfil {
     margin-top: 3rem;
   }
+  .nav::-webkit-scrollbar{
+    display:none;
+   }
 }
 
 i {
@@ -753,8 +760,9 @@ i {
 .nav__link:hover {
   color: var(--white-color);
   text-decoration: underline;
-  text-decoration-thickness: 0.3rem;
+  text-decoration-thickness: 0.4rem;
   text-decoration-color: yellow;
+  text-decoration-style: wavy;
 }
 
 /*Show menu*/
@@ -807,7 +815,7 @@ i {
     width: 288px;
   }
 }
-/* ===== 웹 NAV =====*/
+/* ===== 웹 NAV 과 모바일 NAV 구분 지점 =====*/
 @media screen and (min-width: 768px) {
   body {
     margin: 0;
