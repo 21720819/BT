@@ -3,22 +3,23 @@
 {% block content %}
 {% load static %}
 
-<style>
-    #content_container {
-        overflow: hidden;
-    }
+<style>    
     @media screen and (min-width: 768px) {
+        html {
+            height: 100%;
+        }
+        body {
+            height: calc(100% - calc(var(--header-height) + 1rem));
+            padding-left: var(--nav-width);
+        }
         #content_container {
-            height: calc(100% - 90px);
+            height: 100%;   
             margin: 0;
         }
     }
-    @media screen and (max-width: 1024px) {
-        body {
-            padding: 0;
-        }
-        .l-navbar {
-            display: none;
+    @media screen and (max-width: 768px) {
+        #content_container{
+            padding-top: var(--header-height);
         }
     }
 </style>
