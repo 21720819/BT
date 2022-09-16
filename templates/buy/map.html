@@ -2,7 +2,38 @@
 
 {% block content %}
 {% load static %}
-<div id="map" style="width:100%;height:350px;"></div>
+
+<style>    
+    @media screen and (min-width: 768px) {
+        html {
+            height: 100%;
+        }
+        body {
+            height: calc(100% - calc(var(--header-height) + 1rem));
+            padding-left: var(--nav-width);
+        }
+        #content_container {
+            height: 100%;   
+            margin: 0;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        #content_container{
+            padding-top: var(--header-height);
+        }
+    }
+</style>
+
+<div id="map" class="map_main"></div>
+
+<div class="map_detail">
+    <a id="mobileTitle"></a>
+    <div>
+        <div id="mobileLoca"></div>
+        <div id="mobileTime"></div>
+        <div id="mobilePrice"></div>
+    </div>
+</div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
 <script>
@@ -16,108 +47,244 @@
 
     let map = new kakao.maps.Map(mapContainer, mapOption); // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%지도를 생성합니다
 
-    // %%%%%%%%%%%%%%%%%%%%%%%처음에 내위치로 나오게 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+    var mapTypeControl = new kakao.maps.MapTypeControl();
+
+    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);    
+
+
+    // %%%%%%%%%%%%%%%%%%%%%%% 처음에 내위치로 나오게 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    let locPosition = new kakao.maps.LatLng(35.8317614521794, 128.7584685504256);
+
     if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
-        
-        let lat = position.coords.latitude, // 위도
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function(position) {
+            
+            let lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
         
-            let locPosition = new kakao.maps.LatLng(lat, lon)
+            locPosition = new kakao.maps.LatLng(lat, lon);
         
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition);
-            
-      });
-    
+            // 마커와 인포윈도우를 표시합니다
+            displayMarker(locPosition);
+        });
     } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치
-    
-        let locPosition = new kakao.maps.LatLng(35.8317614521794, 128.7584685504256)
+        //let locPosition = new kakao.maps.LatLng(35.8317614521794, 128.7584685504256);
         
         displayMarker(locPosition);
     }
 
-function displayMarker(locPosition) {
-    let imageSrc = "{% static 'images/people.png' %}", // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(27, 40)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+    function displayMarker(locPosition) {
+        let imageSrc = "{% static 'images/people.png' %}", // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 40)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        
+        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
 
-// 마커를 생성합니다
-let Pmarker = new kakao.maps.Marker({  
-    map: map, 
-    position: locPosition,
-    image: markerImage // 마커이미지 설정 
-}); 
+        // 마커를 생성합니다
+        let Pmarker = new kakao.maps.Marker({  
+            map: map, 
+            position: locPosition,
+            image: markerImage // 마커이미지 설정 
+        }); 
 
-// 지도 중심좌표를 접속위치로 변경합니다
-map.setCenter(locPosition);      
-}  
-// // %%%%%%%%%%%%%%%%클러스터%%%%%%%%%%%%%%%%%%
-// var clusterer = new kakao.maps.MarkerClusterer({
-//         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-//         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-//         minLevel: 10, // 클러스터 할 최소 지도 레벨
-//         disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
-//     });
+        // 지도 중심좌표를 접속위치로 변경합니다
+        map.setCenter(locPosition);      
+    }  
+    // %%%%%%%%%%%%%%%% 클러스터 %%%%%%%%%%%%%%%%%%
+    // var clusterer = new kakao.maps.MarkerClusterer({
+    //         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+    //         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+    //         minLevel: 10, // 클러스터 할 최소 지도 레벨
+    //         disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+    //     });
+
+    window.onresize = function(event) {
+        // 이동할 위도 경도 위치를 생성합니다 
+        //var moveLatLon = new kakao.maps.LatLng(35.8317614521794, 128.7584685504256);
+        
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(locPosition);
+    }
 
 
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%거래글 표시 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-const markImg =[
-        "{% static 'images/foodmark.png'%}",
-        "{% static 'images/nesmark.png'%}",
-        "{% static 'images/ottmark.png'%}",
-        "{% static 'images/delmark.png'%}",]
-let markers=[];
-for (let i = 0; i < positions.length; i ++) {
-    let imageSrc =markImg[positions[i].category], // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(27, 40)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 거래글 표시 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    const markImg =[
+            "{% static 'images/foodmark.png'%}",
+            "{% static 'images/nesmark.png'%}",
+            "{% static 'images/ottmark.png'%}",
+            "{% static 'images/delmark.png'%}",]
+    let /*size_check = matchMedia("screen and (max-width: 768px)").matches,*/ markers=[];
 
-    let marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position:new kakao.maps.LatLng(positions[i].lat,positions[i].long), // 마커의 위치
-        clickable: true,
-        image: markerImage // 마커이미지 설정 
-    });
-    // markers.push(marker);
-    let id = positions[i].id
-    let url = "http://127.0.0.1:8000/buy/detail/"+ id;
+    for (let i = 0; i < positions.length; i ++) {
+        let imageSrc =markImg[positions[i].category], // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 40)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        
+        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+
+        let marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position:new kakao.maps.LatLng(positions[i].lat,positions[i].long), // 마커의 위치
+            clickable: true,
+            image: markerImage // 마커이미지 설정 
+        });
+        // markers.push(marker);
+        let id = positions[i].id
+        let url = "http://127.0.0.1:8000/buy/detail/"+ id;
+
+
+        // 커스텀오버레이에 넣을 정보
+        let co_title = positions[i].title;
+
+        // 함수 호출
+        displayOverlay(marker, url, co_title);
+        displayDetail(marker, url, co_title);
+
+        // ------------------------------------ 박스내용 여기서 바꿈 -----------------------------------------------------
+        //let iwContent = `
+        //    <div style="padding:5px;">${positions[i].title}</div>
+        //  <a href="${url}" style=" text-decoration : none; color : black;">${positions[i].title}</a>
+        //    `, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        
+        //iwRemoveable = true;
+
+        // 마커에 표시할 인포윈도우를 생성합니다 
+        //let infowindow = new kakao.maps.InfoWindow({
+        //   content: iwContent,// 인포윈도우에 표시할 내용
+        //  removable : iwRemoveable
+        //});
+        //kakao.maps.event.addListener(marker, 'click', function() {
+        //  infowindow.open(map, marker);  
+        //});
+    }
+
+
+    function displayOverlay(marker, url, co_title) {
+        var overlay = new kakao.maps.CustomOverlay({
+            //map: map,
+            //content: content,
+            position: marker.getPosition()       
+        });
+        
+        // 박스
+        var content = document.createElement('div');
+        content.className = 'map_CustomOverlay';
+
+        var info = document.createElement('div');
+        info.className = 'map_info';
+        content.appendChild(info);
+
+        // 제목, 닫기
+        var header = document.createElement('div');
+        header.className = 'map_header';
+        //title.textContent = '제목';
+        //header.textContent = `${co_title}`;
+        //title.setAttribute('onclick', `location.href='${url}';`);
+        info.appendChild(header);
+
+        var title = document.createElement('a');
+        title.className = 'map_title';
+        //title.textContent = '제목';
+        title.textContent = `${co_title}`;
+        title.setAttribute('href', `${url}`);
+        header.appendChild(title);
+
+        var close = document.createElement('div');
+        close.className = 'map_close';
+        close.onclick = function() { overlay.setMap(null); };
+        close.setAttribute('title', '닫기');
+        header.appendChild(close);
+
+        // 본문(이미지, 내용)
+        var body = document.createElement('div');
+        body.className = 'map_body';
+        info.appendChild(body);
+
+        /*var imgDiv = document.createElement('div');
+        imgDiv.className = 'map_imgDiv';
+        body.appendChild(imgDiv);*/
+
+        /*var img = document.createElement('img');
+        img.className = 'map_img';
+        img.setAttribute('src', '#');
+        imgDiv.appendChild(img);*/
+
+        var desc = document.createElement('div');
+        desc.className = 'map_desc';
+        body.appendChild(desc);
+
+        var location = document.createElement('div');
+        location.className = 'map_location';
+        location.textContent = '위치위치위치위치위치위치위치위치위치';
+        desc.appendChild(location);
+
+        var time = document.createElement('div');
+        time.className = 'map_time';
+        time.textContent = '시간';
+        desc.appendChild(time);
+
+        var price = document.createElement('div');
+        price.className = 'map_price';
+        price.textContent = '가격';
+        desc.appendChild(price);
+
+
+        /*
+        var info = document.createElement('span');
+        info.appendChild(document.createTextNode('내용'));
+        content.appendChild(info);
+        
+        var closeBtn = document.createElement('button');
+        closeBtn.appendChild(document.createTextNode('닫기'));
+        closeBtn.onclick = function() { overlay.setMap(null); };
+        content.appendChild(closeBtn);
+        */
+        overlay.setContent(content);
+        
+        // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+        kakao.maps.event.addListener(marker, 'click', function() {
+            overlay.setMap(map);
+        });
+    }
+
+    function displayDetail(marker, url, co_title) {
+        let title = document.getElementById('mobileTitle');
+        let location = document.getElementById('mobileLoca');
+        let time = document.getElementById('mobileTime');
+        let price = document.getElementById('mobilePrice');
+
+        kakao.maps.event.addListener(marker, 'click', function() {
+            title.textContent = `${co_title}`;
+            title.setAttribute('href', `${url}`);
+
+            location.textContent = '위치위치위치위치위치위치위치위치위치';
+            time.textContent = '시간';
+            price.textContent = '가격';
+        });
+    }
+    //%%%%%%%%%%%%%%%%% 클러스터 %%%%%%%%%%%%%%%%%%%
+    // clusterer.addMarkers(markers);
+
+    // kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+
+    // // 현재 지도 레벨에서 1레벨 확대한 레벨
+    // let level = map.getLevel()-1;
+
+    // // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+    // map.setLevel(level, {anchor: cluster.getCenter()});
+    // });
     
-    // ------------------------------------박스내용 여기서 바꿈 -----------------------------------------------------
-    let iwContent = `<div style="padding:5px;">${positions[i].title}</div>
-    <a href="${url}" style=" text-decoration : none; color : black;">${positions[i].title}</a>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
-    iwRemoveable = true;
-    // 마커에 표시할 인포윈도우를 생성합니다 
-    let infowindow = new kakao.maps.InfoWindow({
-        content: iwContent,// 인포윈도우에 표시할 내용
-        removable : iwRemoveable
-    });
-    kakao.maps.event.addListener(marker, 'click', function() {
-
-        infowindow.open(map, marker);  
-    });
-
-}
-//%%%%%%%%%%%%%%%%% 클러스터 %%%%%%%%%%%%%%%%%%%
-// clusterer.addMarkers(markers);
-
-// kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
-
-// // 현재 지도 레벨에서 1레벨 확대한 레벨
-// let level = map.getLevel()-1;
-
-// // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-// map.setLevel(level, {anchor: cluster.getCenter()});
-// });
 
 </script>
 
