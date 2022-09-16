@@ -99,3 +99,11 @@ def checksms(request,username):# 인증번호 확인
                     messages.error(request, f"인증 실패")
                     return redirect('../../profile/'+username+'/sms')
     
+
+def userProfile(request, username):
+    user = get_object_or_404(User, username=username)
+    posts =  Buy.objects.filter(ID=user).order_by('-writeDate')
+    return render(request, 'profile/userprofile.html', {'user': user , 'posts' : posts})
+
+# def report(request, username):
+#     user = get_object_or_404(User, username=username)

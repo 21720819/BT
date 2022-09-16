@@ -1,0 +1,18 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+{{user.username}} 의 프로필
+레벨{{user.level}}
+최근접속일{{user.last_login.date}}
+가입일{{user.date_joined.date}}
+
+<br>
+{{user.username}}이 작성한 글
+{% for post in posts %}
+    <a href="{% url 'buyDetail' post.id %}">{{post.title}}</a>
+{% endfor %}
+<br>
+<a href="">신고하기</a>
+
+{% endblock %}
