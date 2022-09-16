@@ -832,7 +832,13 @@ i {
 }
 
 /* --------sliding menu bar ------- */
-
+#nav-menu{
+  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+#nav-menu::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
 .menu {
   text-align: center;
   display: inline-flex;

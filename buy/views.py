@@ -3,7 +3,8 @@ from django.core.paginator import Paginator
 from .forms import BuyModelform
 from .models import Buy
 from accounts.models import User
-import json
+import json, requests
+from django.conf import settings
 
 def buyHome(request):
     purchase = Buy.objects
@@ -18,7 +19,7 @@ def p_category(request,category):
     categorys={'food':0,'necessity':1,'ott':2,'delivery':3}
 
     posts = Buy.objects.filter(category=categorys[category]).order_by('-id') #최신순 나열
-    return render(request,'buy/category.html',{'category':category,'posts':posts})
+    return render(request,'buy/home.html',{'category':category,'posts':posts})
 
 def buyDetail(request, post_id):
     detail= get_object_or_404(Buy,id=post_id)
@@ -35,6 +36,9 @@ def buyCreate(request):
         if form.is_valid():
             finished_form =form.save(commit=False)
             finished_form.ID=get_object_or_404(User,id=user_id)
+            if request.FILES['photo']:
+                photo = request.FILES['photo']
+                finished_form.photo = photo
             finished_form.save()
             return redirect('buyHome')
     else:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
@@ -116,11 +120,8 @@ def addBookmark(request, post_id):
 #         mark.delete()
 #         return redirect('profile/home.html', uid)
 
-# 신청자 목록 보여주는 함수
-def auth(request,post_id):
-    post = get_object_or_404(Buy, pk=post_id)
-    join_user = post.join_users.all()
-    return render(request,  'buy/auth.html',{'join_users':join_user})
+
+
 
 
 #거래 신청 함수
@@ -128,7 +129,6 @@ def join(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)
     uid = request.user.id
     user = get_object_or_404(User, pk=uid)
-
     check_join_users = user.join_posts.filter(id=post_id)
     if check_join_users.exists():
         user.join_posts.remove(post)
@@ -139,8 +139,39 @@ def join(request,post_id):
         post.join_count += 1
         post.save()
 
-    
     return redirect('buyDetail',str(post_id))
+
+
+#sendbird 정보 가져오기
+application_id = settings.SENDBIRD_APPLICATION_ID
+sendbird_api_token = settings.SENDBIRD_API_TOKEN
+
+#sendbird 그룹채널 생성
+def createChannel(request, post_id):
+    url = f"https://api-{application_id}.sendbird.com/v3/group_channels"
+    api_headers = {"Api-Token": sendbird_api_token}
+    post = get_object_or_404(Buy, pk=post_id)
+    uid = request.user.email #글쓴이도 추가
+    join_users = post.join_users.all()
+    join_user_list = []
+    join_user_list.append(uid)
+    for join_user in join_users:
+         join_user_list.append(join_user.email)
+
+    data = {
+        "name": post.title,
+        "is_pulic" : False,
+        "user_ids" : join_user_list,
+    }
+    
+    requests.post(url, data=json.dumps(data), headers=api_headers)
+    return redirect('auth', str(post_id))
+
+ # 신청자 목록 보여주는 함수
+def auth(request,post_id):
+    post = get_object_or_404(Buy, pk=post_id)
+    join_user = post.join_users.all()
+    return render(request,  'buy/auth.html',{'join_users':join_user,  'post_id':post_id})   
 
 def map(request):
     # 아이디, 글제목 , 위도 경도 

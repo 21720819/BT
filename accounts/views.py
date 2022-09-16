@@ -19,6 +19,7 @@ application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
 
 
+#sendbird 유저 등록 함수
 def create_sendbird_user(user_id, nickname, profile_url=""):
     url = f"https://api-{application_id}.sendbird.com/v3/users"
     api_headers = {"Api-Token": sendbird_api_token}
@@ -42,7 +43,6 @@ def signup(request):
             user = User.objects.create_user(
                 email= request.POST['email'], password=request.POST['password'] ,username = request.POST['username']
             )
-            #센드버드 유저 등록 (나중에 메일 전송 문제 해결되면 active 쪽으로 옮길 예정)
             create_sendbird_user(request.POST['email'],request.POST['username'])
             user.is_active = False
             user.save()
@@ -101,6 +101,8 @@ def activate(request, uid64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
+
+        
         auth.login(request, user)
         return redirect('home')
     else:

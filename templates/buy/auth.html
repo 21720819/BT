@@ -1,3 +1,28 @@
+
+<style>
+    .btn_area {
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+    }
+
+</style>
+
+
+
+<script>
+function createChat(){
+    alert('채팅방 생성완료');
+    const button = document.getElementById("createChatButton");
+    button.textContent = "채팅방 생성 완료"
+    button.disabled = true; //생성을 했으니 버튼 비활성화
+    
+}
+
+</script>
+
+
+
 {% extends 'nav.html' %}
 
 {% block content %}
@@ -7,4 +32,11 @@
     {{join_user.username}}
 </span>
 {% endfor %}
+
+
+
+<button onClick="createChat()" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
+    <a href="{% url 'createChannel' post_id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
+</button>
+
 {% endblock %}

@@ -27,14 +27,14 @@
     <div class="profile_summary">
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">레벨</div>
-            <div class="profile_divDownParts profile_verticalHr">0</div>
+            <div class="profile_divDownParts profile_verticalHr">{{user.level}}</div>
         </div>
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">가입일</div>
-            <div class="profile_divDownParts profile_verticalHr">0</div>
+            <div class="profile_divDownParts profile_verticalHr">{{user.date_joined|date:'Y-m-d'}}</div>
         </div><div class="profile_division">
             <div class="profile_divUpParts">최근 접속일</div>
-            <div class="profile_divDownParts">{{user.last_login.date}}</div>
+            <div class="profile_divDownParts">{{user.last_login|date:'Y-m-d'}}</div>
         </div>
     </div>
 
@@ -68,6 +68,12 @@
     <div id="profile_delete" class="profile_summary" style="padding: 20px;">
         <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}">휴대폰인증</a>
     </div>
+    
+    {% if user.is_staff %}
+    <div id="profile_delete" class="profile_summary" style="padding: 20px;">
+        <a class="nav-link nav_change_color" href="{# url 'report' #}">신고보기</a>
+    </div>
+    {% endif %}
 </div>
 
 
