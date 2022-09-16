@@ -8,10 +8,16 @@ class Freemodelform(forms.ModelForm):
 
 		widgets = {
 			'title' : forms.TextInput(
-				attrs={'class': 'form-control', 'style': 'width: 400px', 'placeholder': '제목을 입력하세요.', 'name' : 'title', 'id' : 'title'}
+				attrs={ 'class': 'form-control, freeTitle',
+           				'style': 'width: 100%; background: rgb(250, 247, 247); border: 0; padding: 0;',
+               			'placeholder': '제목을 입력하세요.',
+                   		'name' : 'title', 'id' : 'title' }
 			),
 			'body' : forms.Textarea (
-				attrs={'class': 'form-control', 'cols':'50', 'rows':'15', 'style': 'width: 400px', 'placeholder': '내용을 입력하세요.'}
+				attrs={ 'class': 'form-control, freeBody',
+           				'cols':'50', 'rows':'10',
+               			'style': 'width: 100%; background: rgb(250, 247, 247); border: 0; padding: 0;',
+                  		'placeholder': '내용을 입력하세요.' }
 			),
 		}
 

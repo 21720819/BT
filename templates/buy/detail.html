@@ -3,17 +3,6 @@
 {% block content %}
 {% load static %}
 
-<style>
-    @media screen and (max-width: 1024px) {
-        body {
-            padding: 0;
-        }
-        .l-navbar {
-            display: none;
-        }
-    }
-</style>
-
 <div class="detail_container">
     <!-- 이건 네비바 밑에 -->
     <div class="detail_nav">
@@ -59,13 +48,13 @@
         <hr>
         <table>
             <tr>
-                <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td>
+                <td><ion-icon name="location-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
                 <td><h3 class="detail_loca_time">{{detail.location}}</h3></td>
                 <p style="display: none;" id="lat">{{detail.lat}}</p>
                 <p style="display: none;" id="long">{{detail.long}}</p>
             </tr>
             <tr>
-                <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td>
+                <td><ion-icon name="time-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
                 <td><h3 class="detail_loca_time">{{detail.date|date:'m월d일 H:i'}}</h3></td>
             </tr>
         </table>
