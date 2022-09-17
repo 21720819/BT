@@ -49,6 +49,8 @@
 
 /* ---------detail---------- */
 .detail_container {
+  position: relative;
+  height: 100%;
   max-width: var(--detail_container-width);
   width: 75vw;
   /*border: 1px solid;
@@ -58,9 +60,8 @@
   padding: 25px 0;
   /* margin-top: 20px; */
   margin: 0 auto;
-
-  overflow: hidden;
 }
+
 .detail_nav {
   width: 100%;
 
@@ -614,12 +615,8 @@
 }
 
 
-<<<<<<< HEAD
-/* ---------전체폰트 바꾸기---------- */
-=======
 
-/* ---------폰트 바꾸기---------- */
->>>>>>> 80ca0e8b92ca62d97d33b25fa7b9fe4e1ed4f820
+/* ---------전체폰트 바꾸기---------- */
 .font_change {
   font-family: 'SEBANG_Gothic_Bold';
   position: relative;
@@ -646,6 +643,9 @@
   box-sizing: border-box;
 }
 
+body {
+  z-index: 0;
+}
 nav ul {
   margin: 0;
   padding: 0;
@@ -870,10 +870,64 @@ i {
 
 /* ---------category---------- */
 .category__menu {
-  position: relative;
-  top: 30%;
-  left: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  float: left;
+  margin: 20px;
+  padding: 20px 0;
+  width: calc(100% - 40px);
+  height: 2rem;
+  transform: translate(-50%, -50%);
 }
+
+.category-item {
+  margin: 0 85px;
+}
+
+.category-item a {
+  position: absolute;
+  width: 8rem;
+  height: 2rem;
+  font-size: 1rem;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: #262626;
+  background: transparent;
+  border: 3px solid #262626;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.60, 0, 0.70, 1);
+  list-style: 50px;
+  border-radius: 30px;
+}
+
+.category-item a:hover {
+  color: #fff;
+}
+
+.category-item a:hover::before{
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+
+.category-item a::before {
+  position: absolute;
+  content: '';
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background: #262626;
+  transition: all 0.3s cubic-bezier(0.60, 0, 0.70, 1);
+  border-radius: 30px;
+}
+
+
+
+
 
 /* --------- buy ---------- */
 
