@@ -16,7 +16,8 @@
 
     <!-- 사진 -->
     {% if detail.photo %}
-        <img src="{{ detail.photo.url }}" alt="" class="detail_img">
+        <!-- <img src="{{ detail.photo.url }}" alt="" class="detail_img"> -->
+        <div class="detail_img" style="background-image: url('{{ detail.photo.url }}');"></div>
     {% endif %}
     <!-- {% if detail.photo %}
         <img src="{{ detail.photo.url }}" alt="" class="detail_img">
