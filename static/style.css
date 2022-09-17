@@ -603,8 +603,12 @@
 }
 
 
+<<<<<<< HEAD
+/* ---------전체폰트 바꾸기---------- */
+=======
 
 /* ---------폰트 바꾸기---------- */
+>>>>>>> 80ca0e8b92ca62d97d33b25fa7b9fe4e1ed4f820
 .font_change {
   font-family: 'SEBANG_Gothic_Bold';
   position: relative;
@@ -686,6 +690,7 @@ nav a {
     padding: 2rem 0;
     z-index: var(--z-fixed);
     transition: .5s;
+    overflow-y: auto;
     -ms-overflow-style: none;
   }
   .nav__name {
@@ -773,7 +778,6 @@ i {
   text-decoration: underline;
   text-decoration-thickness: 0.4rem;
   text-decoration-color: yellow;
-  text-decoration-style: wavy;
 }
 
 /*Show menu*/
@@ -843,7 +847,7 @@ i {
   }
 }
 
-/* --------sliding menu bar ------- */
+/* --------네비바 scroll 되는 css ------- */
 #nav-menu{
   -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -851,69 +855,13 @@ i {
 #nav-menu::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
-.menu {
-  text-align: center;
-  display: inline-flex;
-  position: absolute;
-  top: 4rem;
-  left: calc(50% - 7rem);
-  overflow: hidden;
-  max-width: 100%;
-  height: auto !important;
-  background-color: #fff;
-  padding: 0 20px;
-  border-radius: 40px;
-  box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
-}
 
-.menu-item {
-  color: #83818c;
-  padding: 20px;
-  text-decoration: none;
-  transition: .3s;
-  margin: 0 6px;
-  z-index: 1;
-  font-weight: 500;
+
+/* ---------category---------- */
+.category__menu {
   position: relative;
-}
-.menu:before {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: #dfe2ea;
-    border-radius: 8px 8px 0 0;
-    opacity: 0;
-    transition: .3s;
-}
-
-.menu-item:not(.is-active):hover:before {
-  opacity: 1;
-  bottom: 0;
-  text-decoration-line: none;
-}
-
-
-.menu-item:not(.is-active):hover { 
-  color: #333; 
-  text-decoration-line: none;
-}
-
-.menu-indicator {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  transition: .4s;
-  height: 5px;
-  z-index: 1;
-  border-radius: 8px 8px 0 0;
-}
-
-@media (max-width: 768px) {
-  .menu { overflow: hidden; }
+  top: 30%;
+  left: 30%;
 }
 
 /* --------- buy ---------- */
