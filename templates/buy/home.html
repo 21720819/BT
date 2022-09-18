@@ -34,13 +34,54 @@
     <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
   </ul> -->
 
+  <article class="card">
+		<header class="card__thumb">
+			<a href="#"><img src="https://images.unsplash.com/photo-1512466699224-9d8217244131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4b6f389eb54cb8e27ee8ee5d4040a5d7&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" ></a>
+			
+		</header>
+		<div class="card__body">
+      <div class="card__ing__container">
+        <div class="card__category"><a href="#">카테고리</a></div>
+        <div class="card__ing"><a href="#">모집중</a></div>
+        <div class="card__finish"><a href="#">마감임박</a></div>
+      </div>
+			<div class="card__title"><a href="#">포도 같이 사요~</a></div>
+			<div class="card__price">2300원 / 1인</div>
+			<p class="card__description">포도 같이 공동구매할 분 구합니다!</p>
+		</div>
+		<footer class="card__footer">
+			<span class="icon icon--time">8월 4일 5시</span>
+			<span class="icon icon--comment"><a href="#">영대 오렌지거리</a></span>
+		</footer>
+	</article>
+
+  <div class="fab-wrapper">
+    <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />
+    <label class="fab" for="fabCheckbox">
+      <span class="fab-dots fab-dots-1">+</span>
+      <span class="fab-dots fab-dots-3">+</span>
+    </label>
+    <div class="fab-wheel">
+      <a class="fab-action fab-action-1">
+        <i class="fas fa-question"></i>
+      </a>
+      <a class="fab-action fab-action-2">
+        <i class="fas fa-book"></i>
+      </a>
+          <a class="fab-action fab-action-3">
+        <i class="fas fa-address-book"></i>
+      </a>
+          <a class="fab-action fab-action-4">
+        <i class="fas fa-info"></i>
+      </a>
+    </div>
+  </div>
+
   <div class="row justify-content-end" id="fix_create">
     <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
         <input type="button"  class='post_button' value="글쓰기" onClick=" location.href='create'">
     </div>
   </div>
-
-
 
 </div>
 {% endblock %}
