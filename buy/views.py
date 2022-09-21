@@ -31,6 +31,7 @@ def buyDetail(request, post_id):
 
 def buyCreate(request):
     user_id =request.user.id
+    user = User.objects.get(id=user_id)
     if request.method == 'POST':
         form = BuyModelform(request.POST)
         if form.is_valid():
@@ -39,6 +40,9 @@ def buyCreate(request):
             if request.FILES['photo']:
                 photo = request.FILES['photo']
                 finished_form.photo = photo
+            user.point+=30 # 포인트 30점
+            user.setLevel()
+            user.save()
             finished_form.save()
             return redirect('buyHome')
     else:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
@@ -47,7 +51,13 @@ def buyCreate(request):
 
 
 def buyDelete(request, post_id):
+    uid = request.user.id
+    user = User.objects.get(id=uid)
+
     post = Buy.objects.get(pk=post_id)
+    user.point -= post.join_count*10
+    user.setLevel()
+    user.save()
     post.delete()
     return redirect('buyHome')
 
@@ -89,6 +99,7 @@ def addBookmark(request, post_id):
     check_like_post = user.like_posts.filter(id=post_id)
 
     if request.method == 'POST':
+        
         # try:
         #     mark = Bookmarks.objects.get(user=user, post=detail)
         #     mark.delete()
@@ -134,13 +145,27 @@ def join(request,post_id):
         user.join_posts.remove(post)
         post.join_count -= 1
         post.save()
+        user.point-=10
+        user.setLevel()
+        user.save()
     else:
         user.join_posts.add(post)
         post.join_count += 1
         post.save()
+        user.point+=10
+        user.setLevel()
+        user.save()
 
     return redirect('buyDetail',str(post_id))
 
+        # if check_like_post.exists():
+        #     user.like_posts.remove(detail)
+        #     detail.like_count -= 1
+        #     detail.save()
+        # else:
+        #     user.like_posts.add(detail)
+        #     detail.like_count += 1
+        #     detail.save()
 
 #sendbird 정보 가져오기
 application_id = settings.SENDBIRD_APPLICATION_ID

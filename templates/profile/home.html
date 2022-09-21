@@ -16,7 +16,7 @@
     <div class="profile_summary">
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">레벨</div>
-            <div class="profile_divDownParts profile_verticalHr">{{user.level}}</div>
+            <div class="profile_divDownParts profile_verticalHr">{{user.level}} {{user.point}}</div>
         </div>
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">가입일</div>
@@ -44,10 +44,18 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="profile_halfDiv">
+            <div class="profile_divUpParts profile_horizontalHr" style="margin-bottom: 10px; padding: 10px 0;">참가 신청한 글</div>
+            <div>
+                {% for join in joins %}
+                    <a href="{% url 'buyDetail' join.id %}" class="profile_list nav-link nav_change_color">{{join.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
     <div class="profile_summary" style="padding: 20px;">
-        <a class="nav-link nav_change_color" href="">프로필 수정</a>
+        <a class="nav-link nav_change_color" href="{% url 'profileEdit' user.username %}">프로필 수정</a>
     </div>
     
     <div class="profile_summary" style="padding: 20px;">

@@ -33,11 +33,10 @@
     <li><a href="{% url 'category' 'ott' %}">OTT</a></li>
     <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
   </ul> -->
-
+  {% for post in posts %}
   <article class="card">
 		<header class="card__thumb">
-			<a href="#"><img src="https://images.unsplash.com/photo-1512466699224-9d8217244131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4b6f389eb54cb8e27ee8ee5d4040a5d7&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" ></a>
-			
+			<a href="{% url 'buyDetail' post.id %}"><img src="https://images.unsplash.com/photo-1512466699224-9d8217244131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4b6f389eb54cb8e27ee8ee5d4040a5d7&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" ></a>
 		</header>
 		<div class="card__body">
       <div class="card__ing__container">
@@ -54,6 +53,7 @@
 			<span class="icon icon--comment"><a href="#">영대 오렌지거리</a></span>
 		</footer>
 	</article>
+  {% endfor %}
 
   <div class="fab-wrapper">
     <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />

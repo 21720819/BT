@@ -66,7 +66,7 @@
         <div class="detailBtns">
             <form class="detailLikeForm"action="{% url 'addBookmark' detail.id %}" method="post">
                 {% csrf_token %}
-                {% if detail in user.like_users.all %}
+                {% if user in detail.like_users.all %}
                 <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% else %}
                 <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
@@ -78,9 +78,15 @@
                     <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>
                 </button>
             {% else  %}
+                {% if user in detail.join_users.all %}
+                <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
+                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">취소하기</a>
+                </button>
+                {% else %}
                 <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
                     <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">참가하기</a>
                 </button>
+                {% endif %}
             {% endif %}
         </div>
     </div>
