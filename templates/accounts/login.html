@@ -18,7 +18,7 @@
   <!--  회원가입 화면  -->
   <div class="login__container" id="login__container">
     <div class="form-container sign-up-container">
-      <form action="#">
+      <form method="post" action="{% url 'signup' %}">
         <h1>회원가입</h1>
         {% csrf_token %}
         <div class="social-container">
@@ -28,27 +28,27 @@
         </div>
         <span>또는 SNS를 통해 회원가입</span>
           <div class="">
-          {{form.email}}
+          {{singForm.email}}
           </div>
           
           <div class="">
-          {{form.password}}
+          {{singForm.password}}
           </div>
           <div class="">
               <input type="password" name="password2" class="form-control item" id="password2" placeholder="비밀번호 확인">
           </div>
           <div class="">
-          {{form.username}}
+          {{singForm.username}}
           </div>
         <!-- <input type="text" placeholder="닉네임" value="{{form.username}}"</>
         <input type="email" placeholder="Email" value="{{form.email}}"/>
         <input type="password" placeholder="Password" value="{{form.password}}"/> -->
-        <button>회원가입</button>
+        <button type="submit" value="회원가입" class="btn btn-block create-account">계정 만들기</button>
       </form>
     </div>
     <!--  로그인 화면  -->
     <div class="form-container sign-in-container">
-      <form action="{% url 'login' %}">
+      <form method="post" action="{% url 'login' %}">
         <h1>로그인</h1>
         {% csrf_token %}
         <div class="social-container">
@@ -57,10 +57,10 @@
           <a href="#" class="social social-kakaotalk"><i class="fa-solid fa-comment"></i></a>
         </div>
         <span>또는 SNS 로그인</span>
-        <input type="email" placeholder="Email" value="{{ form.email.value | default_if_none:'' }}"/>
-        <input type="password" placeholder="Password" value="{{ form.password.value | default_if_none:'' }}"/>
+        <input type="email" name="email" id="userID" placeholder="Email" value="{{ loginForm.email.value | default_if_none:'' }}"/>
+        <input type="password" name="password" id="password" placeholder="Password" value="{{ loginForm.password.value | default_if_none:'' }}"/>
         <a href="#" style="text-decoration: none; margin-top: 10px; font-size: 0.7rem;">비밀번호를 잊어버리셨나요?</a>
-        <button type="submit" value="로그인" style="margin-top: 10px;">로그인</button>
+        <input type="submit" value="로그인" style="margin-top: 10px;"></input>
       </form>
     </div>
 

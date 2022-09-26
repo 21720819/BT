@@ -38,7 +38,8 @@ def home(request):
 
 def signup(request):
     if request.method == "POST":
-        form = UserSignupform(request.POST)
+        singForm = UserSignupform(request.POST)
+        # loginForm = UserLoginform()
         if request.POST["password"]==request.POST["password2"]:
             user = User.objects.create_user(
                 email= request.POST['email'], password=request.POST['password'] ,username = request.POST['username']
@@ -68,14 +69,14 @@ def signup(request):
 
             # auth.login(request,user)
             return redirect('home')
-        return render(request,'accounts/signup.html',{'form':form})
+        return redirect('home')
     else:
-        form = UserSignupform()
-    return render(request, 'accounts/signup.html',{'form':form})
+        return redirect('login')
 
 def login(request):
     if request.method =="POST":
-        form = UserLoginform(request.POST)
+        loginForm = UserLoginform(request.POST)
+        # singForm = UserSignupform()
         email = request.POST['email']
         password = request.POST['password']
         user = auth.authenticate(request, email = email, password = password)
@@ -83,10 +84,14 @@ def login(request):
             auth.login(request,user)
             return redirect('home')
         else:
-            render(request, 'accounts/bad_login.html',{'form':form})
+            return redirect('login')
     else:
-        form = UserLoginform()
-        return render(request, 'accounts/login.html',{'form':form})
+        return redirect('login')
+
+def loginHome(request):
+    loginForm = UserLoginform()
+    singForm = UserSignupform()
+    return render(request, 'accounts/login.html',{'loginForm':loginForm , 'singForm':singForm})
 
 def logout(request):
     auth.logout(request)
