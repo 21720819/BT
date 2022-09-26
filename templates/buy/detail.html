@@ -39,28 +39,28 @@
         {%endif%}
         <h1 class="detail_title">{{detail.title}}</h1>
         <h3 class="detail_price">{{detail.price}}원</h3>
-        <hr>
+        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
         <table>
             <tr>
-                <td style="width: 30px;"><img class="detail__lev" style="margin-left: -1px;"></td>
-                <td><a href="{% url 'userProfile' detail.ID.username %}" style="font-size: 20px; margin: 0;">{{detail.ID.username}}</a></td>
+                <td style="width: 30px;"><img class="detail__lev"></td>
+                <td><a href="{% url 'userProfile' detail.ID.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a></td>
             </tr>
         </table>
-        <hr>
+        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
         <table>
             <tr>
-                <td><ion-icon name="location-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+                <td><ion-icon name="location" style="color: var(--first-color); margin: 0 5px -1.5px 0;"></ion-icon></td>
                 <td><h3 class="detail_loca_time">{{detail.location}}</h3></td>
                 <p style="display: none;" id="lat">{{detail.lat}}</p>
                 <p style="display: none;" id="long">{{detail.long}}</p>
-            </tr>
+            </tr>   
             <tr>
-                <td><ion-icon name="time-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+                <td><ion-icon name="time" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon></td>
                 <td><h3 class="detail_loca_time">{{detail.date|date:'m월d일 H:i'}}</h3></td>
             </tr>
         </table>
-        <hr>
-        <div style="font-size: 10px; text-align: right; margin-top: -3px;">작성일 : {{detail.writeDate|date:'m-d H:i'}}</div>
+        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+        <div style="font-size: 10px; font-weight: 100; text-align: right; color: gray; margin-top: -3px;">작성일 : {{detail.writeDate|date:'m-d H:i'}}</div>
         <p class="detail_context">{{detail.body}}</p>
         
         <div class="detailBtns">
