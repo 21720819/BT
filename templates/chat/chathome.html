@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 {% extends 'nav.html' %}
+
 {% load static %}
 {% block content %}
-
-
 
 <head>
     <style>
@@ -94,69 +95,86 @@
         border-radius: 50%;
         background: #e51c23;
         }
-    
     </style>
+    <script type="text/javascript" src="{%static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
 </head>
 
-<div class="chat_list_wrap">
-    <div class="header">
-      채팅
-    </div>
-    <div class="list">
-      <ul> 
-        <li>
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-              <td class="chat_td">
-                <!--Email & Preview-->
-                <div class="email">
-                  kkotkkio@gmail.com
-                </div>
-                <div class="chat_preview">
-                  안녕하세요~
-                </div>
-              </td>
-              <td class="time_td">
-                <!--Time & Check-->
-                <div class="time">
-                  2016.09.29 17:54
-                </div>
-                <div class="check">
-                  <p> </p>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </li>
-        <li>
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-            
-              <td class="chat_td">
-                <!--Email & Preview-->
-                <div class="email">
-                  kkotkkio@gmail.com
-                </div>
-                <div class="chat_preview">
-                  안녕하세요~
-                </div>
-              </td>
-              <td class="time_td">
-                <!--Time & Check-->
-                <div class="time">
-                  2016.09.29 17:54
-                </div>
-                <div class="check">
+<body>
+  <script>
+     var sb = new SendBird({appId: '{{application_id}}'});
 
-                </div>
-              </td>
-            </tr>
-          </table>
-        </li>
-      </ul>
-    </div>
-  </div>
+             // sendbird 연결
+        sb.connect("{{uid}}", function(user, error) {
+            if (error) {
+                return;
+            }
 
+            //그룹채널 목록 불러오기
+            var listQuery = sb.GroupChannel.createMyGroupChannelListQuery();
+            listQuery.includeEmpty = true;
+            listQuery.memberStateFilter = 'joined_only';   
+            listQuery.order = 'latest_last_message'; 
+
+            listQuery.next(function(groupChannels, error) {
+                if (error) {
+                    return;
+                }
+
+                for (var Idx in groupChannels) {
+                    $("#message").append("<a href='#' onclick=\'selectChannel($(this));return false;\' url='" + groupChannels[Idx].url + "'>" + groupChannels[Idx].name + "</a><br>");
+                }
+            });
+        });
+
+        var selectChannel = function (obj) {
+            var url = obj.attr("url");
+            $("#message").remove();
+            $("#inputArea").show();
+
+            sb.GroupChannel.getChannel(url, function(groupChannel, error) {
+                if (error) {
+                    return;
+                }
+
+                 // ChannelHandler 객체
+                 var ChannelHandler = new sb.ChannelHandler();
+
+                // 메시지 받기
+                ChannelHandler.onMessageReceived = function(channel, message){
+                    var msgObj = $("<p>" + message.sender.nickname + " : " + message.message + "</p>");
+                    $("#message2").append(msgObj);
+                    };
+
+                    // ChannelHandler 추가
+                    sb.addChannelHandler('test_id2_ChannelHandlerIdTmp', ChannelHandler);
+               
+
+                // 메시지 발송 객체 함수 할당
+                sendMsgObj = function (msg) {
+                    groupChannel.sendUserMessage(msg, groupChannel.data, groupChannel.customType, function(message, error){
+                        if (error) {
+                            return;
+                        }
+                        $('#msgId').val("");
+                        var nameValue = document.getElementById("msgId").value;
+                        $("#message2").append(nameValue);
+                    });
+                }
+            });
+        }
+  </script>
+
+
+    <div id="message"></div>
+
+
+    <div id="inputArea" style="display:none">
+        <div><input type="text" id="msgId"><a href="#" onclick="sendMsgObj($('#msgId').val());return false;">전송</a></div>
+        <div id="message2"></div>
+    </div>
+
+</body>
 
   
 {% endblock %}
