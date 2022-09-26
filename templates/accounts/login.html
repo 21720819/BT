@@ -1,19 +1,124 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>로그인</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-  </head>
-  <body class="nav_body">
+<html lang="en">
+<head>
+    <title>로그인</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}?after">
+    <!-- Boxicons CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="font_change login__body">
+  <!--  회원가입 화면  -->
+  <div class="login__container" id="login__container">
+    <div class="form-container sign-up-container">
+      <form action="#">
+        <h1>회원가입</h1>
+        {% csrf_token %}
+        <div class="social-container">
+          <a href="#" class="social social-facebook"><i class="fa-brands fa-facebook-f"></i></i></a>
+          <a href="#" class="social social-google"><i class="fa-brands fa-google"></i></i></a>
+          <a href="#" class="social social-kakaotalk"><i class="fa-solid fa-comment"></i></i></a>
+        </div>
+        <span>또는 SNS를 통해 회원가입</span>
+          <div class="">
+          {{form.email}}
+          </div>
+          
+          <div class="">
+          {{form.password}}
+          </div>
+          <div class="">
+              <input type="password" name="password2" class="form-control item" id="password2" placeholder="비밀번호 확인">
+          </div>
+          <div class="">
+          {{form.username}}
+          </div>
+        <!-- <input type="text" placeholder="닉네임" value="{{form.username}}"</>
+        <input type="email" placeholder="Email" value="{{form.email}}"/>
+        <input type="password" placeholder="Password" value="{{form.password}}"/> -->
+        <button>회원가입</button>
+      </form>
+    </div>
+    <!--  로그인 화면  -->
+    <div class="form-container sign-in-container">
+      <form action="{% url 'login' %}">
+        <h1>로그인</h1>
+        {% csrf_token %}
+        <div class="social-container">
+          <a href="#" class="social social-facebook"><i class="fa-brands fa-facebook-f"></i></ion-icon></a>
+          <a href="#" class="social social-google"><i class="fa-brands fa-google"></i></ioniicon></a>
+          <a href="#" class="social social-kakaotalk"><i class="fa-solid fa-comment"></i></a>
+        </div>
+        <span>또는 SNS 로그인</span>
+        <input type="email" placeholder="Email" value="{{ form.email.value | default_if_none:'' }}"/>
+        <input type="password" placeholder="Password" value="{{ form.password.value | default_if_none:'' }}"/>
+        <a href="#" style="text-decoration: none; margin-top: 10px; font-size: 0.7rem;">비밀번호를 잊어버리셨나요?</a>
+        <button type="submit" value="로그인" style="margin-top: 10px;">로그인</button>
+      </form>
+    </div>
+
+    <!-- 로그인 오버레이 화면 == 회원 가입 화면 -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>환영합니다!</h1>
+          <p>BuyTogether에 가입하기 위해서는 학교이메일 인증이 필요합니다</p>
+          <button class="ghost" id="signIn">로그인</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>안녕하세요!</h1>
+          <p>지금 바로 공구의 재미를 느껴보세요</p>
+          <button class="ghost" id="signUp">회원가입</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!--  로그인 js  -->
+  <script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('login__container');
+
+    signUpButton.addEventListener('click', () => {
+      container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+      container.classList.remove("right-panel-active");
+    });
+  </script>
+
+  <!-- fontawesome 아이콘  -->
+  <script src="https://kit.fontawesome.com/a25b3eb21e.js" crossorigin="anonymous"></script>
+
+  <script>
+  const socialIcon = document.querySelectorAll('.social');
+
+  function hoverBeatAction() {
+    /*Active social icon fa-beat*/
+    socialIcon.forEach(n => n.classList.remove('fa-beat'));
+    this.classList.add('fa-beat');
+  }
+  socialIcon.forEach(n => n.addEventListener('mousemove', hoverBeatAction));
+
+  function hoverBeatAction2() {
+    /*Remove social icon fa-beat*/
+    socialIcon.forEach(n => n.classList.remove('fa-beat'));
+  }
+
+  socialIcon.forEach(n => n.addEventListener('mouseout', hoverBeatAction2));
+  </script>
+  <!-- <body class="nav_body">
     <div class="login-form">
         <form method="post" action="{% url 'login' %}">
           <div class="form-icon">
@@ -22,11 +127,11 @@
           {% csrf_token %}
           <div class="form-group">
           <!-- {{form.userID}} -->
-          <input type="text" class="form-control" name="email"  placeholder="아이디" id="userID" value="{{ form.email.value | default_if_none:'' }}">
+          <!-- <input type="text" class="form-control" name="email"  placeholder="아이디" id="userID" value="{{ form.email.value | default_if_none:'' }}">
           </div>
           <div class="form-group">
           <!-- {{form.password}} -->
-          <input type="password" class="form-control" name="password" placeholder="비밀번호" id="password" value="{{ form.password.value | default_if_none:'' }}">
+          <!-- <input type="password" class="form-control" name="password" placeholder="비밀번호" id="password" value="{{ form.password.value | default_if_none:'' }}">
           </div>
           <div class="form-group">
           <button type="submit" value="로그인" class="btn btn-block create-account">로그인 하기</button>
@@ -47,5 +152,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="assets/js/script.js"></script>
-  </body>
+  </body>  -->
+</body>
 </html>

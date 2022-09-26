@@ -6,80 +6,99 @@
 {% block content %}
 {% load static %}
 
-<div class="detail_container">
+<div class="detail_container" style="position: relative;">
 
   <div class="category__menu" style="position: relative;"> 
     <div class="category-item">
-      <a href="#">전체</a>
+      <a href="{% url 'buyHome' %}">전체</a>
     </div>
     <div class="category-item">
-      <a href="#">식료품</a>
+      <a href="{% url 'category' 'food' %}">식료품</a>
     </div>
     <div class="category-item">
-      <a href="#">생필품</a>
+      <a href="{% url 'category' 'necessity' %}">생필품</a>
     </div>
     <div class="category-item">
-      <a href="#">OTT</a>
+      <a href="{% url 'category' 'ott' %}">OTT</a>
     </div>
     <div class="category-item">
-      <a href="#">배달</a>
+      <a href="{% url 'category' 'delivery' %}">배달</a>
     </div>
-
   </div>
-  <!-- <ul id=""> 
-    <li><a href="{% url 'buyHome' %}">전체</a></li>
-    <li><a href="{% url 'category' 'necessity' %}">생필품</a></li>
-    <li><a href="{% url 'category' 'food' %}">식료품</a></li>
-    <li><a href="{% url 'category' 'ott' %}">OTT</a></li>
-    <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
-  </ul> -->
-
+  
   <article class="card">
+    {% for post in posts %}
 		<header class="card__thumb">
-			<a href="#"><img src="https://images.unsplash.com/photo-1512466699224-9d8217244131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4b6f389eb54cb8e27ee8ee5d4040a5d7&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb" ></a>
-			
+      {% if post.photo %}
+      <img src="{{ post.photo.url }}" alt="">
+      {% else %}
+      <img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="" />
+      {% endif %}
 		</header>
 		<div class="card__body">
-      <div class="card__ing__container">
-        <div class="card__category"><a href="#">카테고리</a></div>
-        <div class="card__ing"><a href="#">모집중</a></div>
-        <div class="card__finish"><a href="#">마감임박</a></div>
-      </div>
-			<div class="card__title"><a href="#">포도 같이 사요~</a></div>
-			<div class="card__price">2300원 / 1인</div>
-			<p class="card__description">포도 같이 공동구매할 분 구합니다!</p>
+      <a href="{% url 'buyDetail' post.id %}">
+        <div class="card__ing__container">
+          <div class="card__category">카테고리</div>
+          <div class="card__ing">모집중</div>
+          <div class="card__finish">마감임박</div>
+        </div>
+        <div class="card__title">{{post.title}}</div>
+        <div class="card__price">{{post.price}}원 /1인</div>
+        <p class="card__description">{{post.body}}</p>
+      </a>
 		</div>
 		<footer class="card__footer">
-			<span class="icon icon--time">8월 4일 5시</span>
-			<span class="icon icon--comment"><a href="#">영대 오렌지거리</a></span>
+			<ion-icon class="time__icon" name="time-outline"></ion-icon><span class="icon"></span> {{post.date|date:'m/d H:i'}}</span>
+			<ion-icon class="place__icon" name="location-outline"></ion-icon><span class="icon icon--comment"> {{post.location}}</span>
 		</footer>
+    {% endfor %}
 	</article>
-
-  <div class="fab-wrapper">
-    <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />
-    <label class="fab" for="fabCheckbox">
-      <span class="fab-dots fab-dots-1">+</span>
-      <span class="fab-dots fab-dots-3">+</span>
-    </label>
-    <div class="fab-wheel">
-      <a class="fab-action fab-action-1">
-        <i class="fas fa-question"></i>
-      </a>
-      <a class="fab-action fab-action-2">
-        <i class="fas fa-book"></i>
-      </a>
-          <a class="fab-action fab-action-3">
-        <i class="fas fa-address-book"></i>
-      </a>
-          <a class="fab-action fab-action-4">
-        <i class="fas fa-info"></i>
-      </a>
+  
+  <div class="row justify-content-center">
+    <div class="col-sm-6 col-md-3 p-2 purbd_home_div">
+      {%if posts.has_previous%}
+      <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째
+          페이지</button></a>&nbsp&nbsp&nbsp
+      {%endif%}
+      {%if posts.has_next%}
+      <a href="?page={{posts.next_page_number}}"><button type="button"
+          class="btn btn-dark">다음</button></a>&nbsp&nbsp&nbsp
+      {%endif%}
+      <div style="text-align:center;">
+        <span>{{posts.number}}&nbsp</span>
+        <span>/&nbsp&nbsp{{posts.paginator.num_pages}}</span>
+      </div>
+      {%if posts.has_previous%}
+      <a href="?page={{posts.previous_page_number}}"><button type="button"
+          class="btn btn-dark">이전</button></a>&nbsp&nbsp&nbsp
+      {%endif%}
+      {%if posts.has_previous%}
+      <a class="listbutton" href="?page={{posts.previous_page_number}}"><button type="button" class="btn btn-dark">마지막
+          페이지</button></a>
+      {%endif%}
     </div>
   </div>
 
-  <div class="row justify-content-end" id="fix_create">
-    <div class="col-sm-6 col-md-4 p-2 purbd_home_div">
-        <input type="button"  class='post_button' value="글쓰기" onClick=" location.href='create'">
+  <div class="wirte_btn_container">
+    <input id="fabCheckbox" type="checkbox" class="write_checkbox" />
+    <label class="write_btn" for="fabCheckbox">
+      <span class="write_font blinking">글쓰기</span>
+    </label>
+    <div class="write_btn_wheel">
+
+      <a class="fab-action fab-action-1" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">배달</span>
+      </a>
+      <a class="fab-action fab-action-2" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">OTT</span>
+      </a>
+      <a class="fab-action fab-action-3" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">생필품</span>
+      </a>
+      <a class="fab-action fab-action-4" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">식료품</span>
+      </a>
+      
     </div>
   </div>
 
