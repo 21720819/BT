@@ -28,6 +28,7 @@ class Buy(models.Model):
                                  default="")# 글쓴이 
     like_count = models.PositiveIntegerField(default=0)    
     join_count = models.PositiveIntegerField(default=1)    
+    check_chat = models.BooleanField(default = False) # 채팅방 생성되었는지 확인
     def __str__(self):
         return self.title
     
