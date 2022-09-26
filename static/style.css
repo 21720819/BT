@@ -7,9 +7,9 @@
 /* ---------폰트 변경---------- */
 @font-face {
   font-family: 'SEBANG_Gothic_Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
 }
 
 /* ---------아이콘 import---------- */
@@ -23,10 +23,10 @@
 
 /* ---------파트명---------- */
 .buttonColor {
-  background: #E98197;
+  background: var(--first-color);
 }
 .buttonColor:hover {
-  background: #f09fb0;
+  background: var(--first-color-light);
 }
 
 
@@ -52,12 +52,13 @@
   max-width: var(--detail_container-width);
   width: 75vw;
   /*border: 1px solid;
-  border-color: lightgrey;
+  border-color: lightgray;
   border-radius: 10px 10px; */
 
   padding: 25px 0;
   /* margin-top: 20px; */
   margin: 0 auto;
+
   overflow: hidden;
 }
 
@@ -70,9 +71,8 @@
 }
 .detail_navEle {
   text-decoration: none;
-
   font-size: 12px;
-  color: grey;
+  color: gray;
   
   margin-left: 10px;
 
@@ -89,7 +89,7 @@
   max-height: calc(calc(var(--detail_container-width) * 0.6) - 50px);
   height: calc(calc(100vw * 0.75 * 0.6) - 50px);
   border-radius: 30px;
-  background-color: grey;
+  background-color: gray;
   background-position: center;
   background-size: cover;
   
@@ -105,7 +105,7 @@
   max-height: calc(calc(calc(var(--detail_container-width) * 0.6) - 50px) * 0.75);
   height: calc(calc(calc(100vw * 0.75 * 0.6) - 50px) * 0.75);
   border-radius: 30px;
-  background-color: grey;
+  background-color: gray;
   margin: 25px;
 
   float: left;
@@ -113,18 +113,19 @@
 .detail_main {
   width: calc(40% - 50px);
   /* height: 1000px; */
-  border: 1px solid;
-  /* border-color: lightgrey; */
-  border-color: white;
+  /* border: 1px solid;
+  border-color: lightgray;
+  border-color: white; */
   border-radius: 30px;
-  /* background-color: rgb(250, 247, 247); */
+  background-color: rgb(250, 247, 247);
   margin: 25px;
-  padding: 25px 0;
+  /* padding: 25px 0; */
+  padding: 25px;
   float: right;
 }
 .detail_category {
   font-size: 12px;
-  color: grey;
+  color: gray;
 }
 .detail_title {
   width: 100%;
@@ -134,18 +135,27 @@
 .detail_price {
   font-weight: bold;
   font-size: 20px;
-  color: #E98197;
+  color: var(--first-color);
   padding-top: 20px;
 }
 .detail__lev {
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  background-color: grey;
+  background-color: gray;
+  
+  margin: 0 0 2px -1px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.detail_usrname {
+  /* text-decoration: none;
+  color: black; */
+  font-size: 20px;
+  /* line-height: 20px; */
+  /* margin: 0 0 -5px 0; */
 }
 .detail_loca_time {
   font-size: 15px;
@@ -230,7 +240,8 @@
     border-radius: 20px;
 
     margin: 20px;
-    padding: 20px 0;
+    /* padding: 20px 0; */
+    padding: 20px;
  }
  .detail_applyButton {
     width: calc(100% - 75px);
@@ -272,7 +283,8 @@
     width: calc(100% - 40px);
 
     margin-top: 10px;
-    padding: 0;
+    /* padding: 0; */
+    padding: 15px;
     /* float: none; */
   }
   .detail_applyButton {
@@ -302,7 +314,7 @@
   border-radius: 30px;
   /*object-fit: contain; /*여백 O*/
   object-fit: cover; /*여백 X*/
-  background-color: grey;
+  background-color: gray;
 
   position: absolute;
   left: 0;
@@ -471,7 +483,7 @@
   border-radius: 5px;
   overflow: hidden;
 
-  background-color: grey;
+  background-color: gray;
 }
 .map_info:after {
   content: '';
@@ -484,7 +496,7 @@
   background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 }
 /* .map_info .map_price {color: #5085BB;} */
-.map_detail {
+.map_summary {
   display: none;
 }
 
@@ -506,7 +518,7 @@
   .map_CustomOverlay {
     display: none;
   }
-  .map_detail {
+  .map_summary {
     width: calc(100% - 60px);
     /* height: calc(calc(100vw - 15.15px) - 60px); 사이드바 없어지면 */
     /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
@@ -535,7 +547,9 @@
   width: 36px;
   height: 36px;
   border-radius: 18px;
-  background-color: grey;
+  background-color: gray;
+
+  margin-bottom: 2px;
 
   display: flex;
   justify-content: center;
@@ -559,6 +573,12 @@
   float: left;
   overflow: hidden;
 }
+#profile_desktop {
+  overflow: hidden;
+}
+#profile_mobile {
+  display: none;
+}
 .profile_division {
   width: calc(calc(100% / 3));
   float: left;
@@ -570,7 +590,7 @@
 }
 .profile_divDownParts {
   font-size: 15px;
-  color: #E98197;
+  color: var(--first-color);
   /* font-weight: bold; */
   text-align: center;
   padding-top: 7.5px;
@@ -580,8 +600,8 @@
   border-right: 2px solid white;
 }
 .profile_halfDiv {
-  width: calc(calc(calc(100% - 40px) / 2));
-  min-height: 200px;
+  width: calc(calc(100% - 40px) / 2);
+  height: 200px;
   border-radius: 20px;
   background-color: rgb(250, 247, 247);
   padding: 0 25px;
@@ -594,6 +614,85 @@
 .profile_horizontalHr {
   border-bottom: 2px solid white;
 }
+.profile_posts {
+  height: 120px;
+  /* padding-bottom: 20px; */
+
+  overflow-y: auto;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.profile_posts::-webkit-scrollbar {
+  display: none;
+}
+
+.profile_halfDivM {
+  width: calc(calc(100% - 30px) / 2);
+  padding-bottom: calc(calc(100% - 30px) / 2);
+  border-radius: 20px;
+  background-color: rgb(250, 247, 247);
+
+  float: left;
+  position: relative;
+}
+#profile_postBox {
+  /* height: 200px; */
+  height: 60%;
+  border-radius: 20px;
+  background-color: rgb(250, 247, 247);
+  text-align: left;
+  padding: 20px;
+}
+.pop_wrap {
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 0;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+.pop_wrap:after {
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  content: '';
+}
+.pop_wrap .pop_inner {
+  max-width: 384px;
+  width: calc(100% - 60px);
+  /* height: 400px; */
+  height: 50%;
+  border-radius: 20px;
+  vertical-align: middle;
+  font-size: 15px;
+  background: #fff;
+  padding: 0 30px;
+  display: inline-block;
+}
+.pop_inner .pop_blank {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: var(--first-color); */
+}
+.pop_blank #close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_btns {
+  font-size: 15px;
+  padding: 25px;
+}
 
 @media screen and (max-width:768px) {
   #profile_table {
@@ -601,12 +700,27 @@
   }
   .profile_summary {
     margin: 15px 20px;
+    padding: 20px 0;
+  }
+  #profile_desktop {
+    display: none;
+  }
+  #profile_mobile {
+    display: block;
   }
   .profile_halfDiv {
     width: 100%;
+    padding: 0 20px;
   }
   #profile_myPost {
     margin: 0 0 30px 0;
+  }
+  .profile_posts {
+    /* height: 160px; */
+    height: 100%;
+  }
+  .profile_btns {
+    padding: 20px;
   }
   #profile_delete {
     margin-bottom: 20px;
@@ -678,7 +792,7 @@ nav a {
   z-index: var(--z-fixed);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;  
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -1842,7 +1956,7 @@ i {
   width: 15x;
   height: 15px;
   border-radius: 20px 20px;
-  background-color: grey;
+  background-color: gray;
 /* 
   display: flex;
   justify-content: center;
