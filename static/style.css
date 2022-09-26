@@ -58,7 +58,7 @@
   padding: 25px 0;
   /* margin-top: 20px; */
   margin: 0 auto;
-  
+
   overflow: hidden;
 }
 
@@ -732,7 +732,7 @@
 /* ---------전체폰트 바꾸기---------- */
 .font_change {
   font-family: 'SEBANG_Gothic_Bold';
-  position: relative;
+  
 }
 
 /* ---------ROOT---------- */
@@ -742,11 +742,10 @@
 :root {
   --header-height: 3rem;
   --detail_container-width: 1280px;
-  --card_width : 374px;
+  --card_width : 280px;
 
   /*===== Colors =====*/
   --first-color: #FB2146;
-  --first-color-light: #C4C7F5;
   --dark-color: #0E1026;
   --white-color: #FBFBFB;
 
@@ -754,7 +753,7 @@
   --z-fixed: 1;
 }
 
-/*===== BASE =====*/
+/*========== BASE ============*/
 *, ::before, ::after {
   box-sizing: border-box;
 }
@@ -762,6 +761,8 @@
 body {
   z-index: 0;
 }
+/*============================*/
+
 nav ul {
   margin: 0;
   padding: 0;
@@ -800,12 +801,39 @@ nav a {
 }
 
 .header__toggle {
-  font-size: 1.7rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 
+/*===== 웹 NAV =====*/
+@media screen and (min-width: 1280px) {
+  .nav {
+    font-size: 1.2rem;
+    position: fixed;
+    top: 0;
+    left: -30%;
+    background-color: var(--first-color);
+    width: 30%;
+    height: 100vh;
+    padding: 2rem 0;
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    }
+    .nav__name {
+      font-size: 2rem;
+    }
+    .nav__perfil {
+      margin-top: 3rem;
+    }
+    .nav::-webkit-scrollbar{
+      display:none;
+     }
+}
+
 /*===== 모바일 NAV =====*/
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1280px) {
   .nav {
     font-size: 1.2rem;
     position: fixed;
@@ -822,34 +850,6 @@ nav a {
   }
   .nav__name {
     font-size: 1.6rem;
-  }
-  .nav::-webkit-scrollbar{
-    display:none;
-   }
-}
-
-
-/*===== 웹 NAV =====*/
-@media screen and (min-width: 1440px) {
-.nav {
-  font-size: 2rem;
-  position: fixed;
-  top: 0;
-  left: -20%;
-  background-color: var(--first-color);
-  width: 30%;
-  height: 100vh;
-  padding: 2rem 0;
-  z-index: var(--z-fixed);
-  transition: .5s;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  }
-  .nav__name {
-    font-size: 2rem;
-  }
-  .nav__perfil {
-    margin-top: 3rem;
   }
   .nav::-webkit-scrollbar{
     display:none;
@@ -904,7 +904,7 @@ i {
   color: var(--white-color);
   text-decoration: underline;
   text-decoration-thickness: 0.4rem;
-  text-decoration-color: yellow;
+  text-decoration-color: #FAF139;
 }
 
 /*Show menu*/
@@ -923,11 +923,6 @@ i {
   justify-content: space-between;
 }
 
-.dropdown__icon {
-  font-size: 1.3rem;
-  transition: .5s;
-}
-
 .dropdown__menu {
   margin: 1rem 0 0 1rem;
   display: none;
@@ -939,13 +934,14 @@ i {
 
 .dropdown:hover > .dropdown__menu {
   display: block;
+  
 }
 
 .dropdown:hover .dropdown__icon {
   transform: rotate(180deg);
 }
 
-/*blur*/
+/*========== NAV blur ==========*/
 .blur {
   filter: blur(10px);
   -webkit-filter: blur(10px);
@@ -974,7 +970,7 @@ i {
   }
 }
 
-/* --------네비바 scroll 되는 css ------- */
+/* --------NAV scroll 되는 css ------- */
 #nav-menu{
   -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -996,17 +992,17 @@ i {
 }
 
 .category-item:nth-child(n+1){
-  margin: 0 120px 0 0;
+  margin: 0 10% 0 0;
 }
 
 .category-item:nth-child(n+2){
-  margin: 0 120px;
+  margin: 0 10%;
 }
 
 .category-item a {
   position: absolute;
-  width: 220px;
-  height: 60px;
+  width: 15%;
+  height: 3.5rem;
   font-size: 1rem;
 
   line-height: 60px;
@@ -1017,7 +1013,7 @@ i {
   background: #F5F5F6;
   border: 3px solid #F5F5F6;
   cursor: pointer;
-  border-radius: 40px;
+  border-radius: 25px;
   transition: background 0.5s ease-in-out, color 0.5s ease-in-out;  
 }
 
@@ -1033,12 +1029,12 @@ i {
   width: var(--card_width);
   background: #F5F5F6;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.5s;
+  transition: box-shadow 1s;
   border-radius: 30px;
 }
 
 .card:hover {
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px #FB2146;
 }
 .card a {
   color: inherit;
@@ -1047,7 +1043,7 @@ i {
 
 .card__thumb {
   width: var(--card_width);
-  height: 500px;
+  height: 250px;
   overflow: hidden;
   background-color: #000;
   transition: height 0.5s;
@@ -1056,7 +1052,7 @@ i {
 
 .card__thumb img {
   width: var(--card_width);
-  height: 500px;
+  height: 250px;
   display: block;
   opacity: 1;
   transition: opacity 0.5s, transform 0.5s;
@@ -1147,7 +1143,7 @@ i {
   margin: 0;
   font-size: 1.5rem;
   color: #000;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .card__price {
@@ -1182,8 +1178,13 @@ i {
   right: 20px;
   font-size: 15px;
 }
-.card__footer .icon--comment {
-  margin-left: 10px;
+
+.card__footer .time__icon {
+  vertical-align: middle;
+}
+
+.card__footer .place__icon {
+  vertical-align: middle;
 }
 
 .icon {
@@ -1207,103 +1208,46 @@ i {
    justify-items: center;
  }
 }
-/* --------write button----- */
-.fab-wrapper {
+/*======== write button =========*/
+
+/*= 글쓰기 버튼 전체 <여기서 고정 위치 조정하면 됨> =*/
+.wirte_btn_container {
   position: fixed;
-  bottom: 3rem;
-  right: 3rem;
+  bottom: 4rem;
+  right: 4rem;
 }
-.fab-checkbox {
+
+.write_checkbox {
   display: none;
 }
-.fab {
+
+.write_btn {
   position: absolute;
   bottom: -1rem;
   right: -1rem;
-  width: 4rem;
-  height: 4rem;
-  background: #FB2146;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #FB2146;
   border-radius: 50%;
-  background: #FB2146;
-  transition: all 0.3s ease;
   z-index: 1;
-  border-bottom-right-radius: 6px;
 }
 
-.fab:before {
-  content: "";
+.write_font {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white-color);
+  top: 30%;
+  left: 20%;
+  font-size: 0.8rem;
 }
 
-.fab-checkbox:checked ~ .fab:before {
-  width: 90%;
-  height: 90%;
-  left: 5%;
-  top: 5%;
-  background-color: rgba(255, 255, 255, 0.2);
+.write_btn:hover {
+  background: #FB6C84;
 }
 
-.fab:hover {
-  background: #08c;
-  box-shadow: 0px 5px 20px 5px #81a4f1;
-}
-
-.fab-dots {
-  position: absolute;
-  height: 8px;
-  width: 8px;
-  background-color: white;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateX(0%) translateY(-50%) rotate(0deg);
-  opacity: 1;
-  animation: blink 3s ease infinite;
-  transition: all 0.3s ease;
-}
-
-.fab-dots-1 {
-  left: 15px;
-  animation-delay: 0s;
-}
-
-.fab-checkbox:checked ~ .fab .fab-dots {
-  height: 6px;
-}
-
-.fab-checkbox:checked ~ .fab .fab-dots-1 {
-  width: 32px;
-  border-radius: 10px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) rotate(45deg);
-}
-.fab-checkbox:checked ~ .fab .fab-dots-3 {
-  width: 32px;
-  border-radius: 10px;
-  right: 50%;
-  transform: translateX(50%) translateY(-50%) rotate(-45deg);
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0.25;
-  }
-}
-
-.fab-checkbox:checked ~ .fab .fab-dots {
-  animation: none;
-}
-
-.fab-wheel {
+.write_btn_wheel {
   position: absolute;
   bottom: 0;
   right: 0;
-  border: 1px solid #666c74;
   width: 10rem;
   height: 10rem;
   transition: all 0.3s ease;
@@ -1311,13 +1255,13 @@ i {
   transform: scale(0);
 }
 
-.fab-checkbox:checked ~ .fab-wheel {
+.write_checkbox:checked ~ .write_btn_wheel {
   transform: scale(1);
 }
 
 .fab-action {
   position: absolute;
-  background: #0f1941;
+  background: #F5F5F6;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -1325,232 +1269,326 @@ i {
   align-items: center;
   justify-content: center;
   color: White;
-  box-shadow: 0 0.1rem 1rem rgba(24, 66, 154, 0.82);
+  box-shadow: 0 0.1rem 0.5rem #FB2146;
   transition: all 1s ease;
-
   opacity: 0;
 }
 
-.fab-checkbox:checked ~ .fab-wheel .fab-action {
+.write_checkbox:checked ~ .write_btn_wheel .fab-action {
   opacity: 1;
+}
+
+.write_wheel_font {
+  font-size: 0.8rem;
+  color: #FB2146;
+}
+
+.write_wheel_font:hover {
+  color: var(--white-color);
 }
 
 .fab-action:hover {
   background-color: #FB2146;
 }
 
-.fab-wheel .fab-action-1 {
+.write_btn_wheel .fab-action-1 {
   right: -1rem;
   top: 0;
 }
 
-.fab-wheel .fab-action-2 {
+.write_btn_wheel .fab-action-2 {
   right: 3.4rem;
   top: 0.5rem;
 }
-.fab-wheel .fab-action-3 {
+.write_btn_wheel .fab-action-3 {
   left: 0.5rem;
   bottom: 3.4rem;
 }
-.fab-wheel .fab-action-4 {
+.write_btn_wheel .fab-action-4 {
   left: 0;
   bottom: -1rem;
 }
 
+/* ==== 깜박이는 효과 =====*/
+.blinking{
+  -webkit-animation:blink 0.8s ease-in-out infinite alternate;
+  -moz-animation:blink 0.8s ease-in-out infinite alternate;
+  animation:blink 0.8s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@-moz-keyframes blink{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@keyframes blink{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
 
 /* --------like button----- */
 
-
-
-/* ---------registeration---------- */
-
-.registration-form{
- padding: 50px 0;
+/* --------- login ---------- */
+.login__body {
+	background: var(--white-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+  margin-top: 5%;
+  position: relative;
 }
 
-.registration-form form{
-   background-color: #fff;
-   max-width: 600px;
-   margin: auto;
-   padding: 50px 70px;
-   border-top-left-radius: 30px;
-   border-top-right-radius: 30px;
-   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+.login__container h1 {
+	font-weight: bold;
+	margin: 0;
 }
 
-.registration-form .form-icon{
- text-align: center;
-   background-color: #E98197;
-   border-radius: 50%;
-   font-size: 40px;
-   color: white;
-   width: 100px;
-   height: 100px;
-   margin: auto;
-   margin-bottom: 50px;
-   line-height: 100px;
+.login__container h2 {
+	text-align: center;
 }
 
-.registration-form .item{
- border-radius: 20px;
-   margin-bottom: 25px;
-   padding: 10px 20px;
+.login__container p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
 }
 
-.registration-form .create-account{
-   border-radius: 30px;
-   padding: 10px 20px;
-   font-size: 18px;
-   font-weight: bold;
-   background-color: #E98197;
-   border: none;
-   color: white;
-   margin-top: 20px;
+.login__container span {
+	font-size: 12px;
 }
 
-.registration-form .social-media{
-   max-width: 600px;
-   background-color: #fff;
-   margin: auto;
-   padding: 35px 0;
-   text-align: center;
-   border-bottom-left-radius: 30px;
-   border-bottom-right-radius: 30px;
-   color: #9fadca;
-   border-top: 1px solid #dee9ff;
-   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+.social-container a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
 }
 
-.registration-form .social-icons{
-   margin-top: 30px;
-   margin-bottom: 16px;
+.login__container button {
+	border-radius: 20px;
+	border: 1px solid #F5F5F6;
+	background-color: var(--first-color);
+	color: var(--white-color);
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
 }
 
-.registration-form .social-icons a{
-   font-size: 23px;
-   margin: 0 3px;
-   color: #5691ff;
-   border: 1px solid;
-   border-radius: 50%;
-   width: 45px;
-   display: inline-block;
-   height: 45px;
-   text-align: center;
-   background-color: #fff;
-   line-height: 45px;
+.login__container button:active {
+	transform: scale(0.95);
 }
 
-.registration-form .social-icons a:hover{
-   text-decoration: none;
-   opacity: 0.6;
+.login__container button:focus {
+	outline: none;
 }
 
-@media (max-width: 576px) {
-   .registration-form form{
-       padding: 50px 20px;
-   }
-
-   .registration-form .form-icon{
-       width: 70px;
-       height: 70px;
-       font-size: 30px;
-       line-height: 70px;
-   }
+.ghost {
+  margin-top: 10px;
+	background-color: transparent;
 }
 
-/* ---------login---------- */
-.login-form{
- padding: 50px 0;
+.login__container form {
+	background-color: var(--white-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	text-align: center;
 }
 
-.login-form form{
-   background-color: #fff;
-   max-width: 600px;
-   margin: auto;
-   padding: 50px 70px;
-   border-top-left-radius: 30px;
-   border-top-right-radius: 30px;
-   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+.login__container input {
+	background-color: #F5F5F6;
+	border: none;
+  border-radius: 30px;
+	padding: 12px 15px;
+	margin: 10px 0;
+	width: 100%;
 }
 
-.login-form .form-icon{
- text-align: center;
-   background-color: #E98197;
-   border-radius: 50%;
-   font-size: 40px;
-   color: white;
-   width: 100px;
-   height: 100px;
-   margin: auto;
-   margin-bottom: 50px;
-   line-height: 100px;
+.login__container {
+	background-color: var(--white-color);
+	border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
 }
 
-.login-form .item{
- border-radius: 20px;
-   margin-bottom: 25px;
-   padding: 10px 20px;
+.form-container {
+  position: absolute;
+	top: 15%;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
 }
 
-.login-form .create-account{
-   border-radius: 30px;
-   padding: 10px 20px;
-   font-size: 18px;
-   font-weight: bold;
-   background-color: #E98197;
-   border: none;
-   color: white;
-   margin-top: 20px;
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
 }
 
-.login-form .social-media{
-   max-width: 600px;
-   background-color: #fff;
-   margin: auto;
-   padding: 35px 0;
-   text-align: center;
-   border-bottom-left-radius: 30px;
-   border-bottom-right-radius: 30px;
-   color: #9fadca;
-   border-top: 1px solid #dee9ff;
-   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+.login__container.right-panel-active .sign-in-container {
+	transform: translateX(100%);
 }
 
-.login-form .social-icons{
-   margin-top: 30px;
-   margin-bottom: 16px;
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
 }
 
-.login-form .social-icons a{
-   font-size: 23px;
-   margin: 0 3px;
-   color: #5691ff;
-   border: 1px solid;
-   border-radius: 50%;
-   width: 45px;
-   display: inline-block;
-   height: 45px;
-   text-align: center;
-   background-color: #fff;
-   line-height: 45px;
+.login__container.right-panel-active .sign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
 }
 
-.login-form .social-icons a:hover{
-   text-decoration: none;
-   opacity: 0.6;
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+	
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
+	}
 }
 
-@media (max-width: 576px) {
-   .login-form form{
-       padding: 50px 20px;
-   }
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
 
-   .login-form .form-icon{
-       width: 70px;
-       height: 70px;
-       font-size: 30px;
-       line-height: 70px;
-   }
+.login__container.right-panel-active .overlay-container{
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background: var(--first-color);
+	background: -webkit-linear-gradient(to right, var(--first-color), var(--first-color));
+	background: linear-gradient(to right, var(--first-color), var(--first-color));
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.login__container.right-panel-active .overlay {
+  	transform: translateX(50%);
+}
+
+.overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+	transform: translateX(-20%);
+}
+
+.login__container.right-panel-active .overlay-left {
+	transform: translateX(0);
+}
+
+.overlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.login__container.right-panel-active .overlay-right {
+	transform: translateX(20%);
+}
+
+.social-container {
+	margin: 5px 0;
+}
+
+.social-container a {
+	border: 1px solid #DDDDDD;
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+}
+
+.social-facebook {
+  background: #3B5998;
+}
+
+.social-google {
+  background: #34A853;
+}
+
+.social-kakaotalk {
+  background: #F7E600;
+}
+
+.login__container footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+.login__container footer p {
+    margin: 10px 0;
+}
+
+.login__container footer i {
+    color: red;
+}
+
+.login__container footer a {
+    color: #3c97bf;
+    text-decoration: none;
 }
 
 /* ---------purbd-home---------- */
