@@ -46,7 +46,7 @@
                         <li class="nav__item"><a href="{% url 'freeHome' %}" class="nav__link">자유게시판</a></li>
 
                         <li class="nav__item dropdown">
-                            <a href="{% url 'chatHome' %}" class="nav__link dropdown__link">채팅 <i class='bx bx-chevron-down dropdown__icon'></i></a>
+                            <a href="{% url 'chatHome' %}" class="nav__link dropdown__link">채팅<i class='bx bx-chevron-down dropdown__icon'></i></a>
                             <ul class="dropdown__menu">
                                 <li class="dropdown__item"><a href="#" class="nav__link">봄봄이와</a></li>
                                 <li class="dropdown__item"><a href="#" class="nav__link">사용자들과</a></li>
@@ -56,8 +56,8 @@
                         <li class="nav__item"><a href="{% url 'profileHome' user.username %}" class="nav__link">프로필</a></li>
                         <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">로그아웃</a></li>
                         {% else %}
-                        <li class="nav__item"><a href="{% url 'login' %}" class="nav__link">프로필</a></li>
-                        <li class="nav__item"><a href="{% url 'login' %}" class="nav__link">로그인</a></li>
+                        <li class="nav__item"><a href="{% url 'loginHome' %}" class="nav__link">프로필</a></li>
+                        <li class="nav__item"><a href="{% url 'loginHome' %}" class="nav__link">로그인</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -113,32 +113,6 @@
         }
         navLink.forEach(n => n.addEventListener('click', linkAction));
     </script>
-
-    <!-- 슬라이드 메뉴 js -->
-    <script>
-    const indicator = document.querySelector('.menu-indicator');
-    const items = document.querySelectorAll('.menu-item');
-
-    function handleIndicator(el) {
-        items.forEach(item => {
-            item.classList.remove('is-active');
-            item.removeAttribute('style');
-        });
-
-        indicator.style.width = `${el.offsetWidth}px`;
-        indicator.style.left = `${el.offsetLeft}px`;
-        indicator.style.backgroundColor = el.getAttribute('active-color');
-
-        el.classList.add('is-active');
-        el.style.color = el.getAttribute('active-color');
-    }
-
-
-    items.forEach((item, index) => {
-        item.addEventListener('click', (e) => { handleIndicator(e.target) });
-        item.classList.contains('is-active') && handleIndicator(item);
-    });
-    </script> 
 
     </body>
 </html>

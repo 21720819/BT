@@ -185,6 +185,8 @@ def createChannel(request, post_id):
     }
     
     requests.post(url, data=json.dumps(data), headers=api_headers)
+    post.check_chat = True
+    post.save()
     return redirect('auth', str(post_id))
 
  # 신청자 목록 보여주는 함수
