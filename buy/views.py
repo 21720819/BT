@@ -236,6 +236,7 @@ def buyHome(request):
             'posts' : post_list
         }
         return render(request,'buy/home.html',context)
+    return render(request,'buy/home.html',context)
 
 
 def searchResult(request):

@@ -25,6 +25,7 @@
       <a href="{% url 'category' 'delivery' %}">배달</a>
     </div>
   </div>
+<!-- 검색창 -->
   <div>
     <form class="searchForm"action="" method="GET">
       {% csrf_token %}
@@ -35,19 +36,10 @@
     <h5>'{{q}}' 검색결과입니다.</h5>
     {% endif %}
   </div>
-  <!-- <ul id=""> 
-    <li><a href="{% url 'buyHome' %}">전체</a></li>
-    <li><a href="{% url 'category' 'necessity' %}">생필품</a></li>
-    <li><a href="{% url 'category' 'food' %}">식료품</a></li>
-    <li><a href="{% url 'category' 'ott' %}">OTT</a></li>
-    <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
-  </ul> -->
+ <!-- 검색창 --> 
   {% for post in posts %}
-
   <article class="card">
-    {% for post in posts %}
 		<header class="card__thumb">
-
       {% if post.photo %}
       <img src="{{ post.photo.url }}" alt="">
       {% else %}
@@ -69,11 +61,9 @@
 		<footer class="card__footer">
 			<ion-icon class="time__icon" name="time-outline"></ion-icon><span class="icon"></span> {{post.date|date:'m/d H:i'}}</span>
 			<ion-icon class="place__icon" name="location-outline"></ion-icon><span class="icon icon--comment"> {{post.location}}</span>
-
 		</footer>
-    {% endfor %}
 	</article>
-
+  {% endfor %}
   
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-3 p-2 purbd_home_div">
@@ -125,4 +115,3 @@
 
 </div>
 {% endblock %}
-
