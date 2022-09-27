@@ -25,6 +25,7 @@
       <a href="{% url 'category' 'delivery' %}">배달</a>
     </div>
   </div>
+
 <!-- 검색창 -->
   <div>
     <form class="searchForm"action="" method="GET">
@@ -32,11 +33,15 @@
       <input type="text" placeholder="search" name="q">
       <button type="submit">검색</button>
     </form>
-    {% if q %}
-    <h5>'{{q}}' 검색결과입니다.</h5>
-    {% endif %}
+    
   </div>
  <!-- 검색창 --> 
+
+  {% if posts %}
+  {% if q %}
+    <h5>'{{q}}' 검색결과입니다.</h5>
+    {% endif %}
+  <!-- 게시글 출력 -->
   {% for post in posts %}
   <article class="card">
 		<header class="card__thumb">
@@ -64,7 +69,20 @@
 		</footer>
 	</article>
   {% endfor %}
-  
+  {% else %}
+  <!-- 출력할 게시글이 없을때  -->
+  {% if q %}
+  <!-- 검색 결과 없을 경우  -->
+   {% if q|length == 1 %}
+  <h5>검색어는 2자 이상 입력해주세요</h5>
+  {% else %}
+  <h5>'{{q}}'와 일치하는 검색 결과가 없습니다.</h5>
+  {% endif %}
+  {% else %}
+  <h5> 작성된 게시글이 없습니다. </h5>
+  {% endif %}
+  {% endif %}
+
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-3 p-2 purbd_home_div">
       {%if posts.has_previous%}

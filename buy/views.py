@@ -219,12 +219,12 @@ from django.db.models import Q # 필터조건 두가지 이상 적용하기 위�
 def buyHome(request):
     post_list = Buy.objects.all().order_by('-id') #최신순 나열
     context={}
-    # paginator = Paginator(post_list, 9) # 6개씩 잘라내기
-    # page = request.GET.get('page') # 페이지 번호 알아오기
-    # posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
+    paginator = Paginator(post_list, 6) # 6개씩 잘라내기
+    page = request.GET.get('page') # 페이지 번호 알아오기
+    posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
     if 'q' in request.GET: # 검색어 있으면 
         query = request.GET.get('q')
-        posts = Buy.objects.all().filter(Q (title__icontains=query) | Q (body__icontains=query))
+        posts = Buy.objects.all().filter(Q (title__icontains=query) | Q (body__icontains=query) | Q(ID__username__icontains=query))
         if len(query)>1:
             context={
                 'q' : query,
@@ -233,7 +233,7 @@ def buyHome(request):
         return render(request,'buy/home.html',context)
     else:    
         context={
-            'posts' : post_list
+            'posts' : posts
         }
         return render(request,'buy/home.html',context)
     return render(request,'buy/home.html',context)
