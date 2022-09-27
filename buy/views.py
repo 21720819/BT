@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 from .forms import BuyModelform
@@ -5,14 +6,6 @@ from .models import Buy
 from accounts.models import User
 import json, requests
 from django.conf import settings
-
-def buyHome(request):
-    purchase = Buy.objects
-    post_list = purchase.all().order_by('-id') #최신순 나열
-    paginator = Paginator(post_list, 9) # 6개씩 잘라내기
-    page = request.GET.get('page') # 페이지 번호 알아오기
-    posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
-    return render(request,'buy/home.html',{'purchase':purchase, 'posts':posts})
 
 
 def p_category(request,category):
@@ -220,6 +213,28 @@ def map(request):
 
 # # 검색
 from django.db.models import Q # 필터조건 두가지 이상 적용하기 위함
+
+def buyHome(request):
+    post_list = Buy.objects.all().order_by('-id') #최신순 나열
+    context={}
+    # paginator = Paginator(post_list, 9) # 6개씩 잘라내기
+    # page = request.GET.get('page') # 페이지 번호 알아오기
+    # posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
+    if 'q' in request.GET: # 검색어 있으면 
+        query = request.GET.get('q')
+        posts = Buy.objects.all().filter(Q (title__icontains=query) | Q (body__icontains=query))
+        if len(query)>1:
+            context={
+                'q' : query,
+                'posts' : posts
+            }
+        return render(request,'buy/home.html',context)
+    else:    
+        context={
+            'posts' : post_list
+        }
+        return render(request,'buy/home.html',context)
+
 
 def searchResult(request):
     posts =None

@@ -28,11 +28,14 @@
   </div>
 
   <div>
-    <form action="" method="get">
+    <form class="searchForm"action="" method="GET">
       {% csrf_token %}
-      <input type="search" placeholder="search" name="q">
+      <input type="text" placeholder="search" name="q">
       <button type="submit">검색</button>
     </form>
+    {% if q %}
+    <h5>'{{q}}' 검색결과입니다.</h5>
+    {% endif %}
   </div>
   <!-- <ul id=""> 
     <li><a href="{% url 'buyHome' %}">전체</a></li>
