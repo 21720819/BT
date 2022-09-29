@@ -113,5 +113,11 @@ def userProfile(request, username):
     posts =  Buy.objects.filter(ID=user).order_by('-writeDate')
     return render(request, 'profile/userprofile.html', {'user': user , 'posts' : posts})
 
-# def report(request, username):
-#     user = get_object_or_404(User, username=username)
+def report(request, username):
+    # user = get_object_or_404(User, username=username)
+    return render(request, 'profile/report.html')
+
+
+def review(request,username):
+
+    return render(request, 'profile/review.html')

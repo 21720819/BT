@@ -89,7 +89,7 @@
     </div>
 
     <div class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="">무엇이</a>
+        <a class="nav-link nav_change_color" href="{% url 'review' user.username %}">리뷰남기기</a>
     </div>
     
     <div id="sms" class="profile_summary profile_btns">
@@ -97,7 +97,7 @@
     </div>
 
     <div id="profile_delete" class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="">신고하기</a>
+        <a class="nav-link nav_change_color" href="{% url 'report' user.username %}">신고하기</a>
     </div>
 </div>
 

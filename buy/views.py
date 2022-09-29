@@ -162,6 +162,12 @@ def join(request,post_id):
         #     detail.like_count += 1
         #     detail.save()
 
+ # 신청자 목록 보여주는 함수
+def auth(request,post_id):
+    post = get_object_or_404(Buy, pk=post_id)
+    join_user = post.join_users.all()
+    return render(request,  'buy/auth.html',{'join_users':join_user,  'post_id':post_id})   
+
 #sendbird 정보 가져오기
 application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
@@ -189,11 +195,6 @@ def createChannel(request, post_id):
     post.save()
     return redirect('auth', str(post_id))
 
- # 신청자 목록 보여주는 함수
-def auth(request,post_id):
-    post = get_object_or_404(Buy, pk=post_id)
-    join_user = post.join_users.all()
-    return render(request,  'buy/auth.html',{'join_users':join_user,  'post_id':post_id})   
 
 def map(request):
     # 아이디, 글제목 , 위도 경도 
