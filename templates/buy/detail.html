@@ -7,9 +7,9 @@
     <!-- 이건 네비바 밑에 -->
     <div class="detail_nav">
         {%if detail.ID.id == user.id%}
-        <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
-        <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
-        <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
+            <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
+            <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
+            <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
         {% endif %}
     </div>
     <div style="clear: both;"></div>
@@ -29,13 +29,13 @@
     <!-- 내용 -->
     <div class="detail_main">
         {%if detail.category == 0 %}
-        <h5 class="detail_category">거래게시판/식재료</h5>
+            <h5 class="detail_category">거래게시판/식재료</h5>
         {%elif detail.category == 1 %}
-        <h5 class="detail_category">거래게시판/생필품</h5>
+            <h5 class="detail_category">거래게시판/생필품</h5>
         {%elif detail.category == 2 %}
-        <h5 class="detail_category">거래게시판/OTT</h5>
+            <h5 class="detail_category">거래게시판/OTT</h5>
         {%elif detail.category == 3 %}
-        <h5 class="detail_category">거래게시판/배달</h5>
+            <h5 class="detail_category">거래게시판/배달</h5>
         {%endif%}
         <h1 class="detail_title">{{detail.title}}</h1>
         <h3 class="detail_price">{{detail.price}}원</h3>
@@ -46,7 +46,9 @@
                 <td><a href="{% url 'userProfile' detail.ID.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a></td>
             </tr>
         </table>
+        
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+
         <table>
             <tr>
                 <td><ion-icon name="location" style="color: var(--first-color); margin: 0 5px -1.5px 0;"></ion-icon></td>
@@ -59,7 +61,9 @@
                 <td><h3 class="detail_loca_time">{{detail.date|date:'m월d일 H:i'}}</h3></td>
             </tr>
         </table>
+
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+        
         <div style="font-size: 10px; font-weight: 100; text-align: right; color: gray; margin-top: -3px;">작성일 : {{detail.writeDate|date:'m-d H:i'}}</div>
         <p class="detail_context">{{detail.body}}</p>
         
@@ -67,9 +71,9 @@
             <form class="detailLikeForm"action="{% url 'addBookmark' detail.id %}" method="post">
                 {% csrf_token %}
                 {% if detail in user.like_users.all %}
-                <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton buttonColor">
+                    <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% else %}
-                <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
+                    <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% endif %}
             </form>
             <!-- <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div> -->
