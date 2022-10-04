@@ -21,7 +21,7 @@
         <tr>
             <td style="width: 30px;"><img class="profile_img"></td>
             <td style="font-size: 20px; text-align: left;">
-                <h3 class="profile_nick">{{user.username}}</h3>
+                <h3 class="profile_nick">{{profileuser.username}}</h3>
                 <!-- <h4 class="profile_text" style="font-size: 15px;">{{user.level}}</h4> -->
             </td>
         </tr>
@@ -30,11 +30,11 @@
     <div class="profile_summary">
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">레벨</div>
-            <div class="profile_divDownParts profile_verticalHr">{{user.level}}</div>
+            <div class="profile_divDownParts profile_verticalHr">{{profileuser.level}}</div>
         </div>
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">가입일</div>
-            <div class="profile_divDownParts profile_verticalHr">{{user.date_joined|date:'Y-m-d'}}</div>
+            <div class="profile_divDownParts profile_verticalHr">{{profileuser.date_joined|date:'Y-m-d'}}</div>
         </div><div class="profile_division">
             <div class="profile_divUpParts">휴대폰 인증</div>
             <!-- <div class="profile_divDownParts">{{user.last_login|date:'Y-m-d'}}</div> -->
@@ -56,13 +56,13 @@
             <div class="profile_halfDiv">
                 <div class="profile_divUpParts profile_horizontalHr" style="margin-bottom: 15px; padding: 10px 0;">사용자 평가</div>
                 <div class="profile_posts">
-                    <!-- {% for like in likes %}
-                        <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
-                    {% endfor %} -->
+                    {% for review in profileuser.ID.all %}
+                        <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-
+                 
         <!-- 모바일 -->
         <div id="profile_mobile">
             <div class="profile_halfDivM" style="margin-right: 30px;">
@@ -89,7 +89,8 @@
     </div>
 
     <div class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="{% url 'review' user.username %}">리뷰남기기</a>
+        <!-- 리뷰남겼으면 버튼 리뷰수정버튼으로  -->
+        <a class="nav-link nav_change_color" href="{% url 'review' profileuser.username %}">리뷰남기기</a>
     </div>
     
     <div id="sms" class="profile_summary profile_btns">
@@ -97,7 +98,7 @@
     </div>
 
     <div id="profile_delete" class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="{% url 'report' user.username %}">신고하기</a>
+        <a class="nav-link nav_change_color" href="{% url 'report' profileuser.username %}">신고하기</a>
     </div>
 </div>
 

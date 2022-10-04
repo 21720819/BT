@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404,render,HttpResponse, redirect
 from accounts.models import User
 from buy.models import Buy
 from accounts.forms import Smsform ,Smscheckform
+from profiles.forms import UserReviewform
+from .models import Review
 
 def profileHome(request,user_name):
     user = get_object_or_404(User, username=user_name)
@@ -109,15 +111,28 @@ def checksms(request,username):# 인증번호 확인
     
 
 def userProfile(request, username):
-    user = get_object_or_404(User, username=username)
-    posts =  Buy.objects.filter(ID=user).order_by('-writeDate')
-    return render(request, 'profile/userprofile.html', {'user': user , 'posts' : posts})
+    profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
+    posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
+    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
 
 def report(request, username):
     # user = get_object_or_404(User, username=username)
     return render(request, 'profile/report.html')
 
 
-def review(request,username):
+def review(request,username): #username 상대방ㅇ 닉네임수정도 넣으면 좋을 듯 유저 한명당 리뷰 하나만 가능
+    if request.method == 'POST':
+        form = UserReviewform(request.POST)
+        user = User.objects.get(username=username)
+        writer_id = request.user.id
+        writer = User.objects.get(id=writer_id)
 
-    return render(request, 'profile/review.html')
+        if form.is_valid():
+            finished_form =form.save(commit=False)
+            finished_form.writer=get_object_or_404(User,id=writer_id)
+            finished_form.ID=get_object_or_404(User,id=user.id)
+            finished_form.save()
+        return redirect('../userprofile/'+user.username)
+    else:
+        form  = UserReviewform()
+    return render(request,'profile/review.html', {'form':form})
