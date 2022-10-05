@@ -10,12 +10,16 @@ def freeHome(request):
 
 def freeCreate(request):
     user_id =request.user.id
+    user = User.objects.get(id=user_id)
     if request.method == 'POST':
         form = Freemodelform(request.POST)
         if form.is_valid():
             finished_form =form.save(commit=False)
             finished_form.ID=get_object_or_404(User,id=user_id)
             finished_form.save()
+            user.point+=5 # 포인트 5점 
+            user.setLevel()
+            user.save()
             return redirect('freeHome')
     else:
         form  = Freemodelform()
@@ -29,12 +33,15 @@ def freeDetail(request, free_id):
 def create_comment(request, free_id):
     filled_form = CommentForm(request.POST)
     user_id =request.user.id
-
+    user = User.objects.get(id=user_id)
     if filled_form.is_valid():
         finished_form =filled_form.save(commit=False)
         finished_form.freeId=get_object_or_404(Free,pk=free_id)
         finished_form.ID=get_object_or_404(User,id=user_id)
         finished_form.save()
+        user.point+=1 # 포인트 1점 
+        user.setLevel()
+        user.save()
 
     return redirect('freeDetail',free_id)
 
