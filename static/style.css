@@ -53,7 +53,7 @@
   background: var(--first-color);
 }
 .buttonColor:hover {
-  background: var(--first-color-light);
+  background: #FB6C84;
 }
 
 
@@ -532,19 +532,20 @@
     /* --scrollbar-width: calc(100vw - 100%); */
     width: calc(100% - 60px);
     /* width: 100%; */
+    height: calc(100% - 60px);
     /* height: calc(calc(100vw - 15.15px) - 60px); */
     /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
     /* height: calc(100vw - var(--scrollbar-width)); */
     border-radius: 20px;
   
     margin: 30px auto;
-    padding-bottom: calc(100% - 60px);
+    /* padding-bottom: calc(100% - 60px); */
 
     float: none;
   }
-  .map_CustomOverlay {
+  /* .map_CustomOverlay {
     display: none;
-  }
+  } */
   .map_summary {
     width: calc(100% - 60px);
     /* height: calc(calc(100vw - 15.15px) - 60px); 사이드바 없어지면 */
@@ -557,7 +558,8 @@
     margin: 0 auto 30px auto;
     padding: 20px;
 
-    display: block;
+    /* display: block; */
+    display: none;
     /* float: left; */
   }
 }
@@ -628,7 +630,7 @@
 }
 .profile_halfDiv {
   width: calc(calc(100% - 40px) / 2);
-  height: 200px;
+  height: 250px;
   border-radius: 20px;
   background-color: rgb(250, 247, 247);
   padding: 0 25px;
@@ -642,9 +644,9 @@
   border-bottom: 2px solid white;
 }
 .profile_posts {
-  height: 120px;
+  height: 170px;
   /* padding-bottom: 20px; */
-
+  
   overflow-y: auto;
 
   -ms-overflow-style: none; /* IE and Edge */
@@ -657,6 +659,8 @@
 .profile_halfDivM {
   width: calc(calc(100% - 30px) / 2);
   padding-bottom: calc(calc(100% - 30px) / 2);
+  /* width: 185px;
+  height: 185px; */
   border-radius: 20px;
   background-color: rgb(250, 247, 247);
 
@@ -670,6 +674,32 @@
   background-color: rgb(250, 247, 247);
   text-align: left;
   padding: 20px;
+
+  display: none;
+}
+#profile_smsAuth {
+  height: 60%;
+  /* border-radius: 20px; */
+  /* background-color: rgb(250, 247, 247); */
+  /* text-align: left; */
+  padding: 0 20px;
+  
+  /* position: relative; */
+  display: none;
+}
+.profile_smsInput {
+  width: 100%;
+  max-height: 50px;
+  height: 17.5%;
+  margin: 0;
+  border: 0;
+  border-radius: 25px;
+  background: rgb(250, 247, 247);
+  font-size: 15px;
+
+  /* margin-bottom: 5%; */
+  padding: 0 20px;
+  cursor: pointer;
 }
 .pop_wrap {
   background: rgba(0, 0, 0, 0.5);
@@ -707,8 +737,8 @@
   /* color: var(--first-color); */
 }
 .pop_blank #close {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   
   display: flex;
@@ -746,6 +776,11 @@
     /* height: 160px; */
     height: 100%;
   }
+  /* .profile_halfDivM {
+    width: calc(calc(100% - 30px) / 2);
+    height: 0;
+    padding-bottom: calc(calc(100% - 30px) / 2);
+  } */
   .profile_btns {
     padding: 20px;
   }
@@ -2009,3 +2044,48 @@ i {
 .searchForm{
   margin-top: 20vh;
 }
+
+
+/* 별점 */
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/* fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; } */
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 

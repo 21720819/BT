@@ -29,7 +29,9 @@
                     <td><h3 style="margin: 0;">{{detail.ID.username}}</h3></td>
                 </tr>
             </table> -->
-            <hr>
+
+            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+
             <table>
                 <tr>
                     <!-- <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td> -->
@@ -42,12 +44,11 @@
                     <td style="width: 100%;"><h3 class="detail_loca_time">{{form.date}}</h3></td>
                 </tr>
             </table>
-            <hr>
+
+            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+
             <div>{{form.body}}</div>
-            
-            <div>
-                <input type="submit" class="create_submitButton buttonColor" placeholder="작성" value="완료"></input>
-            </div>
+            <input type="submit" class="create_submitButton buttonColor" placeholder="작성" value="완료"></input>
         </div>
 
         <!-- 지도 -->
