@@ -1,15 +1,16 @@
 from django.db import models
 from accounts.models import User
 from buy.models import Buy
-from free.models import Free
 
-# class Report(models.Model):
-#     content = body = models.TextField()
-#     ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,
-#                                  null=False,
-#                                  default="")# 글쓴이 
-#     buyID = models.ForeignKey(Buy, on_delete=models.CASCADE, blank= True,null=False)#거래글
-#     free = models.ForeignKey(Free, on_delete=models.CASCADE, blank= True ,null=False )# 
+class ReportUser(models.Model):
+    content =models.TextField()
+    ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,
+                                 null=False,
+                                 default="")# 글쓴이 
+
+class ReportPost(models.Model):
+    content = models.TextField()
+    buyID = models.ForeignKey(Buy, on_delete=models.CASCADE, blank= True,null=False)#거래글
 
 
 # 신고,, > 게시글 신고는 게시글 에서 작성자 아이디 받아와서 유저 신고로

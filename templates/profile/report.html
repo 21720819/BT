@@ -4,4 +4,10 @@
 
 
 신고하기
+<form method="POST" role="form" action="{% url 'reportUser' user.username %}">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="제출">
+</form>
+
 {% endblock %}
