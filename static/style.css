@@ -1889,17 +1889,22 @@ i {
 
 /* -------------minsol freehome------------- */
 
-.freeHomeDiv{
+/* .freeHomeDiv{
   background-color:rgb(250, 247, 247);
   width: 50vw;
   border-radius: 20px;
   padding: 5vh 5vw;
   margin: 10vh auto;
-}
+} */
 
 .freeContent{
-  padding: 3% 0 0% 0;
-  border-bottom: 2px solid #fff;
+  width: 100%;
+  border-radius: 20px;
+  background-color:rgb(250, 247, 247);
+  margin: 20px auto;
+  padding: 20px;
+
+  float: left;
 }
 .freeContentIcon{
   display: flex;
@@ -1950,19 +1955,22 @@ i {
 }
 
 /* free detail */
-.freeDetailDiv{
+/* .freeDetailDiv{
   display: flex;
   justify-content: space-around;
   margin: 10vh auto;
   width: 65vw;
-}
+} */
 .freeDtLeft{
   background-color:rgb(250, 247, 247);
-  width: 35vw;
+  width: calc(60% - 50px);
   height: fit-content;
   border-radius: 20px;
-  padding: 3vh 2vw;
+  margin: 25px;
+  padding: 25px;
   position: relative;
+
+  float: left;
 }
 .freeDtLeft input {
   top: 3vh;
@@ -1988,14 +1996,17 @@ i {
 }
 .freeDtRight{
   background-color:rgb(250, 247, 247);
-  width: 25vw;
+  width: calc(40% - 50px);;
   height: fit-content;
   border-radius: 20px;
-  padding: 3vh 0 0 0;
+  margin: 25px;
+  padding: 25px;
+
+  float: right;
 }
-.comment {
+/* .comment {
   padding: 0 3vw;
-}
+} */
 .comment p{
   border-bottom: 2px solid #fff;
   font-size: medium;
@@ -2027,18 +2038,38 @@ i {
   justify-content: center;
   margin-bottom: 2vh;
 }
+.comment {
+  width: 100%;
+  height: 40px;
+  padding-left: 15px;
+  border: 1px solid rgb(255, 103, 103);
+  border-radius: 20px 0 0 20px;
+}
 .comment_btn{
+  width: 60px;
+  color: white;
   background-color: rgb(255, 103, 103);
   border: none;
   border-radius: 0 20px 20px 0;
 }
 
 @media screen and (max-width: 768px) {
-  .freeHomeDiv {
+  /* .freeHomeDiv {
     width: calc(100% - 60px);
     margin: 30px auto;
     padding: 5vh 7.5vw;
-  } 
+  } */
+  .freeContent{
+    margin: 10px auto;
+  }
+  .freeDtLeft {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+  .freeDtRight {
+    width: 100%;
+    margin: 20px 0 0 0;
+  }
 }
 
 .searchForm{
