@@ -11,10 +11,7 @@ def profileHome(request,user_name):
     likes = user.like_posts.all()
     joins = user.join_posts.all()
     #  sms 폼출력
-    smsform  = Smsform()
-    checksmsform = Smscheckform()
-    
-    return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes,'joins':joins,'smsform':smsform , 'checksmsform':checksmsform})
+    return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes,'joins':joins})
 
 def profileEdit(request,user_name):
     user = get_object_or_404(User, username=user_name)
@@ -85,7 +82,7 @@ def sendsms(request, username):
             # return JsonResponse({'message': '인증번호 발송 및 DB 입력완료'}, status=200)
             # return HttpResponse('인증번호 발송완료 및 입력완료')
     
-    return redirect('../../profile/'+username)
+    return redirect('../../profile/'+username+'/sms')
 
 
 def checksms(request,username):# 인증번호 확인

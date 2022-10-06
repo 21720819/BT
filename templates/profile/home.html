@@ -121,8 +121,8 @@
     </div>
     
     <div id="sms" class="profile_summary profile_btns">
-        <!-- <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}" style="width: calc(100% - 20px); float: left;">휴대폰 인증</a> -->
-        휴대폰 인증
+        <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}" style="width: calc(100% - 20px); float: left;">휴대폰 인증</a>
+        <!-- 휴대폰 인증 -->
         <!-- if 인증됨 -->
         <ion-icon name="checkmark-circle" style="width: 20px; height: 20px; color: var(--first-color); padding-top: 1px; float: right;"></ion-icon>
         <!-- else -->
@@ -320,15 +320,15 @@
         background[0].classList.add('blur');
     };
 
-    sms.onclick = function() {
-        pop.style.display = 'block';
-        box.style.display = 'none';
-        smsAuth.style.display = 'block';
+    // sms.onclick = function() {
+    //     pop.style.display = 'block';
+    //     box.style.display = 'none';
+    //     smsAuth.style.display = 'block';
 
-        title.textContent = '휴대폰 인증'
+    //     title.textContent = '휴대폰 인증'
 
-        background[0].classList.add('blur');
-    }
+    //     background[0].classList.add('blur');
+    // }
 
     //myPost.onclick = function() {
     //    document.getElementById('pop').style.display = 'block';
