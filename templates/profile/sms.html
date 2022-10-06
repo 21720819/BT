@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<style>
+    .header {
+        display: none;
+    }
+</style>
+
 <form action="{% url 'sendsms' user.username %}" method="POST">
     {% csrf_token %}
     {{smsform.phone_number}}

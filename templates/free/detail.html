@@ -37,7 +37,11 @@
         <div>
         {% for comment in detail.comment_set.all %}
             <div class="freecommentUser"><span>{{comment.ID.username}}</span> <span class="freedate">{{comment.writeDate|date:'m-d H:i'}}</span></div>
-            <p >{{ comment.body }}</p>
+            {% if not forloop.last %}
+                <p>{{ comment.body }}</p>
+            {% else %}
+                <p style="margin: 0;">{{ comment.body }}</p>
+            {% endif %}
         {% endfor %}
         </div>
     </div>

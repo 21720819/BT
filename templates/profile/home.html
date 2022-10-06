@@ -61,7 +61,7 @@
 
         <!-- 모바일 -->
         <div id="profile_mobile">
-            <div class="profile_halfDivM" style="margin-right: 30px;">
+            <div class="profile_halfDivM" style="margin-right: 20px;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">작성한 글</div>
                     
@@ -120,9 +120,10 @@
         <a class="nav-link nav_change_color" href="">프로필 수정</a>
     </div>
     
-    <div id="sms" class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}" style="width: calc(100% - 20px); float: left;">휴대폰 인증</a>
-        <!-- 휴대폰 인증 -->
+    <div class="profile_summary profile_btns">
+        <a id="sms" class="nav-link nav_change_color" href="" style="width: calc(100% - 40px); float: left;">휴대폰 인증</a>
+        <!-- 휴대폰 인증http://127.0.0.1:8000/profile/admin/sms -->
+        <!-- {% url 'sms' user.username %} -->
         <!-- if 인증됨 -->
         <ion-icon name="checkmark-circle" style="width: 20px; height: 20px; color: var(--first-color); padding-top: 1px; float: right;"></ion-icon>
         <!-- else -->
@@ -191,21 +192,21 @@
         </div>
 
         <div id="profile_smsAuth">
-            <form action="{% url 'sendsms' user.username %}" method="POST">
-                {% csrf_token %}
+            <!-- <form action="{% url 'sendsms' user.username %}" method="POST">
+                {% csrf_token %} -->
                 <!-- <div style="width: calc(100% - 40px); position: absolute; top: 50%; transform: translate(0, -50%);"> -->
-                    <div style="height: 5%;"></div>
-                    {{smsform.phone_number}}
+                    <!-- <div style="height: 5%;"></div>
+                    {{smsform.phone_number}} -->
                 <!-- <input type="text" class="profile_smsInput" placeholder="" value=""></input> -->
-                <div style="height: 5%;"></div>
+                <!-- <div style="height: 5%;"></div>
                 <input type="submit" class="create_submitButton buttonColor" placeholder="" value="인증번호 전송" style="max-height: 50px; height: 17.5%;"></input>
             </form>
             <form action="{% url 'checksms' user.username %}" method="POST">
                 {% csrf_token %}
                 <div style="height: 10%;"></div>
-                {{checksmsform.auth_number}}
+                {{checksmsform.auth_number}} -->
                 <!-- <input type="text" class="profile_smsInput" placeholder="" value=""></input> -->
-                <div style="height: 5%;"></div>
+                <!-- <div style="height: 5%;"></div>
                 <input type="submit" class="create_submitButton buttonColor" placeholder="" value="인증번호 확인" style="max-height: 50px; height: 17.5%;"></input>
                 <div style="height: 5%;"></div>
             </form>
@@ -216,8 +217,7 @@
                         {{message.message}}
                     {% endfor %}
                 </div>
-            {% endif %}
-            <!-- </div> -->
+            {% endif %} -->
 
 
 
@@ -265,11 +265,38 @@
     </div>
 </div>
 
-<!-- 팝업 스크립트 -->
+<!-- 팝업 창 스크립트 -->
+<script>
+    var sms = document.getElementById('sms');
+
+    if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하에서 사용할 스크립트
+        sms.setAttribute('href', `{% url 'sms' user.username %}`);
+    }
+    else {
+        sms.setAttribute('href', 'javascript:popup()');
+    }
+
+    function popup(){
+        var url = `{% url 'sms' user.username %}`;
+        var name = "휴대폰 인증";
+        var popHeight = 500; // 띄울 팝업창 높이   
+        var popWidth = 500; // 띄울 팝업창 너비
+        var winHeight = document.body.clientHeight; // 현재창의 높이
+        var winWidth = document.body.clientWidth; // 현재창의 너비
+        var winX = window.screenLeft; // 현재창의 x좌표
+        var winY = window.screenTop; // 현재창의 y좌표
+        var popX = winX + (winWidth - popWidth)/2;
+        var popY = winY + (winHeight - popHeight)/2;
+
+        window.open(url, name, "top="+popY+", left="+popX+",width="+popWidth+",height="+popHeight+", scrollbars=no,resizable=no");
+    }
+</script>
+
+<!-- DIV 팝업 스크립트 -->
 <script>
     var myPost = document.getElementById('myPost');
     var like = document.getElementById('like');
-    var sms = document.getElementById('sms');
+    //var sms = document.getElementById('sms');
 
     var pop = document.getElementById('pop');
     var box = document.getElementById('profile_postBox');
@@ -320,15 +347,15 @@
         background[0].classList.add('blur');
     };
 
-    // sms.onclick = function() {
-    //     pop.style.display = 'block';
-    //     box.style.display = 'none';
-    //     smsAuth.style.display = 'block';
+    //sms.onclick = function() {
+    //    pop.style.display = 'block';
+    //    box.style.display = 'none';
+    //    smsAuth.style.display = 'block';
 
-    //     title.textContent = '휴대폰 인증'
+    //    title.textContent = '휴대폰 인증'
 
-    //     background[0].classList.add('blur');
-    // }
+    //    background[0].classList.add('blur');
+    //}
 
     //myPost.onclick = function() {
     //    document.getElementById('pop').style.display = 'block';
@@ -345,6 +372,7 @@
         background[0].classList.remove('blur');
     };
 </script>
+
 
 
 <!-- <div class="detail_container">
