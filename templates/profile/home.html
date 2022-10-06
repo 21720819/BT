@@ -191,16 +191,32 @@
         </div>
 
         <div id="profile_smsAuth">
-            <!-- <div style="width: calc(100% - 40px); position: absolute; top: 50%; transform: translate(0, -50%);"> -->
-                <div style="height: 5%;"></div>
-                <input type="text" class="profile_smsInput" placeholder="" value=""></input>
+            <form action="{% url 'sendsms' user.username %}" method="POST">
+                {% csrf_token %}
+                <!-- <div style="width: calc(100% - 40px); position: absolute; top: 50%; transform: translate(0, -50%);"> -->
+                    <div style="height: 5%;"></div>
+                    {{smsform.phone_number}}
+                <!-- <input type="text" class="profile_smsInput" placeholder="" value=""></input> -->
                 <div style="height: 5%;"></div>
                 <input type="submit" class="create_submitButton buttonColor" placeholder="" value="인증번호 전송" style="max-height: 50px; height: 17.5%;"></input>
+            </form>
+            <form action="{% url 'checksms' user.username %}" method="POST">
+                {% csrf_token %}
                 <div style="height: 10%;"></div>
-                <input type="text" class="profile_smsInput" placeholder="" value=""></input>
+                {{checksmsform.auth_number}}
+                <!-- <input type="text" class="profile_smsInput" placeholder="" value=""></input> -->
                 <div style="height: 5%;"></div>
                 <input type="submit" class="create_submitButton buttonColor" placeholder="" value="인증번호 확인" style="max-height: 50px; height: 17.5%;"></input>
                 <div style="height: 5%;"></div>
+            </form>
+
+            {% if messages %}
+                <div>
+                    {%for message in messages %}
+                        {{message.message}}
+                    {% endfor %}
+                </div>
+            {% endif %}
             <!-- </div> -->
 
 
