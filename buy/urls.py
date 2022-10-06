@@ -3,6 +3,7 @@ from buy import views
 
 urlpatterns = [
     path('',views.buyHome , name='buyHome'),
+    # path('',views.NoticeListView.as_view() , name='buyHome'),
     path('category/<str:category>/',views.p_category, name='category'),
     path('create',views.buyCreate , name='buyCreate'),
     path('detail/<int:post_id>',views.buyDetail,name='buyDetail'),

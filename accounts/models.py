@@ -39,6 +39,19 @@ class User(AbstractUser):
     def __str__(self):
         return "<%d %s>" %(self.pk, self.email)
 
+    def setLevel(self):
+        if (self.level == 0)and (self.point>=100):
+            self.level =1
+            self.point = self.point-100
+        if (self.level == 1)and (self.point>=300):
+            self.level =2
+            self.point = self.point-300            
+        if (self.level == 2)and (self.point>=1000):
+            self.level =3
+            self.point = self.point-1000
+
+        return self.level
+
 # class Authentication(models.Model):
 #     phone_number = models.CharField('휴대폰 번호', max_length=30)
 #     auth_number = models.CharField('인증번호', max_length=30)
