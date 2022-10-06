@@ -6,10 +6,37 @@
 
 /* ---------폰트 변경---------- */
 @font-face {
-  font-family: 'SEBANG_Gothic_Bold';
+    font-family: 'RixYeoljeongdo_Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'TmoneyRoundWindExtraBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'YUniverse-B';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_yuniverse@1.0/YUniverse-B.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WandohopeR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeR.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* ---------아이콘 import---------- */
@@ -26,7 +53,7 @@
   background: var(--first-color);
 }
 .buttonColor:hover {
-  background: var(--first-color-light);
+  background: #FB6C84;
 }
 
 
@@ -505,19 +532,20 @@
     /* --scrollbar-width: calc(100vw - 100%); */
     width: calc(100% - 60px);
     /* width: 100%; */
+    height: calc(100% - 60px);
     /* height: calc(calc(100vw - 15.15px) - 60px); */
     /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
     /* height: calc(100vw - var(--scrollbar-width)); */
     border-radius: 20px;
   
     margin: 30px auto;
-    padding-bottom: calc(100% - 60px);
+    /* padding-bottom: calc(100% - 60px); */
 
     float: none;
   }
-  .map_CustomOverlay {
+  /* .map_CustomOverlay {
     display: none;
-  }
+  } */
   .map_summary {
     width: calc(100% - 60px);
     /* height: calc(calc(100vw - 15.15px) - 60px); 사이드바 없어지면 */
@@ -530,7 +558,8 @@
     margin: 0 auto 30px auto;
     padding: 20px;
 
-    display: block;
+    /* display: block; */
+    display: none;
     /* float: left; */
   }
 }
@@ -601,7 +630,7 @@
 }
 .profile_halfDiv {
   width: calc(calc(100% - 40px) / 2);
-  height: 200px;
+  height: 250px;
   border-radius: 20px;
   background-color: rgb(250, 247, 247);
   padding: 0 25px;
@@ -615,9 +644,9 @@
   border-bottom: 2px solid white;
 }
 .profile_posts {
-  height: 120px;
+  height: 170px;
   /* padding-bottom: 20px; */
-
+  
   overflow-y: auto;
 
   -ms-overflow-style: none; /* IE and Edge */
@@ -630,6 +659,8 @@
 .profile_halfDivM {
   width: calc(calc(100% - 30px) / 2);
   padding-bottom: calc(calc(100% - 30px) / 2);
+  /* width: 185px;
+  height: 185px; */
   border-radius: 20px;
   background-color: rgb(250, 247, 247);
 
@@ -643,6 +674,32 @@
   background-color: rgb(250, 247, 247);
   text-align: left;
   padding: 20px;
+
+  display: none;
+}
+#profile_smsAuth {
+  height: 60%;
+  /* border-radius: 20px; */
+  /* background-color: rgb(250, 247, 247); */
+  /* text-align: left; */
+  padding: 0 20px;
+  
+  /* position: relative; */
+  display: none;
+}
+.profile_smsInput {
+  width: 100%;
+  max-height: 50px;
+  height: 17.5%;
+  margin: 0;
+  border: 0;
+  border-radius: 25px;
+  background: rgb(250, 247, 247);
+  font-size: 15px;
+
+  /* margin-bottom: 5%; */
+  padding: 0 20px;
+  cursor: pointer;
 }
 .pop_wrap {
   background: rgba(0, 0, 0, 0.5);
@@ -680,8 +737,8 @@
   /* color: var(--first-color); */
 }
 .pop_blank #close {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   
   display: flex;
@@ -719,6 +776,11 @@
     /* height: 160px; */
     height: 100%;
   }
+  /* .profile_halfDivM {
+    width: calc(calc(100% - 30px) / 2);
+    height: 0;
+    padding-bottom: calc(calc(100% - 30px) / 2);
+  } */
   .profile_btns {
     padding: 20px;
   }
@@ -731,8 +793,7 @@
 
 /* ---------전체폰트 바꾸기---------- */
 .font_change {
-  font-family: 'SEBANG_Gothic_Bold';
-  
+  font-family: ;
 }
 
 /* ---------ROOT---------- */
@@ -1418,8 +1479,7 @@ i {
 .login__container {
 	background-color: var(--white-color);
 	border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;
@@ -1429,7 +1489,7 @@ i {
 
 .form-container {
   position: absolute;
-	top: 15%;
+	top: 5%;
 	left: 50%;
 	width: 50%;
 	height: 100%;

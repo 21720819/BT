@@ -45,20 +45,32 @@
     <div class="profile_summary" style="background-color: white; padding: 0;">
         <!-- 데스크탑 -->
         <div id="profile_desktop">
-            <div id="profile_myPost" class="profile_halfDiv">
-                <div class="profile_divUpParts profile_horizontalHr" style="margin-bottom: 15px; padding: 10px 0;">작성한 글</div>
+            <div id="profile_myPost" class="profile_halfDiv" style="width: calc(calc(100% - 40px) - 250px);">
+                <div class="profile_divUpParts" style="padding: 17.5px 0;">작성한 글</div>
                 <div class="profile_posts">
+                    <!-- {% for post in posts %}
+                        <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
+                    {% endfor %} -->
                     {% for post in posts %}
                         <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
+                        {% if not forloop.last %}
+                            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        {% else %}
+                            <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
-            <div class="profile_halfDiv">
-                <div class="profile_divUpParts profile_horizontalHr" style="margin-bottom: 15px; padding: 10px 0;">사용자 평가</div>
-                <div class="profile_posts">
-                    {% for review in profileuser.ID.all %}
-                        <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
-                    {% endfor %}
+
+            <div class="profile_halfDiv" style="width: 250px; padding: 0; position: relative;">
+                <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
+                    <div class="profile_divUpParts">사용자 평가</div>
+                    <!-- <div class="profile_posts">
+                        {% for review in profileuser.ID.all %}
+                            <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
+                        {% endfor %}
+                    </div> -->
+                    <div id="review" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ 0.0</div>
                 </div>
             </div>
         </div>
@@ -71,11 +83,15 @@
                     
                     <!-- 글 수 -->
                     <div id="myPost" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
-                        {% for post in posts %}
-                            {% if forloop.last %}
-                                {{ forloop.counter }}
-                            {% endif %}
-                        {% endfor %}
+                        {% if posts %}
+                            {% for post in posts %}
+                                {% if forloop.last %}
+                                    {{ forloop.counter }}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            0
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -113,9 +129,11 @@
                     <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
                     {% if not forloop.last %}
                         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                    {% else %}
+                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                     {% endif %}
                 {% endfor %}
-                <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
             <div id="profile_rPosts" class="profile_posts" style="display: none;">
                 <!-- {% for like in likes %}
@@ -131,7 +149,9 @@
 <script>
     var myPost = document.getElementById('myPost');
     //var review = document.getElementById('review');
-    //var pop = document.getElementById('pop');
+
+    var pop = document.getElementById('pop');
+    var box = document.getElementById('profile_postBox');
     var close_btn = document.getElementById('close');
     var title = document.getElementById('title');
     //var post = document.getElementById('post');
@@ -140,7 +160,8 @@
     var background = document.getElementsByClassName('detail_container');
     
     myPost.onclick = function() {
-        document.getElementById('pop').style.display = 'block';
+        pop.style.display = 'block';
+        box.style.display = 'block';
 
         title.textContent = '작성한 글'
         pPosts.style.display = 'block';
@@ -160,7 +181,9 @@
     };*/
 
     close_btn.onclick = function() {
-        this.parentNode.parentNode.parentNode.style.display = 'none';
+        pop.style.display = 'none';
+        box.style.display - 'none';
+        
         pPosts.style.display = 'none';
         rPosts.style.display = 'none';
 
