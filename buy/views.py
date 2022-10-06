@@ -216,20 +216,41 @@ def map(request):
 # # 검색
 from django.db.models import Q # 필터조건 두가지 이상 적용하기 위함
 
+# # 검색
+from django.db.models import Q # 필터조건 두가지 이상 적용하기 위함
+
 def buyHome(request):
-    post_list = Buy.objects.all().order_by('-id') #최신순 나열
+    sort = request.GET.get('sort','')
+    order = '-id'
+    if sort== 'date':
+        order='-id'
+    elif sort == 'likes':
+        order = '-like_count'
+    elif sort == 'lowprice':
+        order = 'price'
+    elif sort == 'highprice':
+        order = '-price'
+
+
+    post_list = Buy.objects.all().order_by(order) #최신순 나열
     context={}
     paginator = Paginator(post_list, 6) # 6개씩 잘라내기
     page = request.GET.get('page') # 페이지 번호 알아오기
     posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
+
     if 'q' in request.GET: # 검색어 있으면 
         query = request.GET.get('q')
-        posts = Buy.objects.all().filter(Q (title__icontains=query) | Q (body__icontains=query) | Q(ID__username__icontains=query))
+        post_list = post_list.filter(Q (title__icontains=query) | Q (body__icontains=query) | Q(ID__username__icontains=query))
+        paginator = Paginator(post_list, 6) # 6개씩 잘라내기
+        page = request.GET.get('page') # 페이지 번호 알아오기
+        posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
+        
         if len(query)>1:
             context={
                 'q' : query,
                 'posts' : posts
             }
+        
         return render(request,'buy/home.html',context)
     else:    
         context={
