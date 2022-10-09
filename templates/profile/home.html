@@ -2,6 +2,16 @@
 
 {% block content %}
 
+<!-- <script>
+    fetch("http://127.0.0.1:8000/profile/admin/sms")
+    .then(response => {
+        return response.text()
+    })
+    .then(data => {
+        document.getElementById('profile_smsAuth').insertAdjacentHTML("afterbegin", data);
+    });
+</script> -->
+
 <div class="detail_container" style="max-width: 768px;">
     <table id="profile_table">
         <tr>
@@ -136,7 +146,7 @@
     </div>
     {% endif %}
 
-    <div id="profile_delete" class="profile_summary profile_btns">
+    <div class="profile_summary profile_btns profile_delete">
         <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
     </div>
 </div>
@@ -300,7 +310,7 @@
 
     var pop = document.getElementById('pop');
     var box = document.getElementById('profile_postBox');
-    var smsAuth = document.getElementById('profile_smsAuth');
+    //var smsAuth = document.getElementById('profile_smsAuth');
     var close_btn = document.getElementById('close');
     var title = document.getElementById('title');
     //var post = document.getElementById('post');
@@ -347,15 +357,15 @@
         background[0].classList.add('blur');
     };
 
-    //sms.onclick = function() {
-    //    pop.style.display = 'block';
-    //    box.style.display = 'none';
-    //    smsAuth.style.display = 'block';
+    /*sms.onclick = function() {
+        pop.style.display = 'block';
+        box.style.display = 'none';
+        smsAuth.style.display = 'block';
 
-    //    title.textContent = '휴대폰 인증'
+        title.textContent = '휴대폰 인증'
 
-    //    background[0].classList.add('blur');
-    //}
+        background[0].classList.add('blur');
+    }*/
 
     //myPost.onclick = function() {
     //    document.getElementById('pop').style.display = 'block';

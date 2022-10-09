@@ -779,7 +779,7 @@
   .profile_btns {
     padding: 20px;
   }
-  #profile_delete {
+  .profile_delete {
     margin-bottom: 10px;
   }
 }
