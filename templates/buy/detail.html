@@ -72,9 +72,9 @@
                 {% csrf_token %}
 
                 {% if user in detail.like_users.all %}
-                <input type="submit" value="취소 {{detail.like_count}}" class="detail_likeButton buttonColor">
+                    <input type="submit" value="♥&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% else %}
-                    <input type="submit" value="❤&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
+                    <input type="submit" value="♡&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% endif %}
             </form>
             <!-- <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div> -->

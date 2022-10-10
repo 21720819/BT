@@ -75,7 +75,7 @@
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
                         {% else %}
-                            <div name="myPost" style="text-align: center;">더보기</div>
+                            <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -158,7 +158,7 @@
             </div>
             <div id="profile_rPosts" class="profile_posts" style="display: none;">
                 {% for review in profileuser.ID.all %}
-                    <p class="profile_list nav-link nav_change_color">{{review.rating}} / {{review.content}}</p>
+                    <p class="profile_list nav-link nav_change_color">★ {{review.rating}} / {{review.content}}</p>
                     {% if not forloop.last %}
                         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
                     {% else %}
@@ -169,10 +169,10 @@
         </div> 
 
         <!-- 리뷰남기기 -->
-        <div id="profile_reviewBox" style="display: none;"></div>
+        <div id="profile_reviewBox" class="profile_posts" style="height: 60%; display: none;"></div>
 
         <!-- 신고하기 -->
-        <div id="profile_accuseBox" style="display: none;"></div>
+        <div id="profile_accuseBox" class="profile_posts" style="height: 60%; display: none;"></div>
         <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div>
     </div>
 </div>
@@ -197,14 +197,15 @@
     
     for(i=0; i<2; i++) {
         myPost[i].onclick = function() {
-            pop.style.display = 'block';
+            setPopup('block', 'block', 'none', 'none', '작성한 글', 'block', 'none');
+            /*pop.style.display = 'block';
             pBox.style.display = 'block';
             rBox.style.display = 'none';
             aBox.style.display = 'none';
 
             title.textContent = '작성한 글';
             pPosts.style.display = 'block';
-            rPosts.style.display = 'none';
+            rPosts.style.display = 'none';*/
 
             background[0].classList.add('blur');
         };
@@ -212,56 +213,36 @@
 
     for(i=0; i<2; i++) {
         rating[i].onclick = function() {
-            pop.style.display = 'block';
-            pBox.style.display = 'block';
-            rBox.style.display = 'none';
-            aBox.style.display = 'none';
-
-            title.textContent = '사용자 평가';
-            pPosts.style.display = 'none';
-            rPosts.style.display = 'block';
-
+            setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
             background[0].classList.add('blur');
         };
     }
 
     review.onclick = function() {
-        pop.style.display = 'block';
-        pBox.style.display = 'none';
-        rBox.style.display = 'block';
-        aBox.style.display = 'none';
-
-        title.textContent = '사용자 평가 작성';
-        pPosts.style.display = 'none';
-        rPosts.style.display = 'none';
-
+        setPopup('block', 'none', 'block', 'none', '사용자 평가 작성', 'none', 'none');
         background[0].classList.add('blur');
     };
 
     accuse.onclick = function() {
-        pop.style.display = 'block';
-        pBox.style.display = 'none';
-        rBox.style.display = 'none';
-        aBox.style.display = 'block';
-
-        title.textContent = '신고하기';
-        pPosts.style.display = 'none';
-        rPosts.style.display = 'none';
-
+        setPopup('block', 'none', 'none', 'block', '신고하기', 'none', 'none');
         background[0].classList.add('blur');
     };
 
     close_btn.onclick = function() {
-        pop.style.display = 'none';
-        pBox.style.display - 'none';
-        rBox.style.display = 'none';
-        aBox.style.display = 'none';
-        
-        pPosts.style.display = 'none';
-        rPosts.style.display = 'none';
-
+        setPopup('none', 'none', 'none', 'none', '', 'none', 'none');
         background[0].classList.remove('blur');
     };
+
+    function setPopup(p, pB, rB, aB, t, pP, rP) {
+        pop.style.display = p;
+        pBox.style.display = pB;
+        rBox.style.display = rB;
+        aBox.style.display = aB;
+
+        title.textContent = t;
+        pPosts.style.display = pP;
+        rPosts.style.display = rP;
+    }
 </script>
 
 {% endblock %}

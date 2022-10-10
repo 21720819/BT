@@ -6,6 +6,11 @@
     .header {
         display: none;
     }
+    /*@media screen and (max-width:768px) {
+        .header {
+            display: flex;
+        }
+    }*/
 </style>
 
 <form action="{% url 'sendsms' user.username %}" method="POST">

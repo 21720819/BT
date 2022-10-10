@@ -52,7 +52,7 @@
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
                         {% else %}
-                            <div name="myPost" style="text-align: center;">더보기</div>
+                            <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -69,7 +69,7 @@
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
                         {% else %}
-                            <div name="like" style="text-align: center;">더보기</div>
+                            <div id="myLikesD" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -110,7 +110,7 @@
                     <div class="profile_divUpParts">좋아요 누른 글</div>
                     
                     <!-- 글 수 -->
-                    <div name="like" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+                    <div id="myLikesM" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
                         <!-- <script>count = 0;</script>
                         {% for like in likes %}
                             <script>count++;</script>
@@ -216,7 +216,7 @@
         var popX = winX + (winWidth - popWidth)/2;
         var popY = winY + (winHeight - popHeight)/2;
 
-        window.open(url, "휴대폰 인증", "top="+popY+", left="+popX+",width="+popWidth+",height="+popHeight+", scrollbars=no,resizable=no");
+        window.open(url, "휴대폰 인증", "top="+popY+", left="+popX+", width="+popWidth+", height="+popHeight+", scrollbars=no, resizable=no");
     }
 </script>
 
@@ -224,7 +224,8 @@
 <script>
     var myPost = document.getElementsByName('myPost');
     //var like = document.getElementsByName('like');
-    var like = document.getElementsByName('like');
+    var myLikesD = document.getElementById('myLikesD');
+    var myLikesM = document.getElementById('myLikesM');
     //var sms = document.getElementById('sms');
 
     var pop = document.getElementById('pop');
@@ -239,13 +240,7 @@
     
     for(i=0; i<2; i++) {
         myPost[i].onclick = function() {
-            pop.style.display = 'block';
-            box.style.display = 'block';
-            //smsAuth.style.display = 'none';
-
-            title.textContent = '작성한 글';
-            pPosts.style.display = 'block';
-            lPosts.style.display = 'none';
+            setPopup('block', 'block', '작성한 글', 'none', 'block');
             //var posts = document.getElementById('profile_postBox').firstChild;
             //var id = post.id;
             //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
@@ -260,25 +255,29 @@
         };
     }
 
-    for(i=0; i<2; i++) {
-        like[i].onclick = function() {
-            pop.style.display = 'block';
-            box.style.display = 'block';
-            //smsAuth.style.display = 'none';
+    myLikesD.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //var title = document.getElementById('title');
 
-            //var title = document.getElementById('title');
-            title.textContent = '좋아요 누른 글';
-            pPosts.style.display = 'none';
-            lPosts.style.display = 'block';
+        //var post = document.getElementById('post');
+        //var id = like.id
+        //var url = "{% url 'buyDetail' 0 %}".replace(/0/, id.toString());
 
-            //var post = document.getElementById('post');
-            //var id = like.id
-            //var url = "{% url 'buyDetail' 0 %}".replace(/0/, id.toString());
+        //post.setAttribute('href', `${url}`);
+        background[0].classList.add('blur');
+    };
+    
+    myLikesM.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //var title = document.getElementById('title');
 
-            //post.setAttribute('href', `${url}`);
-            background[0].classList.add('blur');
-        };
-    }
+        //var post = document.getElementById('post');
+        //var id = like.id
+        //var url = "{% url 'buyDetail' 0 %}".replace(/0/, id.toString());
+
+        //post.setAttribute('href', `${url}`);
+        background[0].classList.add('blur');
+    };
 
     /*sms.onclick = function() {
         pop.style.display = 'block';
@@ -295,15 +294,26 @@
     //};
 
     close_btn.onclick = function() {
-        pop.style.display = 'none';
+        setPopup('none', 'none', '', 'none', 'none');
+        /*pop.style.display = 'none';
         box.style.display - 'none';
         //smsAuth.style.display = 'none';
 
         pPosts.style.display = 'none';
-        lPosts.style.display = 'none';
+        lPosts.style.display = 'none';*/
 
         background[0].classList.remove('blur');
     };
+
+    function setPopup(p, b, t, pP, lP) {
+        pop.style.display = p;
+        box.style.display = b;
+        //smsAuth.style.display = 'none';
+
+        title.textContent = t;
+        pPosts.style.display = pP;
+        lPosts.style.display = lP;
+    }
 </script>
 
 
