@@ -2,8 +2,20 @@
 {% load static %}
 
 {% block content %}
+<style>
+  .detail_container {
+    max-width: 768px;
+  }
+  @media screen and (max-width: 768px) {
+    .detail_container {
+      padding: 10px 20px;
+    }
+  }
+</style>
+
+
 <input type="button"  class='rightBtn' value="글쓰기" onClick=" location.href='create'">
-<div class="freeHomeDiv">
+<div class="detail_container">
   {% for post in posts %}
   <div class="freeContent">
     <div class="freePost"><a href="{% url 'freeDetail' post.id %}">
@@ -11,8 +23,8 @@
       <p class="freeBody">{{post.summary}}</p>
     </a></div>
     <div class="freeContentIcon">
-      <span >{{post.writeDate|date:'m-d H:i'}} </span>
-      <span class="freeUsername"> | {{post.ID.username}}</span>
+      <span>{{post.writeDate|date:'m-d H:i'}}</span>
+      <span class="freeUsername">| {{post.ID.username}}</span>
       <div class="icons">
         <div class="freeRIcon">
           <img src="{%static 'images/freeLike.png' %}" alt="">

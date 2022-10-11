@@ -82,7 +82,7 @@
   border-color: lightgray;
   border-radius: 10px 10px; */
 
-  padding: 25px 0;
+  padding: 20px 0;
   /* margin-top: 20px; */
   margin: 0 auto;
 
@@ -92,7 +92,7 @@
 .detail_nav {
   width: 100%;
 
-  padding: 0 25px;
+  padding: 0 22.5px;
 
   overflow: hidden;
 }
@@ -111,43 +111,43 @@
  float: left;
 } */
 .detail_img {
-  width: calc(60% - 50px);
+  width: calc(60% - 40px);
   /* width: 100%; */
-  max-height: calc(calc(var(--detail_container-width) * 0.6) - 50px);
-  height: calc(calc(100vw * 0.75 * 0.6) - 50px);
-  border-radius: 30px;
+  max-height: calc(calc(var(--detail_container-width) * 0.6) - 40px);
+  height: calc(calc(100vw * 0.75 * 0.6) - 40px);
+  border-radius: 20px;
   background-color: gray;
   background-position: center;
   background-size: cover;
   
-  margin-bottom: 50px;
-  margin: 25px;
+  margin-bottom: 40px;
+  margin: 20px;
 
   overflow: hidden;
   float: left;
 }
 .detail_map {
-  width: calc(60% - 50px);
+  width: calc(60% - 40px);
   /* width: 100%; */
-  max-height: calc(calc(calc(var(--detail_container-width) * 0.6) - 50px) * 0.75);
-  height: calc(calc(calc(100vw * 0.75 * 0.6) - 50px) * 0.75);
-  border-radius: 30px;
+  max-height: calc(calc(calc(var(--detail_container-width) * 0.6) - 40px) * 0.75);
+  height: calc(calc(calc(100vw * 0.75 * 0.6) - 40px) * 0.75);
+  border-radius: 20px;
   background-color: gray;
-  margin: 25px;
+  margin: 20px;
 
   float: left;
 }
 .detail_main {
-  width: calc(40% - 50px);
+  width: calc(40% - 40px);
   /* height: 1000px; */
   /* border: 1px solid;
   border-color: lightgray;
   border-color: white; */
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: rgb(250, 247, 247);
-  margin: 25px;
+  margin: 20px;
   /* padding: 25px 0; */
-  padding: 25px;
+  padding: 20px;
   float: right;
 }
 .detail_category {
@@ -238,7 +238,7 @@
 } */
 
 
-@media screen and (max-width: 1280px) {
+/* @media screen and (max-width: 1280px) {
  .detail_container {
     width: 92.5vw;
     position: relative;
@@ -246,7 +246,7 @@
     padding: 20px 0;
  }
  .detail_nav {
-    padding: 0 20px;
+    padding: 0 22.5px;
 }
  .detail_img {
     width: calc(60% - 40px);
@@ -267,13 +267,12 @@
     border-radius: 20px;
 
     margin: 20px;
-    /* padding: 20px 0; */
     padding: 20px;
  }
  .detail_applyButton {
     width: calc(100% - 75px);
  }
-}
+} */
 /* @media screen and (max-width:1024px) {
  .detail_container {
   padding: 20px 30px;
@@ -292,26 +291,27 @@
   }
   .detail_nav {
     margin: 5px 0;
+    padding: 0 12.5px;
   }
   .detail_img {
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
     /* height: calc(calc(100vw - 15.15px) - 60px); */
     
-    margin-top: 10px;
-    padding-bottom: calc(100% - 40px);
+    margin: 10px;
+    padding-bottom: calc(100% - 20px);
   }
   .detail_map {
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
     /* height: calc(calc(calc(100vw - 15.15px) - 60px) * 0.75); */
-    margin-top: 10px;
-    padding-bottom: calc(calc(100% - 40px) * 0.75);
+    margin: 10px;
+    padding-bottom: calc(calc(100% - 20px) * 0.75);
   }
   .detail_main {
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
 
-    margin-top: 10px;
+    margin: 10px;
     /* padding: 0; */
-    padding: 15px;
+    padding: 20px;
     /* float: none; */
   }
   .detail_applyButton {
@@ -396,20 +396,13 @@
 } */
 
 
-@media screen and (max-width: 1280px) {
+/* @media screen and (max-width: 1280px) {
   .create_img {
     width: 100%;
-    /* width: calc(60% - 40px); */
     height: calc(calc(92.5vw * 0.6) - 40px);
-    /* margin-bottom: 40px; */
     border-radius: 20px;
   }
-  /* #create_pickButton {
-    height: calc(calc(calc(92vw * 0.6) - 40px) * 0.2);
-    font-size: calc(calc(calc(92.5vw * 0.6) - 40px) * 0.1);
-    line-height: calc(calc(calc(92.5vw * 0.6) - 40px) * 0.2);
-  } */
- }
+ } */
 @media screen and (max-width: 768px) {
   .create_pick {
     margin-bottom: 10px;
@@ -423,7 +416,7 @@
     padding-bottom: 100%;
   }
   #create_tempImage {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   #create_pickButton {
     padding-bottom: 20%;
@@ -530,15 +523,15 @@
 @media screen and (max-width:768px) {
   .map_main {
     /* --scrollbar-width: calc(100vw - 100%); */
-    width: calc(100% - 60px);
+    width: calc(100% - 40px);
     /* width: 100%; */
-    height: calc(100% - 60px);
+    height: calc(100% - 40px);
     /* height: calc(calc(100vw - 15.15px) - 60px); */
     /* height: calc(calc(calc(100vw - 15.15px) - var(--nav--width)) - 60px); */
     /* height: calc(100vw - var(--scrollbar-width)); */
     border-radius: 20px;
   
-    margin: 30px auto;
+    margin: 20px auto;
     /* padding-bottom: calc(100% - 60px); */
 
     float: none;
@@ -569,8 +562,8 @@
 
 /* ---------profile---------- */
 #profile_table {
-  width: calc(100% - 40px);
-  margin: 40px 20px;
+  /* width: calc(100% - 40px); */
+  margin: 40px 22.5px;
 }
 .profile_img {
   width: 36px;
@@ -644,7 +637,7 @@
   border-bottom: 2px solid white;
 }
 .profile_posts {
-  height: 170px;
+  height: 100%;
   /* padding-bottom: 20px; */
   
   overflow-y: auto;
@@ -657,8 +650,8 @@
 }
 
 .profile_halfDivM {
-  width: calc(calc(100% - 30px) / 2);
-  padding-bottom: calc(calc(100% - 30px) / 2);
+  width: calc(calc(100% - 20px) / 2);
+  padding-bottom: calc(calc(100% - 20px) / 2);
   /* width: 185px;
   height: 185px; */
   border-radius: 20px;
@@ -677,16 +670,16 @@
 
   display: none;
 }
-#profile_smsAuth {
+/* #profile_smsAuth {
   height: 60%;
-  /* border-radius: 20px; */
-  /* background-color: rgb(250, 247, 247); */
-  /* text-align: left; */
+  border-radius: 20px;
+  background-color: rgb(250, 247, 247);
+  text-align: left;
   padding: 0 20px;
   
-  /* position: relative; */
+  position: relative;
   display: none;
-}
+} */
 .profile_smsInput {
   width: 100%;
   max-height: 50px;
@@ -753,10 +746,12 @@
 
 @media screen and (max-width:768px) {
   #profile_table {
-    margin: 30px 20px;
+    /* width: calc(100% - 20px); */
+    margin: 20px 12.5px;
   }
   .profile_summary {
-    margin: 15px 20px;
+    width: calc(100% - 20px);
+    margin: 10px 10px;
     padding: 20px 0;
   }
   #profile_desktop {
@@ -772,10 +767,9 @@
   #profile_myPost {
     margin: 0 0 30px 0;
   }
-  .profile_posts {
-    /* height: 160px; */
+  /* .profile_posts {
     height: 100%;
-  }
+  } */
   /* .profile_halfDivM {
     width: calc(calc(100% - 30px) / 2);
     height: 0;
@@ -784,8 +778,8 @@
   .profile_btns {
     padding: 20px;
   }
-  #profile_delete {
-    margin-bottom: 20px;
+  .profile_delete {
+    margin-bottom: 10px;
   }
 }
 
@@ -1869,17 +1863,22 @@ i {
 
 /* -------------minsol freehome------------- */
 
-.freeHomeDiv{
+/* .freeHomeDiv{
   background-color:rgb(250, 247, 247);
   width: 50vw;
   border-radius: 20px;
   padding: 5vh 5vw;
   margin: 10vh auto;
-}
+} */
 
 .freeContent{
-  padding: 3% 0 0% 0;
-  border-bottom: 2px solid #fff;
+  width: 100%;
+  border-radius: 20px;
+  background-color:rgb(250, 247, 247);
+  margin: 20px auto;
+  padding: 20px;
+
+  float: left;
 }
 .freeContentIcon{
   display: flex;
@@ -1930,19 +1929,22 @@ i {
 }
 
 /* free detail */
-.freeDetailDiv{
+/* .freeDetailDiv{
   display: flex;
   justify-content: space-around;
   margin: 10vh auto;
   width: 65vw;
-}
+} */
 .freeDtLeft{
   background-color:rgb(250, 247, 247);
-  width: 35vw;
+  width: calc(60% - 40px);
   height: fit-content;
   border-radius: 20px;
-  padding: 3vh 2vw;
+  margin: 20px;
+  padding: 20px;
   position: relative;
+
+  float: left;
 }
 .freeDtLeft input {
   top: 3vh;
@@ -1968,14 +1970,17 @@ i {
 }
 .freeDtRight{
   background-color:rgb(250, 247, 247);
-  width: 25vw;
+  width: calc(40% - 40px);;
   height: fit-content;
   border-radius: 20px;
-  padding: 3vh 0 0 0;
+  margin: 20px;
+  padding: 20px;
+
+  float: right;
 }
-.comment {
+/* .comment {
   padding: 0 3vw;
-}
+} */
 .comment p{
   border-bottom: 2px solid #fff;
   font-size: medium;
@@ -2007,18 +2012,39 @@ i {
   justify-content: center;
   margin-bottom: 2vh;
 }
+.comment {
+  width: 100%;
+  height: 40px;
+  padding-left: 15px;
+  /* border: 1px solid var(--first-color); */
+  border: 0;
+  border-radius: 20px 0 0 20px;
+}
 .comment_btn{
-  background-color: rgb(255, 103, 103);
+  width: 60px;
+  color: white;
+  background-color: var(--first-color);
   border: none;
   border-radius: 0 20px 20px 0;
 }
 
 @media screen and (max-width: 768px) {
-  .freeHomeDiv {
+  /* .freeHomeDiv {
     width: calc(100% - 60px);
     margin: 30px auto;
     padding: 5vh 7.5vw;
-  } 
+  } */
+  .freeContent{
+    margin: 10px auto;
+  }
+  .freeDtLeft {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+  .freeDtRight {
+    width: 100%;
+    margin: 20px 0 0 0;
+  }
 }
 
 .searchForm{
