@@ -26,7 +26,6 @@
             });
     }
 
-    
     insertIntoPopup("{% url 'review' profileuser.username %}", 'profile_reviewBox');
     insertIntoPopup("{% url 'reportUser' profileuser.username %}", 'profile_accuseBox');
 </script>
@@ -196,26 +195,28 @@
     var background = document.getElementsByClassName('detail_container');
     
     for(i=0; i<2; i++) {
-        myPost[i].onclick = function() {
-            setPopup('block', 'block', 'none', 'none', '작성한 글', 'block', 'none');
-            /*pop.style.display = 'block';
-            pBox.style.display = 'block';
-            rBox.style.display = 'none';
-            aBox.style.display = 'none';
+        if(myPost[i] != null) {
+            myPost[i].onclick = function() {
+                setPopup('block', 'block', 'none', 'none', '작성한 글', 'block', 'none');
+                /*pop.style.display = 'block';
+                pBox.style.display = 'block';
+                rBox.style.display = 'none';
+                aBox.style.display = 'none';
 
-            title.textContent = '작성한 글';
-            pPosts.style.display = 'block';
-            rPosts.style.display = 'none';*/
+                title.textContent = '작성한 글';
+                pPosts.style.display = 'block';
+                rPosts.style.display = 'none';*/
 
-            background[0].classList.add('blur');
-        };
-    }
-
-    for(i=0; i<2; i++) {
-        rating[i].onclick = function() {
-            setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
-            background[0].classList.add('blur');
-        };
+                background[0].classList.add('blur');
+            };
+        }
+        
+        if(rating[i] != null) {
+            rating[i].onclick = function() {
+                setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
+                background[0].classList.add('blur');
+            };
+        }
     }
 
     review.onclick = function() {
