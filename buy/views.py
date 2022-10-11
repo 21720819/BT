@@ -207,6 +207,9 @@ def map(request):
             'lat' : post.lat,
             'long' : post.long,
             'category' : post.category,
+            'time' : post.join_count,
+            'price' : post.price,
+            'location' : post.location,
         }
 
         buy.append(dict)
