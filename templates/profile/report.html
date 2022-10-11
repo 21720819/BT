@@ -2,8 +2,6 @@
 
 {% block content %}
 
-
-신고하기
 <form method="POST" role="form" action="{% url 'reportUser' user.username %}">
     {% csrf_token %}
     {{form}}

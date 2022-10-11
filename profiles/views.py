@@ -10,7 +10,7 @@ def profileHome(request,user_name):
     p_post =  Buy.objects.filter(ID=user).order_by('-writeDate')
     likes = user.like_posts.all()
     joins = user.join_posts.all()
-
+    #  sms 폼출력
     return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes,'joins':joins})
 
 def profileEdit(request,user_name):

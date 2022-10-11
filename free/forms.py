@@ -28,6 +28,6 @@ class CommentForm(forms.ModelForm):
 
 		widgets = {
 			'body' : forms.TextInput(
-				attrs={'style': 'width: 20vw; height: 4vh; padding-left: 10px; border: 1px solid rgb(255, 103, 103); border-radius: 20px 0 0 20px', 'placeholder': '댓글을 입력하세요'}
+				attrs={'class': 'comment', 'placeholder': '댓글을 입력하세요'}
 			),
 		}

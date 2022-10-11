@@ -26,8 +26,16 @@ class Smsform(forms.ModelForm):
 		model = User
 		fields = ['phone_number']
 
+		widgets = {
+			'phone_number' : forms.TextInput(attrs={'class':'profile_smsInput'}),
+
+		}
+
 class Smscheckform(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['auth_number']
-		
+		widgets = {
+			'auth_number' : forms.TextInput(attrs={'class':'profile_smsInput'}),
+
+		}
