@@ -2,6 +2,16 @@
 
 {% block content %}
 
+<!-- <script>
+    fetch("http://127.0.0.1:8000/profile/admin/sms")
+    .then(response => {
+        return response.text()
+    })
+    .then(data => {
+        document.getElementById('profile_smsAuth').insertAdjacentHTML("afterbegin", data);
+    });
+</script> -->
+
 <div class="detail_container" style="max-width: 768px;">
     <table id="profile_table">
         <tr>
@@ -32,26 +42,34 @@
         <div id="profile_desktop">
             <div id="profile_myPost" class="profile_halfDiv">
                 <div class="profile_divUpParts" style="padding: 17.5px 0;">작성한 글</div>
-                <div class="profile_posts">
+                <div class="profile_posts" style="height: 170px;">
                     {% for post in p_post %}
-                        <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
-                        {% if not forloop.last %}
-                            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        {% if forloop.counter <= 3 %}
+                            <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
+                            {% if not forloop.last %}
+                                <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                            {% else %}
+                                <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                            {% endif %}
                         {% else %}
-                            <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                            <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
             </div>
             <div class="profile_halfDiv">
                 <div class="profile_divUpParts" style="padding: 17.5px 0;">좋아요 누른 글</div>
-                <div class="profile_posts">
+                <div class="profile_posts" style="height: 170px;">
                     {% for like in likes %}
-                        <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
-                        {% if not forloop.last %}
-                            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        {% if forloop.counter <= 3 %}
+                            <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
+                            {% if not forloop.last %}
+                                <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                            {% else %}
+                                <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                            {% endif %}
                         {% else %}
-                            <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                            <div id="myLikesD" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -61,12 +79,12 @@
 
         <!-- 모바일 -->
         <div id="profile_mobile">
-            <div class="profile_halfDivM" style="margin-right: 30px;">
+            <div class="profile_halfDivM" style="margin-right: 20px;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">작성한 글</div>
                     
                     <!-- 글 수 -->
-                    <div id="myPost" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+                    <div name="myPost" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
                         <!-- <script>var count = 0;</script>
                         {% for post in p_post %}
                             <script>count++;</script>
@@ -92,7 +110,7 @@
                     <div class="profile_divUpParts">좋아요 누른 글</div>
                     
                     <!-- 글 수 -->
-                    <div id="like" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+                    <div id="myLikesM" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
                         <!-- <script>count = 0;</script>
                         {% for like in likes %}
                             <script>count++;</script>
@@ -120,9 +138,10 @@
         <a class="nav-link nav_change_color" href="">프로필 수정</a>
     </div>
     
-    <div id="sms" class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="{% url 'sms' user.username %}" style="width: calc(100% - 20px); float: left;">휴대폰 인증</a>
-        <!-- 휴대폰 인증 -->
+    <div class="profile_summary profile_btns">
+        <a id="sms" class="nav-link nav_change_color" href="" style="width: calc(100% - 40px); float: left;">휴대폰 인증</a>
+        <!-- 휴대폰 인증http://127.0.0.1:8000/profile/admin/sms -->
+        <!-- {% url 'sms' user.username %} -->
         <!-- if 인증됨 -->
         <ion-icon name="checkmark-circle" style="width: 20px; height: 20px; color: var(--first-color); padding-top: 1px; float: right;"></ion-icon>
         <!-- else -->
@@ -135,31 +154,12 @@
     </div>
     {% endif %}
 
-    <div id="profile_delete" class="profile_summary profile_btns">
+    <div class="profile_summary profile_btns profile_delete">
         <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
     </div>
 </div>
 
 <!-- 팝업 -->
-<!-- <div id="pop" class="pop_wrap" style="display: none;">
-    <div class="pop_inner">
-        <div id="title" class="profile_divUpParts" style="height: 20%; display: flex; justify-content: center; align-items: center;"></div>
-        <div id="profile_postBox">
-            <div id="profile_pPosts" class="profile_posts" style="display: none;">
-                {% for post in p_post %}
-                    <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
-                {% endfor %}
-            </div>
-            <div id="profile_lPosts" class="profile_posts" style="display: none;">
-                {% for like in likes %}
-                    <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
-                {% endfor %}
-            </div>
-        </div>
-        <ion-icon name="close-circle" id="close" style="width: 30px; height: 20%; color: var(--first-color);"></ion-icon>
-    </div>
-</div> -->
-
 <div id="pop" class="pop_wrap" style="display: none;">
     <div class="pop_inner">
         <div id="title" class="profile_divUpParts pop_blank"></div>
@@ -190,90 +190,47 @@
             </div>
         </div>
 
-        <div id="profile_smsAuth">
-            <form action="{% url 'sendsms' user.username %}" method="POST">
-                {% csrf_token %}
-                <!-- <div style="width: calc(100% - 40px); position: absolute; top: 50%; transform: translate(0, -50%);"> -->
-                    <div style="height: 5%;"></div>
-                    {{smsform.phone_number}}
-                <!-- <input type="text" class="profile_smsInput" placeholder="" value=""></input> -->
-                <div style="height: 5%;"></div>
-                <input type="submit" class="create_submitButton buttonColor" placeholder="" value="인증번호 전송" style="max-height: 50px; height: 17.5%;"></input>
-            </form>
-            <form action="{% url 'checksms' user.username %}" method="POST">
-                {% csrf_token %}
-                <div style="height: 10%;"></div>
-                {{checksmsform.auth_number}}
-                <!-- <input type="text" class="profile_smsInput" placeholder="" value=""></input> -->
-                <div style="height: 5%;"></div>
-                <input type="submit" class="create_submitButton buttonColor" placeholder="" value="인증번호 확인" style="max-height: 50px; height: 17.5%;"></input>
-                <div style="height: 5%;"></div>
-            </form>
-
-            {% if messages %}
-                <div>
-                    {%for message in messages %}
-                        {{message.message}}
-                    {% endfor %}
-                </div>
-            {% endif %}
-            <!-- </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- 여기 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
         <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div>
     </div>
 </div>
 
-<!-- 팝업 스크립트 -->
+<!-- 팝업 창 스크립트 -->
 <script>
-    var myPost = document.getElementById('myPost');
-    var like = document.getElementById('like');
     var sms = document.getElementById('sms');
+
+    if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하에서 사용할 스크립트
+        sms.setAttribute('href', `{% url 'sms' user.username %}`);
+    }
+    else {
+        sms.setAttribute('href', 'javascript:popup()');
+    }
+
+    function popup(){
+        var url = `{% url 'sms' user.username %}`;
+        var popHeight = 500; // 띄울 팝업창 높이   
+        var popWidth = 500; // 띄울 팝업창 너비
+        var winHeight = document.body.clientHeight; // 현재창의 높이
+        var winWidth = document.body.clientWidth; // 현재창의 너비
+        var winX = window.screenLeft; // 현재창의 x좌표
+        var winY = window.screenTop; // 현재창의 y좌표
+        var popX = winX + (winWidth - popWidth)/2;
+        var popY = winY + (winHeight - popHeight)/2;
+
+        window.open(url, "휴대폰 인증", "top="+popY+", left="+popX+", width="+popWidth+", height="+popHeight+", scrollbars=no, resizable=no");
+    }
+</script>
+
+<!-- DIV 팝업 스크립트 -->
+<script>
+    var myPost = document.getElementsByName('myPost');
+    //var like = document.getElementsByName('like');
+    var myLikesD = document.getElementById('myLikesD');
+    var myLikesM = document.getElementById('myLikesM');
+    //var sms = document.getElementById('sms');
 
     var pop = document.getElementById('pop');
     var box = document.getElementById('profile_postBox');
-    var smsAuth = document.getElementById('profile_smsAuth');
+    //var smsAuth = document.getElementById('profile_smsAuth');
     var close_btn = document.getElementById('close');
     var title = document.getElementById('title');
     //var post = document.getElementById('post');
@@ -281,36 +238,38 @@
     var lPosts = document.getElementById('profile_lPosts');
     var background = document.getElementsByClassName('detail_container');
     
-    myPost.onclick = function() {
-        pop.style.display = 'block';
-        box.style.display = 'block';
-        smsAuth.style.display = 'none';
+    for(i=0; i<2; i++) {
+        myPost[i].onclick = function() {
+            setPopup('block', 'block', '작성한 글', 'none', 'block');
+            //var posts = document.getElementById('profile_postBox').firstChild;
+            //var id = post.id;
+            //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
+            //var url = "{% url 'buyDetail' 1 %}";
 
-        title.textContent = '작성한 글'
-        pPosts.style.display = 'block';
-        lPosts.style.display = 'none';
-        //var posts = document.getElementById('profile_postBox').firstChild;
-        //var id = post.id;
-        //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
-        //var url = "{% url 'buyDetail' 1 %}";
+            //post.setAttribute('href', `${url}`);
+            //post.innerHTML = `{% for post in p_post %}<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>{% endfor %}`
+            //post.insertAdjacentHTML('afterbegin', `<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>`);
+
+            background[0].classList.add('blur');
+            //pop.style.filter = 'blur(0)';
+        };
+    }
+
+    myLikesD.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //var title = document.getElementById('title');
+
+        //var post = document.getElementById('post');
+        //var id = like.id
+        //var url = "{% url 'buyDetail' 0 %}".replace(/0/, id.toString());
 
         //post.setAttribute('href', `${url}`);
-        //post.innerHTML = `{% for post in p_post %}<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>{% endfor %}`
-        //post.insertAdjacentHTML('afterbegin', `<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>`);
-
         background[0].classList.add('blur');
-        //pop.style.filter = 'blur(0)';
     };
-
-    like.onclick = function() {
-        pop.style.display = 'block';
-        box.style.display = 'block';
-        smsAuth.style.display = 'none';
-
+    
+    myLikesM.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
         //var title = document.getElementById('title');
-        title.textContent = '좋아요 누른 글'
-        pPosts.style.display = 'none';
-        lPosts.style.display = 'block';
 
         //var post = document.getElementById('post');
         //var id = like.id
@@ -320,31 +279,43 @@
         background[0].classList.add('blur');
     };
 
-    // sms.onclick = function() {
-    //     pop.style.display = 'block';
-    //     box.style.display = 'none';
-    //     smsAuth.style.display = 'block';
+    /*sms.onclick = function() {
+        pop.style.display = 'block';
+        box.style.display = 'none';
+        smsAuth.style.display = 'block';
 
-    //     title.textContent = '휴대폰 인증'
+        title.textContent = '휴대폰 인증'
 
-    //     background[0].classList.add('blur');
-    // }
+        background[0].classList.add('blur');
+    }*/
 
     //myPost.onclick = function() {
     //    document.getElementById('pop').style.display = 'block';
     //};
 
     close_btn.onclick = function() {
-        pop.style.display = 'none';
+        setPopup('none', 'none', '', 'none', 'none');
+        /*pop.style.display = 'none';
         box.style.display - 'none';
-        smsAuth.style.display = 'none';
+        //smsAuth.style.display = 'none';
 
         pPosts.style.display = 'none';
-        lPosts.style.display = 'none';
+        lPosts.style.display = 'none';*/
 
         background[0].classList.remove('blur');
     };
+
+    function setPopup(p, b, t, pP, lP) {
+        pop.style.display = p;
+        box.style.display = b;
+        //smsAuth.style.display = 'none';
+
+        title.textContent = t;
+        pPosts.style.display = pP;
+        lPosts.style.display = lP;
+    }
 </script>
+
 
 
 <!-- <div class="detail_container">
