@@ -1,6 +1,3 @@
-<!-- slidebar Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 {% extends 'nav.html' %}
 
 {% block content %}
@@ -33,16 +30,11 @@
       <option class="sort-likes" value="?sort=likes">좋아요순</option>
       <option class="sort-likes" value="?sort=lowprice">낮은가격순</option>
       <option class="sort-likes" value="?sort=highprice">높은가격순</option>
-      
     </select>
     <!-- 정렬 -->
 
     <!-- 검색창 -->
-    <form action="" method="GET">
-      {% csrf_token %}
-      <input type="text" placeholder="search" name="q">
-      <button type="submit">검색</button>
-    </form>
+
   </div>
 
  <!-- 검색창 --> 
@@ -83,6 +75,7 @@
   {% endfor %}
     </div>
   </div>
+
   {% else %}
   <!-- 출력할 게시글이 없을때  -->
   {% if q %}
@@ -125,10 +118,9 @@
   <div class="wirte_btn_container">
     <input id="fabCheckbox" type="checkbox" class="write_checkbox" />
     <label class="write_btn" for="fabCheckbox">
-      <span class="write_font blinking">글쓰기</span>
+      <span class="write_font">글쓰기</span>
     </label>
     <div class="write_btn_wheel">
-
       <a class="fab-action fab-action-1" href="{% url 'buyCreate' %}">
         <span class="write_wheel_font">배달</span>
       </a>
@@ -143,6 +135,10 @@
       </a>
       
     </div>
+  </div>
+
+  <div>
+    <i class="fa fa-id-card" aria-hidden="true"></i>
   </div>
 
 </div>

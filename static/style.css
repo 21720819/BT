@@ -1295,10 +1295,8 @@ i {
 
 .write_font {
   position: absolute;
-  color: var(--white-color);
   top: 30%;
   left: 15%;
-  font-size: 0.8rem;
 }
 
 .write_btn:hover {
@@ -1370,24 +1368,6 @@ i {
   bottom: -1rem;
 }
 
-/* ==== 깜박이는 효과 =====*/
-.blinking{
-  -webkit-animation:blink 0.8s ease-in-out infinite alternate;
-  -moz-animation:blink 0.8s ease-in-out infinite alternate;
-  animation:blink 0.8s ease-in-out infinite alternate;
-}
-@-webkit-keyframes blink{
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-@-moz-keyframes blink{
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-@keyframes blink{
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
 
 /* --------like button----- */
 
