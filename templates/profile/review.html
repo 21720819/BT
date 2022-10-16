@@ -1,15 +1,23 @@
 {% extends 'nav.html' %}
 
 {% block content %}
-<!-- 
+
 <style>
+    html, body {
+        height: 100%;
+      }
     #content__blur {
-        padding: 0;
+        height: 100%;
     }
-</style> -->
+    @media screen and (max-width: 768px) {
+        #profile_accuseBox #content__blur {
+            padding: 0;
+        }
+    }
+</style>
 
 <!-- 리뷰남겼으면 수정버튼 > 리뷰  -->
-<form action="{% url 'review' user.username %}" method="post">
+<form action="{% url 'review' user.username %}" method="post" style="height: 100%;">
     {% csrf_token %}
     <div style="width: 100%;">
         <div style="display: flex; justify-content: center; align-items: center;">
@@ -28,6 +36,7 @@
         </div>
         <input class="rating_context" type="text" name="content" placeholder="내용을 입력하세요.">
     </div>
+    <div style="height: calc(100% - 110.63px);"></div>
     <input class="create_submitButton buttonColor" type="submit" value="제출" style="bottom: 0;">
 
 </form>

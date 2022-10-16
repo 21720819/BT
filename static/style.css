@@ -57,11 +57,11 @@
 }
 
 
-/* @media screen and (max-width: 768px) {
-  #content__blur{
+@media screen and (max-width: 768px) {
+  #content__blur {
       padding-top: var(--header-height);
   }
-} */
+}
 
 /* ------ main -------*/
 .jb-box {

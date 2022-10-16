@@ -2,9 +2,24 @@
 
 {% block content %}
 
-<form method="POST" role="form" action="{% url 'reportUser' user.username %}">
+<style>
+    html, body {
+        height: 100%;
+      }
+    #content__blur {
+        height: 100%;   
+    }
+    @media screen and (max-width: 768px) {
+        #profile_reviewBox #content__blur {
+            padding: 0;
+        }
+    }
+</style>
+
+<form method="POST" role="form" action="{% url 'reportUser' user.username %}" style="height: 100%;">
     {% csrf_token %}
     {{form}}
+    <div style="height: 100%;"></div>
     <input class="create_submitButton buttonColor" type="submit" value="제출">
 </form>
 
