@@ -461,16 +461,16 @@
 }
 .map_CustomOverlay .map_info:nth-child(1) {border: 0; box-shadow: 0px 1px 2px #888;}
 .map_info .map_header {
-  padding: 5px 0 0 10px;
+  padding: 11px 0 0 15px;
   height: 35px;
-  background: #eee;
-  border-bottom: 1px solid #ddd;
+  /* background: #eee;
+  border-bottom: 1px solid #ddd; */
   /* background-color: blue; */
   
   /* cursor: pointer; */
 }
 .map_info .map_title {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   text-decoration : none;
   color : black;
@@ -480,14 +480,19 @@
   top: 11px;
   right: 13px;
   /* color: #888; */
-  width: 13px;
-  height: 13px;
-  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+  width: 22.5px;
+  height: 22.5px;
+  /* background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
   background-size: 100% 100%;
-  background-position: center;
-  /* background-color: blue; */
+  background-position: center; */
+  /* background-color: blue; */ 
+  border-radius: 50%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.map_info .map_close:hover {cursor: pointer;}
+.map_info .map_close:hover {cursor: pointer; background-color: rgb(250, 247, 247);}
 .map_info .map_body {position: relative; overflow: hidden;}
 .map_info .map_desc {position: relative; margin: 15px 15px 0 15px; /*height: 55px;*/ font-size: 12px;}
 .map_desc .map_location {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
