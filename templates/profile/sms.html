@@ -13,22 +13,25 @@
     }*/
 </style>
 
-<form action="{% url 'sendsms' user.username %}" method="POST">
-    {% csrf_token %}
-    {{smsform.phone_number}}
-    <input type="submit" value="전송" >
-</form>
-<form action="{% url 'checksms' user.username %}" method="POST">
-    {% csrf_token %}
-    {{checksmsform.auth_number}}
-    <input type="submit" value="인증">
-</form>
+<div style="padding: 30px;">
+    <div style="font-size: 15px; font-weight: bold; margin-bottom: 30px; padding-left: 2.5px;">휴대폰 인증</div>
+    <form action="{% url 'sendsms' user.username %}" method="POST">
+        {% csrf_token %}
+        {{smsform.phone_number}}
+        <input class="create_submitButton buttonColor" type="submit" value="전송" style="margin-bottom: 40px;">
+    </form>
+    <form action="{% url 'checksms' user.username %}" method="POST">
+        {% csrf_token %}
+        {{checksmsform.auth_number}}
+        <input class="create_submitButton buttonColor" type="submit" value="인증">
+    </form>
 
-{% if messages %}
-    <div>
-        {%for message in messages %}
-            {{message.message}}
-        {% endfor %}
-    </div>
-{% endif %}
+    {% if messages %}
+        <div>
+            {%for message in messages %}
+                {{message.message}}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

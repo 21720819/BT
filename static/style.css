@@ -57,11 +57,11 @@
 }
 
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   #content__blur{
       padding-top: var(--header-height);
   }
-}
+} */
 
 /* ------ main -------*/
 .jb-box {
@@ -354,9 +354,9 @@
   border: 0;
   border-radius: 50%;
   /* background: #E98197; */
-  background-position: center;
+  /* background-position: center;
   background-size: 50%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 
   /* color: white; */
   /* font-size: min(calc(calc(calc(100vw * 0.75 * 0.6) - 40px) * 0.1), calc(calc(calc(1024px * 0.6) - 40px) * 0.1)); */
@@ -661,7 +661,7 @@
   position: relative;
 }
 #profile_postBox {
-  height: calc(100% - 120px);
+  height: calc(100% - 112.5px);
   /* height: 60%; */
   border-radius: 20px;
   /* background-color: rgb(250, 247, 247); */
@@ -682,15 +682,15 @@
 } */
 .profile_smsInput {
   width: 100%;
-  max-height: 50px;
-  height: 17.5%;
+  height: 50px;
+  /* height: 17.5%; */
   margin: 0;
   border: 0;
   border-radius: 25px;
   background: rgb(250, 247, 247);
   font-size: 15px;
 
-  /* margin-bottom: 5%; */
+  margin-bottom: 20px;
   padding: 0 20px;
   cursor: pointer;
 }
@@ -729,19 +729,24 @@
   /* justify-content: center; */
   /* align-items: center; */
   /* color: var(--first-color); */
-  line-height: 20px;
-  margin: 35px 0;
+  line-height: 22.5px;
+  margin: 30px 0;
   /* padding: 0 2.5px; */
   overflow: hidden;
 }
 .pop_blank #close {
-  width: 25px;
-  height: 25px;
+  width: 22.5px;
+  height: 22.5px;
   border-radius: 50%;
   
   display: flex;
   justify-content: center;
   align-items: center;
+
+  float: right;
+}
+.pop_blank #close:hover{
+  background-color: rgb(250, 247, 247);
 }
 
 .profile_btns {
@@ -2087,8 +2092,11 @@ h1 { font-size: 1.5em; margin: 10px; } */
 /****** Style Star Rating Widget *****/
 
 .rating { 
+  /* width: 100%; */
   border: none;
   float: left;
+  
+  /* align-items: center; */
 }
 
 .rating > input { display: none; } 
@@ -2107,7 +2115,7 @@ h1 { font-size: 1.5em; margin: 10px; } */
 
 .rating > label { 
   color: #ddd; 
- float: right; 
+  float: right; 
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -2120,3 +2128,16 @@ h1 { font-size: 1.5em; margin: 10px; } */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+.rating_context {
+  width: 100%;
+  border: 0;
+  /* float: left; */
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .rating_context {
+    width: 100%;
+  }
+}
