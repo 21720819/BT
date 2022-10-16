@@ -634,7 +634,7 @@
   margin-right: 40px;
 }
 .profile_horizontalHr {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
 }
 .profile_posts {
   height: 100%;
@@ -661,12 +661,12 @@
   position: relative;
 }
 #profile_postBox {
-  /* height: 200px; */
-  height: 60%;
+  height: calc(100% - 120px);
+  /* height: 60%; */
   border-radius: 20px;
-  background-color: rgb(250, 247, 247);
+  /* background-color: rgb(250, 247, 247); */
   text-align: left;
-  padding: 20px;
+  /* padding: 20px; */
 
   display: none;
 }
@@ -723,11 +723,16 @@
   display: inline-block;
 }
 .pop_inner .pop_blank {
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* height: 20%; */
+  /* height: 75px; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   /* color: var(--first-color); */
+  line-height: 20px;
+  margin: 35px 0;
+  /* padding: 0 2.5px; */
+  overflow: hidden;
 }
 .pop_blank #close {
   width: 25px;

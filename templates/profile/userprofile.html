@@ -1,6 +1,7 @@
 {% extends 'nav.html' %}
 
 {% block content %}
+{% load static %}
 
 <!-- {{user.username}} 의 프로필 -->
 <!-- 레벨{{user.level}} -->
@@ -141,16 +142,20 @@
 <!-- 팝업 -->
 <div id="pop" class="pop_wrap" style="display: none;">
     <div class="pop_inner">
-        <div id="title" class="profile_divUpParts pop_blank"></div>
+        <div class="pop_blank">
+            <div id="title" style="font-weight: bold; float: left;"></div>
+            <div id="close" style="height: 20px; width: 20px; background: url({%static 'images/close.png' %}); float: right;">X</div>
+        </div>
+
         <div id="profile_postBox">
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for post in posts %}
                     <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
                     {% if not forloop.last %}
-                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        <hr>
                     {% else %}
-                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                        <hr style="margin-bottom: 0;">
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
@@ -159,9 +164,9 @@
                 {% for review in profileuser.ID.all %}
                     <p class="profile_list nav-link nav_change_color">★ {{review.rating}} / {{review.content}}</p>
                     {% if not forloop.last %}
-                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        <hr>
                     {% else %}
-                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                        <hr style="margin-bottom: 0;">
                     {% endif %}
                 {% endfor %}
             </div>
@@ -172,7 +177,7 @@
 
         <!-- 신고하기 -->
         <div id="profile_accuseBox" class="profile_posts" style="height: 60%; display: none;"></div>
-        <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div>
+        <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
     </div>
 </div>
 

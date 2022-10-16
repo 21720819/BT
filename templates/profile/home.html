@@ -1,6 +1,7 @@
 {% extends 'nav.html' %}
 
 {% block content %}
+{% load static %}
 
 <!-- <script>
     fetch("http://127.0.0.1:8000/profile/admin/sms")
@@ -162,16 +163,21 @@
 <!-- 팝업 -->
 <div id="pop" class="pop_wrap" style="display: none;">
     <div class="pop_inner">
-        <div id="title" class="profile_divUpParts pop_blank"></div>
+        <div class="pop_blank">
+            <div id="title" style="font-weight: bold; float: left;"></div>
+            <div id="close" style="height: 20px; width: 20px; background: url({%static 'images/close.png' %}); float: right;">X</div>
+        </div>
         <div id="profile_postBox">
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for post in p_post %}
                     <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
                     {% if not forloop.last %}
-                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        <!-- <div class="profile_horizontalHr" style="margin: 1rem 0;"></div> -->
+                        <hr>
                     {% else %}
-                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                        <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
+                        <hr style="margin-bottom: 0;">
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
@@ -181,16 +187,16 @@
                 {% for like in likes %}
                     <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
                     {% if not forloop.last %}
-                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+                        <hr>
                     {% else %}
-                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
+                        <hr style="margin-bottom: 0;">
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
         </div>
 
-        <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div>
+        <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
     </div>
 </div>
 
@@ -202,10 +208,10 @@
         sms.setAttribute('href', `{% url 'sms' user.username %}`);
     }
     else {
-        sms.setAttribute('href', 'javascript:popup()');
+        sms.setAttribute('href', 'javascript:smsPopup()');
     }
 
-    function popup(){
+    function smsPopup(){
         var url = `{% url 'sms' user.username %}`;
         var popHeight = 500; // 띄울 팝업창 높이   
         var popWidth = 500; // 띄울 팝업창 너비
@@ -213,10 +219,10 @@
         var winWidth = document.body.clientWidth; // 현재창의 너비
         var winX = window.screenLeft; // 현재창의 x좌표
         var winY = window.screenTop; // 현재창의 y좌표
-        var popX = winX + (winWidth - popWidth)/2;
-        var popY = winY + (winHeight - popHeight)/2;
+        var popX = winX + (winWidth - popWidth) / 2;
+        var popY = winY + (winHeight - popHeight) / 2;
 
-        window.open(url, "휴대폰 인증", "top="+popY+", left="+popX+", width="+popWidth+", height="+popHeight+", scrollbars=no, resizable=no");
+        window.open(url, '휴대폰 인증', 'top='+popY+', left='+popX+', width='+popWidth+', height='+popHeight+', scrollbars=no, resizable=no');
     }
 </script>
 
