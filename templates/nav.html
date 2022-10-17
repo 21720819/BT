@@ -17,6 +17,12 @@
 
 <body class="font_change">
     <header class="header">
+        <form action="" method="GET">
+            {% csrf_token %}
+            <input type="text" placeholder="search" name="q">
+            <button type="submit">검색</button>
+        </form>
+
         <a href="#" class="header__logo">BuyTogether</a>
 
         <i class='bx bx-menu header__toggle' id="header-toggle"></i>
@@ -85,7 +91,9 @@
 
     <!-- IONICONS 아이콘 js -->
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-  
+    <!-- fontawesome 아이콘 js -->
+    <script src="https://kit.fontawesome.com/a25b3eb21e.js" crossorigin="anonymous"></script>
+    
     <!-- navbar js -->
     <script>
     /*===== EXPANDER MENU  =====*/
@@ -114,6 +122,8 @@
         }
         navLink.forEach(n => n.addEventListener('click', linkAction));
     </script>
+
+   
 
     </body>
 </html>
