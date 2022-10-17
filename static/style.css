@@ -1288,95 +1288,85 @@ i {
   right: 4rem;
 }
 
-.write_checkbox {
-  display: none;
+.map_btn_container {
+  position: fixed;
+  bottom: 4rem;
+  right: 7rem;
 }
 
-.write_btn {
-  position: absolute;
-  bottom: -1rem;
-  right: -1rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  background-color: #FB2146;
-  border-radius: 50%;
+.map_button {
+  border-radius: 100%;
+  cursor: pointer;
+  color: #fff;
+}
+
+.abroad-button {
+  border-radius: 100%;
+  cursor: pointer;
+  color: #fff;
+}
+
+.abroad-button > div {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-left: 50%;
+  margin-top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.abroad-primary-button {
+  background-color: var(--first-color);
+  bottom: 1em;
+  box-shadow: 0 0 5px #000;
+  height: 3em;
+  right: 1em;
+  position: fixed;
+  width: 3em;
+  z-index: 2;
+}
+
+.abroad-secondary-button {
+  background-color: #9b59b6;
+  bottom: 1.25em;
+  height: 2.5em;
+  right: 1.25em;
+  position: fixed;
+  transition: all .5s;
+  width: 2.5em;
   z-index: 1;
 }
 
-.write_font {
-  position: absolute;
-  top: 30%;
-  left: 15%;
+.abroad-secondary-button > div {
+  font-size: 1em;
 }
 
-.write_btn:hover {
-  background: #FB6C84;
+/*======== write 버튼 툴팁 =========*/
+.tooltip > .tooltip-inner {
+  background-color: var(--white-color);
+  text-shadow: 0 1px 1px #000;
+  font-weight: normal;
 }
 
-.write_btn_wheel {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 10rem;
-  height: 10rem;
-  transition: all 0.3s ease;
-  transform-origin: bottom right;
-  transform: scale(0);
+/*================ map 버튼 ================= */
+.map_btn_container {
+  position: fixed;
+  bottom: 4rem;
+  right: 6rem;
 }
 
-.write_checkbox:checked ~ .write_btn_wheel {
-  transform: scale(1);
+/*================ search button ================= */
+.select_box {
+  position: fixed;
+  top: 50%;
+  right: 1rem;
+  border-radius: 25px;
 }
 
-.fab-action {
-  position: absolute;
-  background: #F5F5F6;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: White;
-  box-shadow: 0 0.1rem 0.5rem #FB2146;
-  transition: all 1s ease;
-  opacity: 0;
+.select_box option:hover{
+  background: var(--first-color);
 }
 
-.write_checkbox:checked ~ .write_btn_wheel .fab-action {
-  opacity: 1;
-}
-
-.write_wheel_font {
-  font-size: 0.8rem;
-  color: #FB2146;
-}
-
-.write_wheel_font:hover {
-  color: var(--white-color);
-}
-
-.fab-action:hover {
-  background-color: #FB2146;
-}
-
-.write_btn_wheel .fab-action-1 {
-  right: -1rem;
-  top: 0;
-}
-
-.write_btn_wheel .fab-action-2 {
-  right: 3.4rem;
-  top: 0.5rem;
-}
-.write_btn_wheel .fab-action-3 {
-  left: 0.5rem;
-  bottom: 3.4rem;
-}
-.write_btn_wheel .fab-action-4 {
-  left: 0;
-  bottom: -1rem;
-}
+/*================ filter dropdown button ================= */
 
 
 /* --------like button----- */
