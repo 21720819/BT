@@ -58,7 +58,7 @@
 
 
 @media screen and (max-width: 768px) {
-  #content__blur{
+  #content__blur {
       padding-top: var(--header-height);
   }
 }
@@ -354,9 +354,9 @@
   border: 0;
   border-radius: 50%;
   /* background: #E98197; */
-  background-position: center;
+  /* background-position: center;
   background-size: 50%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 
   /* color: white; */
   /* font-size: min(calc(calc(calc(100vw * 0.75 * 0.6) - 40px) * 0.1), calc(calc(calc(1024px * 0.6) - 40px) * 0.1)); */
@@ -461,33 +461,39 @@
 }
 .map_CustomOverlay .map_info:nth-child(1) {border: 0; box-shadow: 0px 1px 2px #888;}
 .map_info .map_header {
-  padding: 5px 0 0 10px;
+  padding: 11px 0 0 15px;
   height: 35px;
-  background: #eee;
-  border-bottom: 1px solid #ddd;
+  /* background: #eee;
+  border-bottom: 1px solid #ddd; */
   /* background-color: blue; */
   
   /* cursor: pointer; */
 }
 .map_info .map_title {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
+  line-height: 25px;
   text-decoration : none;
   color : black;
 }
 .map_info .map_close {
   position: absolute;
   top: 11px;
-  right: 13px;
+  right: 15px;
   /* color: #888; */
-  width: 13px;
-  height: 13px;
-  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+  width: 25px;
+  height: 25px;
+  /* background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
   background-size: 100% 100%;
-  background-position: center;
-  /* background-color: blue; */
+  background-position: center; */
+  /* background-color: blue; */ 
+  border-radius: 50%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.map_info .map_close:hover {cursor: pointer;}
+.map_info .map_close:hover {cursor: pointer; background-color: rgb(250, 247, 247);}
 .map_info .map_body {position: relative; overflow: hidden;}
 .map_info .map_desc {position: relative; margin: 15px 15px 0 15px; /*height: 55px;*/ font-size: 12px;}
 .map_desc .map_location {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
@@ -634,7 +640,7 @@
   margin-right: 40px;
 }
 .profile_horizontalHr {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
 }
 .profile_posts {
   height: 100%;
@@ -661,12 +667,12 @@
   position: relative;
 }
 #profile_postBox {
-  /* height: 200px; */
-  height: 60%;
+  height: calc(100% - 115px);
+  /* height: 60%; */
   border-radius: 20px;
-  background-color: rgb(250, 247, 247);
+  /* background-color: rgb(250, 247, 247); */
   text-align: left;
-  padding: 20px;
+  /* padding: 20px; */
 
   display: none;
 }
@@ -682,15 +688,15 @@
 } */
 .profile_smsInput {
   width: 100%;
-  max-height: 50px;
-  height: 17.5%;
+  height: 50px;
+  /* height: 17.5%; */
   margin: 0;
   border: 0;
   border-radius: 25px;
   background: rgb(250, 247, 247);
   font-size: 15px;
 
-  /* margin-bottom: 5%; */
+  margin-bottom: 15px;
   padding: 0 20px;
   cursor: pointer;
 }
@@ -723,11 +729,16 @@
   display: inline-block;
 }
 .pop_inner .pop_blank {
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* height: 20%; */
+  /* height: 75px; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   /* color: var(--first-color); */
+  /* line-height: 22.5px; */
+  margin: 30px 0;
+  /* padding: 0 2.5px; */
+  overflow: hidden;
 }
 .pop_blank #close {
   width: 25px;
@@ -737,6 +748,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  float: right;
+}
+.pop_blank #close:hover{
+  background-color: rgb(250, 247, 247);
 }
 
 .profile_btns {
@@ -786,9 +802,9 @@
 
 
 /* ---------전체폰트 바꾸기---------- */
-.font_change {
+/* .font_change {
   font-family: ;
-}
+} */
 
 /* ---------ROOT---------- */
 /* ---------navbar---------- */
@@ -2082,8 +2098,11 @@ h1 { font-size: 1.5em; margin: 10px; } */
 /****** Style Star Rating Widget *****/
 
 .rating { 
+  /* width: 100%; */
   border: none;
   float: left;
+  
+  /* align-items: center; */
 }
 
 .rating > input { display: none; } 
@@ -2102,7 +2121,7 @@ h1 { font-size: 1.5em; margin: 10px; } */
 
 .rating > label { 
   color: #ddd; 
- float: right; 
+  float: right; 
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -2115,3 +2134,16 @@ h1 { font-size: 1.5em; margin: 10px; } */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+.rating_context {
+  width: 100%;
+  border: 0;
+  /* float: left; */
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .rating_context {
+    width: 100%;
+  }
+}
