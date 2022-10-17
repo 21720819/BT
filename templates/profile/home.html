@@ -69,8 +69,13 @@
                             {% else %}
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
+<<<<<<< HEAD
+                        {% else %}
+                            <div name="myLike" id="myLikeD" style="font-size: 12.5px; text-align: center;">더보기</div>
+=======
                         {% elif forloop.counter == 4 %}
                             <div name="myLike" style="font-size: 12.5px; text-align: center;">더보기</div>
+>>>>>>> 05e902f48a0d1d680c9c18267a20bcb6efe896f5
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -111,7 +116,11 @@
                     <div class="profile_divUpParts">좋아요 누른 글</div>
                     
                     <!-- 글 수 -->
+<<<<<<< HEAD
+                    <div name="myLike" id="myLikeM" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+=======
                     <div name="myLike" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+>>>>>>> 05e902f48a0d1d680c9c18267a20bcb6efe896f5
                         <!-- <script>count = 0;</script>
                         {% for like in likes %}
                             <script>count++;</script>
@@ -232,8 +241,13 @@
 <script>
     var myPost = document.getElementsByName('myPost');
     var myLike = document.getElementsByName('myLike');
+<<<<<<< HEAD
+    var myLikesD = document.getElementById('myLikeD');
+    var myLikesM = document.getElementById('myLikeM');
+=======
     //var myLikesD = document.getElementById('myLikeD');
     //var myLikesM = document.getElementById('myLikeM');
+>>>>>>> 05e902f48a0d1d680c9c18267a20bcb6efe896f5
     //var sms = document.getElementById('sms');
 
     var pop = document.getElementById('pop');
@@ -247,6 +261,46 @@
     var background = document.getElementsByClassName('detail_container');
     
     for(i=0; i<2; i++) {
+<<<<<<< HEAD
+        myPost[i].onclick = function() {
+            setPopup('block', 'block', '작성한 글', 'none', 'block');
+            //var posts = document.getElementById('profile_postBox').firstChild;
+            //var id = post.id;
+            //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
+            //var url = "{% url 'buyDetail' 1 %}";
+
+            //post.setAttribute('href', `${url}`);
+            //post.innerHTML = `{% for post in p_post %}<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>{% endfor %}`
+            //post.insertAdjacentHTML('afterbegin', `<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>`);
+
+            background[0].classList.add('blur');
+            //pop.style.filter = 'blur(0)';
+        };
+
+        //myLike[i].onclick = function() {
+        //    setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //    background[0].classList.add('blur');
+        //};
+    }
+
+   myLikesD.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //var title = document.getElementById('title');
+
+        //var post = document.getElementById('post');
+        //var id = like.id
+        //var url = "{% url 'buyDetail' 0 %}".replace(/0/, id.toString());
+
+        //post.setAttribute('href', `${url}`);
+        background[0].classList.add('blur');
+    };
+
+    myLikesM.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        background[0].classList.add('blur');
+    };
+
+=======
         if(myPost[i] != null) {
             myPost[i].onclick = function() {
                 setPopup('block', 'block', '작성한 글', 'block', 'none');
@@ -272,6 +326,7 @@
         }   
     }
 
+>>>>>>> 05e902f48a0d1d680c9c18267a20bcb6efe896f5
     /*sms.onclick = function() {
         pop.style.display = 'block';
         box.style.display = 'none';
@@ -282,7 +337,11 @@
         background[0].classList.add('blur');
     }*/
 
+<<<<<<< HEAD
+    close_btn.onclick = function() {
+=======
     closeBtn.onclick = function() {
+>>>>>>> 05e902f48a0d1d680c9c18267a20bcb6efe896f5
         setPopup('none', 'none', '', 'none', 'none');
         /*pop.style.display = 'none';
         box.style.display - 'none';
