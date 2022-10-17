@@ -114,7 +114,17 @@ def activate(request, uid64, token):
         return HttpResponse('비정상적인 접근입니다.')
 
 
+def e400(request):
+    return render(request, 'error/400.html')
 
+def e404(request):
+    return render(request, 'error/404.html')
+
+def e500(request):
+    return render(request, 'error/500.html')
+
+def loginerror(request):
+    return render(request, 'error/login.html')
 # # from .models import Authentication
 
 # # 네이버 SMS 인증
