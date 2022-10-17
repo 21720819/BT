@@ -696,7 +696,7 @@
   background: rgb(250, 247, 247);
   font-size: 15px;
 
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding: 0 20px;
   cursor: pointer;
 }
@@ -802,9 +802,9 @@
 
 
 /* ---------전체폰트 바꾸기---------- */
-.font_change {
+/* .font_change {
   font-family: ;
-}
+} */
 
 /* ---------ROOT---------- */
 /* ---------navbar---------- */

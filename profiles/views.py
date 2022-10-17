@@ -72,7 +72,7 @@ def sendsms(request, username):
             auth_mobile.save()
             send_sms(phone_number=data, auth_number=auth_num)
             # return JsonResponse({'message': '인증번호 발송완료'}, status=200)
-            messages.success(request, f"인증번호가 발송되었습니다. 인증번호를 입력해주세요")
+            messages.success(request, f"인증번호가 발송되었습니다. 인증번호를 입력해주세요.")
         except User.DoesNotExist: # 인증요청번호 미 존재 시 DB 입력 로직 작성
             User.objects.update_or_create(
                 phone_number=input_mobile_num,
@@ -98,7 +98,7 @@ def checksms(request,username):# 인증번호 확인
                 if verification.auth_number == data:
                     # return JsonResponse({'message': '인증 완료되었습니다.'}, status=200)
                     messages.success(request, f"인증완료")
-                    return redirect('../../profile/'+username)
+                    return redirect('../../profile/'+username+'/sms')
 
                 else:
                     # return JsonResponse({'message': '인증 실패입니다.'}, status=400)
