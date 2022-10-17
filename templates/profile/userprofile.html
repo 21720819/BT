@@ -1,7 +1,6 @@
 {% extends 'nav.html' %}
 
 {% block content %}
-{% load static %}
 
 <!-- {{user.username}} 의 프로필 -->
 <!-- 레벨{{user.level}} -->
@@ -27,6 +26,7 @@
             });
     }
 
+    
     insertIntoPopup("{% url 'review' profileuser.username %}", 'profile_reviewBox');
     insertIntoPopup("{% url 'reportUser' profileuser.username %}", 'profile_accuseBox');
 </script>
@@ -74,7 +74,7 @@
                             {% else %}
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
-                        {% elif forloop.counter == 4 %}
+                        {% else %}
                             <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
@@ -142,22 +142,16 @@
 <!-- 팝업 -->
 <div id="pop" class="pop_wrap" style="display: none;">
     <div class="pop_inner">
-        <div class="pop_blank">
-            <div id="title" style="font-size: 15px; font-weight: bold; line-height: 25px; float: left;"></div>
-            <div id="close">
-                <img src="{% static 'images/close.png' %}" style="width: 55%; height: 55%;">
-            </div>
-        </div>
-
+        <div id="title" class="profile_divUpParts pop_blank"></div>
         <div id="profile_postBox">
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for post in posts %}
                     <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
                     {% if not forloop.last %}
-                        <hr>
+                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
                     {% else %}
-                        <hr style="margin-bottom: 0;">
+                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
@@ -166,20 +160,20 @@
                 {% for review in profileuser.ID.all %}
                     <p class="profile_list nav-link nav_change_color">★ {{review.rating}} / {{review.content}}</p>
                     {% if not forloop.last %}
-                        <hr>
+                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
                     {% else %}
-                        <hr style="margin-bottom: 0;">
+                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                     {% endif %}
                 {% endfor %}
             </div>
         </div> 
 
         <!-- 리뷰남기기 -->
-        <div id="profile_reviewBox" class="profile_posts" style="height: calc(100% - 115px); display: none;"></div>
+        <div id="profile_reviewBox" class="profile_posts" style="height: 60%; display: none;"></div>
 
         <!-- 신고하기 -->
-        <div id="profile_accuseBox" class="profile_posts" style="height: calc(100% - 115px); display: none;"></div>
-        <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
+        <div id="profile_accuseBox" class="profile_posts" style="height: 60%; display: none;"></div>
+        <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div>
     </div>
 </div>
 
@@ -194,7 +188,7 @@
     var pBox = document.getElementById('profile_postBox');
     var rBox = document.getElementById('profile_reviewBox');
     var aBox = document.getElementById('profile_accuseBox');
-    var closeBtn = document.getElementById('close');
+    var close_btn = document.getElementById('close');
     var title = document.getElementById('title');
     //var post = document.getElementById('post');
     var pPosts = document.getElementById('profile_pPosts');
@@ -202,28 +196,26 @@
     var background = document.getElementsByClassName('detail_container');
     
     for(i=0; i<2; i++) {
-        if(myPost[i] != null) {
-            myPost[i].onclick = function() {
-                setPopup('block', 'block', 'none', 'none', '작성한 글', 'block', 'none');
-                /*pop.style.display = 'block';
-                pBox.style.display = 'block';
-                rBox.style.display = 'none';
-                aBox.style.display = 'none';
+        myPost[i].onclick = function() {
+            setPopup('block', 'block', 'none', 'none', '작성한 글', 'block', 'none');
+            /*pop.style.display = 'block';
+            pBox.style.display = 'block';
+            rBox.style.display = 'none';
+            aBox.style.display = 'none';
 
-                title.textContent = '작성한 글';
-                pPosts.style.display = 'block';
-                rPosts.style.display = 'none';*/
+            title.textContent = '작성한 글';
+            pPosts.style.display = 'block';
+            rPosts.style.display = 'none';*/
 
-                background[0].classList.add('blur');
-            };
-        }
-        
-        if(rating[i] != null) {
-            rating[i].onclick = function() {
-                setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
-                background[0].classList.add('blur');
-            };
-        }
+            background[0].classList.add('blur');
+        };
+    }
+
+    for(i=0; i<2; i++) {
+        rating[i].onclick = function() {
+            setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
+            background[0].classList.add('blur');
+        };
     }
 
     review.onclick = function() {
@@ -236,7 +228,7 @@
         background[0].classList.add('blur');
     };
 
-    closeBtn.onclick = function() {
+    close_btn.onclick = function() {
         setPopup('none', 'none', 'none', 'none', '', 'none', 'none');
         background[0].classList.remove('blur');
     };

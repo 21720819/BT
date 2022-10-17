@@ -1,7 +1,6 @@
 {% extends 'nav.html' %}
 
 {% block content %}
-{% load static %}
 
 <!-- <script>
     fetch("http://127.0.0.1:8000/profile/admin/sms")
@@ -52,7 +51,7 @@
                             {% else %}
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
-                        {% elif forloop.counter == 4 %}
+                        {% else %}
                             <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
                         {% endif %}
                     {% endfor %}
@@ -69,8 +68,13 @@
                             {% else %}
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
+<<<<<<< HEAD
+                        {% else %}
+                            <div name="myLike" id="myLikeD" style="font-size: 12.5px; text-align: center;">더보기</div>
+=======
                         {% elif forloop.counter == 4 %}
                             <div name="myLike" style="font-size: 12.5px; text-align: center;">더보기</div>
+>>>>>>> d10f0b6168cf85ed9d757941aa34afc51960b174
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -111,7 +115,11 @@
                     <div class="profile_divUpParts">좋아요 누른 글</div>
                     
                     <!-- 글 수 -->
+<<<<<<< HEAD
+                    <div name="myLike" id="myLikeM" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+=======
                     <div name="myLike" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
+>>>>>>> d10f0b6168cf85ed9d757941aa34afc51960b174
                         <!-- <script>count = 0;</script>
                         {% for like in likes %}
                             <script>count++;</script>
@@ -163,23 +171,16 @@
 <!-- 팝업 -->
 <div id="pop" class="pop_wrap" style="display: none;">
     <div class="pop_inner">
-        <div class="pop_blank">
-            <div id="title" style="font-size: 15px; font-weight: bold; float: left;"></div>
-            <div id="close">
-                <img src="{% static 'images/close.png' %}" style="width: 72.5%; height: 72.5%;">
-            </div>
-        </div>
+        <div id="title" class="profile_divUpParts pop_blank"></div>
         <div id="profile_postBox">
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for post in p_post %}
                     <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
                     {% if not forloop.last %}
-                        <!-- <div class="profile_horizontalHr" style="margin: 1rem 0;"></div> -->
-                        <hr>
+                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
                     {% else %}
-                        <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
-                        <hr style="margin-bottom: 0;">
+                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
@@ -189,16 +190,16 @@
                 {% for like in likes %}
                     <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
                     {% if not forloop.last %}
-                        <hr>
+                        <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
                     {% else %}
-                        <hr style="margin-bottom: 0;">
+                        <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
         </div>
 
-        <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
+        <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div>
     </div>
 </div>
 
@@ -210,10 +211,10 @@
         sms.setAttribute('href', `{% url 'sms' user.username %}`);
     }
     else {
-        sms.setAttribute('href', 'javascript:smsPopup()');
+        sms.setAttribute('href', 'javascript:popup()');
     }
 
-    function smsPopup(){
+    function popup(){
         var url = `{% url 'sms' user.username %}`;
         var popHeight = 500; // 띄울 팝업창 높이   
         var popWidth = 500; // 띄울 팝업창 너비
@@ -221,10 +222,10 @@
         var winWidth = document.body.clientWidth; // 현재창의 너비
         var winX = window.screenLeft; // 현재창의 x좌표
         var winY = window.screenTop; // 현재창의 y좌표
-        var popX = winX + (winWidth - popWidth) / 2;
-        var popY = winY + (winHeight - popHeight) / 2;
+        var popX = winX + (winWidth - popWidth)/2;
+        var popY = winY + (winHeight - popHeight)/2;
 
-        window.open(url, '휴대폰 인증', 'top='+popY+', left='+popX+', width='+popWidth+', height='+popHeight+', scrollbars=no, resizable=no');
+        window.open(url, "휴대폰 인증", "top="+popY+", left="+popX+", width="+popWidth+", height="+popHeight+", scrollbars=no, resizable=no");
     }
 </script>
 
@@ -232,14 +233,19 @@
 <script>
     var myPost = document.getElementsByName('myPost');
     var myLike = document.getElementsByName('myLike');
+<<<<<<< HEAD
+    var myLikesD = document.getElementById('myLikeD');
+    var myLikesM = document.getElementById('myLikeM');
+=======
     //var myLikesD = document.getElementById('myLikeD');
     //var myLikesM = document.getElementById('myLikeM');
+>>>>>>> d10f0b6168cf85ed9d757941aa34afc51960b174
     //var sms = document.getElementById('sms');
 
     var pop = document.getElementById('pop');
     var box = document.getElementById('profile_postBox');
     //var smsAuth = document.getElementById('profile_smsAuth');
-    var closeBtn = document.getElementById('close');
+    var close_btn = document.getElementById('close');
     var title = document.getElementById('title');
     //var post = document.getElementById('post');
     var pPosts = document.getElementById('profile_pPosts');
@@ -247,6 +253,46 @@
     var background = document.getElementsByClassName('detail_container');
     
     for(i=0; i<2; i++) {
+<<<<<<< HEAD
+        myPost[i].onclick = function() {
+            setPopup('block', 'block', '작성한 글', 'none', 'block');
+            //var posts = document.getElementById('profile_postBox').firstChild;
+            //var id = post.id;
+            //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
+            //var url = "{% url 'buyDetail' 1 %}";
+
+            //post.setAttribute('href', `${url}`);
+            //post.innerHTML = `{% for post in p_post %}<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>{% endfor %}`
+            //post.insertAdjacentHTML('afterbegin', `<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>`);
+
+            background[0].classList.add('blur');
+            //pop.style.filter = 'blur(0)';
+        };
+
+        //myLike[i].onclick = function() {
+        //    setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //    background[0].classList.add('blur');
+        //};
+    }
+
+   myLikesD.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        //var title = document.getElementById('title');
+
+        //var post = document.getElementById('post');
+        //var id = like.id
+        //var url = "{% url 'buyDetail' 0 %}".replace(/0/, id.toString());
+
+        //post.setAttribute('href', `${url}`);
+        background[0].classList.add('blur');
+    };
+
+    myLikesM.onclick = function() {
+        setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+        background[0].classList.add('blur');
+    };
+
+=======
         if(myPost[i] != null) {
             myPost[i].onclick = function() {
                 setPopup('block', 'block', '작성한 글', 'block', 'none');
@@ -272,6 +318,7 @@
         }   
     }
 
+>>>>>>> d10f0b6168cf85ed9d757941aa34afc51960b174
     /*sms.onclick = function() {
         pop.style.display = 'block';
         box.style.display = 'none';
@@ -282,7 +329,11 @@
         background[0].classList.add('blur');
     }*/
 
+<<<<<<< HEAD
+    close_btn.onclick = function() {
+=======
     closeBtn.onclick = function() {
+>>>>>>> d10f0b6168cf85ed9d757941aa34afc51960b174
         setPopup('none', 'none', '', 'none', 'none');
         /*pop.style.display = 'none';
         box.style.display - 'none';
