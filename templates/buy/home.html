@@ -22,17 +22,16 @@
       <a href="{% url 'category' 'delivery' %}">배달</a>
     </div>
   </div>
-
   <div class="searchForm">
     <!-- 정렬 -->
 
-    <select id="sort-select" class="select_box" onchange="location = this.value;">
-      <option class="sort-date option_1" value="?sort=date">최신순</option>
+    <select id="sort-select" onchange="location = this.value;">
+      <option class="sort-date" value="?sort=date">최신순</option>
       <option class="sort-likes" value="?sort=likes">좋아요순</option>
       <option class="sort-likes" value="?sort=lowprice">낮은가격순</option>
       <option class="sort-likes" value="?sort=highprice">높은가격순</option>
     </select>
-    <!-- 정렬 -->    
+    <!-- 정렬 -->
 
     <!-- 검색창 -->
 
@@ -116,32 +115,30 @@
     </div>
   </div>
 
-  <div class="map_btn_container">
-    <button class="map_button"><i class="fa-sharp fa-solid fa-location-dot"></i></button>
+  <div class="wirte_btn_container">
+    <input id="fabCheckbox" type="checkbox" class="write_checkbox" />
+    <label class="write_btn" for="fabCheckbox">
+      <span class="write_font">글쓰기</span>
+    </label>
+    <div class="write_btn_wheel">
+      <a class="fab-action fab-action-1" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">배달</span>
+      </a>
+      <a class="fab-action fab-action-2" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">OTT</span>
+      </a>
+      <a class="fab-action fab-action-3" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">생필품</span>
+      </a>
+      <a class="fab-action fab-action-4" href="{% url 'buyCreate' %}">
+        <span class="write_wheel_font">식료품</span>
+      </a>
+      
+    </div>
   </div>
 
-  <div class="wirte_btn_container">
-  
-    <div class="abroad-primary-button abroad-button">
-      <div><i class="fas fa-plus"></i></div>
-    </div>
-    
-    <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="식료품">
-      <div><i class="fa-sharp fa-solid fa-apple-whole"></i></div>
-    </div>
-    
-    <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="생필품">
-      <div><i class="fa-solid fa-box-tissue"></i></div>
-    </div>
-
-    <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="OTT">
-      <div><i class="fa-solid fa-circle-play"></i></div>
-    </div>
-
-    <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="배달"> 
-      <div><i class="fa-solid fa-motorcycle"></i></div>
-    </div>
-
+  <div>
+    <i class="fa fa-id-card" aria-hidden="true"></i>
   </div>
 
 </div>
