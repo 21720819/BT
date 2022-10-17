@@ -10,7 +10,9 @@
         <!-- 사진 -->
         <div id="create_tempImage" class="detail_img" style="position: relative;">
             {{form.photo}}
-            <label id="create_pickButton" class="buttonColor" for="photo" style="background-image: url({%static 'images/plus.png' %});"></label>
+            <label id="create_pickButton" class="buttonColor" for="photo">
+                <img src="{%static 'images/plus.png' %}" alt="" style="width: 50%; height: 50%;">
+            </label>
             <!-- <img id="create_tempImage" class="create_img" style="z-index: 2;"> -->
         </div>
 
