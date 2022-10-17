@@ -1,12 +1,142 @@
 {% extends 'nav.html' %}
 
 {% block content %}
+{% load static %}
+
+<div class="detail_container">
+    <form method="POST" role="form"  enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- 사진 -->
+        <div id="create_tempImage" class="detail_img" style="position: relative;">
+            {{form.photo}}
+            <label id="create_pickButton" class="buttonColor" for="photo">
+                <img src="{%static 'images/plus.png' %}" alt="" style="width: 50%; height: 50%;">
+            </label>
+            <!-- <img id="create_tempImage" class="create_img" style="z-index: 2;"> -->
+        </div>
+
+        <!-- 내용 -->
+        <div class="detail_main">
+            <h5 class="detail_category">거래게시판/{{form.category}}</h5>
+            <h1 class="detail_title">{{form.title}}</h1>
+            <h3 class="detail_price">가격 : {{form.price}}원</h3>
+            <h3 class="detail_price" style="padding: 0;">모집인원 : {{form.wpeople}}명</h3>
+            {{form.lat}}
+            {{form.long}}
+            <!-- <hr>
+            <table>
+                <tr>
+                    <td style="width: 40px;"><img class="detail_lev" style="margin-left: -1px;"></td>
+                    <td><h3 style="margin: 0;">{{detail.ID.username}}</h3></td>
+                </tr>
+            </table> -->
+
+            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+
+            <table>
+                <tr>
+                    <!-- <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td> -->
+                    <td><ion-icon name="location" style="color: var(--first-color); margin: 0 5px -1.5px 0;"></ion-icon></td>
+                    <td style="width: 100%;"><h3 class="detail_loca_time">{{form.location}}</h3></td>
+                </tr>
+                <tr>
+                    <!-- <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td> -->
+                    <td><ion-icon name="time" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon></td>
+                    <td style="width: 100%;"><h3 class="detail_loca_time">{{form.date}}</h3></td>
+                </tr>
+            </table>
+
+            <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
+
+            <div>{{form.body}}</div>
+            <input type="submit" class="create_submitButton buttonColor" placeholder="작성" value="완료"></input>
+        </div>
+
+        <!-- 지도 -->
+        <div id="map" class="detail_map"></div>
+        <!-- <div id="clickLatlng"></div> -->
+
+        <!-- 사진 스크립트 -->
+        <script>
+            function imageView(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+        
+                    reader.onload = function(e) {
+                        $('#create_tempImage').attr('style', 'background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(' + e.target.result + '); position: relative;');
+                        //$('#create_tempImage').attr('src', e.target.result);
+                        //$('#create_tempImage1').attr('style', 'filter: brightness(50%);');
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+
+        <!-- 지도 스크립트 -->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
+        <script>
+            let lat = document.querySelector('#lat');
+            let long = document.querySelector('#long');
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = { 
+                    center: new kakao.maps.LatLng(35.836275171372904, 128.7529585430768), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+            
+            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+            var mapTypeControl = new kakao.maps.MapTypeControl();
+
+            // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+            // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+            // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+            var zoomControl = new kakao.maps.ZoomControl();
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+            
+            // 지도를 클릭한 위치에 표출할 마커입니다
+            var marker = new kakao.maps.Marker({ 
+                // 지도 중심좌표에 마커를 생성합니다 
+                position: map.getCenter() 
+            }); 
+            // 지도에 마커를 표시합니다
+            marker.setMap(map);
+            
+            // 지도에 클릭 이벤트를 등록합니다
+            // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+            kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+                
+                // 클릭한 위도, 경도 정보를 가져옵니다 
+                var latlng = mouseEvent.latLng; 
+                
+                // 마커 위치를 클릭한 위치로 옮깁니다
+                marker.setPosition(latlng);
+                
+                /*var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+                message += '경도는 ' + latlng.getLng() + ' 입니다';
+                
+                var resultDiv = document.getElementById('clickLatlng'); 
+                resultDiv.innerHTML = message;*/
+                lat.value = latlng.getLat();
+                long.value = latlng.getLng();
+                
+            });
+        </script>
+
+    </form>
+</div>
+
+
+<!-- 
+
 <div class="container">
     <div style="margin-top: 20px;">
         <form method="POST" role="form" action="{% url 'buyCreate' %}" >
             {% csrf_token %}
             <div style = "text-align: right;">
-                <input type="submit" class="btn crt_post_button" placeholder="작성"> </input>
             </div>
             <div class = "crt_div">
                 <div>
@@ -41,8 +171,8 @@
             {{form.photo}}
             </div>
         </form>
-       
+    
                
-    </div>
+    </div> -->
 </div>
 {% endblock %}

@@ -163,8 +163,8 @@
         let co_title = positions[i].title;
 
         // 함수 호출
-        displayOverlay(marker, url, co_title);
-        displaySummary(marker, url, co_title);
+        displayOverlay(marker, url, positions[i]);
+        displaySummary(marker, url, positions[i]);
 
         // ------------------------------------ 박스내용 여기서 바꿈 -----------------------------------------------------
         //let iwContent = `
@@ -185,7 +185,7 @@
     }
 
 
-    function displayOverlay(marker, url, co_title) {
+    function displayOverlay(marker, url, positions) {
         var overlay = new kakao.maps.CustomOverlay({
             //map: map,
             //content: content,
@@ -211,7 +211,7 @@
         var title = document.createElement('a');
         title.className = 'map_title';
         //title.textContent = '제목';
-        title.textContent = `${co_title}`;
+        title.textContent = `${positions.title}`;
         title.setAttribute('href', `${url}`);
         header.appendChild(title);
 
@@ -227,6 +227,11 @@
         };
         close.setAttribute('title', '닫기');
         header.appendChild(close);
+
+        var closeImg = document.createElement('img');
+        closeImg.setAttribute('src', "{% static 'images/close.png' %}");
+        closeImg.setAttribute('style', "width: 55%; height: 55%;");
+        close.appendChild(closeImg);
 
         // 본문(이미지, 내용)
         var body = document.createElement('div');
@@ -248,17 +253,17 @@
 
         var location = document.createElement('div');
         location.className = 'map_location';
-        location.textContent = '위치위치위치위치위치위치위치위치위치';
+        location.textContent = `${positions.location}`;
         desc.appendChild(location);
 
         var time = document.createElement('div');
         time.className = 'map_time';
-        time.textContent = '시간';
+        time.textContent = `모집인원 : ${positions.time}`;
         desc.appendChild(time);
 
         var price = document.createElement('div');
         price.className = 'map_price';
-        price.textContent = '가격';
+        price.textContent = `가격 : ${positions.price}`;
         desc.appendChild(price);
 
 
@@ -280,7 +285,7 @@
         });
     }
 
-    function displaySummary(marker, url, co_title) {
+    function displaySummary(marker, url, positions) {
         let summary = document.getElementById('mobileSummary');
         let title = document.getElementById('mobileTitle');
         let location = document.getElementById('mobileLoca');
@@ -291,15 +296,15 @@
         kakao.maps.event.addListener(marker, 'click', function() {
             summary.setAttribute('onclick', `location.href='${url}';`);
             
-            title.textContent = `${co_title}`;
+            title.textContent = `${positions.title}`;
             //title.setAttribute('href', `${url}`);
 
             for(let i = 0; i < elements.length; i++)
                 elements[i].style.visibility = 'visible';
 
-            location.textContent = '위치위치위치위치위치위치위치위치위치';
-            time.textContent = '시간';
-            price.textContent = '가격';
+            location.textContent = `${positions.location}`;
+            time.textContent = `${positions.time}`;
+            price.textContent = `${positions.price}`;
         });
     }
     //%%%%%%%%%%%%%%%%% 클러스터 %%%%%%%%%%%%%%%%%%%
