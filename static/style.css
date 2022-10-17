@@ -58,7 +58,7 @@
 
 
 @media screen and (max-width: 768px) {
-  #content__blur {
+  #content__blur{
       padding-top: var(--header-height);
   }
 }
@@ -354,9 +354,9 @@
   border: 0;
   border-radius: 50%;
   /* background: #E98197; */
-  /* background-position: center;
+  background-position: center;
   background-size: 50%;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 
   /* color: white; */
   /* font-size: min(calc(calc(calc(100vw * 0.75 * 0.6) - 40px) * 0.1), calc(calc(calc(1024px * 0.6) - 40px) * 0.1)); */
@@ -461,39 +461,33 @@
 }
 .map_CustomOverlay .map_info:nth-child(1) {border: 0; box-shadow: 0px 1px 2px #888;}
 .map_info .map_header {
-  padding: 11px 0 0 15px;
+  padding: 5px 0 0 10px;
   height: 35px;
-  /* background: #eee;
-  border-bottom: 1px solid #ddd; */
+  background: #eee;
+  border-bottom: 1px solid #ddd;
   /* background-color: blue; */
   
   /* cursor: pointer; */
 }
 .map_info .map_title {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 25px;
   text-decoration : none;
   color : black;
 }
 .map_info .map_close {
   position: absolute;
   top: 11px;
-  right: 15px;
+  right: 13px;
   /* color: #888; */
-  width: 25px;
-  height: 25px;
-  /* background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+  width: 13px;
+  height: 13px;
+  background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
   background-size: 100% 100%;
-  background-position: center; */
-  /* background-color: blue; */ 
-  border-radius: 50%;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-position: center;
+  /* background-color: blue; */
 }
-.map_info .map_close:hover {cursor: pointer; background-color: rgb(250, 247, 247);}
+.map_info .map_close:hover {cursor: pointer;}
 .map_info .map_body {position: relative; overflow: hidden;}
 .map_info .map_desc {position: relative; margin: 15px 15px 0 15px; /*height: 55px;*/ font-size: 12px;}
 .map_desc .map_location {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
@@ -640,7 +634,7 @@
   margin-right: 40px;
 }
 .profile_horizontalHr {
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 .profile_posts {
   height: 100%;
@@ -667,12 +661,12 @@
   position: relative;
 }
 #profile_postBox {
-  height: calc(100% - 115px);
-  /* height: 60%; */
+  /* height: 200px; */
+  height: 60%;
   border-radius: 20px;
-  /* background-color: rgb(250, 247, 247); */
+  background-color: rgb(250, 247, 247);
   text-align: left;
-  /* padding: 20px; */
+  padding: 20px;
 
   display: none;
 }
@@ -688,15 +682,15 @@
 } */
 .profile_smsInput {
   width: 100%;
-  height: 50px;
-  /* height: 17.5%; */
+  max-height: 50px;
+  height: 17.5%;
   margin: 0;
   border: 0;
   border-radius: 25px;
   background: rgb(250, 247, 247);
   font-size: 15px;
 
-  margin-bottom: 15px;
+  /* margin-bottom: 5%; */
   padding: 0 20px;
   cursor: pointer;
 }
@@ -729,16 +723,11 @@
   display: inline-block;
 }
 .pop_inner .pop_blank {
-  /* height: 20%; */
-  /* height: 75px; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* color: var(--first-color); */
-  /* line-height: 22.5px; */
-  margin: 30px 0;
-  /* padding: 0 2.5px; */
-  overflow: hidden;
 }
 .pop_blank #close {
   width: 25px;
@@ -748,11 +737,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  float: right;
-}
-.pop_blank #close:hover{
-  background-color: rgb(250, 247, 247);
 }
 
 .profile_btns {
@@ -802,9 +786,9 @@
 
 
 /* ---------전체폰트 바꾸기---------- */
-/* .font_change {
+.font_change {
   font-family: ;
-} */
+}
 
 /* ---------ROOT---------- */
 /* ---------navbar---------- */
@@ -1288,85 +1272,96 @@ i {
   right: 4rem;
 }
 
-.map_btn_container {
-  position: fixed;
-  bottom: 4rem;
-  right: 7rem;
+.write_checkbox {
+  display: none;
 }
 
-.map_button {
-  border-radius: 100%;
-  cursor: pointer;
-  color: #fff;
-}
-
-.abroad-button {
-  border-radius: 100%;
-  cursor: pointer;
-  color: #fff;
-}
-
-.abroad-button > div {
-  display: inline-block;
-  font-size: 1.5em;
-  margin-left: 50%;
-  margin-top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
-
-.abroad-primary-button {
-  background-color: var(--first-color);
-  bottom: 1em;
-  box-shadow: 0 0 5px #000;
-  height: 3em;
-  right: 1em;
-  position: fixed;
-  width: 3em;
-  z-index: 2;
-}
-
-.abroad-secondary-button {
-  background-color: #9b59b6;
-  bottom: 1.25em;
-  height: 2.5em;
-  right: 1.25em;
-  position: fixed;
-  transition: all .5s;
-  width: 2.5em;
+.write_btn {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #FB2146;
+  border-radius: 50%;
   z-index: 1;
 }
 
-.abroad-secondary-button > div {
-  font-size: 1em;
+.write_font {
+  position: absolute;
+  top: 30%;
+  left: 15%;
 }
 
-/*======== write 버튼 툴팁 =========*/
-.tooltip > .tooltip-inner {
-  background-color: var(--white-color);
-  text-shadow: 0 1px 1px #000;
-  font-weight: normal;
+.write_btn:hover {
+  background: #FB6C84;
 }
 
-/*================ map 버튼 ================= */
-.map_btn_container {
-  position: fixed;
-  bottom: 4rem;
-  right: 6rem;
+.write_btn_wheel {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10rem;
+  height: 10rem;
+  transition: all 0.3s ease;
+  transform-origin: bottom right;
+  transform: scale(0);
 }
 
-/*================ search button ================= */
-.select_box {
-  position: fixed;
-  top: 50%;
-  right: 1rem;
-  border-radius: 25px;
+.write_checkbox:checked ~ .write_btn_wheel {
+  transform: scale(1);
 }
 
-.select_box option:hover{
-  background: var(--first-color);
+.fab-action {
+  position: absolute;
+  background: #F5F5F6;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: White;
+  box-shadow: 0 0.1rem 0.5rem #FB2146;
+  transition: all 1s ease;
+  opacity: 0;
 }
 
-/*================ filter dropdown button ================= */
+.write_checkbox:checked ~ .write_btn_wheel .fab-action {
+  opacity: 1;
+}
+
+.write_wheel_font {
+  font-size: 0.8rem;
+  color: #FB2146;
+}
+
+.write_wheel_font:hover {
+  color: var(--white-color);
+}
+
+.fab-action:hover {
+  background-color: #FB2146;
+}
+
+.write_btn_wheel .fab-action-1 {
+  right: -1rem;
+  top: 0;
+}
+
+.write_btn_wheel .fab-action-2 {
+  right: 3.4rem;
+  top: 0.5rem;
+}
+.write_btn_wheel .fab-action-3 {
+  left: 0.5rem;
+  bottom: 3.4rem;
+}
+.write_btn_wheel .fab-action-4 {
+  left: 0;
+  bottom: -1rem;
+}
+
 
 /* --------like button----- */
 
@@ -2067,11 +2062,8 @@ h1 { font-size: 1.5em; margin: 10px; } */
 /****** Style Star Rating Widget *****/
 
 .rating { 
-  /* width: 100%; */
   border: none;
   float: left;
-  
-  /* align-items: center; */
 }
 
 .rating > input { display: none; } 
@@ -2090,7 +2082,7 @@ h1 { font-size: 1.5em; margin: 10px; } */
 
 .rating > label { 
   color: #ddd; 
-  float: right; 
+ float: right; 
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -2103,16 +2095,3 @@ h1 { font-size: 1.5em; margin: 10px; } */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
-
-.rating_context {
-  width: 100%;
-  border: 0;
-  /* float: left; */
-  text-align: center;
-}
-
-@media screen and (max-width: 768px) {
-  .rating_context {
-    width: 100%;
-  }
-}
