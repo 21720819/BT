@@ -14,10 +14,6 @@
 
 <div class="detail_container">
     <div class="freeDtLeft">
-        {%if detail.ID.id == user.id%}
-        <a href="{% url 'freeDelete' detail.id %}">삭제</a>
-        <a href="{% url 'freeEdit' detail.id %}">수정</a>
-        {% endif %}
         <h2 class="detail_title">{{detail.title}}</h3>
         <form action="{% url 'freeLike' detail.id %}" method="post">
             {% csrf_token %}
