@@ -228,6 +228,11 @@
         close.setAttribute('title', '닫기');
         header.appendChild(close);
 
+        var closeImg = document.createElement('img');
+        closeImg.setAttribute('src', "{% static 'images/close.png' %}");
+        closeImg.setAttribute('style', "width: 55%; height: 55%;");
+        close.appendChild(closeImg);
+
         // 본문(이미지, 내용)
         var body = document.createElement('div');
         body.className = 'map_body';
