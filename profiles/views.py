@@ -15,10 +15,11 @@ def profileHome(request,user_name):
 
 def profileEdit(request,user_name):
     user = get_object_or_404(User, username=user_name)
-    p_post =  Buy.objects.filter(ID=user).order_by('-writeDate')
-    likes = user.like_posts.all()
-
-    return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes})
+    if request.method == "POST":
+        user.username = request.POST['content']
+        user.save()
+        return redirect('../'+user.username)
+    return render(request, 'profile/edit_profile.html')
 
 #  sms 인증
 # Python
