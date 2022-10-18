@@ -58,11 +58,11 @@ def freeEdit(request, free_id):
         if form.is_valid():
             print(form.cleaned_data)
             # {'name': '수정된 이름', 'image': <InMemoryUploadedFile: Birman_43.jpg 	(image/jpeg)>, 'gender': 'female', 'body': '수정된 내용'}
-            post.title = form.cleaned_data['name']
-            post.photo = form.cleaned_data['image']
+            post.title = form.cleaned_data['title']
+            post.photo = form.cleaned_data['photo']
             post.body = form.cleaned_data['body']
             post.save()
-            return redirect('/detail/'+str(post.pk))
+            return redirect('../../detail/'+str(post.pk))
         
     # 수정사항을 입력하기 위해 페이지에 처음 접속했을 때
     else:
@@ -72,7 +72,7 @@ def freeEdit(request, free_id):
             'writing':True,
             'now':'edit',
         }
-        return render(request, 'free/freeCreate.html',context)
+        return render(request, 'free/Edit_free.html',context)
 
 def freeLike(request, free_id):
     detail = Free.objects.get(pk=free_id)

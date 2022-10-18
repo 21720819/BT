@@ -1,0 +1,21 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+<div class="detail_container">
+    <form method="POST" role="form" >
+        {% csrf_token %}
+        <div style = "text-align: right;">
+            <input type="submit" class="rightBtn" placeholder="작성"> </input>
+        </div>
+        <div class="freeTitle">{{form.title}}</div>
+        <div class="freeBody" style="margin-top: 20px">{{form.body}}</div>
+    
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
