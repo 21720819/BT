@@ -1,23 +1,52 @@
-<div class="login_background">
-    <div class="error_body">
-        <!-- logo -->
-        <div class="error_logo"> 
-            <font-awesome-icon icon="fa-solid fa-ban" />
-        </div>
-        <div class="error_num" data-text="400"><p>400</p></div>
-        <div class="errorm">
-            <h3>BAD REQUEST</h3>
-            <h4>잘못된 요청입니다.</h4>
-            <h4>관리자에게 문의하십시오.</h4>
-            <div class="error_btns">
-                <button onclick="location.href ='mailto:jiggy0429@likelion.org'">
-                    이메일로 문의하기
-                </button>
-                <button onclick="location.href ='/'">
-                    홈으로 돌아가기
-                </button>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>400</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}?after">
+    <!-- IONICONS 아이콘 js -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .detail_container {
+            max-width: 600px;
+            width: 50vw;
+            /*height: 30%;*/
+
+            padding: 0;
+        }
+    </style>
+</head>
+<body style="padding: 0;">
+    <div class="detail_container">
+        <!-- 에러 이미지 -->
+        <img src="{% static '404_temp.jpg' %}" style="width: 50%; max-height: calc(600px / 2); height: 25vw; float: left;">
+
+        <div style="width: 50%; float: right;">
+            <div class="error_num" data-text="400"><p>400</p></div>
+            <div class="errorm">
+                <h3>BAD REQUEST</h3>
+                <h4>잘못된 요청입니다.</h4>
+                <h4>관리자에게 문의하십시오.</h4>
             </div>
-            
+        </div>
+
+        <div style="width: 100%; float: left;">
+            <button class="errorBtns" onclick="location.href ='mailto:jiggy0429@likelion.org'">
+                <ion-icon name="mail" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon>이메일로 문의하기
+            </button>
+            <button class="errorBtns" onclick="location.href ='/'">
+                <ion-icon name="home" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon>홈으로 돌아가기
+            </button>
         </div>
     </div>
-</div>
+</body>
+</html>
