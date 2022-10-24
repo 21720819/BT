@@ -124,7 +124,9 @@
     </div>
 
     <div id="review" class="profile_summary profile_btns">
-        리뷰남겼으면 버튼 리뷰수정버튼으로 
+        {% if user in profileuser.Review_set.all %} 리뷰수정하기
+        {% else %} 리뷰하기
+        {% endif %}
         <!-- <a class="nav-link nav_change_color" href="{% url 'review' profileuser.username %}">리뷰남기기</a> -->
     </div>
     

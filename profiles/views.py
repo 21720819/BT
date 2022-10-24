@@ -132,30 +132,32 @@ def reportUser(request, username):
     return render(request, 'profile/report.html', {'form':form})
 
 
+from django.db.models import Q 
 def review(request,username): #username 상대방 수정도 넣으면 좋을 듯 유저 한명당 리뷰 하나만 가능
     user = User.objects.get(username=username)
     writer_id = request.user.id
     writer = User.objects.get(id=writer_id)
-    # review = Review.objects.filter(ID=user, writer=writer)
-    try:
-        review = Review.objects.get(ID=user, writer=writer)
-        return editReview(request,username)
-    except:
-        return createReview(request,username)
     
+    review = get_object_or_404(Review,Q(ID=user)& Q(writer=writer))
+    if(review):
+        return editReview(request,user.username)
+    else:
+        return createReview(request,user.username)
+
+  
 def createReview(request,username):
     if request.method == 'POST':
         form = UserReviewform(request.POST)
-        user = User.objects.get(username=username)
+        profileuser = User.objects.get(username=username)
         writer_id = request.user.id
         writer = User.objects.get(id=writer_id)
 
         if form.is_valid():
             finished_form =form.save(commit=False)
             finished_form.writer=get_object_or_404(User,id=writer_id)
-            finished_form.ID=get_object_or_404(User,id=user.id)
+            finished_form.ID=get_object_or_404(User,id=profileuser.id)
             finished_form.save()
-        return redirect('../userprofile/'+user.username)
+        return redirect('../userprofile/'+profileuser.username)
     else:
         form  = UserReviewform()
     return render(request,'profile/review.html', {'form':form})
@@ -165,7 +167,8 @@ def editReview(request,username):
     user = User.objects.get(username=username)
     writer_id = request.user.id
     writer = User.objects.get(id=writer_id)
-    review = Review.objects.filter(ID=user, writer=writer)
+    # review = Review.objects.all().filter(Q(ID=user)& Q(writer=writer))
+    review = get_object_or_404(Review,Q(ID=user)& Q(writer=writer))
     # 글을 수정사항을 입력하고 제출을 눌렀을 때
     if request.method == "POST":
         form = UserReviewform(request.POST)
