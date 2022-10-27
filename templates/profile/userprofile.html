@@ -83,7 +83,7 @@
             <div class="profile_halfDiv" style="width: 250px; padding: 0; position: relative;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ 0.0</div>
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
                     <!-- <div class="profile_posts">
                         {% for review in profileuser.ID.all %}
                             <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
@@ -116,7 +116,7 @@
             <div class="profile_halfDivM">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ 0.0</div>
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
                 </div>
             </div>
         </div>      

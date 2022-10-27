@@ -1,9 +1,11 @@
+# from typing import Annotated
 from django.shortcuts import get_object_or_404,render,HttpResponse, redirect
 from accounts.models import User
 from buy.models import Buy
 from accounts.forms import Smsform ,Smscheckform
 from profiles.forms import UserReviewform, UserReportform
 from .models import Review
+from django.db.models import Avg
 
 def profileHome(request,user_name):
     user = get_object_or_404(User, username=user_name)
@@ -129,7 +131,9 @@ def reportUser(request, username):
 
 def userProfile(request, username):
     profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
+    
     posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
+    # point__avg=  User.objects.values('username').annotate(point__avg=Avg('porint'))
     return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
 
 from django.db.models import Q 
