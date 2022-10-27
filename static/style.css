@@ -56,13 +56,6 @@
   background: #FB6C84;
 }
 
-
-@media screen and (max-width: 768px) {
-  #content__blur {
-      padding-top: var(--header-height);
-  }
-}
-
 /* ------ main -------*/
 .jb-box {
   width: 100%;
@@ -320,7 +313,7 @@
 }
 
 
-/* ---------create---------- */
+/* ====== create ======*/
 *:focus {
   outline: none;
 }
@@ -421,8 +414,7 @@
   }
 }
 
-
-/* ---------map---------- */
+/*======= map ========*/
 .map_main {
   width: calc(100% - 80px);
   /* height: 75vh; */
@@ -561,10 +553,10 @@
   }
 }
 
-/* ---------chat---------- */
+/*======== chat =========*/
 
 
-/* ---------profile---------- */
+/*======== profile =========*/
 #profile_table {
   /* width: calc(100% - 40px); */
   margin: 40px 22.5px;
@@ -797,8 +789,6 @@
   }
 }
 
-
-
 /* ---------전체폰트 바꾸기---------- */
 /* .font_change {
   font-family: ;
@@ -809,9 +799,9 @@
 
 /*===== VARIABLES CSS =====*/
 :root {
-  --header-height: 3rem;
+  --header-height: 4rem;
   --detail_container-width: 1280px;
-  --card_width : 280px;
+  --card_width : 250px;
 
   /*===== Colors =====*/
   --first-color: #FB2146;
@@ -976,17 +966,17 @@ i {
   text-decoration-color: #FAF139;
 }
 
-/*Show menu*/
+/*======= Show menu =======*/
 .show {
   left: 0;
 }
 
-/*Active link*/
+/*======= Active link =======*/
 .active {
   color: var(--white-color);
 }
 
-/*=== Dropdown ===*/
+/*======= Dropdown ========*/
 .dropdown__link {
   display: flex;
   justify-content: space-between;
@@ -1022,10 +1012,10 @@ i {
     width: 288px;
   }
 }
-/* ===== 웹 NAV 과 모바일 NAV 구분 지점 =====*/
+/*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 ++++++++*/
 @media screen and (min-width: 768px) {
   body {
-    padding-top: calc(var(--header-height) + 1rem);
+    padding-top: var(--header-height);
     margin: 0;
   }
   .header {
@@ -1039,6 +1029,14 @@ i {
   }
 }
 
+/*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 +++++++*/
+@media screen and (max-width: 768px) {
+  body {
+      padding-top: var(--header-height);
+      margin: 0;
+  }
+}
+
 /* --------NAV scroll 되는 css ------- */
 #nav-menu{
   -ms-overflow-style: none; /* IE and Edge */
@@ -1049,18 +1047,14 @@ i {
 }
 
 
-/* ---------category---------- */
+/*====== category ========*/
 .category__menu {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  float: left;
-  padding: 20px 0;
+  padding-top: 2rem;
   width: 100%;
-  height: 2rem;
+  height: 5rem;
 }
 
-.category-item:nth-child(n+1){
+/* .category-item:nth-child(n+1){
   margin: 0 10% 0 0;
 }
 
@@ -1089,22 +1083,68 @@ i {
 .category-item a:hover {
   color: var(--white-color);
   background: #FB2146;
-}
+} */
 
-/* --------- 거래게시판 ==buy== ---------- */
-.card {
+/*======= 그냥 추가해보고 있는 것 =======  */
+.menu-4 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.menu-4 * {
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.menu-4 li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1em;
+  overflow: hidden;
+}
+.menu-4 a {
+  padding: 0.3em 0;
+  color: #212121;
   position: relative;
-  margin-top: 10%;
-  width: var(--card_width);
-  background: #F5F5F6;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1s;
-  border-radius: 30px;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 0;
+  text-decoration: none;
+}
+.menu-4 a:before,
+.menu-4 a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.menu-4 a:before {
+  bottom: 100%;
+  display: block;
+  height: 3px;
+  width: 100%;
+  content: "";
+  background-color: #FB2146;
+}
+.menu-4 a:after {
+  padding: 0.3em 0;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  content: attr(data-hover);
+  color: #212121;
+  white-space: nowrap;
+}
+.menu-4 li:hover a,
+.menu-4 .current a {
+  transform: translateY(100%);
 }
 
+/*======== 거래게시판 Buy ========*/
 .card:hover {
-  box-shadow: 0 0 15px #FB2146;
+  box-shadow: 2px 2px 2px gray;
 }
+
 .card a {
   color: inherit;
   text-decoration: none;
@@ -1116,36 +1156,16 @@ i {
   overflow: hidden;
   background-color: #000;
   transition: height 0.5s;
-  border-radius: 30px 30px 0 0;
 }
 
 .card__thumb img {
-  width: var(--card_width);
+  width: calc(var(--card_width)-10px);
   height: 250px;
   display: block;
   opacity: 1;
   transition: opacity 0.5s, transform 0.5s;
   transform: scale(1);
   
-}
-
-.card:hover .card__thumb img {
-  opacity: 0.6;
-  transform: scale(1.2);
-}
-
-.card:hover .card__thumb {
-  height: 90px;
-}
-
-.card__body {
-  position: relative;
-  height: 185px;
-  transition: height 0.5s;
-}
-
-.card:hover .card__body {
-  height: 330px;
 }
 
 .card__ing__container {
@@ -1277,6 +1297,41 @@ i {
    justify-items: center;
  }
 }
+
+/* ====== buy페이지 그냥 추가해보고 있는 것 ========= */ 
+.card {
+  background-color: #F5F5F6;
+  width: 350px;
+  padding: 20px;
+  border: 1px solid #eee
+}
+
+.inner-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px
+}
+
+.heart {
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #beb4aa;
+  border-radius: 50%;
+  background-color: #eee
+}
+
+.btn:focus {
+  color: #fff;
+  background-color: #FB2146;
+  border-color: #FB2146;
+  box-shadow: none
+}
+
 /*======== write button =========*/
 
 /*= 글쓰기 버튼 전체 <여기서 고정 위치 조정하면 됨> =*/
@@ -1353,16 +1408,87 @@ i {
 }
 
 /*================ search button ================= */
-.select_box {
-  position: fixed;
-  top: 50%;
-  right: 1rem;
-  border-radius: 25px;
+.search_form {
+  position: absolute;
+  right: 1%;
 }
 
-.select_box option:hover{
-  background: var(--first-color);
+fieldset {
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 40px;
+  background: #F5F5F6;
+  border: none;
+  border-radius: 5px;
 }
+
+fieldset > input, fieldset > button {
+  background: #F5F5F6;
+  position: relative;
+  width: 10rem;
+  height: 2.5rem;
+  padding: 0;
+  display: inline-block;
+  float: left;
+}
+
+fieldset > input {
+  z-index: 2;
+
+  color: #F5F5F6;
+  border: 0 none;
+}
+
+fieldset > input:focus {
+  outline: 0 none;
+}
+
+fieldset > input:focus + button {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+fieldset > input:focus + button .fa {
+  -webkit-transform: translate(0px, 0);
+      -ms-transform: translate(0px, 0);
+          transform: translate(0px, 0);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  color: #F5F5F6;
+}
+
+fieldset > button {
+  z-index: 1;
+
+  width: 50px;
+  border: 0 none;
+  background: #FB2146;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;  
+  -webkit-transform: translate(-50px, 0);
+      -ms-transform: translate(-50px, 0);
+          transform: translate(-50px, 0);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.fa-search {
+  z-index: 3;
+
+  font-size: 1.4rem;
+  color: black;
+  top: 25%;
+  -webkit-transform: translate(-190px, 0);
+      -ms-transform: translate(-190px, 0);
+          transform: translate(-190px, 0);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  -webkit-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+}
+
 
 /*================ filter dropdown button ================= */
 
