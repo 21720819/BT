@@ -6,10 +6,11 @@
 <div class="detail_container">
     <!-- 이건 네비바 밑에 -->
     <div class="detail_nav">
-        {%if detail.ID.id == user.id%}
+        {% if detail.ID.id == user.id %}
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
-            <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
+        {% else %}
+            Z<a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
         {% endif %}
     </div>
     <div style="clear: both;"></div>

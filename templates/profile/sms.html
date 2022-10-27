@@ -21,12 +21,12 @@
     <form action="{% url 'sendsms' user.username %}" method="POST">
         {% csrf_token %}
         {{smsform.phone_number}}
-        <input class="create_submitButton buttonColor" type="submit" value="전송" style="margin-bottom: 30px;">
+        <input class="create_submitButton buttonColor" type="submit" value="인증번호 전송" style="margin-bottom: 30px;">
     </form>
     <form action="{% url 'checksms' user.username %}" method="POST">
         {% csrf_token %}
         {{checksmsform.auth_number}}
-        <input class="create_submitButton buttonColor" type="submit" value="인증">
+        <input class="create_submitButton buttonColor" type="submit" value="인증번호 확인">
     </form>
 
     <div style="height: 30px; font-size: 15px; line-height: 30px;">

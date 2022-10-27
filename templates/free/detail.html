@@ -26,11 +26,14 @@
         {% endif %} -->
         <div style="overflow: hidden;">
             <h2 class="detail_title" style="width: calc(100% - 40px); float: left;">{{detail.title}}</h3>
-            <div style="width: 15px; font-size: 15px; margin-top: 2.5px; float: right;">{{detail.like_count}}</div>
+            <div style="width: 15px; font-size: 15px; font-weight: bold; color: var(--first-color); margin-top: 2.5px; float: right;">{{detail.like_count}}</div>
             <form action="{% url 'freeLike' detail.id %}" method="post">
                 {% csrf_token %}
-                <input type="submit" value="♥" class="">
-                <!-- ♡ -->
+                {% if user in detail.freeLike_users.all %}
+                    <input type="submit" value="♥" class="">
+                {% else %}
+                    <input type="submit" value="♡" class="">
+                {% endif %}
             </form>
         </div>
         
