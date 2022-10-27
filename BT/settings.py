@@ -63,14 +63,15 @@ INSTALLED_APPS = [
     'chat',
     'profiles',
 
-    #allauth
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+# 소셜
+    # #allauth
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
 
-    #provider
-    'allauth.socialaccount.providers.kakao',
+    # #provider
+    # 'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [
@@ -189,13 +190,14 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # # 이메일에 자동으로 표시되는 사이트 정보
 # ACCOUNT_EMAIL_SUBJECT_PREFIX = "도전하는 문돌이 블로그"
 
-AUTHENTICATION_BACKENDS=(
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
-)
-from django.urls import reverse_lazy
+# 소셜
+# AUTHENTICATION_BACKENDS=(
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend'
+# )
+# from django.urls import reverse_lazy
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'  # 로그인 후 리다이렉트 될 경로
-ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')  
-ACCOUNT_LOGOUT_ON_GET = True
+# SITE_ID = 1
+# LOGIN_REDIRECT_URL = '/'  # 로그인 후 리다이렉트 될 경로
+# ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')  
+# ACCOUNT_LOGOUT_ON_GET = True

@@ -14,8 +14,8 @@ urlpatterns = [
     path('chat/',include('chat.urls')),
     path('profile/',include('profiles.urls')),
 
-    re_path(r'^accounts/', include('accounts.urls')),
-    re_path(r'^accounts/', include('allauth.urls')),
+    # re_path(r'^accounts/', include('accounts.urls')),
+    # re_path(r'^accounts/', include('allauth.urls')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

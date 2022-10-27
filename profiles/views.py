@@ -111,10 +111,6 @@ def checksms(request,username):# 인증번호 확인
                     return redirect('../../profile/'+username+'/sms')
     
 
-def userProfile(request, username):
-    profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
-    posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
-    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
 
 def reportUser(request, username):
     if request.method == 'POST':
@@ -131,6 +127,10 @@ def reportUser(request, username):
     # return render(request,'profile/review.html', {'form':form})
     return render(request, 'profile/report.html', {'form':form})
 
+def userProfile(request, username):
+    profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
+    posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
+    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
 
 from django.db.models import Q 
 def review(request,username): #username 상대방 수정도 넣으면 좋을 듯 유저 한명당 리뷰 하나만 가능
@@ -143,12 +143,12 @@ def review(request,username): #username 상대방 수정도 넣으면 좋을 듯
         return editReview(request,profileuser.username)
     except:
         return createReview(request,profileuser.username)
+     
 
-  
 def createReview(request,username):
+    form = UserReviewform(request.POST)
+    profileuser = User.objects.get(username=username)
     if request.method == 'POST':
-        form = UserReviewform(request.POST)
-        profileuser = User.objects.get(username=username)
         writer_id = request.user.id
         writer = User.objects.get(id=writer_id)
 
@@ -160,7 +160,7 @@ def createReview(request,username):
         return redirect('../userprofile/'+profileuser.username)
     else:
         form  = UserReviewform()
-    return render(request,'profile/review.html', {'form':form})
+    return render(request,'profile/review.html', {'form':form,'profileuser':profileuser})
 
 
 def editReview(request,username):
@@ -187,5 +187,6 @@ def editReview(request,username):
             'form':form,
             'writing':True,
             'now':'edit',
+            'profileuser':profileuser,
         }
     return render(request,'profile/review.html', context)

@@ -52,7 +52,7 @@ def signup(request):
             message = render_to_string('accounts/user_activate_email.html',                         
             {
                 'user': user,
-                'domain': current_site.domain,
+                'domain': '127.0.0.1:8000',
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).encode().decode(),
                 'token': account_activation_token.make_token(user),
             })

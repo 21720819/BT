@@ -17,7 +17,7 @@
 </style>
 
 <!-- 리뷰남겼으면 수정버튼 > 리뷰  -->
-<form action="{% url 'review' user.username %}" method="post" style="height: 100%;">
+<form action="{% url 'review' profileuser.username %}" method="post" style="height: 100%;">
     {% csrf_token %}
     <div style="width: 100%;">
         <div style="display: flex; justify-content: center; align-items: center;">
