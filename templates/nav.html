@@ -13,13 +13,21 @@
     <!-- Boxicons CSS -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet'>
-    
+
 </head>
 
 <body class="font_change">
     <header class="header">
         <a href="#" class="header__logo">BuyTogether</a>
         
+
+        <form method="get" class="search_form">
+            {% csrf_token %}
+            <fieldset>
+                <input class="search_input" type="search" name="q"/>
+                <button class="search_button" type="submit"><i class="fa fa-search"></i></button>
+            </fieldset>
+        </form>
         <!-- <form method="get">   
             {% csrf_token %}
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -75,7 +83,6 @@
                     </ul>
                 </div>
             </div>
-        </nav>
     </header>
 
     <!-- 내용이 들어가는 공간 -->

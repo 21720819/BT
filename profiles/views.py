@@ -1,9 +1,11 @@
+# from typing import Annotated
 from django.shortcuts import get_object_or_404,render,HttpResponse, redirect
 from accounts.models import User
 from buy.models import Buy
 from accounts.forms import Smsform ,Smscheckform
 from profiles.forms import UserReviewform, UserReportform
 from .models import Review
+from django.db.models import Avg
 
 def profileHome(request,user_name):
     user = get_object_or_404(User, username=user_name)
@@ -15,10 +17,11 @@ def profileHome(request,user_name):
 
 def profileEdit(request,user_name):
     user = get_object_or_404(User, username=user_name)
-    p_post =  Buy.objects.filter(ID=user).order_by('-writeDate')
-    likes = user.like_posts.all()
-
-    return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes})
+    if request.method == "POST":
+        user.username = request.POST['content']
+        user.save()
+        return redirect('../'+user.username)
+    return render(request, 'profile/edit_profile.html')
 
 #  sms 인증
 # Python
@@ -110,10 +113,6 @@ def checksms(request,username):# 인증번호 확인
                     return redirect('../../profile/'+username+'/sms')
     
 
-def userProfile(request, username):
-    profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
-    posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
-    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
 
 def reportUser(request, username):
     if request.method == 'POST':
@@ -130,41 +129,50 @@ def reportUser(request, username):
     # return render(request,'profile/review.html', {'form':form})
     return render(request, 'profile/report.html', {'form':form})
 
+def userProfile(request, username):
+    profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
+    
+    posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
+    # point__avg=  User.objects.values('username').annotate(point__avg=Avg('porint'))
+    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
 
+from django.db.models import Q 
 def review(request,username): #username 상대방 수정도 넣으면 좋을 듯 유저 한명당 리뷰 하나만 가능
-    user = User.objects.get(username=username)
+    profileuser = get_object_or_404(User, username=username)
     writer_id = request.user.id
     writer = User.objects.get(id=writer_id)
-    # review = Review.objects.filter(ID=user, writer=writer)
-    try:
-        review = Review.objects.get(ID=user, writer=writer)
-        return editReview(request,username)
-    except:
-        return createReview(request,username)
     
+    try:
+        review = get_object_or_404(Review,Q(ID=profileuser)& Q(writer=writer))
+        return editReview(request,profileuser.username)
+    except:
+        return createReview(request,profileuser.username)
+     
+
 def createReview(request,username):
+    form = UserReviewform(request.POST)
+    profileuser = User.objects.get(username=username)
     if request.method == 'POST':
-        form = UserReviewform(request.POST)
-        user = User.objects.get(username=username)
         writer_id = request.user.id
         writer = User.objects.get(id=writer_id)
 
         if form.is_valid():
             finished_form =form.save(commit=False)
             finished_form.writer=get_object_or_404(User,id=writer_id)
-            finished_form.ID=get_object_or_404(User,id=user.id)
+            finished_form.ID=get_object_or_404(User,id=profileuser.id)
             finished_form.save()
-        return redirect('../userprofile/'+user.username)
+        return redirect('../userprofile/'+profileuser.username)
     else:
         form  = UserReviewform()
-    return render(request,'profile/review.html', {'form':form})
+    return render(request,'profile/review.html', {'form':form,'profileuser':profileuser})
 
 
 def editReview(request,username):
-    user = User.objects.get(username=username)
+    profileuser = User.objects.get(username=username)
     writer_id = request.user.id
     writer = User.objects.get(id=writer_id)
-    review = Review.objects.filter(ID=user, writer=writer)
+    # review = Review.objects.all().filter(Q(ID=user)& Q(writer=writer))
+    review = get_object_or_404(Review,Q(ID=profileuser)& Q(writer=writer))
     # 글을 수정사항을 입력하고 제출을 눌렀을 때
     if request.method == "POST":
         form = UserReviewform(request.POST)
@@ -174,7 +182,7 @@ def editReview(request,username):
             review.content = form.cleaned_data['content']
             review.rating = form.cleaned_data['rating']
             review.save()
-            return redirect('../userprofile/'+user.username)
+            return redirect('../userprofile/'+profileuser.username)
         
     # 수정사항을 입력하기 위해 페이지에 처음 접속했을 때
     else:
@@ -183,5 +191,6 @@ def editReview(request,username):
             'form':form,
             'writing':True,
             'now':'edit',
+            'profileuser':profileuser,
         }
     return render(request,'profile/review.html', context)
