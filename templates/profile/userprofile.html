@@ -56,7 +56,6 @@
             <div class="profile_divDownParts">미인증</div>
         </div>
     </div>
-
     <div class="profile_summary" style="background-color: white; padding: 0;">
         <!-- 데스크탑 -->
         <div id="profile_desktop">
@@ -84,7 +83,7 @@
             <div class="profile_halfDiv" style="width: 250px; padding: 0; position: relative;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ 0.0</div>
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
                     <!-- <div class="profile_posts">
                         {% for review in profileuser.ID.all %}
                             <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
@@ -117,14 +116,16 @@
             <div class="profile_halfDivM">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ 0.0</div>
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
                 </div>
             </div>
         </div>      
     </div>
 
     <div id="review" class="profile_summary profile_btns">
-        리뷰남겼으면 버튼 리뷰수정버튼으로 
+        {% if user in profileuser.Review_set.all %} 리뷰수정하기
+        {% else %} 리뷰하기
+        {% endif %}
         <!-- <a class="nav-link nav_change_color" href="{% url 'review' profileuser.username %}">리뷰남기기</a> -->
     </div>
     
