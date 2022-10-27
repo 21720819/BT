@@ -13,16 +13,30 @@
 </style>
 
 <div class="detail_container">
-    <div class="freeDtLeft">
+    <div class="detail_nav">
         {%if detail.ID.id == user.id%}
+            <a href="{% url 'freeDelete' detail.id %}" class="detail_navEle">삭제</a>
+            <a href="{% url 'freeEdit' detail.id %}" class="detail_navEle">수정</a>
+        {% endif %}
+    </div>
+    <div class="freeDtLeft">
+        <!-- {%if detail.ID.id == user.id%}
         <a href="{% url 'freeDelete' detail.id %}">삭제</a>
         <a href="{% url 'freeEdit' detail.id %}">수정</a>
-        {% endif %}
-        <h2 class="detail_title">{{detail.title}}</h3>
-        <form action="{% url 'freeLike' detail.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" value="{{detail.like_count}}" class="">
-        </form>
+        {% endif %} -->
+        <div style="overflow: hidden;">
+            <h2 class="detail_title" style="width: calc(100% - 40px); float: left;">{{detail.title}}</h3>
+            <div style="width: 15px; font-size: 15px; font-weight: bold; color: var(--first-color); margin-top: 2.5px; float: right;">{{detail.like_count}}</div>
+            <form action="{% url 'freeLike' detail.id %}" method="post">
+                {% csrf_token %}
+                {% if user in detail.freeLike_users.all %}
+                    <input type="submit" value="♥" class="">
+                {% else %}
+                    <input type="submit" value="♡" class="">
+                {% endif %}
+            </form>
+        </div>
+        
         <div class="freeUser">
             <div class="detail__lev" style="margin: 1px;"></div>
             <a href="{% url 'userProfile' detail.ID.username %}" class="freeUserName nav-link nav_change_color">{{detail.ID.username}}</a>

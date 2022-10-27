@@ -53,7 +53,7 @@
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
                         {% elif forloop.counter == 4 %}
-                            <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
+                            <div name="myPost" class="profile_more">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -70,7 +70,7 @@
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
                         {% elif forloop.counter == 4 %}
-                            <div name="myLike" style="font-size: 12.5px; text-align: center;">더보기</div>
+                            <div name="myLike" class="profile_more">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -166,7 +166,7 @@
         <div class="pop_blank">
             <div id="title" style="font-size: 15px; font-weight: bold; float: left;"></div>
             <div id="close">
-                <img src="{% static 'images/close.png' %}" style="width: 72.5%; height: 72.5%;">
+                <img src="{% static 'images/close.png' %}" style="width: 55%; height: 55%;">
             </div>
         </div>
         <div id="profile_postBox">

@@ -16,7 +16,7 @@ class Freemodelform(forms.ModelForm):
 			'body' : forms.Textarea (
 				attrs={ 'class': 'form-control, freeBody',
            				'cols':'50', 'rows':'10',
-               			'style': 'width: 100%; background: rgb(250, 247, 247); border: 0; padding: 0;',
+               			'style': 'width: 100%; resize: none; background: rgb(250, 247, 247); border: 0; padding: 0;',
                   		'placeholder': '내용을 입력하세요.' }
 			),
 		}
@@ -28,6 +28,6 @@ class CommentForm(forms.ModelForm):
 
 		widgets = {
 			'body' : forms.TextInput(
-				attrs={'class': 'comment', 'placeholder': '댓글을 입력하세요'}
+				attrs={'class': 'comment', 'placeholder': '댓글을 입력하세요.'}
 			),
 		}

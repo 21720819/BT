@@ -1,22 +1,76 @@
-<div class="login_background">
-    <div class="error_body">
-        <!-- logo -->
-        <div class="error_logo"> 
-        </div>
-        <div class="errorm">
-            <div class="error_num" data-text="404"><p>404</p></div>
-            <h3>NOT FOUND</h3>
-            <h4>요청하신 정보를 찾을 수 없습니다.</h4>
-            <h4>관리자에게 문의하십시오.</h4>
-            <div class="error_btns">
-                <button onclick="location.href ='mailto:jiggy0429@likelion.org'">
-                    이메일로 문의하기
-                </button>
-                <button onclick="location.href ='/'">
-                    홈으로 돌아가기
-                </button>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}?after">
+    <!-- IONICONS 아이콘 js -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <style>
+        @font-face {
+            font-family: 'CWDangamAsac-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'RixInooAriDuriR';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SUIT-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        html {
+            height: 100%;
+            position: relative;
+        }
+        body {
+            width: calc(100% - 40px);
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="error_container"> -->
+        <!-- 에러 이미지 -->
+            <!-- <img class="error_img" src="{% static 'images/error_yellow.png' %}"> -->
+
+            <!-- 에러 내용 -->
+            <div class="error_main">
+                <div class="error_title" style="font-family: 'GmarketSansMedium';">404</div>
+                <div class="error_info" style="font-family: 'SUIT-Regular';">NOT FOUND</div>
             </div>
-           
+        
+        <!-- 안내 + 이동 -->
+        <div style="text-align: center; margin-top: 25px;">
+            <div class="error_context">요청하신 정보를 찾을 수 없습니다. 관리자에게 문의하세요.</div>
+            <button class="error_btns" onclick="location.href ='mailto:jiggy0429@likelion.org'" style="border-right: 1px solid lightgray">
+                <ion-icon name="mail" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon>이메일로 문의하기
+            </button>
+            <button class="error_btns" onclick="location.href ='/'">
+                <ion-icon name="home" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon>홈으로 돌아가기
+            </button>
         </div>
-    </div>
-</div>
+    <!-- </div> -->
+</body>
+</html>

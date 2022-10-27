@@ -74,7 +74,7 @@
                                 <div class="profile_horizontalHr" style="margin-top: 1rem;"></div>
                             {% endif %}
                         {% elif forloop.counter == 4 %}
-                            <div name="myPost" style="font-size: 12.5px; text-align: center;">더보기</div>
+                            <div name="myPost" class="profile_more">더보기</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -83,6 +83,7 @@
             <div class="profile_halfDiv" style="width: 250px; padding: 0; position: relative;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
+
                     <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
                     <!-- <div class="profile_posts">
                         {% for review in profileuser.ID.all %}
@@ -176,10 +177,10 @@
         </div> 
 
         <!-- 리뷰남기기 -->
-        <div id="profile_reviewBox" class="profile_posts" style="height: calc(100% - 115px); display: none;"></div>
+        <div id="profile_reviewBox" class="profile_posts" style="height: calc(100% - 115px); margin:0 30px; display: none;"></div>
 
         <!-- 신고하기 -->
-        <div id="profile_accuseBox" class="profile_posts" style="height: calc(100% - 115px); display: none;"></div>
+        <div id="profile_accuseBox" class="profile_posts" style="height: calc(100% - 115px); margin:0 30px; display: none;"></div>
         <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
     </div>
 </div>

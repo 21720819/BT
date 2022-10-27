@@ -27,7 +27,7 @@ class Smsform(forms.ModelForm):
 		fields = ['phone_number']
 
 		widgets = {
-			'phone_number' : forms.TextInput(attrs={'class':'profile_smsInput'}),
+			'phone_number' : forms.TextInput(attrs={'class':'profile_smsInput', 'placeholder':'휴대폰 번호를 입력하세요.'}),
 
 		}
 
@@ -36,6 +36,6 @@ class Smscheckform(forms.ModelForm):
 		model = User
 		fields = ['auth_number']
 		widgets = {
-			'auth_number' : forms.TextInput(attrs={'class':'profile_smsInput'}),
+			'auth_number' : forms.TextInput(attrs={'class':'profile_smsInput', 'placeholder':'인증번호를 입력하세요.'}),
 
 		}
