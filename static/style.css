@@ -140,10 +140,10 @@
 .detail_main {
   width: calc(40% - 40px);
   /* height: 1000px; */
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   /* border-color: white; */
-  border-radius: 10px;
-  /* background-color: rgb(250, 247, 247); */
+  border-radius: 20px;
+  background-color: rgb(250, 247, 247);
   margin: 20px;
   /* padding: 25px 0; */
   padding: 20px;
@@ -622,7 +622,7 @@
   /* padding-bottom: 10px; */
 }
 .profile_verticalHr {
-  border-right: 2px solid white;
+  border-right: 1px solid white;
 }
 .profile_halfDiv {
   width: calc(calc(100% - 40px) / 2);
@@ -650,6 +650,13 @@
 }
 .profile_posts::-webkit-scrollbar {
   display: none;
+}
+.profile_posts .profile_more {
+  width: fit-content;
+  font-size: 12.5px;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .profile_halfDivM {
@@ -747,6 +754,7 @@
   align-items: center;
 
   float: right;
+  cursor: pointer;
 }
 .pop_blank #close:hover{
   background-color: rgb(250, 247, 247);
@@ -755,6 +763,7 @@
 .profile_btns {
   font-size: 15px;
   padding: 25px;
+  cursor: pointer;
 }
 
 @media screen and (max-width:768px) {
@@ -780,9 +789,6 @@
   #profile_myPost {
     margin: 0 0 30px 0;
   }
-  /* .profile_posts {
-    height: 100%;
-  } */
   /* .profile_halfDivM {
     width: calc(calc(100% - 30px) / 2);
     height: 0;
@@ -839,7 +845,7 @@
   border: 0;
   outline: 0;
   background-color: white;
-  margin: 0 10px;
+  padding: 0 10px;
   cursor: pointer;
 }
 
@@ -2009,19 +2015,23 @@ i {
   float: left;
 }
 .freeDtLeft input {
-  top: 3vh;
-  right: 2vh;
-  position: absolute;
-  background-color: rgb(255, 103, 103);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
+  /* top: 3vh;
+  right: 2vh; */
   width: 25px;
+  height: 25px;
+  /* position: absolute; */
+  font-size: 17.5px;
+  background-color: rgb(250, 247, 247);
+  color: var(--first-color);
+  border: none;
+  border-radius: 50%;
+  float: right;
 }
 .freeUser{
   display: flex;
   border-bottom: 2px solid #fff;
   align-items: center;
+  padding: 20px 0;
 }
 .freeUserName{
   margin: auto 10px;
