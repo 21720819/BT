@@ -131,10 +131,10 @@ def reportUser(request, username):
 
 def userProfile(request, username):
     profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
-    
+    reviews = Review.objects.filter(ID=profileuser).aggregate(avg_rate=Avg('rating'))
     posts =  Buy.objects.filter(ID=profileuser).order_by('-writeDate') # 사용자가 쓴 글 불러옴
     # point__avg=  User.objects.values('username').annotate(point__avg=Avg('porint'))
-    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts})
+    return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts,'reviews':reviews})
 
 from django.db.models import Q 
 def review(request,username): #username 상대방 수정도 넣으면 좋을 듯 유저 한명당 리뷰 하나만 가능
