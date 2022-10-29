@@ -43,7 +43,17 @@
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
         <table>
             <tr>
-                <td style="width: 30px;"><img class="detail__lev"></td>
+                <td style="width: 30px;">
+                    {% if detail.ID.level == 0 %}
+                <img src="{% static 'images/foodmark.png'%}" class="detail__lev">
+                {% elif detail.ID.level == 1 %}
+                <img src="{% static 'images/nesmark.png'%}" class="detail__lev">
+                {% elif detail.ID.level == 2 %}
+                <img src="{% static 'images/ottmark.png'%}"class="detail__lev">
+                {% elif detail.ID.level == 3 %}
+                <img src="{% static 'images/delmark.png'%}" class="detail__lev">
+                {% endif %}
+                </td>
                 <td><a href="{% url 'userProfile' detail.ID.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a></td>
             </tr>
         </table>

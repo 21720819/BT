@@ -40,32 +40,34 @@ def signup(request):
     if request.method == "POST":
         singForm = UserSignupform(request.POST)
         # loginForm = UserLoginform()
-        if request.POST["password"]==request.POST["password2"]:
-            user = User.objects.create_user(
-                email= request.POST['email'], password=request.POST['password'] ,username = request.POST['username']
-            )
-            create_sendbird_user(request.POST['email'],request.POST['username'])
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request) 
+        if singForm.is_valid():
+            if request.POST["password"]==request.POST["password2"]:
+                user = User.objects.create_user(
+                    email=request.POST['email'], password=request.POST['password'] ,username = request.POST['username']
+                )
+                create_sendbird_user(request.POST['email'],request.POST['username'])
+                user.is_active = False
+            
+                user.save()
+                current_site = get_current_site(request) 
             # localhost:8000
-            message = render_to_string('accounts/user_activate_email.html',                         
-            {
-                'user': user,
-                'domain': '127.0.0.1:8000',
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)).encode().decode(),
-                'token': account_activation_token.make_token(user),
-            })
-            mail_subject = "[buytogether] 회원가입 인증 메일입니다."
-            user_email = user.email
-            email = EmailMessage(mail_subject, message, to=[user_email])
-            email.send()
-            return HttpResponse( #페이지 새로만드는것도 괜찮을듯
-                '<div style="font-size: 40px; width: 100%; height:100%; display:flex; text-align:center; '
-                'justify-content: center; align-items: center;">'
-                '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'
-                '</div>'
-            )
+                message = render_to_string('accounts/user_activate_email.html',                         
+                {
+                    'user': user,
+                    'domain': '127.0.0.1:8000',
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)).encode().decode(),
+                    'token': account_activation_token.make_token(user),
+                })
+                mail_subject = "[buytogether] 회원가입 인증 메일입니다."
+                user_email = user.email
+                email = EmailMessage(mail_subject, message, to=[user_email])
+                email.send()
+                return HttpResponse( #페이지 새로만드는것도 괜찮을듯
+                    '<div style="font-size: 40px; width: 100%; height:100%; display:flex; text-align:center; '
+                    'justify-content: center; align-items: center;">'
+                    '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'
+                    '</div>'
+                )
 
             # auth.login(request,user)
             return redirect('home')
