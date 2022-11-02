@@ -829,8 +829,8 @@ footer h2 {
 }
 .pop_wrap .pop_inner {
   max-width: 384px;
-  /* width: calc(100% - 60px); */
-  width: 100%;
+  width: calc(100% - 60px);
+  /* width: 100%; */
   /* height: 400px; */
   height: 50%;
   border-radius: 20px;
@@ -906,9 +906,21 @@ footer h2 {
   .profile_btns {
     padding: 20px;
   }
-  .profile_delete {
+  /* .profile_last {
     margin-bottom: 10px;
-  }
+  } */
+}
+
+
+/* ---------report---------- */
+.report_textarea {
+  width: 100%;
+  height: calc(100% - 100px);
+  resize: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display:block;
 }
 
 
@@ -1028,7 +1040,7 @@ nav a {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--header-height);
+  height: calc(var(--header-height) + 1rem);
   padding: 0 1rem;
   background-color: #FFF;
   z-index: var(--z-fixed);
@@ -1200,9 +1212,10 @@ body {
   padding-top: calc(var(--header-height) + 1rem);
   margin: 0;
 }
-.header {
+/* .header {
   height: calc(var(--header-height) + 1rem);
-}
+} */
+
 .header__logo {
   display: none;
 }
@@ -1210,11 +1223,15 @@ body {
   z-index: 2;
 }
 
+
 /*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 +++++++*/
 @media screen and (max-width: 768px) {
   body {
       padding-top: var(--header-height);
       margin: 0;
+  }
+  .header {
+    height: var(--header-height);
   }
 }
 

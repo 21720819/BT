@@ -3,16 +3,6 @@
 {% block content %}
 {% load static %}
 
-<!-- <script>
-    fetch("http://127.0.0.1:8000/profile/admin/sms")
-    .then(response => {
-        return response.text()
-    })
-    .then(data => {
-        document.getElementById('profile_smsAuth').insertAdjacentHTML("afterbegin", data);
-    });
-</script> -->
-
 <div class="detail_container" style="max-width: 768px;">
     <table id="profile_table">
         <tr>
@@ -145,9 +135,10 @@
         </div>      
     </div>
 
-    <div class="profile_summary profile_btns">
+    <!-- <div class="profile_summary profile_btns">
         <a class="nav-link nav_change_color" href="{% url 'profileEdit' user.username %}">프로필 수정</a>
-    </div>
+    </div> -->
+    <div id="edit" class="profile_summary profile_btns">프로필 수정</div>
     
     <div class="profile_summary profile_btns">
         <a id="sms" class="nav-link nav_change_color" href="" style="width: calc(100% - 40px); float: left;">휴대폰 인증</a>
@@ -168,9 +159,15 @@
     </div>
     {% endif %}
 
-    <div class="profile_summary profile_btns profile_delete">
+    <div class="profile_summary profile_btns">
         <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
     </div>
+
+    {% if not user.is_staff %}
+    <div class="profile_summary profile_btns">
+        <a class="nav-link nav_change_color" href="{% url 'logout' %}">회원탈퇴</a>
+    </div>
+    {% endif %}
 </div>
 
 <!-- 팝업 -->
@@ -182,6 +179,7 @@
                 <img src="{% static 'images/close.png' %}" style="width: 55%; height: 55%;">
             </div>
         </div>
+
         <div id="profile_postBox">
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
@@ -211,15 +209,33 @@
             </div>
         </div>
 
+        <!-- 프로필 수정 -->
+        <div id="profile_editBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
         <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
     </div>
 </div>
+
+
+<!-- html 불러오기 -->
+<script>
+    function insertIntoPopup(url, target) {
+        fetch(url)
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                document.getElementById(target).insertAdjacentHTML("afterbegin", data);
+            });
+    }
+
+    insertIntoPopup("{% url 'profileEdit' user.username %}", 'profile_editBox');
+</script>
 
 <!-- 팝업 창 스크립트 -->
 <script>
     var sms = document.getElementById('sms');
 
-    if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하에서 사용할 스크립트
+    if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하일 때
         sms.setAttribute('href', `{% url 'sms' user.username %}`);
     }
     else {
@@ -248,9 +264,11 @@
     //var myLikesD = document.getElementById('myLikeD');
     //var myLikesM = document.getElementById('myLikeM');
     //var sms = document.getElementById('sms');
+    var edit = document.getElementById('edit');
 
     var pop = document.getElementById('pop');
-    var box = document.getElementById('profile_postBox');
+    var pBox = document.getElementById('profile_postBox');
+    var eBox = document.getElementById('profile_editBox');
     //var smsAuth = document.getElementById('profile_smsAuth');
     var closeBtn = document.getElementById('close');
     var title = document.getElementById('title');
@@ -262,7 +280,7 @@
     for(i=0; i<2; i++) {
         if(myPost[i] != null) {
             myPost[i].onclick = function() {
-                setPopup('block', 'block', '작성한 글', 'block', 'none');
+                setPopup('block', 'block', 'none', '작성한 글', 'block', 'none');
                 //var posts = document.getElementById('profile_postBox').firstChild;
                 //var id = post.id;
                 //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
@@ -279,7 +297,7 @@
 
         if(myLike[i] != null) {
             myLike[i].onclick = function() {
-                setPopup('block', 'block', '좋아요 누른 글', 'none', 'block');
+                setPopup('block', 'block', 'none', '좋아요 누른 글', 'none', 'block');
                 background[0].classList.add('blur');
             };
         }   
@@ -295,8 +313,13 @@
         background[0].classList.add('blur');
     }*/
 
+    edit.onclick = function() {
+        setPopup('block', 'none', 'block', '프로필 수정', 'none', 'none');
+        background[0].classList.add('blur');
+    }
+
     closeBtn.onclick = function() {
-        setPopup('none', 'none', '', 'none', 'none');
+        setPopup('none', 'none', 'none', '', 'none', 'none');
         /*pop.style.display = 'none';
         box.style.display - 'none';
         //smsAuth.style.display = 'none';
@@ -307,9 +330,10 @@
         background[0].classList.remove('blur');
     };
 
-    function setPopup(p, b, t, pP, lP) {
+    function setPopup(p, pB, eB, t, pP, lP) {
         pop.style.display = p;
-        box.style.display = b;
+        pBox.style.display = pB;
+        eBox.style.display = eB;
         //smsAuth.style.display = 'none';
 
         title.textContent = t;

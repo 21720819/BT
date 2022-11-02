@@ -10,6 +10,7 @@
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
         {% else %}
+
             <a href="{% url 'reportPost' detail.id %}" class="detail_navEle">신고</a>
         {% endif %}
     </div>
@@ -29,15 +30,18 @@
 
     <!-- 내용 -->
     <div class="detail_main">
-        {%if detail.category == 0 %}
+        <!-- 카테고리 -->
+        {% if detail.category == 0 %}
             <h5 class="detail_category">거래게시판/식재료</h5>
-        {%elif detail.category == 1 %}
+        {% elif detail.category == 1 %}
             <h5 class="detail_category">거래게시판/생필품</h5>
-        {%elif detail.category == 2 %}
+        {% elif detail.category == 2 %}
             <h5 class="detail_category">거래게시판/OTT</h5>
-        {%elif detail.category == 3 %}
+        {% elif detail.category == 3 %}
             <h5 class="detail_category">거래게시판/배달</h5>
-        {%endif%}
+        {% endif %}
+
+        <!-- 제목 + 가격 + 닉네임 -->
         <h1 class="detail_title">{{detail.title}}</h1>
         <h3 class="detail_price">{{detail.price}}원</h3>
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
@@ -60,6 +64,7 @@
         
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
 
+        <!-- 장소 + 시간 -->
         <table>
             <tr>
                 <td><ion-icon name="location" style="color: var(--first-color); margin: 0 5px -1.5px 0;"></ion-icon></td>
@@ -75,6 +80,7 @@
 
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
         
+        <!-- 내용 -->
         <div style="font-size: 10px; font-weight: 100; text-align: right; color: gray; margin-top: -3px;">작성일 : {{detail.writeDate|date:'m-d H:i'}}</div>
         <p class="detail_context">{{detail.body}}</p>
         
@@ -88,7 +94,7 @@
                     <input type="submit" value="♡&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% endif %}
             </form>
-            <!-- <div style="font-size: 20px; margin-top: -7px; margin-bottom: 10px;">{{detail.join_count}}/{{detail.wpeople}}</div> -->
+            
             {% if detail.ID.id == user.id %}
                 <button class="detail_applyButton buttonColor">
                     <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>

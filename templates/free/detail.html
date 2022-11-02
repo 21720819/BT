@@ -19,11 +19,8 @@
             <a href="{% url 'freeEdit' detail.id %}" class="detail_navEle">수정</a>
         {% endif %}
     </div>
+    
     <div class="freeDtLeft">
-        <!-- {%if detail.ID.id == user.id%}
-        <a href="{% url 'freeDelete' detail.id %}">삭제</a>
-        <a href="{% url 'freeEdit' detail.id %}">수정</a>
-        {% endif %} -->
         <div style="overflow: hidden;">
             <h2 class="detail_title" style="width: calc(100% - 40px); float: left;">{{detail.title}}</h3>
             <div style="width: 15px; font-size: 15px; font-weight: bold; color: var(--first-color); margin-top: 2.5px; float: right;">{{detail.like_count}}</div>

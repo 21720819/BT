@@ -11,7 +11,7 @@
             display: none;
         }
     }*/
-    #content__blur {
+    body {
         padding: 0;
     }
 </style>
@@ -44,8 +44,15 @@
     var popClose = document.getElementById('popClose');
 
     popClose.onclick = function() {
-        window.close();
+        if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하일 때
+            window.history.back()
+        }
+        else {
+            window.close();
+        }
     };
+    
+    
 </script>
 
 {% endblock %}
