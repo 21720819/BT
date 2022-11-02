@@ -242,6 +242,7 @@ video { width: 100%; }
   margin: 20px;
 
   float: left;
+  z-index: -1;
 }
 .detail_main {
   width: calc(40% - 40px);
@@ -537,6 +538,7 @@ video { width: 100%; }
   margin: 40px;
 
   float: left;
+  z-index: -1;
 }
 .map_CustomOverlay {
   position: absolute;
