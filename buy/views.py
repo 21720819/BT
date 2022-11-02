@@ -30,9 +30,9 @@ def buyCreate(request):
         if form.is_valid():
             finished_form =form.save(commit=False)
             finished_form.ID=get_object_or_404(User,id=user_id)
-            if request.FILES['photo']:
-                photo = request.FILES['photo']
-                finished_form.photo = photo
+            # if (request.FILES['photo']):
+            #     photo = request.FILES['photo']
+            finished_form.photo = request.FILES['photo']
             user.point+=30 # 포인트 30점
             user.setLevel()
             user.save()
