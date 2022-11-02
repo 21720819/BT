@@ -9,9 +9,9 @@
         {% if detail.ID.id == user.id %}
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
+            <div id="accuse" href="" class="detail_navEle" style="cursor: pointer;">신고</div>
         {% else %}
-
-            <a href="{% url 'reportPost' detail.id %}" class="detail_navEle">신고</a>
+            <a id="accuse" href="{% url 'reportPost' detail.id %}" class="detail_navEle">신고</a>
         {% endif %}
     </div>
     <div style="clear: both;"></div>
@@ -151,4 +151,63 @@
     </script>
 
 </div>
+
+<!-- 팝업 -->
+<div id="pop" class="pop_wrap" style="display: none;">
+    <div class="pop_inner">
+        <!-- 제목 + 닫기 -->
+        <div class="pop_blank">
+            <div id="title" style="font-size: 15px; font-weight: bold; line-height: 25px; float: left;"></div>
+            <div id="close">
+                <img src="{% static 'images/close.png' %}" style="width: 55%; height: 55%;">
+            </div>
+        </div>
+
+        <!-- 신고하기 -->
+        <div id="profile_accuseBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
+    </div>
+</div>
+
+<!-- html 불러오기 -->
+<script>
+    function insertIntoPopup(url, target) {
+        fetch(url)
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                document.getElementById(target).insertAdjacentHTML("afterbegin", data);
+            });
+    }
+
+    insertIntoPopup("{% url 'reportPost' detail.id %}", 'profile_accuseBox');
+</script>
+<!-- 팝업 스크립트 -->
+<script>
+    var accuse = document.getElementById('accuse');
+
+    var pop = document.getElementById('pop');
+    var aBox = document.getElementById('profile_accuseBox');
+    var closeBtn = document.getElementById('close');
+    var title = document.getElementById('title');
+    
+    var background = document.getElementsByClassName('detail_container');
+
+    accuse.onclick = function() {
+        setPopup('block', 'block', '신고하기');
+        background[0].classList.add('blur');
+    };
+
+    closeBtn.onclick = function() {
+        setPopup('none', 'none', '');
+        background[0].classList.remove('blur');
+    };
+
+    function setPopup(p, aB, t) {
+        pop.style.display = p;
+        aBox.style.display = aB;
+
+        title.textContent = t;
+    }
+</script>
 {% endblock %}
