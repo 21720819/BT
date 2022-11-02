@@ -1003,7 +1003,7 @@ video { width: 100%; }
   --white-color: #FBFBFB;
 
   /*===== z index =====*/
-  --z-fixed: 1;
+  --z-fixed: 0;
 }
 
 /*========== BASE ============*/
@@ -1221,7 +1221,6 @@ body {
 .header__toggle {
   z-index: 2;
 }
-
 
 /*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 +++++++*/
 @media screen and (max-width: 768px) {
