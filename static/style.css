@@ -791,9 +791,9 @@
   .profile_btns {
     padding: 20px;
   }
-  .profile_delete {
+  /* .profile_last {
     margin-bottom: 10px;
-  }
+  } */
 }
 
 
@@ -925,7 +925,7 @@ nav a {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--header-height);
+  height: calc(var(--header-height) + 1rem);
   padding: 0 1rem;
   background-color: #FFF;
   z-index: var(--z-fixed);
@@ -1093,27 +1093,29 @@ i {
   }
 }
 /*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 ++++++++*/
-@media screen and (min-width: 768px) {
-  body {
-    padding-top: var(--header-height);
-    margin: 0;
-  }
-  .header {
-    height: calc(var(--header-height) + 1rem);
-  }
-  .header__logo {
-    display: none;
-  }
-  .header__toggle {
-    z-index: 2;
-  }
+body {
+  padding-top: calc(var(--header-height) + 1rem);
+  margin: 0;
 }
+/* .header {
+  height: calc(var(--header-height) + 1rem);
+} */
+.header__logo {
+  display: none;
+}
+.header__toggle {
+  z-index: 2;
+}
+
 
 /*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 +++++++*/
 @media screen and (max-width: 768px) {
   body {
       padding-top: var(--header-height);
       margin: 0;
+  }
+  .header {
+    height: var(--header-height);
   }
 }
 

@@ -146,9 +146,15 @@
     </div>
     {% endif %}
 
-    <div class="profile_summary profile_btns profile_delete">
+    <div class="profile_summary profile_btns">
         <a class="nav-link nav_change_color" href="{% url 'logout' %}">로그아웃</a>
     </div>
+
+    {% if not user.is_staff %}
+    <div class="profile_summary profile_btns">
+        <a class="nav-link nav_change_color" href="{% url 'logout' %}">회원탈퇴</a>
+    </div>
+    {% endif %}
 </div>
 
 <!-- 팝업 -->

@@ -34,15 +34,15 @@
     <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
     <table class="mobileEle">
         <tr>
-            <td><ion-icon name="location-outline"" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+            <td><ion-icon name="location-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
             <td><div id="mobileLoca" class="detail_loca_time">위치</div></td>
         </tr>
         <tr>
-            <td><ion-icon name="time-outline"" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+            <td><ion-icon name="time-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
             <td><div id="mobileTime" class="detail_loca_time">시간</div></td>
         </tr>
         <tr>
-            <td><ion-icon name="pricetag-outline"" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
+            <td><ion-icon name="pricetag-outline" style="margin: 0 5px -1.5px 0;"></ion-icon></td>
             <td><div id="mobileTime" class="detail_loca_time">가격</div></td>
         </tr>
     </table>
@@ -247,25 +247,63 @@
         img.setAttribute('src', '#');
         imgDiv.appendChild(img);*/
 
+        // 내용
         var desc = document.createElement('div');
         desc.className = 'map_desc';
         body.appendChild(desc);
 
+        // 위치
         var location = document.createElement('div');
         location.className = 'map_location';
-        location.textContent = `${positions.location}`;
+        //location.textContent = `위치 : ${positions.location}`;
         desc.appendChild(location);
 
-        var time = document.createElement('div');
-        time.className = 'map_time';
-        time.textContent = `모집인원 : ${positions.time}`;
-        desc.appendChild(time);
+        var locaImg = document.createElement('ion-icon');
+        locaImg.name = 'location';
+        locaImg.style.color = 'var(--first-color)';
+        locaImg.style.margin = '0 5px -1.5px 0';
+        locaImg.style.display = 'inline-block'
+        location.appendChild(locaImg);
+
+        var locaText = document.createElement('div');
+        locaText.textContent = `${positions.location}`;
+        locaText.style.display = 'inline-block';
+        location.appendChild(locaText);
+
+        // 모집인원
+        var people = document.createElement('div');
+        people.className = 'map_time';
+        //time.textContent = `모집인원 : ${positions.time}`;
+        desc.appendChild(people);
+
+        var peopleImg = document.createElement('ion-icon');
+        peopleImg.name = 'people';
+        peopleImg.style.color = 'var(--first-color)';
+        peopleImg.style.margin = '0 5px -1.5px 0';
+        peopleImg.style.display = 'inline-block'
+        people.appendChild(peopleImg);
+
+        var peopleText = document.createElement('div');
+        peopleText.textContent = `${positions.time}명`;
+        peopleText.style.display = 'inline-block';
+        people.appendChild(peopleText);
 
         var price = document.createElement('div');
         price.className = 'map_price';
-        price.textContent = `가격 : ${positions.price}`;
+        //price.textContent = `가격 : ${positions.price}`;
         desc.appendChild(price);
 
+        var priceImg = document.createElement('ion-icon');
+        priceImg.name = 'pricetag';
+        priceImg.style.color = 'var(--first-color)';
+        priceImg.style.margin = '0 5px -1.5px 0';
+        priceImg.style.display = 'inline-block'
+        price.appendChild(priceImg);
+
+        var priceText = document.createElement('div');
+        priceText.textContent = `${positions.price}원`;
+        priceText.style.display = 'inline-block';
+        price.appendChild(priceText);
 
         /*
         var info = document.createElement('span');
