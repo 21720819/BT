@@ -9,9 +9,8 @@
         {% if detail.ID.id == user.id %}
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
-            <div id="accuse" href="" class="detail_navEle" style="cursor: pointer;">신고</div>
         {% else %}
-            <a id="accuse" href="{% url 'reportPost' detail.id %}" class="detail_navEle">신고</a>
+            <div id="accuse" class="detail_navEle" style="cursor: pointer;">신고</div>
         {% endif %}
     </div>
     <div style="clear: both;"></div>
