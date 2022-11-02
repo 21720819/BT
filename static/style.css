@@ -242,7 +242,7 @@ video { width: 100%; }
   margin: 20px;
 
   float: left;
-  z-index: -1;
+  z-index: 0;
 }
 .detail_main {
   width: calc(40% - 40px);
@@ -538,7 +538,7 @@ video { width: 100%; }
   margin: 40px;
 
   float: left;
-  z-index: -1;
+  z-index: 0;
 }
 .map_CustomOverlay {
   position: absolute;
@@ -1005,7 +1005,7 @@ video { width: 100%; }
   --white-color: #FBFBFB;
 
   /*===== z index =====*/
-  --z-fixed: 0;
+  --z-fixed: 1;
 }
 
 /*========== BASE ============*/
