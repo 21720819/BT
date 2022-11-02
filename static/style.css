@@ -39,6 +39,9 @@
   font-style: normal;
 }
 
+html {
+  overflow-y: scroll;
+}
 /* ---------아이콘 import---------- */
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
@@ -56,7 +59,7 @@
   background: #FB6C84;
 }
 
-/* ------ main -------*/
+/* ===== 홈 화면 비디오 ===== */
 .jb-box {
   width: 100%;
  height: 50%; 
@@ -64,7 +67,119 @@
  margin: 0px auto;
  position: relative; }
 
- video { width: 100%; }
+video { width: 100%; }
+
+/* ===== footer ===== */
+footer p {
+  color: #999;
+  line-height: 25px;
+}
+
+footer h2, h3 {
+  color: #fff;
+}
+
+footer h2 {
+  font-size: 18px;
+}
+
+.footer-top {
+  background: #111;
+  padding: 80px 0;
+}
+
+.segment-one h3 {
+  color: #fff;
+  letter-spacing: 3px;
+  margin: 10px 0;
+}
+
+.segment-two h2 {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.segment-two h2:before {
+  content: '|';
+  color: #FB2146;
+  padding-right: 10px;
+}
+
+.segment-two ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.segment-two ul li {
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  line-height: 40px;
+}
+
+.segment-two ul li a {
+  color: #999;
+  text-decoration: none;
+}
+
+.segment-three h2 {
+  color: #fff;
+  text-transform: uppcase;
+}
+
+.segment-three h2:before {
+  content: '|';
+  color: #FB2146;
+  padding-right: 10px;
+}
+
+.segment-three a {
+  background: #494848;
+  width: 40px; 
+  height: 40px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.segment-three a i {
+  font-size: 20px;
+  color: #FB2146;
+  padding: 10px 12px;
+}
+
+.segment-four h2 {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.segment-four h2:before {
+  content: '|';
+  color: #FB2146;
+  padding-right: 10px;
+}
+
+.footer-copyright {
+  text-align: center;
+  background: #000;
+  line-height: 75px;
+}
+
+@media only screen and (min-width: 768px) {
+  .md-mb-30 {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .sm-mb-30 {
+    margin-bottom: 30px;
+  }
+  .footer-top {
+    padding: 50px 0;  
+  }
+}
+
+
+
 
 
 /* ---------detail---------- */
@@ -1081,20 +1196,18 @@ i {
   }
 }
 /*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 ++++++++*/
-@media screen and (min-width: 768px) {
-  body {
-    padding-top: var(--header-height);
-    margin: 0;
-  }
-  .header {
-    height: calc(var(--header-height) + 1rem);
-  }
-  .header__logo {
-    display: none;
-  }
-  .header__toggle {
-    z-index: 2;
-  }
+body {
+  padding-top: calc(var(--header-height) + 1rem);
+  margin: 0;
+}
+.header {
+  height: calc(var(--header-height) + 1rem);
+}
+.header__logo {
+  display: none;
+}
+.header__toggle {
+  z-index: 2;
 }
 
 /*+++++++ 웹 NAV 과 모바일 NAV 구분 지점 +++++++*/
@@ -1153,7 +1266,7 @@ i {
   background: #FB2146;
 } */
 
-/*======= 그냥 추가해보고 있는 것 =======  */
+/*======= 카테고리 메뉴 =======  */
 .menu-4 {
   text-align: center;
   text-transform: uppercase;
@@ -1209,6 +1322,9 @@ i {
 }
 
 /*======== 거래게시판 Buy ========*/
+
+
+
 .card:hover {
   box-shadow: 2px 2px 2px gray;
 }
@@ -1378,6 +1494,16 @@ i {
   background: #fff;
   padding: 10px;
   border-radius: 5px
+}
+
+.inner-card > img {
+  transform:scale(1.0);        
+  transition: transform .5s; 
+}
+
+.inner-card > img:hover{         
+  transform:scale(1.1);          
+  transition: transform .5s; 
 }
 
 .heart {
