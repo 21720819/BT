@@ -6,6 +6,9 @@
     #profile_accuseBox html, body {
         height: 100%;
     }
+    #profile_accuseBox footer {
+        display: none;
+    }
     #profile_accuseBox #content__blur {
         height: 100%;   
     }
@@ -15,7 +18,7 @@
     {% csrf_token %}
 
     {{form.category}}
-    <textarea class="detail_context" type="text" name="content" placeholder="내용을 입력하세요." cols=50 rows=10 style="width: 100%; height: calc(100% - 100px); resize: none; border: 0; margin: 0; padding: 0; display:block;"></textarea>
+    <textarea class="detail_context report_textarea" type="text" name="content" placeholder="내용을 입력하세요." cols=50 rows=10 ></textarea>
     <input class="create_submitButton buttonColor" type="submit" value="확인" style="margin-top: 50px;">
 </form>
 

@@ -12,7 +12,19 @@ class UserReportform(forms.ModelForm):
 		model = ReportUser
 		fields = ['content','category']
 
+		widgets = {
+			'category' : forms.Select(
+				attrs={ 'class': 'custom-select', 'style': 'width: 100%; height: 20px; background: #fff; border: 0; margin-bottom: 15px;' }
+			),
+		}
+  
 class PostReportform(forms.ModelForm):
 	class Meta:
 		model = ReportPost
 		fields = ['content','category']
+
+		widgets = {
+			'category' : forms.Select(
+				attrs={ 'class': 'custom-select', 'style': 'width: 100%; height: 20px; background: #fff; border: 0; margin-bottom: 15px;' }
+			),
+		}
