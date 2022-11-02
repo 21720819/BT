@@ -1,5 +1,6 @@
 from django.urls import path
 from buy import views
+from profiles import views as profileview
 
 urlpatterns = [
     path('',views.buyHome , name='buyHome'),
@@ -7,6 +8,7 @@ urlpatterns = [
     path('category/<str:category>/',views.p_category, name='category'),
     path('create',views.buyCreate , name='buyCreate'),
     path('detail/<int:post_id>',views.buyDetail,name='buyDetail'),
+    path('detail/<int:post_id>/postreport', profileview.reportPost, name='reportPost'),
     path('<int:post_id>/bookmark',views.addBookmark,name='addBookmark'),
     path('detail/<int:post_id>/delete',views.buyDelete,name='buyDelete'),
     path('detail/<int:post_id>/edit',views.buyEdit,name='buyEdit'),

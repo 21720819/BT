@@ -10,7 +10,7 @@
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
         {% else %}
-            Z<a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">신고</a>
+            <a href="{% url 'reportPost' detail.id %}" class="detail_navEle">신고</a>
         {% endif %}
     </div>
     <div style="clear: both;"></div>

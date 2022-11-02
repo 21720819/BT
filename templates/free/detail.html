@@ -54,7 +54,7 @@
 
         <div>
         {% for comment in detail.comment_set.all %}
-            <div class="freecommentUser"><span>{{comment.ID.username}}</span> <span class="freedate">{{comment.writeDate|date:'m-d H:i'}}</span></div>
+            <div class="freecommentUser"><a class="nav-link" href="{% url 'userProfile' detail.ID.username %}">{{comment.ID.username}}</a> <span class="freedate">{{comment.writeDate|date:'m-d H:i'}}</span></div>
             {% if not forloop.last %}
                 <p>{{ comment.body }}</p>
             {% else %}

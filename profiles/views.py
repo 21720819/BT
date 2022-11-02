@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404,render,HttpResponse, redirect
 from accounts.models import User
 from buy.models import Buy
 from accounts.forms import Smsform ,Smscheckform
-from profiles.forms import UserReviewform, UserReportform
+from profiles.forms import UserReviewform, UserReportform, PostReportform
 from .models import Review
 from django.db.models import Avg
 
@@ -128,6 +128,21 @@ def reportUser(request, username):
         form  = UserReportform()
     # return render(request,'profile/review.html', {'form':form})
     return render(request, 'profile/report.html', {'form':form})
+
+def reportPost(request, post_id):
+    if request.method == 'POST':
+        form = PostReportform(request.POST)
+        post = Buy.objects.get(id=post_id)
+        
+        if form.is_valid():
+            finished_form =form.save(commit=False)
+            finished_form.buyID=get_object_or_404(Buy,id=post_id)
+            finished_form.save()
+        return redirect('../'+str(post.id))
+    else:
+        form  = PostReportform()
+    # return render(request,'profile/review.html', {'form':form})
+    return render(request, 'profile/reportpost.html', {'form':form, 'id':post_id})
 
 def userProfile(request, username):
     profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
