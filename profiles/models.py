@@ -3,14 +3,26 @@ from accounts.models import User
 from buy.models import Buy
 
 class ReportUser(models.Model):
-    content =models.TextField()
+    CATEGORY_CHOICES = [(0,'사기'),(1,'욕설'),(2,'거래파기'),(3,'기타')]
+    content =models.TextField(blank=True,
+                                 null=True)
     ID = models.ForeignKey(User,  on_delete=models.CASCADE,blank=False,
                                  null=False,
                                  default="")# 글쓴이 
+    category = models.IntegerField(choices=CATEGORY_CHOICES,
+                                 blank=False,
+                                 null=False,
+                                 default=0)
 
 class ReportPost(models.Model):
-    content = models.TextField()
+    CATEGORY_CHOICES = [(0,'광고'),(1,'사기'),(2,'욕설'),(3,'기타')]
+    content = models.TextField(blank=True,
+                                 null=True)
     buyID = models.ForeignKey(Buy, on_delete=models.CASCADE, blank= True,null=False)#거래글
+    category = models.IntegerField(choices=CATEGORY_CHOICES,
+                                 blank=False,
+                                 null=False,
+                                 default=0)
 
 
 # 신고,, > 게시글 신고는 게시글 에서 작성자 아이디 받아와서 유저 신고로

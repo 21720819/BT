@@ -21,7 +21,17 @@
     <!-- 닉네임 -->
     <table id="profile_table">
         <tr>
-            <td style="width: 30px;"><img class="profile_img"></td>
+            <td style="width: 30px;">
+                {% if profileuser.level == 0 %}
+                <img src="{% static 'images/foodmark.png'%}" class="profile_img">
+                {% elif profileuser.level == 1 %}
+                <img src="{% static 'images/nesmark.png'%}" class="profile_img">
+                {% elif profileuser.level == 2 %}
+                <img src="{% static 'images/ottmark.png'%}"class="profile_img">
+                {% elif profileuser.level == 3 %}
+                <img src="{% static 'images/delmark.png'%}" class="profile_img">
+                {% endif %}
+            </td>
             <td style="font-size: 20px; text-align: left;">
                 <h3 class="profile_nick">{{profileuser.username}}</h3>
                 <!-- <h4 class="profile_text" style="font-size: 15px;">{{user.level}}</h4> -->
@@ -41,7 +51,11 @@
         </div><div class="profile_division">
             <div class="profile_divUpParts">휴대폰 인증</div>
             <!-- <div class="profile_divDownParts">{{user.last_login|date:'Y-m-d'}}</div> -->
+            {% if profileuser.phone_number %}
+            <div class="profile_divDownParts">인증</div>
+            {% else %}
             <div class="profile_divDownParts">미인증</div>
+            {% endif %}
         </div>
     </div>
 
@@ -70,7 +84,14 @@
             <div class="profile_halfDiv" style="width: 250px; padding: 0; position: relative;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
+
+
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{reviews.avg_rate}}</div>
+                    <!-- <div class="profile_posts">
+                        {% for review in profileuser.ID.all %}
+                            <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
+                        {% endfor %}
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -98,7 +119,7 @@
             <div class="profile_halfDivM">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{profileuser.point__avg}}</div>
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{reviews.avg_rate}}</div>
                 </div>
             </div>
         </div>      

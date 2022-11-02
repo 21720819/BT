@@ -1,6 +1,17 @@
 {% extends 'nav.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'style2.css' %}?after">
+<link rel="stylesheet" href="{% static 'open-iconic-bootstrap.min.css' %}?after">
+<link rel="stylesheet" href="{% static 'animate.css' %}?after">
+<link rel="stylesheet" href="{% static 'owl.carousel.min.css' %}?after">
+<link rel="stylesheet" href="{% static 'owl.theme.default.min.css' %}?after">
+<link rel="stylesheet" href="{% static 'magnific-popup.css' %}?after">
+<link rel="stylesheet" href="{% static 'aos.css' %}?after">
+<link rel="stylesheet" href="{% static 'ionicons.min.css' %}?after">
+<link rel="stylesheet" href="{% static 'bootstrap-datepicker.css' %}?after">
+<link rel="stylesheet" href="{% static 'jquery.timepicker.css' %}?after">
+
 
 <div class="jb-box">
   <video muted autoplay loop  width="100%">
@@ -13,6 +24,8 @@
 </video> -->
 
 <!-- <section id="gallery">
+  
+
   <div class="container">
     <div class="row">
       <div class="col-6" style="margin-bottom: 10px;">
@@ -63,5 +76,395 @@
   </div>
 </div>
 </section> -->
+<section class="home-slider js-fullheight owl-carousel bg-white">
+  <div class="slider-item js-fullheight">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+        <div class="one-third order-md-last img js-fullheight" style="background-image:url(images/bg_1.jpg);">
+          <h3 class="vr">Buy Together</h3>
+        </div>
+        <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+          <div class="text">
+            <h1 class="mb-4">우리만의 <br>공동구매</h1>
+            <p>거래세피나 블라블라</p>
+            <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">거래게시판 둘러보기</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-item js-fullheight">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row d-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+        <div class="one-third order-md-last img js-fullheight" style="background-image:url(images/bg_2.jpg);">
+          <h3 class="vr">Buy Together</h3>
+        </div>
+        <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+          <div class="text">
+            <h1 class="mb-4">우리만의 공동구매</h1>
+            <p>자유게시판 블라블라</p>
+            <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">자유게시판 둘러보기</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftc-no-pb">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-5 p-md-5 img img-2" style="background-image: url(images/bg_3.jpg);">
+      </div>
+      <div class="col-md-7 wrap-about pb-md-5 ftco-animate">
+        <div class="heading-section mb-5 pl-md-5">
+          <div class="pl-md-5 ml-md-5">
+            <span class="subheading subheading-with-line"><small class="pr-2 bg-white">About</small></span>
+            <h2 class="mb-4">Buy Together 목적</h2>
+          </div>
+        </div>
+        <div class="pl-md-5 ml-md-5 mb-5">
+          <p>탄생목적에 대한 제목</p>
+          <p>탄생목적에 대한 내용</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row d-md-flex align-items-center justify-content-end">
+      <div class="col-lg-10">
+        <div class="row d-md-flex align-items-center">
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="18">0</strong>
+                <span>Years of Experienced</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="351">0</strong>
+                <span>Happy Clients</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="564">0</strong>
+                <span>Finished Projects</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="300">0</strong>
+                <span>Working Days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-services">
+  <div class="container">
+    <div class="row justify-content-start mb-5 pb-5">
+      <div class="col-md-4 heading-section ftco-animate">
+        <h2 class="mb-4">Buy Together의 거래 흐름</h2>
+      </div>
+      <div class="col-md-8 pl-md-5 ftco-animate">
+        <div class="pl-md-4 border-line">
+          <p>거래 흐름을 안전하게 한다는 설명</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services d-block">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-idea"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">1</h3>
+            <p>1의 설명</p>
+          </div>
+        </div>      
+      </div>
+      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services d-block">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-compass-symbol"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">2</h3>
+            <p>2의 설명</p>
+          </div>
+        </div>    
+      </div>
+      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services d-block">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-layers"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">3</h3>
+            <p>3의 설명</p>
+          </div>
+        </div>      
+      </div>
+    </div>
+    <div class="row justify-content-start mt-5 py-5">
+      <div class="col-md-4 heading-section ftco-animate">
+        <h2 class="mb-4">Buy Together의 거래 품목</h2>
+        <p>거래품목의 설명</p>
+      </div>
+      <div class="col-md-8 ftco-animate">
+        <div class="row d-flex">
+          <div class="col-md-6 d-flex align-items-stretch">
+            <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
+              <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-layers"></span>
+              </div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">식료품</h3>
+                <p>식료품설명</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-stretch">
+            <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
+              <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-layers"></span>
+              </div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">생필품</h3>
+                <p>생필품설명</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-stretch">
+            <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
+              <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-layers"></span>
+              </div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">OTT</h3>
+                <p>OTT설명</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-stretch">
+            <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
+              <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-layers"></span>
+              </div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">배달</h3>
+                <p>배달설명</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section testimony-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate">
+        <span class="subheading subheading-with-line"><small class="pr-2 bg-light">고객들의 추천</small></span>
+        <h2 class="mb-4">고객의 이용후기</h2>
+        <p>이용후기~~~</p>
+      </div>
+    </div>
+    <div class="row ftco-animate">
+      <div class="col-md-12">
+        <div class="carousel-testimony owl-carousel">
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <div class="pl-5">
+                  <p class="name">Garreth Smith</p>
+                  <span class="position">CEO Founder of Commercial Building</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-5" style="background-image: url(images/person_2.jpg)">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <div class="pl-5">
+                  <p class="name">Garreth Smith</p>
+                  <span class="position">CEO Founder of Interior Design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-5" style="background-image: url(images/person_3.jpg)">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <div class="pl-5">
+                  <p class="name">Garreth Smith</p>
+                  <span class="position">Exterior Designer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <div class="pl-5">
+                  <p class="name">Garreth Smith</p>
+                  <span class="position">Landscape Designer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <div class="pl-5">
+                  <p class="name">Garreth Smith</p>
+                  <span class="position">System Analyst</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</>
+  
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate">
+        <span class="subheading subheading-with-line"><small class="pr-2 bg-white">BuyTogether 개발팀</small></span>
+        <h2 class="mb-4">개발팀</h2>
+        <p>개발팀 설명~</p>
+      </div>
+    </div>	
+    <div class="row">
+      <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="staff">
+          <div class="img" style="background-image: url(images/team-1.jpg);"></div>
+          <div class="text px-4 pt-4">
+            <h3>김민솔</h3>
+            <span class="position mb-2">Co-Founder / CEO</span>
+            <div class="faded">
+              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <ul class="ftco-social d-flex">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="staff">
+          <div class="img" style="background-image: url(images/team-2.jpg);"></div>
+          <div class="text px-4 pt-4">
+            <h3>김보민</h3>
+            <span class="position mb-2">Achitect</span>
+            <div class="faded">
+              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <ul class="ftco-social d-flex">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="staff">
+          <div class="img" style="background-image: url(images/team-3.jpg);"></div>
+          <div class="text px-4 pt-4">
+            <h3>김재현</h3>
+            <span class="position mb-2">Achitect</span>
+            <div class="faded">
+              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <ul class="ftco-social d-flex">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="staff">
+          <div class="img" style="background-image: url(images/team-4.jpg);"></div>
+          <div class="text px-4 pt-4">
+            <h3>윤주현</h3>
+            <span class="position mb-2">Achitect</span>
+            <div class="faded">
+              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <ul class="ftco-social d-flex">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

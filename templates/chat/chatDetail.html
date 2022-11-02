@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+<script type="text/javascript" src="{%static 'js/jquery-3.1.1.min.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<body>
+
+      <script>
+       var sb = new SendBird({appId: '{{application_id}}'});
+        // sendbird 연결
+        sb.connect("{{user_id}}", function(user, error) {
+            if (error) {
+                return;
+            }
+        });
+
+      sb.GroupChannel.getChannel('{{channel_url}}', function(groupChannel, error) {
+            if (error) {
+                  return;
+            }
+
+            // ChannelHandler 객체
+            var ChannelHandler = new sb.ChannelHandler();
+
+              // 메시지 받기
+              ChannelHandler.onMessageReceived = function(channel, message){
+                  location.reload();
+                  val = window.localStorage.getItem('tx_send');
+                  $('#tx_send').val(val);
+               };
+
+                    sb.addChannelHandler('test_id2_ChannelHandlerIdTmp', ChannelHandler);
+
+
+            // 메시지 발송 객체 함수 할당
+            sendMsgObj = function (msg) {
+                  groupChannel.sendUserMessage(msg, groupChannel.data, groupChannel.customType, function(message, error){
+                  if (error) {
+                        return;
+                  }
+                  $('#tx_send').val("");
+                  location.reload();
+                  
+                  });
+            }
+      });
+      </script>
+     <div class = "out">
+            <div id="chat-messages">
+                  {% for message in message_list %}
+                        {%if message.check_same_date %}
+                        <label>{{message.sent_date}}</label>
+                        {% endif %}
+                        {% if message.check_same  %}
+                        <div class="message right">
+                              <div class="bubble">
+                                    {{message.text}}
+                                    <div class="corner"></div>
+                                    <span>{{message.sent_time}}</span>
+                              </div>
+                        </div>
+                        {% else %}
+                        <div class="message">
+                              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+                              <div class="nickname">{{message.nickname}}</div>
+                              <div class="bubble">
+                                    {{message.text}}
+                                    <div class="corner"></div>
+                                    <span>{{message.sent_time}}</span>
+                              </div>
+                        </div>
+          
+                        {% endif %}
+                       
+                       
+            {% endfor%}
+
+
+           
+           </div>
+      <div class="div_send">
+            <form id = "send_form" method="POST" onsubmit="send_message()">
+                  {% csrf_token %}
+                  <input type="text" id ="tx_send" onkeyup="saveValue(this)" name ="messages">
+                  <button type="button" onclick="send_message()"></button>
+            </form>    
+      </div>
+      
+   
+     </div> 
+
+
+  
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
+</body>
+
+  
+{% endblock %}

@@ -1,251 +1,46 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 
 {% extends 'nav.html' %}
-
 {% load static %}
 {% block content %}
-
 <head>
-    <style>
-        * {
-        margin: 0;
-        padding: 0;
-        }
-    
-        body {
-        font-size: 11px;
-        }
-    
-        .chat_list_wrap {
-        list-style: none;
-        }
-    
-        .chat_list_wrap .header {
-        font-size: 14px;
-        padding: 15px 0;
-        background: #E98197;
-        color: white;
-        text-align: center;
-        font-family: "Josefin Sans", sans-serif;
-        }
-    
-        .chat_list_wrap .search {
-        background: #eee;
-        padding: 5px;
-        }
-    
-        .chat_list_wrap .search input[type="text"] {
-        width: 100%;
-        border-radius: 4px;
-        padding: 5px 0;
-        border: 0;
-        text-align: center;
-        }
-    
-        .chat_list_wrap .list {
-        padding: 0 16px;
-        }
-    
-        .chat_list_wrap .list ul {
-        width: 100%;
-        list-style: none;
-        margin-top: 3px;
-        }
-    
-        .chat_list_wrap .list ul li {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e5e5e5;
-        }
-    
-        .chat_list_wrap .list ul li table {
-        width: 100%;
-        }
-    
-        .chat_list_wrap .list ul li table td.profile_td {
-        width: 50px;
-        padding-right: 11px;
-        }
-    
-        .chat_list_wrap .list ul li table td.profile_td img {
-        width: 50px;
-        height: auto;
-        }
+  <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-        a {
-            text-decoration-line: none;
-            }
+  <script language='javascript'> 
+     chats = document.getElementById("chats");
+     
+     setTimeout(chats.location.reload(), 1000);
+
+
     
-        .chat_list_wrap .list ul li table td.chat_td .email {
-        font-size: 12px;
-        font-weight: bold;
-        }
-    
-        .chat_list_wrap .list ul li table td.time_td {
-        width: 90px;
-        text-align: center;
-        }
-    
-        .chat_list_wrap .list ul li table td.time_td .time {
-        padding-bottom: 4px;
-        }
-    
-        .chat_list_wrap .list ul li table td.time_td .check p {
-        width: 5px;
-        height: 5px;
-        margin: 0 auto;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-        background: #e51c23;
-        }
-    </style>
-    <script type="text/javascript" src="{%static 'js/jquery-3.1.1.min.js' %}"></script>
-    <script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
-    <script>
-        function enterkey() {
-            if (window.event.keyCode == 13) {
-                sendMsgObj($('#msgId').val());return false; 
-            }
-        }
-</script>
+    </script>
+
 </head>
 
 <body>
-  <script>
-     var sb = new SendBird({appId: '{{application_id}}'});
-
-          // sendbird 연결
-        sb.connect("{{uid}}", function(user, error) {
-            if (error) {
-                return;
-            }
-
-            //그룹채널 목록 불러오기
-            var listQuery = sb.GroupChannel.createMyGroupChannelListQuery();
-            listQuery.includeEmpty = true;
-            listQuery.memberStateFilter = 'joined_only';   
-            listQuery.order = 'latest_last_message'; 
-
-            listQuery.next(function(groupChannels, error) {
-                if (error) {
-                    return;
-                }
-
-                for (var Idx in groupChannels) {
-                    $("#message").append("<a href='#' onclick=\'selectChannel($(this));return false;\' url='" + groupChannels[Idx].url + "'>" + groupChannels[Idx].name + "</a><br>");
-                }
-            });
-        });
-
-        var selectChannel = function (obj) {
-            var url = obj.attr("url");
-            $("#message").remove();
-            $("#inputArea").show();
-
-            sb.GroupChannel.getChannel(url, function(groupChannel, error) {
-                if (error) {
-                    return;
-                }
-
-                 // ChannelHandler 객체
-                 var ChannelHandler = new sb.ChannelHandler();
-
-                // 메시지 받기
-                ChannelHandler.onMessageReceived = function(channel, message){
-                    var msgObj = $("<p>" + message.sender.nickname + " : " + message.message + "</p>");
-                    $("#message2").append(msgObj);
-                    };
-
-                    // ChannelHandler 추가
-                    sb.addChannelHandler('test_id2_ChannelHandlerIdTmp', ChannelHandler);
-               
-
-                // 메시지 발송 객체 함수 할당
-                sendMsgObj = function (msg) {
-                    groupChannel.sendUserMessage(msg, groupChannel.data, groupChannel.customType, function(message, error){
-                        if (error) {
-                            return;
-                        }
-                        $('#msgId').val("");
-                        var msgObj = $("<p>" + message.sender.nickname + " : " + message.message + "</p>");
-                        $("#message2").append(msgObj)
-                       
-                    });
-                }
-
-
-                  //예전 메시지 불러오기
-                  var PlistQuery = groupChannel.createPreviousMessageListQuery();
-                  PlistQuery.limit = 30;
-                  PlistQuery.reverse = false;
-
-                  PlistQuery.load(function(messages, error) {
-                    if (error) {
-                      return;
-                    }
-                    for (const msg of messages){
-                      var msgObj = $("<p>" + msg.sender.nickname + " : " + msg.message + "</p>");
-                      $("#message2").append(msgObj)
-                    
-                    }
-                    
-                      
-                 });
-
-
-
-            });
-        }
-
-      
-  </script>
-
-
-<div class="chat_list_wrap">
-
-    <div class="list">
-      <ul>
-        <li>
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-              
-              <td class="chat_td">
-                <!--Email & Preview-->
-                <div class="email" id ="message">
-                </div>
-                <!-- <div class="chat_preview">
-                  안녕하세요~
-                </div> -->
-              </td>
-              <!-- <td class="time_td"> -->
-                <!--Time & Check-->
-                <!-- <div class="time">
-                  2016.09.29 17:54
-                </div> -->
-                <!-- <div class="check">
-                  <p> </p>
-                </div> -->
-              <!-- </td> -->
-            </tr>
-          </table>
-          <div id="inputArea" style="display:none">
-            <div><input type="text" id="msgId" onkeyup="enterkey()"><a href="#" onclick="sendMsgObj($('#msgId').val());return false; " >전송</a></div>
-            <div id="message2"></div>
+ 
+  <div class ="chats">
+ {% for chat in chats %}
+  <div class="chat" onclick="location.href='{{chat.pk}}'">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+        <div>
+          <strong>{{chat.chat_room_name}}</strong>
+          <span class="member-count"> {{chat.member_count}}</span>
+          {% if chat.time %}
+          <span class = "last-time">{{chat.time}}</span>
+          {% endif %}
+          <br>
+ 
+          <span> {{chat.last_message}}</span>
         </div>
-        </li>
         
-      </ul>
-  
     </div>
 
-  
-  </div>
-
-
-  
-
+      {% endfor%}
+    </div>
 </body>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-  
 {% endblock %}

@@ -9,11 +9,15 @@
     #profile_accuseBox #content__blur {
         height: 100%;   
     }
+    @media screen and (max-width: 768px) {
+        #profile_accuseBox #content__blur {
+            padding: 0;
+        }
+    }
 </style>
 
-<form method="POST" role="form" action="{% url 'reportUser' user.username %}" style="height: 100%;">
+<form method="POST" role="form" action="{% url 'reportPost' id %}" style="height: 100%;">
     {% csrf_token %}
-
     {{form.category}}
     <textarea class="detail_context" type="text" name="content" placeholder="내용을 입력하세요." cols=50 rows=10 style="width: 100%; height: calc(100% - 100px); resize: none; border: 0; margin: 0; padding: 0; display:block;"></textarea>
     <input class="create_submitButton buttonColor" type="submit" value="확인" style="margin-top: 50px;">
