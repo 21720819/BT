@@ -5,6 +5,8 @@ class BuyModelform(forms.ModelForm):
 	class Meta:
 		model = Buy
 		fields = ['title','body','date','category','wpeople','price','location','photo','lat', 'long']
+		def __init__(self, *args, **kwargs):
+			self.fields['photo'].required = False
 
 		widgets = {
 			'photo' : forms.ClearableFileInput(
@@ -59,4 +61,4 @@ class BuyModelform(forms.ModelForm):
 						'style': 'width: 100%; resize: none; background: rgb(250, 247, 247); border: 0; margin: 0 0 40px 0; padding: 0;',
 						'placeholder': '내용을 입력하세요.' }
 			),
-		}
+			}
