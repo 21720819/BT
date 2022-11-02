@@ -39,6 +39,7 @@ function getSavedValue(v){
 
 function send_message(){
     sendMsgObj($('#tx_send').val());
+    storage.removeItem('#tx_send');
     return false; 
 }
 
