@@ -31,8 +31,10 @@
               // 메시지 받기
               ChannelHandler.onMessageReceived = function(channel, message){
                   location.reload();
+                  tx_send = document.getElementById("tx_send");
+
                   val = window.localStorage.getItem('tx_send');
-                  $('#tx_send').val(val);
+                  alert(val);
                };
 
                     sb.addChannelHandler('test_id2_ChannelHandlerIdTmp', ChannelHandler);
@@ -87,7 +89,7 @@
       <div class="div_send">
             <form id = "send_form" method="POST" onsubmit="send_message()">
                   {% csrf_token %}
-                  <input type="text" id ="tx_send" onkeyup="saveValue(this)" name ="messages">
+                  <textarea id ="tx_send" onkeyup="saveValue(this)" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
                   <button type="button" onclick="send_message()"></button>
             </form>    
       </div>

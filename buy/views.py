@@ -1,8 +1,11 @@
 from multiprocessing import context
+from urllib import response
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
-from .forms import BuyModelform
+from .forms import BuyModelform 
 from .models import Buy
+from chat.models import Chat
 from accounts.models import User
 import json, requests
 from django.conf import settings
@@ -169,31 +172,53 @@ def auth(request,post_id):
     join_user = post.join_users.all()
     return render(request,  'buy/auth.html',{'join_users':join_user,  'post_id':post_id})   
 
-#sendbird 정보 가져오기
-application_id = settings.SENDBIRD_APPLICATION_ID
-sendbird_api_token = settings.SENDBIRD_API_TOKEN
+
+
 
 #sendbird 그룹채널 생성
 def createChannel(request, post_id):
+    #sendbird 정보 가져오기
+    application_id = settings.SENDBIRD_APPLICATION_ID
+    sendbird_api_token = settings.SENDBIRD_API_TOKEN
     url = f"https://api-{application_id}.sendbird.com/v3/group_channels"
     api_headers = {"Api-Token": sendbird_api_token}
     post = get_object_or_404(Buy, pk=post_id)
-    uid = request.user.email #글쓴이도 추가
+    chat = Chat()
+    writer_email = request.user.email #글쓴이도 추가
     join_users = post.join_users.all()
     join_user_list = []
-    join_user_list.append(uid)
+    join_user_list.append(writer_email)
     for join_user in join_users:
          join_user_list.append(join_user.email)
 
     data = {
         "name": post.title,
+        "inviter_id" : writer_email,
         "is_pulic" : False,
         "user_ids" : join_user_list,
     }
     
-    requests.post(url, data=json.dumps(data), headers=api_headers)
+    res = requests.post(url, data=json.dumps(data), headers=api_headers)
+    info = res.text
+    parse = json.loads(info)
+    channel_name = parse['name']
+    channel_url = parse['channel_url']
+    members = parse['members']
+    member_list = []
+    count = 0
+    for i in range(len(members)):
+        member_list.append(members[i]['user_id'])
+
+    chat.channel_url = channel_url
+    chat.channel_name = channel_name
+    print(member_list)
+    chat.emails = json.dumps(member_list)
+    chat.count = count
+    chat.save()
+
     post.check_chat = True
     post.save()
+
     return redirect('auth', str(post_id))
 
 
@@ -258,6 +283,8 @@ def buyHome(request):
         context={
             'posts' : posts
         }
+        
+    
         return render(request,'buy/home.html',context)
     return render(request,'buy/home.html',context)
 
