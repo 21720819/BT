@@ -1,8 +1,23 @@
+from socket import fromshare
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+# from django.core.validators import validate_email
+
+      
+
 # from buy.models import Buy
 class User(AbstractUser):    
+    def validate_email(value):
+        if ("@ynu.ac.kr" not in value):
+            raise ValidationError(
+                _('영남대학교 이메일을 사용해야합니다.%(value)는 영남대 이메일이 아닙니다.'),
+                params={'value':value},
+                )
+  
 #     # blank=True: 폼(입력양식)에서 빈채로 저장되는 것을 허용, DB에는 ''로 저장
 #     # CharField 및 TextField는 blank=True만 허용, null=True 허용 X # null=True: DB에 NULL로 저장
 #     nickname = models.CharField(max_length=50)
@@ -12,7 +27,10 @@ class User(AbstractUser):
         unique=True,
         error_messages={
             'unique': "이미 존재하는 ID 입니다.",
+            'required' :"입력하세요",
+
         },
+        # validators =[validate_email]
         )
     username = models.CharField(
         max_length=30, 

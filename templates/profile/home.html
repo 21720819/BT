@@ -16,7 +16,17 @@
 <div class="detail_container" style="max-width: 768px;">
     <table id="profile_table">
         <tr>
-            <td style="width: 30px;"><img class="profile_img"></td>
+            <td style="width: 30px;">
+                {% if user.level == 0 %}
+                <img src="{% static 'images/foodmark.png'%}" class="profile_img">
+                {% elif user.level == 1 %}
+                <img src="{% static 'images/nesmark.png'%}" class="profile_img">
+                {% elif user.level == 2 %}
+                <img src="{% static 'images/ottmark.png'%}"class="profile_img">
+                {% elif user.level == 3 %}
+                <img src="{% static 'images/delmark.png'%}" class="profile_img">
+                {% endif %}
+            </td>
             <td style="font-size: 20px; text-align: left;">
                 <h3 class="profile_nick">{{user.username}}</h3>
                 <!-- <h4 class="profile_text" style="font-size: 15px;">{{user.level}}</h4> -->
@@ -144,9 +154,12 @@
         <!-- 휴대폰 인증http://127.0.0.1:8000/profile/admin/sms -->
         <!-- {% url 'sms' user.username %} -->
         <!-- if 인증됨 -->
+        {% if user.phone_number %}
         <ion-icon name="checkmark-circle" style="width: 20px; height: 20px; color: var(--first-color); padding-top: 1px; float: right;"></ion-icon>
         <!-- else -->
+        {% else%}
         <ion-icon name="alert-circle" style="width: 20px; height: 20px; color: var(--first-color); padding-top: 1px; float: right;"></ion-icon>
+        {% endif %}
     </div>
     
     {% if user.is_staff %}
