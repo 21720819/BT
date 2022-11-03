@@ -244,15 +244,16 @@
 
     function smsPopup(){
         var url = `{% url 'sms' user.username %}`;
-        var popHeight = 500; // 띄울 팝업창 높이   
-        var popWidth = 500; // 띄울 팝업창 너비
-        var winHeight = document.body.clientHeight; // 현재창의 높이
-        var winWidth = document.body.clientWidth; // 현재창의 너비
-        var winX = window.screenLeft; // 현재창의 x좌표
+        var popHeight = 520; // 띄울 팝업창 높이   
+        var popWidth = 390; // 띄울 팝업창 너비
+        var winHeight = window.outerHeight; // 현재창의 높이
+        var winWidth = window.outerWidth; // 현재창의 너비
         var winY = window.screenTop; // 현재창의 y좌표
-        var popX = winX + (winWidth - popWidth) / 2;
-        var popY = winY + (winHeight - popHeight) / 2;
+        var winX = window.screenLeft; // 현재창의 x좌표
+        var popY = winY + (winHeight - popHeight) / 4;
+        var popX = winX + (winWidth - popWidth) / 8;
 
+        console.log(winHeight)
         window.open(url, '휴대폰 인증', 'top='+popY+', left='+popX+', width='+popWidth+', height='+popHeight+', scrollbars=no, resizable=no');
     }
 </script>
