@@ -13,10 +13,20 @@
     }*/
     body {
         padding: 0;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+    body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
     }
     footer {
         display: none;
     }
+    /*@media screen and (max-width: 768px) {
+        html body {
+            height: 100%;
+        }
+    }*/
 </style>
 
 <div style="padding: 30px;">
@@ -47,12 +57,8 @@
     var popClose = document.getElementById('popClose');
 
     popClose.onclick = function() {
-        if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하일 때
-            window.history.back()
-        }   
-        else {
-            window.close();
-        }
+        window.close();
+        window.history.back()
     };
 </script>
 
