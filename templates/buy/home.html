@@ -104,7 +104,7 @@
         </div>
         <div class="mt-2 px-2"> <small>{{post.body}}</small> </div>
         <div class="px-2">
-            <h3>{{post.price}}원/1인</h3>
+            <h3>{{post.price}}원/1인</h3> <h5>{{post.join_count}}/{{post.wpeople}}명</h5>
         </div>
         <div class="px-2 mt-3"><a href="{% url 'buyDetail' post.id %}"><button class="btn btn-primary px-3">상세보기</button></a></div>
     </div>
@@ -163,9 +163,10 @@
       <div><i class="fas fa-plus"></i></div>
     </div>
     
+    <a href="{% url 'buyCreate'  %}" data-hover="식료품">
     <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="식료품">
-      <div><i class="fa-sharp fa-solid fa-apple-whole"></i></div>
-    </div>
+      <i class="fa-sharp fa-solid fa-apple-whole"></i>
+    </div></a>
     
     <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="생필품">
       <div><i class="fa-solid fa-box-tissue"></i></div>
