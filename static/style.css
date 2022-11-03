@@ -82,7 +82,7 @@ video { width: 100%; }
 }
 
 .footer-top {
-  background: black;
+  background: #323232;
   padding: 80px 0;
 }
 
@@ -157,7 +157,7 @@ video { width: 100%; }
 
 .footer-copyright {
   text-align: center;
-  background: #000;
+  background: #323232;
   line-height: 75px;
 }
 
