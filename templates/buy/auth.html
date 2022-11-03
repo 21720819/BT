@@ -25,7 +25,7 @@ function createChat(){
 <a href="{% url 'userProfile' join_user.username %}" class="detail_usrname nav-link nav_change_color">{{join_user.username}}</a>
 </span>
 <!-- removeUser -->
-<form class="detailLikeForm" action="{% url 'removeUser' post_id %}" method="post">
+<form class="detailLikeForm" action="{% url 'removeUser' post.id %}" method="post">
     {% csrf_token %}
     <input style="display: none;"  id="your_name" type="text" name="username" value="{{join_user.username}}">
     <input type="submit" value="거절">
@@ -39,8 +39,9 @@ function createChat(){
 </button>
 {% else %}
 
+
 <button onClick="createChat()" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
-    <a href="{% url 'createChannel' post_id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
+    <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
 </button>
 {% endif %}
 
