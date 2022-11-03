@@ -166,6 +166,37 @@ def join(request,post_id):
         #     detail.like_count += 1
         #     detail.save()
 
+def removeUser(request, post_id):
+    detail = Buy.objects.get(pk=post_id)
+    uid = request.POST["username"]
+    user = get_object_or_404(User, username=uid)
+
+    check_like_post = user.join_posts.filter(id=post_id)
+
+    if request.method == 'POST':
+        
+        # try:
+        #     mark = Bookmarks.objects.get(user=user, post=detail)
+        #     mark.delete()
+        # except:
+        #     mark = Bookmarks()
+        #     mark.post = detail
+        #     mark.user = user
+        #     mark.save()
+        if check_like_post.exists():
+            user.join_posts.remove(detail)
+            detail.join_count -= 1
+            detail.save()
+        # else:
+        #     user.like_posts.add(detail)
+        #     detail.like_count += 1
+        #     detail.save()
+
+    
+    return redirect('auth',str(post_id))
+
+
+
  # 신청자 목록 보여주는 함수
 def auth(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)

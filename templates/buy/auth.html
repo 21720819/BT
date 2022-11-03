@@ -8,13 +8,10 @@
 
 </style>
 
-
-
 <script>
 function createChat(){
     alert('채팅방 생성완료');
 }
-
 </script>
 
 
@@ -25,8 +22,14 @@ function createChat(){
 
 {% for join_user in join_users %}
 <span>
-    {{join_user.username}}
+<a href="{% url 'userProfile' join_user.username %}" class="detail_usrname nav-link nav_change_color">{{join_user.username}}</a>
 </span>
+<!-- removeUser -->
+<form class="detailLikeForm" action="{% url 'removeUser' post_id %}" method="post">
+    {% csrf_token %}
+    <input style="display: none;"  id="your_name" type="text" name="username" value="{{join_user.username}}">
+    <input type="submit" value="거절">
+</form>
 {% endfor %}
 
 
