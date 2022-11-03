@@ -14,8 +14,7 @@ class Buy(models.Model):
                                  blank=False,
                                  null=False,
                                  default=0)
-    wpeople = models.IntegerField(blank=False,
-                                 null=False,)#모집인원
+    wpeople = models.IntegerField(blank=False, null=False,)#모집인원
     people = models.IntegerField(null=True,default=1)# 모인사람 
     price = models.IntegerField(blank=False,
                                  null=False,)
@@ -27,7 +26,7 @@ class Buy(models.Model):
                                  null=False,
                                  default="")# 글쓴이 
     like_count = models.PositiveIntegerField(default=0)    
-    join_count = models.PositiveIntegerField(default=1)    
+    join_count = models.PositiveIntegerField(default=1) # 참가 신청한 사람 수 
     check_chat = models.BooleanField(default = False) # 채팅방 생성되었는지 확인
     def __str__(self):
         return self.title
