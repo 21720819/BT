@@ -2,6 +2,8 @@
 
 {% block content %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style3.css' %}?after">
+
 <div class="detail_container" style="position: relative;">
 
   <!-- <div class="category__menu" style="position: relative;"> 
@@ -45,8 +47,6 @@
       <option class="sort-likes" value="?sort=highprice">높은가격순</option>
     </select> -->
     <!-- 정렬 -->    
-
-    <!-- 검색창 -->
 
   <!-- </div> -->
 
@@ -92,28 +92,55 @@
 
     <!-- 게시글 출력 -->
     {% for post in posts %}
-  <div class="card">
-    <div class="inner-card"> 
-      {% if post.photo %}
-      <img src="{{ post.photo.url }}" class="img-fluid rounded">
-      {% else %}
-      <img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="" class="img-fluid" />
-      {% endif %}
-        <div class="d-flex justify-content-between align-items-center mt-3 px-2">
-            <h4>{{post.title}}</h4> <span class="heart"><i class="fa fa-heart"></i></span>
-        </div>
-        <div class="mt-2 px-2"> <small>{{post.body}}</small> </div>
-        <div class="px-2">
-            <h3>{{post.price}}원/1인</h3>
-        </div>
-        <div class="px-2 mt-3"><a href="{% url 'buyDetail' post.id %}"><button class="btn btn-primary px-3">상세보기</button></a></div>
+    <div class="card">
+      <div class="inner-card"> 
+        {% if post.photo %}
+        <img src="{{ post.photo.url }}" class="img-fluid rounded">
+        {% else %}
+        <img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="" class="img-fluid" />
+        {% endif %}
+          <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+              <h4>{{post.title}}</h4> <span class="heart"><i class="fa fa-heart"></i></span>
+          </div>
+          <div class="mt-2 px-2"> <small>{{post.body}}</small> </div>
+          <div class="px-2">
+              <h3>{{post.price}}원/1인</h3>
+          </div>
+          <div class="px-2 mt-3"><a href="{% url 'buyDetail' post.id %}"><button class="btn btn-primary px-3">상세보기</button></a></div>
+      </div>
     </div>
+    {% endfor %}
+
+    <!-- 게시글 출력 -->
+    {% for post in posts %}
+    <section class="module">
+      <div class="buy-container">
+        <div class="row multi-columns-row post-columns">
+          <div class="col-sm-6 col-md-4 col-lg-4 flex">
+            <div class="post flex-item">
+              <div class="post-thumbnail"><a href="{% url 'buyDetail' post.id %}">{% if post.photo %}<img src="{{ post.photo.url }}" alt="Blog-post Thumbnail"/>
+                {% else %}<img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="Blog-post Thumbnail"/>
+                {% endif %}</a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="{% url 'buyDetail' post.id %}">{{post.title}}</a></h2>
+                <div class="post-meta">By&nbsp;<a href="#">{{post.ID.username}}</a>&nbsp;| {{post.date}} | 좋아요 {{post.like_count}}
+              </div>
+              <div class="post-entry">
+                <p>{{post.body}}</p>
+              </div>
+              <div class="post-more"><a class="more-link" href="{% url 'buyDetail' post.id %}">Read more</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+
+    <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+
   </div>
-  {% endfor %}
 
-
-  </div>
-
+ 
   {% else %}
   <!-- 출력할 게시글이 없을때  -->
   {% if q %}
