@@ -22,7 +22,7 @@
     #popClose {
         line-height: 50px;
         text-align: center;
-        display: block;
+        display: none;
     }
     footer {
         display: none;
@@ -50,7 +50,7 @@
         <input class="create_submitButton buttonColor" type="submit" value="인증번호 확인">
     </form>
 
-    <div style="height: calc(100% - 362.5px); font-size: 13px; line-height: 30px;">
+    <div id="message" style="height: calc(100% - 362.5px); font-size: 13px; line-height: 30px; padding-left: 2.5px;">
         {% if messages %}
             {%for message in messages %}
                 {{message.message}}
@@ -58,20 +58,24 @@
         {% endif %}
     </div>
 
-    <button id="popClose" class="create_submitButton buttonColor">닫기</button>
+    <button id="popClose" class="create_submitButton buttonColor">완료</button>
 </div>
 
 <script>
     var popClose = document.getElementById('popClose');
+    var message = document.getElementById('message');
 
-    console.log(window.innerWidth)
-    if (window.innerWidth == 398) {
-        popClose.style.display = 'none';
+    console.log(message.textContent.trim())
+    if (message.textContent.trim() == "인증 완료") {
+        popClose.style.display = 'block';
     }
+    //console.log(window.innerWidth)
+    //if (window.innerWidth == 398) {
+    //}
 
     popClose.onclick = function() {
-        //window.close();
-        window.history.back()
+        location.href = "{% url 'profileHome' user.username %}";
+        window.close();
     };
 </script>
 
