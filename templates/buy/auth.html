@@ -40,12 +40,12 @@
 
 
 
-{% if post.check_chat == True %} 
+{% if post.check_chat == False %} 
     <button disabled="true" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 50px;">
         <a href="#" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
     </button>
 {% else %}
-    <button onClick="createChat()" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 40px;">
+    <button onClick="createChat()" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 50px;">
         <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
     </button>
 {% endif %}
@@ -55,10 +55,6 @@
 <script>
     function createChat(){
         alert('채팅방 생성완료');
-    }
-
-    function preventRedirect() {
-        event.preventDefault()
     }
 </script>
 
