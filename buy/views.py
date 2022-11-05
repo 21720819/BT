@@ -189,7 +189,7 @@ def removeUser(request, post_id):
         #     detail.save()
 
     
-    return redirect('auth',str(post_id))
+    return redirect('buyDetail',str(post_id))
 
 
  # 신청자 목록 보여주는 함수
