@@ -162,8 +162,7 @@ a,
 .module,
 .module-small {
   position: relative;
-  padding: 140px 0;
-  background-repeat: no-repeat;
+  padding: 50px 0;
   background-position: 50% 50%;
   background-size: cover;
 }
@@ -887,14 +886,8 @@ blockquote {
 }
 
 .font-alt {
-  font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.font-serif {
-  font-family: Volkhov, "Times New Roman", sans-serif;
-  font-style: italic;
+  letter-spacing: 2.1px;
 }
 
 .large-text {
@@ -2148,37 +2141,42 @@ Google map
 /*--------------------------------------------------------------
 	Blog Post
 --------------------------------------------------------------*/
-.flex {
-  display: flex;
-  flex-direction: column;
-  
-}
-.flex-item {
-  flex-basis: 0;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
 }
 
 .post-title {
-  line-height: 1.4;
-  font-size: 22px;
+  line-height: 1.6;
+  font-size: 18px;
   color: #111;
   margin: 0;
+  letter-spacing: 2px;
 }
 
 .post-header {
-  margin: 0 0 15px;
+  padding-top: 10px;
 }
 
 .post-meta {
-  font-size: 11px;
+  padding-top: 15px;
+  font-size: 16px;
   color: #aaa;
+  letter-spacing: 2px;
 }
 
 .post-entry {
-  border-top: 1px dotted #c2c2c2;
-  padding-top: 20px;
-  margin-top: 10px;
+  border-top: 1.5px dotted #c2c2c2;
+  padding-top: 50px;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
+.post-more {
+  font-size: 28px;
+  color: #FB2146;
+}
 .post-images-slider {
   position: relative;
 }
@@ -2193,6 +2191,16 @@ Google map
   margin: 0 0 20px;
 }
 
+.post-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.img_size {
+  width: 100%;
+  height: 250px;
+}
+
 .post-quote {
   background: #f5f5f5;
   text-align: center;
@@ -2200,7 +2208,7 @@ Google map
 }
 
 /* Post columns */
-.post-columns .post {
+.post-columns{
   margin: 0 0 60px;
 }
 
@@ -2208,10 +2216,10 @@ Google map
   margin: 0 0 10px;
 }
 
-.post-columns .post-title {
+/* .post-columns .post-title {
   line-height: 1.8;
   font-size: 14px;
-}
+} */
 
 .post-columns .post-entry {
   padding: 10px 0 0;
