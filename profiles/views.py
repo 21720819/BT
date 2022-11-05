@@ -2,10 +2,32 @@
 from django.shortcuts import get_object_or_404,render,HttpResponse, redirect
 from accounts.models import User
 from buy.models import Buy
+from django.conf import settings
 from accounts.forms import Smsform ,Smscheckform
 from profiles.forms import UserReviewform, UserReportform, PostReportform
 from .models import Review
 from django.db.models import Avg
+
+application_id = settings.SENDBIRD_APPLICATION_ID
+sendbird_api_token = settings.SENDBIRD_API_TOKEN
+
+def changeChatNick(request, new_nick):
+     #sendbird 정보 가져오기
+    user_id = request.user.email #유저 이메일 지정
+
+    url = f"https://api-{application_id}.sendbird.com/v3/users/{user_id}"
+    api_headers = {"Api-Token": sendbird_api_token}
+    
+    data = {
+        'nickname' : new_nick,
+    }
+    
+    res = requests.put(url, data= json.dumps(data), headers=api_headers)
+    
+    info = res.text
+    parse = json.loads(info)
+    #print(parse)
+
 
 def profileHome(request,user_name):
     user = get_object_or_404(User, username=user_name)
@@ -18,7 +40,9 @@ def profileHome(request,user_name):
 def profileEdit(request,user_name):
     user = get_object_or_404(User, username=user_name)
     if request.method == "POST":
-        user.username = request.POST['content']
+        new_nick = request.POST['content']
+        user.username = new_nick
+        changeChatNick(request, new_nick)
         user.save()
         return redirect('../'+user.username)
     return render(request, 'profile/edit_profile.html')

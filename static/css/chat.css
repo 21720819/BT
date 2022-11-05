@@ -10,8 +10,10 @@ body {
 /* 채팅 리스트*/
 
 .chats{
-	margin : 10px;
-
+	width:100%;
+	height:90%;
+	overflow-y:auto; 
+	
 }
 
 .chat{
@@ -64,6 +66,7 @@ body {
 
 
 /* 메시지 전송창*/
+
 
 .div_send {
 	width: 100%; 
@@ -182,13 +185,12 @@ body {
 	font-size:11px;
 }
 #chat-messages{
-	
-	width:100%;
+   width:100%;
 	height:90%;
 	margin-bottom: 20px;
 	margin-top: 20px;
 	padding : 10px;
-
+	padding-bottom : 20px;
     overflow-y:auto; 
 	overflow-x:hidden;
 

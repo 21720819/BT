@@ -219,7 +219,7 @@
     //var post = document.getElementById('post');
     var pPosts = document.getElementById('profile_pPosts');
     var rPosts = document.getElementById('profile_rPosts');
-    var background = document.getElementsByClassName('detail_container');
+    //var background = document.getElementsByClassName('detail_container');
     
     for(i=0; i<2; i++) {
         if(myPost[i] != null) {
@@ -234,31 +234,31 @@
                 pPosts.style.display = 'block';
                 rPosts.style.display = 'none';*/
 
-                background[0].classList.add('blur');
+                //background[0].classList.add('blur');
             };
         }
         
         if(rating[i] != null) {
             rating[i].onclick = function() {
                 setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
-                background[0].classList.add('blur');
+                //background[0].classList.add('blur');
             };
         }
     }
 
     review.onclick = function() {
         setPopup('block', 'none', 'block', 'none', '사용자 평가 작성', 'none', 'none');
-        background[0].classList.add('blur');
+        //background[0].classList.add('blur');
     };
 
     accuse.onclick = function() {
         setPopup('block', 'none', 'none', 'block', '신고하기', 'none', 'none');
-        background[0].classList.add('blur');
+        //background[0].classList.add('blur');
     };
 
     closeBtn.onclick = function() {
         setPopup('none', 'none', 'none', 'none', '', 'none', 'none');
-        background[0].classList.remove('blur');
+        //background[0].classList.remove('blur');
     };
 
     function setPopup(p, pB, rB, aB, t, pP, rP) {

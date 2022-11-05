@@ -130,10 +130,6 @@ def addBookmark(request, post_id):
 #         mark.delete()
 #         return redirect('profile/home.html', uid)
 
-
-
-
-
 #거래 신청 함수
 def join(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)
@@ -196,7 +192,6 @@ def removeUser(request, post_id):
     return redirect('auth',str(post_id))
 
 
-
  # 신청자 목록 보여주는 함수
 def auth(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)
@@ -242,7 +237,6 @@ def createChannel(request, post_id):
 
     chat.channel_url = channel_url
     chat.channel_name = channel_name
-    print(member_list)
     chat.emails = json.dumps(member_list)
     chat.count = count
     chat.save()
