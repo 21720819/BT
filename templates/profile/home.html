@@ -4,6 +4,7 @@
 {% load static %}
 
 <div class="detail_container" style="max-width: 768px;">
+    <!-- 프로필 사진 + 닉네임 -->
     <table id="profile_table">
         <tr>
             <td style="width: 30px;">
@@ -26,6 +27,7 @@
         </tr>
     </table>
 
+    <!-- 요약 정보 -->
     <div class="profile_summary">
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">레벨</div>
@@ -36,11 +38,12 @@
             <div class="profile_divDownParts profile_verticalHr">{{user.date_joined|date:'Y-m-d'}}</div>
         </div>
         <div name="rating" class="profile_division">
-            <div class="profile_divUpParts">★</div>
-            <div class="profile_divDownParts">{{reviews.avg_rate}}</div>
+            <div class="profile_divUpParts">사용자 평가</div>
+            <div class="profile_divDownParts">★ {{reviews.avg_rate}}</div>
         </div>
     </div>
 
+    <!-- 작성한 글 + 좋아요 누른 글 -->
     <div class="profile_summary" style="background-color: white; padding: 0;">
         <!-- 데스크탑 -->
         <div id="profile_desktop">
@@ -97,7 +100,7 @@
                             var myPost = document.getElementById('myPost');
                             myPost.textContent = count;
                         </script> -->
-                        {% if p_post %}
+                        {% if p_post %} <!-- 장고 counter로 대체 -->
                             {% for post in p_post %}
                                 {% if forloop.last %}
                                     {{ forloop.counter }}
@@ -115,15 +118,7 @@
                     
                     <!-- 글 수 -->
                     <div name="myLike" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">
-                        <!-- <script>count = 0;</script>
-                        {% for like in likes %}
-                            <script>count++;</script>
-                        {% endfor %}
-                        <script>
-                            var like = document.getElementById('like');
-                            like.textContent = count;
-                        </script> -->
-                        {% if likes %}
+                        {% if likes %} 
                             {% for like in likes %}
                                 {% if forloop.last %}
                                     {{ forloop.counter }}
@@ -184,6 +179,7 @@
         </div>
 
         <div id="profile_postBox">
+            <!-- 작성한 글 -->
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for post in p_post %}
@@ -199,6 +195,7 @@
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
 
+            <!-- 좋아요 누른 글 -->
             <div id="profile_lPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for like in likes %}
@@ -248,9 +245,11 @@
 <!-- 팝업 창 스크립트 -->
 <script>
     var sms = document.getElementById('sms');
+    //var popClose = document.getElementById('popClose');
 
     if (matchMedia("screen and (max-width: 768px)").matches) { // 768px 이하일 때
         sms.setAttribute('href', `{% url 'sms' user.username %}`);
+        //popClose.setAttribute('display', 'block');
     }
     else {
         sms.setAttribute('href', 'javascript:smsPopup()');
@@ -303,15 +302,6 @@
         if(myPost[i] != null) {
             myPost[i].onclick = function() {
                 setPopup('block', 'block', 'none', '작성한 글', 'block', 'none', 'none');
-                //var posts = document.getElementById('profile_postBox').firstChild;
-                //var id = post.id;
-                //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
-                //var url = "{% url 'buyDetail' 1 %}";
-
-                //post.setAttribute('href', `${url}`);
-                //post.innerHTML = `{% for post in p_post %}<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>{% endfor %}`
-                //post.insertAdjacentHTML('afterbegin', `<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>`);
-
                 //background[0].classList.add('blur');
                 //footer[0].classList.add('blur');
                 //pop.style.filter = 'blur(0)';
@@ -335,15 +325,6 @@
 
     closeBtn.onclick = function() {
         setPopup('none', 'none', 'none', '', 'none', 'none', 'none');
-        /*pop.style.display = 'none';
-        box.style.display - 'none';
-        //smsAuth.style.display = 'none';
-
-        pPosts.style.display = 'none';
-        lPosts.style.display = 'none';*/
-
-        //background[0].classList.remove('blur');
-        //footer[0].classList.remove('blur');
     };
 
     function setPopup(p, pB, eB, t, pP, lP, rP) {

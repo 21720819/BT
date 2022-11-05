@@ -19,6 +19,11 @@
     body::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera*/
     }
+    #popClose {
+        line-height: 50px;
+        text-align: center;
+        display: block;
+    }
     footer {
         display: none;
     }
@@ -53,14 +58,19 @@
         {% endif %}
     </div>
 
-    <button id="popClose" class="create_submitButton buttonColor" style="line-height: 50px; text-align: center; ">닫기</button>
+    <button id="popClose" class="create_submitButton buttonColor">닫기</button>
 </div>
 
 <script>
     var popClose = document.getElementById('popClose');
 
+    console.log(window.outerWidth)
+    if (window.outerWidth == 414) {
+        popClose.style.display = 'none';
+    }
+
     popClose.onclick = function() {
-        window.close();
+        //window.close();
         window.history.back()
     };
 </script>

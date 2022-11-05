@@ -16,7 +16,7 @@
       <script>
             init_detail('{{application_id}}', '{{channel_url}}', '{{user_id}}');
       </script>
-     <div class = "out">
+     <div class = "detail_container">
             <div id="profile">
                   <p>Miro Badev</p>
                   <span>3명</span>
@@ -54,7 +54,7 @@
             <div class="div_send">
                   <form id = "send_form" method="post" onsubmit="send_message()">
                         {% csrf_token %}
-                        <textarea id ="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
+                        <textarea id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
                         <button type="button" onclick="send_message()"></button>
                   </form>    
             </div>

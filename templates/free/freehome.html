@@ -3,8 +3,12 @@
 
 {% block content %}
 <style>
+  #content__blur {
+    height: 100%;
+  }
   .detail_container {
     max-width: 768px;
+    min-height: 100%;
   }
   @media screen and (max-width: 768px) {
     .detail_container {
@@ -14,48 +18,33 @@
 </style>
 
 
-<input type="button"  class='rightBtn' value="글쓰기" onClick=" location.href='create'">
+<!-- <input type="button"  class='rightBtn' value="글쓰기" onClick=" location.href='create'"> -->
 <div class="detail_container">
   {% for post in posts %}
-  <div class="freeContent">
-    <div class="freePost"><a href="{% url 'freeDetail' post.id %}">
-      <p class="freeTitle">{{post.title}}</p>
-      <p class="freeBody">{{post.summary}}</p>
-    </a></div>
-    <div class="freeContentIcon">
-      <span>{{post.writeDate|date:'m-d H:i'}}</span>
-      <span class="freeUsername">| {{post.ID.username}}</span>
-      <div class="icons">
-        <div class="freeRIcon">
-          <img src="{%static 'images/freeLike.png' %}" alt="">
-          <span style="color: #FF2A17; margin-left : 5px;">{{post.like_count}}</span>
-        </div>
-        <div class="freeRIcon">
-          <img src="{%static 'images/freeC.png' %}" alt="">
-          <span style="color: #0083FF;margin-left : 5px">{{post.comment_set.all.count}}</span>
-        </div>
-        
-      </div>
+    <div class="freeContent">
+      <div class="freePost">
+        <a href="{% url 'freeDetail' post.id %}">
+          <p class="freeTitle">{{post.title}}</p>
+          <p class="freeBody">{{post.summary}}</p>
+        </a>
     </div>
-
-  </div>
-  {% endfor %}
-<!-- </div>
-
-  <div >
-          <div class="card freebd-home-board">
-            <div class="card-header">
-              <h4 class="card-title purbd_home_title"><a href="{# url 'freeDetail' post.id #}" class="stretched-link" >{{post.title}}</a></h4>
-
-            </div>          
-              <div class="card-body">              
-                <h4 class="card-title purbd_home_title"><a href="{# url 'freeDetail' post.id #}" class="stretched-link" >{{post.title}}</a></h4>            
-            </div> 
-            <div class="card-footer">
-              <span class="space">{{post.ID.username}}</span><span >{{post.writeDate}}</span>
-
-
+      <div class="freeContentIcon">
+        <span>{{post.writeDate|date:'m-d H:i'}}</span>
+        <span class="freeUsername">| {{post.ID.username}}</span>
+        <div class="icons">
+          <div class="freeRIcon">
+            <img src="{%static 'images/freeLike.png' %}" alt="">
+            <span style="color: #FF2A17; margin-left : 5px;">{{post.like_count}}</span>
+          </div>
+          <div class="freeRIcon">
+            <img src="{%static 'images/freeC.png' %}" alt="">
+            <span style="color: #0083FF;margin-left : 5px">{{post.comment_set.all.count}}</span>
+          </div>
+          
         </div>
-  </div> -->
+      </div>
+
+    </div>
+  {% endfor %}
 
 {% endblock %}

@@ -40,7 +40,14 @@
 }
 
 html {
+  height: 100%;
   overflow-y: scroll;
+}
+body {
+  height: 100%;
+}
+#content__blur {
+  min-height: 100%;
 }
 /* ---------아이콘 import---------- */
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
@@ -998,26 +1005,103 @@ video { width: 100%; }
 }
 .auth_nick {
   width: calc(100% - 50px);
-  height: 50px;
-  line-height: 50px;
+  height: 30px;
+  line-height: 30px;
   text-align: left;
   /* margin-bottom: 10px; */
   float: left;
 }
 .auth_denyButton {
   width: 50px;
-  height: 50px;
+  height: 30px;
   margin: 0;
   border: 0;
   border-radius: 25px;
-  /* background: #E98197; */
-  color: white;
+  background: white;
+  color: var(--first-color);
   font-size: 15px;
   line-height: 0;
   font-weight: bold;
   cursor: pointer;
 }
+.auth_denyButton:hover {
+  background: rgb(250, 247, 247);
+}
 
+
+/* ---------password---------- */
+
+.password_container {
+  width: 390px;
+	height: auto;
+	border-radius: 20px;
+  background: white;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	padding: 40px;
+
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.password_title {
+  font-size: 30px;
+}
+.password_exp {
+  font-size: 15px;
+  margin-bottom: 35px;
+}
+/* .password_email {
+  margin-top: 25px;
+} */
+.password_email > p {
+  margin: 0;
+}
+.password_email > p > label {
+  font-size: 13px;
+  padding-left: 2.5px;
+}
+.password_email > p > input {
+  width: 100%;
+  height: 50px;
+  /* height: 17.5%; */
+  margin: 0;
+  border: 0;
+  border-radius: 25px;
+  background: rgb(250, 247, 247);
+  font-size: 15px;
+
+  margin-bottom: 15px;
+  padding: 0 20px;
+}
+
+.password_buttonExp {
+  width: calc(100% - 50px);
+  /* height: 20px; */
+  font-size: 15px;
+  line-height: 50px;
+  /* margin-top: 30px; */
+  float: left;
+}
+
+@media screen and (max-width: 768px) {
+  .password_container {
+    width: 75%;
+    height: auto;
+    padding: 30px;
+  }
+  .password_title {
+    font-size: 23px;
+    line-height: 40px;
+  }
+  .password_exp {
+    font-size: 12.5px;
+    line-height: 20px;
+    margin-bottom: 25px;
+  }
+  .password_email > p > label {
+    font-size: 11.5px;
+  }
+}
 
 /* ---------전체폰트 바꾸기---------- */
 /* .font_change {

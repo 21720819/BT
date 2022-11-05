@@ -26,12 +26,14 @@
         <form action="{% url 'removeUser' post.id %}" method="post" style="float: right;">
             {% csrf_token %}
             <input style="display: none;" id="your_name" type="text" name="username" value="{{join_user.username}}">
-            <button class="auth_denyButton buttonColor" type="submit" onclick="preventRedirect()">거절</button>
+            <button class="auth_denyButton" type="submit">거절</button>
         </form>
         {% if not forloop.last %}
-            <div class="profile_horizontalHr" style="width: 100%; margin: 1rem 0; float: left;"></div>
+            <!-- <div class="profile_horizontalHr" style="width: 100%; margin: 1rem 0; float: left;"></div> -->
+            <hr style="width: 100%; float: left;">
         {% else %}
-            <div class="profile_horizontalHr" style="width: 100%; margin-top: 1rem; float: left;"></div>
+            <!-- <div class="profile_horizontalHr" style="width: 100%; margin-top: 1rem; float: left;"></div> -->
+            <hr style="width: 100%; margin: 1rem 0 0 0; float: left;">
         {% endif %}
     {% endfor %}
     <!-- <div style="width: 100%; height: 500px; background:black; float:left;"></div> -->
