@@ -88,7 +88,7 @@
           <div class="text">
             <h1 class="mb-4">우리만의 <br>공동구매</h1>
             <p>거래세피나 블라블라</p>
-            <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">거래게시판 둘러보기</a></p>
+            <p><a href="{% url 'buyHome' %}" class="btn btn-primary px-4 py-3 mt-3">거래게시판 둘러보기</a></p>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
           <div class="text">
             <h1 class="mb-4">우리만의 공동구매</h1>
             <p>자유게시판 블라블라</p>
-            <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">자유게시판 둘러보기</a></p>
+            <p><a href="{% url 'freeHome' %}" class="btn btn-primary px-4 py-3 mt-3">자유게시판 둘러보기</a></p>
           </div>
         </div>
       </div>
@@ -238,10 +238,12 @@
               <div class="icon d-flex justify-content-center align-items-center">
                 <span class="flaticon-layers"></span>
               </div>
+              <a href="{% url 'category' 'food' %}" style="color: inherit;text-decoration: none;">
               <div class="media-body p-2 mt-3">
                 <h3 class="heading">식료품</h3>
                 <p>식료품설명</p>
               </div>
+              </a>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch">
@@ -249,10 +251,12 @@
               <div class="icon d-flex justify-content-center align-items-center">
                 <span class="flaticon-layers"></span>
               </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">생필품</h3>
-                <p>생필품설명</p>
-              </div>
+              <a href="{% url 'category' 'necessity' %}" style="color: inherit;text-decoration: none;">
+                <div class="media-body p-2 mt-3">
+                  <h3 class="heading">생필품</h3>
+                  <p>생필품설명</p>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch">
@@ -260,10 +264,13 @@
               <div class="icon d-flex justify-content-center align-items-center">
                 <span class="flaticon-layers"></span>
               </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">OTT</h3>
-                <p>OTT설명</p>
-              </div>
+              
+              <a href="{% url 'category' 'ott' %}" style="color: inherit;text-decoration: none;">
+                <div class="media-body p-2 mt-3">
+                  <h3 class="heading">OTT</h3>
+                  <p>OTT설명</p>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch">
@@ -271,10 +278,12 @@
               <div class="icon d-flex justify-content-center align-items-center">
                 <span class="flaticon-layers"></span>
               </div>
+              <a href="{% url 'category' 'delivery' %}" style="color: inherit;text-decoration: none;">
               <div class="media-body p-2 mt-3">
                 <h3 class="heading">배달</h3>
                 <p>배달설명</p>
               </div>
+              </a>
             </div>
           </div>
         </div>
@@ -400,9 +409,6 @@
             <div class="faded">
               <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
               <ul class="ftco-social d-flex">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
             </div>
@@ -418,9 +424,6 @@
             <div class="faded">
               <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
               <ul class="ftco-social d-flex">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
             </div>
@@ -436,9 +439,6 @@
             <div class="faded">
               <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
               <ul class="ftco-social d-flex">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
             </div>
@@ -454,9 +454,6 @@
             <div class="faded">
               <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
               <ul class="ftco-social d-flex">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
             </div>

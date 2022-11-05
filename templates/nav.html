@@ -89,10 +89,10 @@
                     <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
                         <h3>거래게시판 둘러보기</h3>
                         <ul>
-                            <li><a href="#">식료품</a></li>
-                            <li><a href="#">생필품</a></li>
-                            <li><a href="#">OTT</a></li>
-                            <li><a href="#">배달</a></li>
+                            <li><a href="{% url 'category' 'food' %}">식료품</a></li>
+                            <li><a href="{% url 'category' 'necessity' %}">생필품</a></li>
+                            <li><a href="{% url 'category' 'ott' %}">OTT</a></li>
+                            <li><a href="{% url 'category' 'delivery' %}">배달</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 segment-three sm-mb-30">
@@ -102,8 +102,8 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 segment-four sm-mb-30">
                         <h2>가입하기</h2>
-                        <p>가입하기</p>
-                        <button>가입하기 버튼</button>
+                        <a href="{% url 'loginHome' %}" style="text-decoration: none; color: inherit;">가입하기</a>
+                        <!-- <button onclick = "location.href = '{% url 'loginHome' %}' ">가입하기 버튼</button> -->
                     </div>
                 </div>
                 <p class="footer-copyright">All Copyright reserved by &copy;BuyTogether.2022</p>
