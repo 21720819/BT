@@ -21,7 +21,7 @@ def chatHome(request):
         'limit' : 100,
         'show_empty' : True,
     }
-    
+
     res = requests.get(url, params=data, headers=api_headers)
     
     info = res.text
@@ -67,9 +67,11 @@ def chatDetail(request, chat_id):
         'next_limit' : 200,
         'message_ts' : message_ts,
     }
+  
     res = requests.get(url, params=data, headers=api_headers)
     info = res.text
     parse = json.loads(info)
+    print(parse)
     user_id = request.user.email #유저 이메일 지정
     messages = parse['messages']
 
@@ -93,7 +95,8 @@ def chatDetail(request, chat_id):
 
         dic = {'text':text, 'nickname':nickname, 'check_same' : check_same, 'sent_date': sent_date, 'sent_time':sent_time, 'check_same_date':check_same_date }
         message_list.append(dic)
+       
 
-    context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id}
+    context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id,}
    
     return render(request, 'chat/chatDetail.html', context)
