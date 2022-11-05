@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect,HttpResponse,resolve_url
 from django.contrib import auth
 from .forms import UserSignupform, UserLoginform
 from .models import User
@@ -17,7 +17,7 @@ import json, requests
 #sendbird 정보 가져오기
 application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
-
+from django.contrib.auth.decorators import login_required
 
 #sendbird 유저 등록 함수
 def create_sendbird_user(user_id, nickname, profile_url=""):
@@ -71,7 +71,7 @@ def signup(request):
             return redirect('home')
         return redirect('home')
     else:
-        return redirect('login')
+        return redirect('loginHome')
 
 def login(request):
     if request.method =="POST":
@@ -84,9 +84,9 @@ def login(request):
             auth.login(request,user)
             return redirect('home')
         else:
-            return redirect('login')
+            return redirect('loginHome')
     else:
-        return redirect('login')
+        return redirect('loginHome')
 
 def loginHome(request):
     loginForm = UserLoginform()
@@ -112,6 +112,68 @@ def activate(request, uid64, token):
         return redirect('home')
     else:
         return HttpResponse('비정상적인 접근입니다.')
+
+
+from .forms import *
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.views import PasswordResetCompleteView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+INTERNAL_RESET_URL_TOKEN = 'set-password'
+INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'accounts/password_reset.html'  # 템플릿을 변경하려면 이와같은 형식으로 입력
+    success_url = reverse_lazy('password_reset_done')
+    form_class = PasswordResetForm
+
+    def form_valid(self, form):
+        if User.objects.filter(email=self.request.POST.get("email")).exists():
+            return super().form_valid(form)
+        else:
+            return render(self.request, 'accounts/password_reset_done_fail.html')
+
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'accounts/password_reset_done.html'  # 템플릿을 변경하려면 이와같은 형식으로 입력
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+
+    form_class = CustomPasswordSetForm
+    success_url = reverse_lazy('password_reset_complete')
+
+    template_name = 'accounts/password_reset_confirm.html'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class UserPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'accounts/password_reset_complete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['login_url'] = resolve_url(settings.LOGIN_URL)
+        return context
+
+
+def custom_500_error(request):
+    response = render(request, 'error/500.html')
+    response.status_code = 500
+    return response
+
+
+def custom_404_error(request, exception):
+    response = render(request, 'error/404.html')
+    response.status_code = 404
+    return response
+
+
+def custom_400_error(request, exception):
+    response = render(request, "error/400.html")
+    response.status_code = 400
+    return response
 
 
 def e400(request):
