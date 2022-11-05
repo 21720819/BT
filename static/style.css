@@ -244,6 +244,9 @@ video { width: 100%; }
   float: left;
   z-index: 0;
 }
+#detail_viewBox {
+  height: calc(calc(100vw * 0.75 * 0.4) - 40px);
+}
 .detail_main {
   width: calc(40% - 40px);
   /* height: 1000px; */
@@ -306,9 +309,6 @@ video { width: 100%; }
 .detailBtns{
   display: flex;
   align-items: center;
-}
-.detailLikeForm{
-  display: block;
 }
 .detail_likeButton {
   width: 50px;
@@ -982,6 +982,40 @@ video { width: 100%; }
   .error_context {
     font-size: 15px;
   }
+}
+
+
+
+/* ---------auth---------- */
+.auth_list {
+  height: calc(100% - 100px);
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.auth_list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+.auth_nick {
+  width: calc(100% - 50px);
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  /* margin-bottom: 10px; */
+  float: left;
+}
+.auth_denyButton {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  border: 0;
+  border-radius: 25px;
+  /* background: #E98197; */
+  color: white;
+  font-size: 15px;
+  line-height: 0;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 
