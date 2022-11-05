@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import auth
 from .forms import UserSignupform, UserLoginform
 from .models import User
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -31,6 +32,7 @@ def create_sendbird_user(user_id, nickname, profile_url=""):
     res = requests.post(url, data=json.dumps(data), headers=api_headers)
     res_data = json.loads(res._content.decode("utf-8"))
     return json.dumps(res_data)
+
 
 
 def home(request):
@@ -72,7 +74,8 @@ def signup(request):
         return redirect('home')
     else:
         return redirect('login')
-
+        
+@csrf_exempt
 def login(request):
     if request.method =="POST":
         loginForm = UserLoginform(request.POST)
