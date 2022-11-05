@@ -4,19 +4,10 @@ from django.conf import settings
 from datetime import datetime
 from .models import Chat
 from time import time
-import urllib.parse
 
 
 application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
-
-# def get_absolute_uri(request):
-#     location = request.get_full_path()
-#     if not http_re.match(location): 
-#         current_uri = '%s://%s%s' % (request.is_secure() and 'https' or 'http', request.get_host(), request.path)
-#         location = urljoin(current_uri, location)
-#     return location
-
 
 def chatHome(request):
     #sendbird 정보 가져오기
@@ -25,12 +16,12 @@ def chatHome(request):
     url = f"https://api-{application_id}.sendbird.com/v3/users/{user_id}/my_group_channels"
     api_headers = {"Api-Token": sendbird_api_token}
     
-
     data = {
         'order' : 'latest_last_message',
         'limit' : 100,
         'show_empty' : True,
     }
+    
     res = requests.get(url, params=data, headers=api_headers)
     
     info = res.text
@@ -106,7 +97,3 @@ def chatDetail(request, chat_id):
     context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id}
    
     return render(request, 'chat/chatDetail.html', context)
-
-# def send_chat (request, chat_id):
-     
-

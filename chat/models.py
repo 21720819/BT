@@ -12,10 +12,3 @@ class Chat(models.Model):
     def __str__(self):
         return "<%d %s>" %(self.pk, self.channel_url)
     
-
-
-
-
-
-
-

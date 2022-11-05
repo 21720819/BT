@@ -130,10 +130,6 @@ def addBookmark(request, post_id):
 #         mark.delete()
 #         return redirect('profile/home.html', uid)
 
-
-
-
-
 #거래 신청 함수
 def join(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)

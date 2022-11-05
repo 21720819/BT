@@ -33,17 +33,11 @@ function createChat(){
 {% endfor %}
 
 
-{% if post.check_chat == False %} 
-<button disabled="true" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
-    <a href="#" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
-</button>
-{% else %}
-
 
 <button onClick="createChat()" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
     <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
 </button>
-{% endif %}
+
 
 
 
