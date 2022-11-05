@@ -276,7 +276,8 @@
     //var post = document.getElementById('post');
     var pPosts = document.getElementById('profile_pPosts');
     var lPosts = document.getElementById('profile_lPosts');
-    var background = document.getElementsByClassName('detail_container');
+    //var background = document.getElementsByClassName('detail_container');
+    //var footer = document.getElementsByTagName('footer');
     
     for(i=0; i<2; i++) {
         if(myPost[i] != null) {
@@ -291,7 +292,8 @@
                 //post.innerHTML = `{% for post in p_post %}<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>{% endfor %}`
                 //post.insertAdjacentHTML('afterbegin', `<a href=${url} class="profile_list nav-link nav_change_color">{{post.title}}</a>`);
 
-                background[0].classList.add('blur');
+                //background[0].classList.add('blur');
+                //footer[0].classList.add('blur');
                 //pop.style.filter = 'blur(0)';
             };
         }
@@ -299,24 +301,16 @@
         if(myLike[i] != null) {
             myLike[i].onclick = function() {
                 setPopup('block', 'block', 'none', '좋아요 누른 글', 'none', 'block');
-                background[0].classList.add('blur');
+                //background[0].classList.add('blur');
+                //footer[0].classList.add('blur');
             };
         }   
     }
 
-    /*sms.onclick = function() {
-        pop.style.display = 'block';
-        box.style.display = 'none';
-        smsAuth.style.display = 'block';
-
-        title.textContent = '휴대폰 인증'
-
-        background[0].classList.add('blur');
-    }*/
-
     edit.onclick = function() {
         setPopup('block', 'none', 'block', '프로필 수정', 'none', 'none');
-        background[0].classList.add('blur');
+        //background[0].classList.add('blur');
+        //footer[0].classList.add('blur');
     }
 
     closeBtn.onclick = function() {
@@ -328,7 +322,8 @@
         pPosts.style.display = 'none';
         lPosts.style.display = 'none';*/
 
-        background[0].classList.remove('blur');
+        //background[0].classList.remove('blur');
+        //footer[0].classList.remove('blur');
     };
 
     function setPopup(p, pB, eB, t, pP, lP) {

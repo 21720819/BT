@@ -22,14 +22,17 @@
     footer {
         display: none;
     }
-    /*@media screen and (max-width: 768px) {
-        html body {
+    @media screen and (max-width: 768px) {
+        html, body {
             height: 100%;
         }
-    }*/
+        #content__blur {
+            height: 100%;
+        }
+    }
 </style>
 
-<div style="padding: 30px;">
+<div style="height: 100%; padding: 30px;">
     <div style="font-size: 15px; font-weight: bold; margin-bottom: 30px; padding-left: 2.5px;">휴대폰 인증</div>
     <form action="{% url 'sendsms' user.username %}" method="POST">
         {% csrf_token %}
@@ -42,7 +45,7 @@
         <input class="create_submitButton buttonColor" type="submit" value="인증번호 확인">
     </form>
 
-    <div style="height: 30px; font-size: 15px; line-height: 30px;">
+    <div style="height: calc(100% - 362.5px); font-size: 13px; line-height: 30px;">
         {% if messages %}
             {%for message in messages %}
                 {{message.message}}
