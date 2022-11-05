@@ -19,7 +19,6 @@ sendbird_api_token = settings.SENDBIRD_API_TOKEN
 
 
 def chatHome(request):
-
     #sendbird 정보 가져오기
     user_id = request.user.email #유저 이메일 지정
 
@@ -60,7 +59,7 @@ def chatHome(request):
         dic = {'channel_url':channel_url, 'chat_room_name':chat_room_name, 'last_message' : last_message, 'time' : time,'member_count' :member_count, 'application_id' : application_id, 'user_id' : user_id, 'pk' : pk }
         chats.append(dic)
 
-    context = {'chats' : chats}
+    context = {'chats' : chats, 'application_id' : application_id, 'user_id' : user_id}
     return render(request,'chat/chatHome.html', context)
 
 def chatDetail(request, chat_id):

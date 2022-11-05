@@ -11,9 +11,18 @@
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
 
+      <script>  
+      window.onpageshow = function(event) {
+      if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+      // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+      location.reload();
+    }
+}
+
+
+      </script>
       <script>
-        
-            init_detail('{{application_id}}', '{{channel_url}}', '{{user_id}}');
+            init_home('{{application_id}}', '{{user_id}}');
       </script>
  
   <div class ="chats">
