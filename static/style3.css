@@ -773,16 +773,11 @@ a,
   position: absolute;
   background: transparent;
   border: none;
-  overflow: hidden;
-  top: 50%;
+  top: 27%;
   right: 1px;
-  width: 42px;
-  height: 40px;
-  line-height: 38px;
-  font-size: 14px;
-  outline: none;
-  color: #999;
-  margin-top: -20px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
 }
 
 .image-button {
@@ -810,24 +805,23 @@ a,
 
 /* Forms common style */
 .form-control {
-  font-family: "Roboto Condensed", sans-serif;
+  position: relative;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 11px;
-  height: 33px;
+  height: 27px;
   border: 1px solid #EAEAEA;
   border-radius: 2px;
   transition: all 0.4s ease-in-out 0s;
 }
 
 .form-control:focus {
-  border-color: #CACACA;
+  border-color: #FB2146;
 }
 
 /* Forms size */
-.input-lg,
-.form-horizontal .form-group-lg .form-control {
-  height: 43px;
+.form-control {
+  height: 50px;
   font-size: 13px;
 }
 
@@ -2176,6 +2170,7 @@ Google map
 .post-more {
   font-size: 28px;
   color: #FB2146;
+  padding-bottom: 53px;
 }
 .post-images-slider {
   position: relative;
@@ -2417,6 +2412,10 @@ Google map
 /* Search */
 .search-box {
   position: relative;
+  padding-left: 13.5px;
+  padding-top: 10px;
+  width: 35%;
+  height: 40px;
 }
 
 /* Tags */
