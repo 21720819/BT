@@ -28,9 +28,9 @@
         display: none;
     }
     @media screen and (max-width: 768px) {
-        html, body {
+        /*html, body {
             height: 100%;
-        }
+        }*/
         #content__blur {
             height: 100%;
         }
@@ -64,8 +64,8 @@
 <script>
     var popClose = document.getElementById('popClose');
 
-    console.log(window.outerWidth)
-    if (window.outerWidth == 414) {
+    console.log(window.innerWidth)
+    if (window.innerWidth == 398) {
         popClose.style.display = 'none';
     }
 
