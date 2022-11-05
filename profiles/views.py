@@ -32,10 +32,11 @@ def changeChatNick(request, new_nick):
 def profileHome(request,user_name):
     user = get_object_or_404(User, username=user_name)
     p_post =  Buy.objects.filter(ID=user).order_by('-writeDate')
+    reviews = Review.objects.filter(ID=user).aggregate(avg_rate=Avg('rating'))
     likes = user.like_posts.all()
     joins = user.join_posts.all()
     #  sms 폼출력
-    return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes,'joins':joins})
+    return render(request, 'profile/home.html',{'user':user , 'p_post':p_post, 'likes':likes,'joins':joins,'reviews':reviews})
 
 def profileEdit(request,user_name):
     user = get_object_or_404(User, username=user_name)

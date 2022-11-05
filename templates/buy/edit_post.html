@@ -8,7 +8,7 @@
         {% csrf_token %}
 
         <!-- 사진 -->
-        <div id="create_tempImage" class="detail_img" style="position: relative;">
+        <div id="create_tempImage" class="detail_img" style="position: relative; background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url('{{ detail.photo.url }}');">  
             {{form.photo}}
             <label id="create_pickButton" class="buttonColor" for="photo">
                 <img src="{%static 'images/plus.png' %}" alt="" style="width: 50%; height: 50%;">

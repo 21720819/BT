@@ -167,7 +167,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <!-- 좋아요 누른 글 -->
+            <!-- 사용자 평가 -->
             <div id="profile_rPosts" class="profile_posts" style="display: none;">
                 {% for review in profileuser.ID.all %}
                     <p class="profile_list nav-link nav_change_color">★ {{review.rating}} / {{review.content}}</p>

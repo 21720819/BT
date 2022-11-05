@@ -47,7 +47,7 @@
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
         <table>
             <tr>
-                <td style="width: 30px;">
+                <td style="width: 45px;">
                     {% if user.level == 0 %}
                     <img src="{% static 'images/level0.png'%}" class="profile_img">
                     {% elif user.level == 1 %}
@@ -117,9 +117,6 @@
         </div>
     </div>
 
-    <!-- 신청자 보기 -->
-    <div id="detail_viewBox" class="detail_main profile_posts" style="display: none;"></div>
-
     <!-- 지도 -->
     <div id="map" class="detail_map"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd4feb6026338d2f553dadbd615a5509"></script>
@@ -157,7 +154,12 @@
         marker.setMap(map);
     </script>
 
+    
+    <!-- 신청자 보기 -->
+    <!-- <div id="detail_viewBox" class="detail_main profile_posts" style="display: none;"></div> -->
 </div>
+
+
 
 <!-- 팝업 -->
 <div id="pop" class="pop_wrap" style="display: none;">
@@ -174,7 +176,7 @@
         <div id="detail_accuseBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
 
         <!-- 신청자 보기 -->
-        <!-- <div id="detail_viewBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div> -->
+        <div id="detail_viewBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
     </div>
 </div>
 
@@ -213,7 +215,7 @@
     };
 
     view.onclick = function() {
-        setPopup('none', 'none', 'block', '신청자 보기');
+        setPopup('block', 'none', 'block', '신청자 보기');
         //background[0].classList.add('blur');
     };
 

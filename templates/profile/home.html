@@ -34,9 +34,10 @@
         <div class="profile_division">
             <div class="profile_divUpParts profile_verticalHr">가입일</div>
             <div class="profile_divDownParts profile_verticalHr">{{user.date_joined|date:'Y-m-d'}}</div>
-        </div><div class="profile_division">
-            <div class="profile_divUpParts">최근 접속일</div>
-            <div class="profile_divDownParts">{{user.last_login|date:'Y-m-d'}}</div>
+        </div>
+        <div name="rating" class="profile_division">
+            <div class="profile_divUpParts">★</div>
+            <div class="profile_divDownParts">{{reviews.avg_rate}}</div>
         </div>
     </div>
 
@@ -197,6 +198,7 @@
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
+
             <div id="profile_lPosts" class="profile_posts" style="display: none;">
                 <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for like in likes %}
@@ -208,6 +210,16 @@
                     {% endif %}
                 {% endfor %}
                 <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
+            </div>
+
+            <!-- 사용자 평가 -->
+            <div id="profile_rPosts" class="profile_posts" style="display: none;">
+                {% for review in profileuser.ID.all %}
+                    <p class="profile_list nav-link nav_change_color">★ {{review.rating}} / {{review.content}}</p>
+                    {% if not forloop.last %} <hr>
+                    {% else %} <hr style="margin-bottom: 0;">
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
 
@@ -262,6 +274,7 @@
 
 <!-- DIV 팝업 스크립트 -->
 <script>
+    var rating = document.getElementsByName('rating');
     var myPost = document.getElementsByName('myPost');
     var myLike = document.getElementsByName('myLike');
     //var myLikesD = document.getElementById('myLikeD');
@@ -278,13 +291,18 @@
     //var post = document.getElementById('post');
     var pPosts = document.getElementById('profile_pPosts');
     var lPosts = document.getElementById('profile_lPosts');
+    var rPosts = document.getElementById('profile_rPosts');
     //var background = document.getElementsByClassName('detail_container');
     //var footer = document.getElementsByTagName('footer');
     
+    rating[0].onclick = function() {
+        setPopup('block', 'block', 'none', '사용자 평가', 'none', 'none', 'block');
+    };
+
     for(i=0; i<2; i++) {
         if(myPost[i] != null) {
             myPost[i].onclick = function() {
-                setPopup('block', 'block', 'none', '작성한 글', 'block', 'none');
+                setPopup('block', 'block', 'none', '작성한 글', 'block', 'none', 'none');
                 //var posts = document.getElementById('profile_postBox').firstChild;
                 //var id = post.id;
                 //var url = "{% url 'buyDetail' 1234 %}".replace(/1234/, id.toString());
@@ -302,7 +320,7 @@
 
         if(myLike[i] != null) {
             myLike[i].onclick = function() {
-                setPopup('block', 'block', 'none', '좋아요 누른 글', 'none', 'block');
+                setPopup('block', 'block', 'none', '좋아요 누른 글', 'none', 'block', 'none');
                 //background[0].classList.add('blur');
                 //footer[0].classList.add('blur');
             };
@@ -310,13 +328,13 @@
     }
 
     edit.onclick = function() {
-        setPopup('block', 'none', 'block', '프로필 수정', 'none', 'none');
+        setPopup('block', 'none', 'block', '프로필 수정', 'none', 'none', 'none');
         //background[0].classList.add('blur');
         //footer[0].classList.add('blur');
     }
 
     closeBtn.onclick = function() {
-        setPopup('none', 'none', 'none', '', 'none', 'none');
+        setPopup('none', 'none', 'none', '', 'none', 'none', 'none');
         /*pop.style.display = 'none';
         box.style.display - 'none';
         //smsAuth.style.display = 'none';
@@ -328,7 +346,7 @@
         //footer[0].classList.remove('blur');
     };
 
-    function setPopup(p, pB, eB, t, pP, lP) {
+    function setPopup(p, pB, eB, t, pP, lP, rP) {
         pop.style.display = p;
         pBox.style.display = pB;
         eBox.style.display = eB;
@@ -337,6 +355,7 @@
         title.textContent = t;
         pPosts.style.display = pP;
         lPosts.style.display = lP;
+        rPosts.style.display = rP;
     }
 </script>
 
