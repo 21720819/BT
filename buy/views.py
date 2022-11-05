@@ -201,7 +201,7 @@ def removeUser(request, post_id):
 def auth(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)
     join_user = post.join_users.all()
-    return render(request,  'buy/auth.html',{'join_users':join_user,  'post_id':post_id})   
+    return render(request,  'buy/auth.html',{'join_users':join_user,  'post':post})   
 
 
 
