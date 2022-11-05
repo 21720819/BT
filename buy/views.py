@@ -242,7 +242,6 @@ def createChannel(request, post_id):
 
     chat.channel_url = channel_url
     chat.channel_name = channel_name
-    print(member_list)
     chat.emails = json.dumps(member_list)
     chat.count = count
     chat.save()

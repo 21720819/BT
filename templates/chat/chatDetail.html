@@ -6,52 +6,21 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
 <script type="text/javascript" src="{%static 'js/jquery-3.1.1.min.js' %}"></script>
 <script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
-<script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <body>
+      <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
 
       <script>
-       var sb = new SendBird({appId: '{{application_id}}'});
-        // sendbird 연결
-        sb.connect("{{user_id}}", function(user, error) {
-            if (error) {
-                return;
-            }
-        });
 
-      sb.GroupChannel.getChannel('{{channel_url}}', function(groupChannel, error) {
-            if (error) {
-                  return;
-            }
-
-            // ChannelHandler 객체
-            var ChannelHandler = new sb.ChannelHandler();
-
-              // 메시지 받기
-              ChannelHandler.onMessageReceived = function(channel, message){
-                  location.reload();
-                  tx_send = document.getElementById("tx_send");
-
-                  val = window.localStorage.getItem('tx_send');
-                  alert(val);
-               };
-
-                    sb.addChannelHandler('test_id2_ChannelHandlerIdTmp', ChannelHandler);
+            init('{{application_id}}', '{{channel_url}}', '{{user_id}}');
+            
 
 
-            // 메시지 발송 객체 함수 할당
-            sendMsgObj = function (msg) {
-                  groupChannel.sendUserMessage(msg, groupChannel.data, groupChannel.customType, function(message, error){
-                  if (error) {
-                        return;
-                  }
-                  $('#tx_send').val("");
-                  location.reload();
-                  
-                  });
-            }
-      });
+       
+     
+   
       </script>
      <div class = "out">
             <div id="chat-messages">
@@ -82,22 +51,16 @@
                        
                        
             {% endfor%}
-
-
-           
+            <div id="new_message"></div>
            </div>
       <div class="div_send">
-            <form id = "send_form" method="POST" onsubmit="send_message()">
+            <form id = "send_form" method="post" onsubmit="send_message()">
                   {% csrf_token %}
-                  <textarea id ="tx_send" onkeyup="saveValue(this)" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
+                  <textarea id ="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
                   <button type="button" onclick="send_message()"></button>
             </form>    
       </div>
-      
-   
      </div> 
-
-
   
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

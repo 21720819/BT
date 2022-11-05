@@ -1,27 +1,24 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-
 {% extends 'nav.html' %}
 {% load static %}
 {% block content %}
-<head>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+<script type="text/javascript" src="{%static 'js/jquery-3.1.1.min.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
 
-  <script language='javascript'> 
-     chats = document.getElementById("chats");
-     
-     setTimeout(chats.location.reload(), 1000);
-
-
-    
-    </script>
-
-</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <body>
+      <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
+
+      <script>
+        
+            init_detail('{{application_id}}', '{{channel_url}}', '{{user_id}}');
+      </script>
  
   <div class ="chats">
- {% for chat in chats %}
+ {% for chat in chats%}
+ {% if chat.pk %}
   <div class="chat" onclick="location.href='{{chat.pk}}'">
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
         <div>
@@ -34,13 +31,14 @@
  
           <span> {{chat.last_message}}</span>
         </div>
-        
+       
     </div>
-
-      {% endfor%}
+     
+    {% endif %}
+    {% endfor%}
+     
     </div>
 </body>
     
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 {% endblock %}
