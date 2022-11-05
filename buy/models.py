@@ -28,12 +28,20 @@ class Buy(models.Model):
     like_count = models.PositiveIntegerField(default=0)    
     join_count = models.PositiveIntegerField(default=1) # 참가 신청한 사람 수 
     check_chat = models.BooleanField(default = False) # 채팅방 생성되었는지 확인
+
     def __str__(self):
         return self.title
     
+    def summaryTitle(self):
+        if len(self.title)>15:
+            sBody = self.title[:15]+'...'
+        else: sBody = self.title
+        return sBody
+        
+
     def summary(self):
         if len(self.body)>30:
-            sBody = self.body[:30]+' ...'
+            sBody = self.body[:30]+'...더보기'
         else: sBody = self.body
         return sBody
         

@@ -103,7 +103,7 @@
                 {% else %}<img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" class="img_size"/>
                 {% endif %}</a></div>
               <div class="post-header">
-                <a href="{% url 'buyDetail' post.id %}" style="text-decoration: none;"><h2 class="post-title">{{post.title}}</h2></a><!-- 제목 -->
+                <a href="{% url 'buyDetail' post.id %}" style="text-decoration: none;"><h2 class="post-title">{{post.summaryTitle}}</h2></a><!-- 제목 -->
                 <div class="post-meta"><a href="{% url 'userProfile' post.ID.username %}" style="text-decoration: none;">{{post.ID.username}}</a>&nbsp;| {{post.date|date:'m월d일 H시i분'}} | {{post.location}} <!-- 거래 상세 -->
               </div>
               <div class="post-entry" style="padding-top: 20px;"> <!-- 내용 -->
