@@ -1339,10 +1339,7 @@ body {
 }
 
 /*======== 거래게시판 Buy ========*/
-
-
-
-.card:hover {
+/* .card:hover {
   box-shadow: 2px 2px 2px gray;
 }
 
@@ -1497,10 +1494,9 @@ body {
    grid-template-columns: 1fr;
    justify-items: center;
  }
-}
+} */
 
-/* ====== buy페이지 그냥 추가해보고 있는 것 ========= */ 
-.card {
+/* .card {
   background-color: #F5F5F6;
   width: 350px;
   padding: 20px;
@@ -1541,7 +1537,8 @@ body {
   background-color: #FB2146;
   border-color: #FB2146;
   box-shadow: none
-}
+} */
+
 
 /*======== write button =========*/
 
