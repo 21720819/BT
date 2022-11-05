@@ -1048,7 +1048,7 @@ video { width: 100%; }
 }
 .password_exp {
   font-size: 15px;
-  margin-bottom: 35px;
+  margin: 10px 0 35px 0;
 }
 /* .password_email {
   margin-top: 25px;
@@ -1096,7 +1096,7 @@ video { width: 100%; }
   .password_exp {
     font-size: 12.5px;
     line-height: 20px;
-    margin-bottom: 25px;
+    margin: 10px 0 25px 0;
   }
   .password_email > p > label {
     font-size: 11.5px;
