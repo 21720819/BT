@@ -244,6 +244,9 @@ video { width: 100%; }
   float: left;
   z-index: 0;
 }
+#detail_viewBox {
+  height: calc(calc(100vw * 0.75 * 0.4) - 40px);
+}
 .detail_main {
   width: calc(40% - 40px);
   /* height: 1000px; */
@@ -306,9 +309,6 @@ video { width: 100%; }
 .detailBtns{
   display: flex;
   align-items: center;
-}
-.detailLikeForm{
-  display: block;
 }
 .detail_likeButton {
   width: 50px;
@@ -985,6 +985,40 @@ video { width: 100%; }
 }
 
 
+
+/* ---------auth---------- */
+.auth_list {
+  height: calc(100% - 100px);
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.auth_list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+.auth_nick {
+  width: calc(100% - 50px);
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  /* margin-bottom: 10px; */
+  float: left;
+}
+.auth_denyButton {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  border: 0;
+  border-radius: 25px;
+  /* background: #E98197; */
+  color: white;
+  font-size: 15px;
+  line-height: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 /* ---------전체폰트 바꾸기---------- */
 /* .font_change {
   font-family: ;
@@ -1339,10 +1373,7 @@ body {
 }
 
 /*======== 거래게시판 Buy ========*/
-
-
-
-.card:hover {
+/* .card:hover {
   box-shadow: 2px 2px 2px gray;
 }
 
@@ -1497,10 +1528,9 @@ body {
    grid-template-columns: 1fr;
    justify-items: center;
  }
-}
+} */
 
-/* ====== buy페이지 그냥 추가해보고 있는 것 ========= */ 
-.card {
+/* .card {
   background-color: #F5F5F6;
   width: 350px;
   padding: 20px;
@@ -1541,7 +1571,8 @@ body {
   background-color: #FB2146;
   border-color: #FB2146;
   box-shadow: none
-}
+} */
+
 
 /*======== write button =========*/
 

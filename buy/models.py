@@ -31,6 +31,12 @@ class Buy(models.Model):
     def __str__(self):
         return self.title
     
+    def summary(self):
+        if len(self.body)>30:
+            sBody = self.body[:30]+' ...'
+        else: sBody = self.body
+        return sBody
+        
 # class Bookmarks(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #     post = models.ForeignKey(Buy, on_delete=models.CASCADE)

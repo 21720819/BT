@@ -9,6 +9,7 @@
         {% if detail.ID.id == user.id %}
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
+            <div id="accuse" style="display: none;"></div> <!-- 이거 없으면 신고 버튼 누를 때 동작 X -> id가 accuse인 거가 있을때가 있고 없을때가 있다 -->
         {% else %}
             <div id="accuse" class="detail_navEle" style="cursor: pointer;">신고</div>
         {% endif %}
@@ -95,22 +96,27 @@
             </form>
             
             {% if detail.ID.id == user.id %}
-                <button class="detail_applyButton buttonColor">
-                    <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a>
+                <button id="view" class="detail_applyButton buttonColor">
+                    신청자 보기
+                    <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
                 </button>
             {% else  %}
+                <div id="view"></div>
                 {% if user in detail.join_users.all %}
                 <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
-                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">취소하기</a>
+                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white; padding: 13.75px 0; display: block;">취소하기</a>
                 </button>
                 {% else %}
                 <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white;">참가하기</a>
+                    <a href="{% url 'join' detail.id %}" style="text-decoration: none; color: white; padding: 13.75px 0; display: block;">참가하기</a>
                 </button>
                 {% endif %}
             {% endif %}
         </div>
     </div>
+
+    <!-- 신청자 보기 -->
+    <div id="detail_viewBox" class="detail_main profile_posts" style="display: none;"></div>
 
     <!-- 지도 -->
     <div id="map" class="detail_map"></div>
@@ -163,7 +169,10 @@
         </div>
 
         <!-- 신고하기 -->
-        <div id="profile_accuseBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
+        <div id="detail_accuseBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
+
+        <!-- 신청자 보기 -->
+        <!-- <div id="detail_viewBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div> -->
     </div>
 </div>
 
@@ -179,32 +188,42 @@
             });
     }
 
-    insertIntoPopup("{% url 'reportPost' detail.id %}", 'profile_accuseBox');
+    insertIntoPopup("{% url 'reportPost' detail.id %}", 'detail_accuseBox');
+    insertIntoPopup("{% url 'auth' detail.id %}", 'detail_viewBox');
 </script>
+
 <!-- 팝업 스크립트 -->
 <script>
     var accuse = document.getElementById('accuse');
+    var view = document.getElementById('view');
 
     var pop = document.getElementById('pop');
-    var aBox = document.getElementById('profile_accuseBox');
+    var aBox = document.getElementById('detail_accuseBox');
+    var vBox = document.getElementById('detail_viewBox');
     var closeBtn = document.getElementById('close');
     var title = document.getElementById('title');
     
-    var background = document.getElementsByClassName('detail_container');
+    //var background = document.getElementsByClassName('detail_container');
 
     accuse.onclick = function() {
-        setPopup('block', 'block', '신고하기');
-        background[0].classList.add('blur');
+        setPopup('block', 'block', 'none', '신고하기');
+        //background[0].classList.add('blur');
+    };
+
+    view.onclick = function() {
+        setPopup('none', 'none', 'block', '신청자 보기');
+        //background[0].classList.add('blur');
     };
 
     closeBtn.onclick = function() {
-        setPopup('none', 'none', '');
-        background[0].classList.remove('blur');
+        setPopup('none', 'block', 'none', '');
+        //background[0].classList.remove('blur');
     };
 
-    function setPopup(p, aB, t) {
+    function setPopup(p, aB, vB, t) {
         pop.style.display = p;
         aBox.style.display = aB;
+        vBox.style.display = vB;
 
         title.textContent = t;
     }

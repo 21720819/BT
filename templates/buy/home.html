@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'style3.css' %}?after">
 
 <div class="detail_container" style="position: relative;">
@@ -27,7 +28,7 @@
  <div class="catext-center category__menu" style="position: relative;">
     <nav class="style-4">
       <ul class="menu-4">
-        <li class="current"><a href="{% url 'buyHome' %}" data-hover="전체">전체</a></li>
+        <li><a href="{% url 'buyHome' %}" data-hover="전체">전체</a></li>
         <li><a href="{% url 'category' 'food' %}" data-hover="식료품">식료품</a></li>
         <li><a href="{% url 'category' 'necessity' %}" data-hover="생필품">생필품</a></li>
         <li><a href="{% url 'category' 'ott' %}" data-hover="OTT">OTT</a></li>
@@ -36,10 +37,8 @@
     </nav>
  </div>
 
-
   <!-- <div class="searchForm"> -->
     <!-- 정렬 -->
-
     <!-- <select id="sort-select" class="select_box" onchange="location = this.value;">
       <option class="sort-date option_1" value="?sort=date">최신순</option>
       <option class="sort-likes" value="?sort=likes">좋아요순</option>
@@ -47,7 +46,6 @@
       <option class="sort-likes" value="?sort=highprice">높은가격순</option>
     </select> -->
     <!-- 정렬 -->    
-
   <!-- </div> -->
 
  <!-- 검색창 --> 
@@ -89,54 +87,37 @@
     </div>
   </div> -->
 
-
     <!-- 게시글 출력 -->
-    {% for post in posts %}
-
-  <div class="card">
-    <div class="inner-card"> 
-      {% if post.photo %}
-      <img src="{{ post.photo.url }}" class="img-fluid rounded">
-      {% else %}
-      <img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="" class="img-fluid" />
-      {% endif %}
-        <div class="d-flex justify-content-between align-items-center mt-3 px-2">
-            <h4>{{post.title}}</h4> <span class="heart"><i class="fa fa-heart"></i></span>
-        </div>
-        <div class="mt-2 px-2"> <small>{{post.body}}</small> </div>
-        <div class="px-2">
-            <h3>{{post.price}}원/1인</h3> <h5>{{post.join_count}}/{{post.wpeople}}명</h5>
-        </div>
-        <div class="px-2 mt-3"><a href="{% url 'buyDetail' post.id %}"><button class="btn btn-primary px-3">상세보기</button></a></div>
-    </div>
-    {% endfor %}
-
-    <!-- 게시글 출력 -->
-    {% for post in posts %}
     <section class="module">
       <div class="buy-container">
         <div class="row multi-columns-row post-columns">
-          <div class="col-sm-6 col-md-4 col-lg-4 flex">
-            <div class="post flex-item">
-              <div class="post-thumbnail"><a href="{% url 'buyDetail' post.id %}">{% if post.photo %}<img src="{{ post.photo.url }}" alt="Blog-post Thumbnail"/>
-                {% else %}<img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" alt="Blog-post Thumbnail"/>
+          {% for post in posts %}
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post">
+              <div class="post-thumbnail"><a href="{% url 'buyDetail' post.id %}">{% if post.photo %}<img src="{{ post.photo.url }}" class="img_size"/>
+                {% else %}<img src="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80" class="img_size"/>
                 {% endif %}</a></div>
-              <div class="post-header font-alt">
-                <h2 class="post-title"><a href="{% url 'buyDetail' post.id %}">{{post.title}}</a></h2>
-                <div class="post-meta">By&nbsp;<a href="#">{{post.ID.username}}</a>&nbsp;| {{post.date}} | 좋아요 {{post.like_count}}
+              <div class="post-header">
+                <a href="{% url 'buyDetail' post.id %}" style="text-decoration: none;"><h2 class="post-title">{{post.title}}</h2></a><!-- 제목 -->
+                <div class="post-meta"><a href="{% url 'userProfile' post.ID.username %}" style="text-decoration: none;">{{post.ID.username}}</a>&nbsp;| {{post.date|date:'m월d일 H시i분'}} | {{post.location}} <!-- 거래 상세 -->
               </div>
-              <div class="post-entry">
-                <p>{{post.body}}</p>
+              <div class="post-entry" style="padding-top: 20px;"> <!-- 내용 -->
+                <a href="{% url 'buyDetail' post.id %}" style="text-decoration: none;"><p>{{post.summary}}</p></a>
               </div>
-              <div class="post-more"><a class="more-link" href="{% url 'buyDetail' post.id %}">Read more</a></div>
+                <div class="post-more">{{post.price}}원</div> <!-- 가격 -->
+              </div>
             </div>
           </div>
+          {% endfor %}     
         </div>
       </div>
     </section>
-    {% endfor %}
-
-    <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+   
+    <div class="pagination font-alt">
+      {%if posts.has_previous%}<a href="?page={{posts.previous_page_number}}"><i class="fa fa-angle-left"></i></a>{%endif%}
+      <a class="active" href="?page=1">1</a><a href="?page=2">2</a><a href="?page=3">3</a><a href="?page=4">4</a>
+      {%if posts.has_next%}<a href="?page={{posts.next_page_number}}"><i class="fa fa-angle-right"></i></a>{%endif%}
+    </div>
 
   </div>
 
@@ -155,7 +136,7 @@
   {% endif %}
   {% endif %}
 
-  <div class="row justify-content-center">
+  <!-- <div class="row justify-content-center">
     <div class="col-sm-6 col-md-3 p-2 purbd_home_div">
       {%if posts.has_previous%}
       <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째
@@ -178,7 +159,7 @@
           페이지</button></a>
       {%endif%}
     </div>
-  </div>
+  </div> -->
 
   <div class="map_btn_container">
     <button class="map_button"><i class="fa-sharp fa-solid fa-location-dot"></i></button>

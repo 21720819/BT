@@ -192,7 +192,6 @@ def removeUser(request, post_id):
     return redirect('auth',str(post_id))
 
 
-
  # 신청자 목록 보여주는 함수
 def auth(request,post_id):
     post = get_object_or_404(Buy, pk=post_id)
