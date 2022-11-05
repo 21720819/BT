@@ -8,13 +8,15 @@
         <tr>
             <td style="width: 30px;">
                 {% if user.level == 0 %}
-                <img src="{% static 'images/foodmark.png'%}" class="profile_img">
+                <img src="{% static 'images/level0.png'%}" class="profile_img">
                 {% elif user.level == 1 %}
-                <img src="{% static 'images/nesmark.png'%}" class="profile_img">
+                <img src="{% static 'images/level1.png'%}" class="profile_img">
                 {% elif user.level == 2 %}
-                <img src="{% static 'images/ottmark.png'%}"class="profile_img">
+                <img src="{% static 'images/level2.png'%}"class="profile_img">
                 {% elif user.level == 3 %}
-                <img src="{% static 'images/delmark.png'%}" class="profile_img">
+                <img src="{% static 'images/level3.png'%}" class="profile_img">
+                {% elif user.level == 4 %}
+                <img src="{% static 'images/level4.png'%}" class="profile_img">
                 {% endif %}
             </td>
             <td style="font-size: 20px; text-align: left;">

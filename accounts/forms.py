@@ -4,6 +4,23 @@ from django import forms
 from .models import User
 from .validators import validate_symbols
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import SetPasswordForm
+
+class CustomPasswordSetForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['new_password1'].label = '새 비밀번호'
+        self.fields['new_password1'].widget.attrs.update({
+            'class':
+            'form-control',
+        })
+        self.fields['new_password1'].help_text = None
+        self.fields['new_password2'].label = '새 비밀번호 확인'
+        self.fields['new_password2'].widget.attrs.update({
+            'class':
+            'form-control',
+        })
+        self.fields['new_password2'].help_text = None
 
 class UserLoginform(forms.ModelForm):
 	class Meta:
