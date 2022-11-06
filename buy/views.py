@@ -244,7 +244,7 @@ def createChannel(request, post_id):
     post.check_chat = True
     post.save()
 
-    return redirect('auth', str(post_id))
+    return redirect('buyDetail', str(post_id))
 
 
 def map(request):
