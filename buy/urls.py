@@ -15,8 +15,10 @@ urlpatterns = [
     path('map/', views.map, name='map'),
     path('auth/<str:post_id>',views.auth , name='auth'),
     path('remove/<str:post_id>',views.removeUser , name='removeUser'),
-    path('createChannel/<str:post_id>',views.createChannel, name='createChannel'),
     path('join/<str:post_id>',views.join , name='join'),
+
+    #chat
+    path('createChannel/<str:post_id>',views.createChannel, name='createChannel'),
 
   #  path('',views.createpur),
 
