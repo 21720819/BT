@@ -1,66 +1,48 @@
+
+<style>
+    .btn_area {
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+    }
+
+</style>
+
+<script>
+function createChat(){
+    alert('채팅방 생성완료');
+}
+</script>
+
+
+
 {% extends 'nav.html' %}
 
 {% block content %}
 
-<style>
-    #detail_viewBox html, body {
-        height: 100%;
-    }
-    #detail_viewBox footer {
-        display: none;
-    }
-    #detail_viewBox #content__blur {
-        height: 100%;   
-    }
-    /*@media screen and (max-width: 768px) {
-        html body {
-            height: 100%;
-        }
-    }*/
-</style>
-
-<div class="auth_list">
-    {% for join_user in join_users %}
-        <a href="{% url 'userProfile' join_user.username %}" class="auth_nick detail_usrname nav-link nav_change_color">{{join_user.username}}</a>
-        <!-- removeUser -->
-        <form action="{% url 'removeUser' post.id %}" method="post" style="float: right;">
-            {% csrf_token %}
-            <input style="display: none;" id="your_name" type="text" name="username" value="{{join_user.username}}">
-            <button class="auth_denyButton buttonColor" type="submit" onclick="preventRedirect()">거절</button>
-        </form>
-        {% if not forloop.last %}
-            <div class="profile_horizontalHr" style="width: 100%; margin: 1rem 0; float: left;"></div>
-        {% else %}
-            <div class="profile_horizontalHr" style="width: 100%; margin-top: 1rem; float: left;"></div>
-        {% endif %}
-    {% endfor %}
-    <!-- <div style="width: 100%; height: 500px; background:black; float:left;"></div> -->
-</div>
+{% for join_user in join_users %}
+<span>
+<a href="{% url 'userProfile' join_user.username %}" class="detail_usrname nav-link nav_change_color">{{join_user.username}}</a>
+</span>
+<!-- removeUser -->
+<form class="detailLikeForm" action="{% url 'removeUser' post.id %}" method="post">
+    {% csrf_token %}
+    <input style="display: none;"  id="your_name" type="text" name="username" value="{{join_user.username}}">
+    <input type="submit" value="거절">
+</form>
+{% endfor %}
 
 
-
-
-{% if post.check_chat == True %} 
-    <button disabled="true" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 50px;">
-        <a href="#" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
-    </button>
+{% if post.check_chat == False %} 
+<button disabled="true" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
+    <a href="#" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
+</button>
 {% else %}
-    <button onClick="createChat()" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 40px;">
-        <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
-    </button>
+
+
+<button onClick="createChat()" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
+    <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
+</button>
 {% endif %}
-
-
-
-<script>
-    function createChat(){
-        alert('채팅방 생성완료');
-    }
-
-    function preventRedirect() {
-        event.preventDefault()
-    }
-</script>
-
 
 {% endblock %}

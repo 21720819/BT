@@ -56,8 +56,8 @@
                         <li class="nav__item dropdown">
                             <a href="{% url 'chatHome' %}" class="nav__link dropdown__link">채팅<i class='bx bx-chevron-down dropdown__icon'></i></a>
                             <ul class="dropdown__menu">
-                                <li class="dropdown__item"><a href="#" class="nav__link">봄봄이와</a></li>
-                                <li class="dropdown__item"><a href="#" class="nav__link">사용자들과</a></li>
+                                <li class="dropdown__item"><a href="{% url 'chatAI' %}" class="nav__link">봄봄이와</a></li>
+                                <li class="dropdown__item"><a href="{% url 'chatHome' %}" class="nav__link">사용자들과</a></li>
                             </ul>
                         </li>
                         {% if user.is_authenticated %}

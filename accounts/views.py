@@ -21,19 +21,17 @@ sendbird_api_token = settings.SENDBIRD_API_TOKEN
 from django.contrib.auth.decorators import login_required
 
 #sendbird 유저 등록 함수
-def create_sendbird_user(user_id, nickname, profile_url=""):
+def create_sendbird_user(user_id, nickname):
     url = f"https://api-{application_id}.sendbird.com/v3/users"
     api_headers = {"Api-Token": sendbird_api_token}
     data = {
         "user_id": user_id,
         "nickname": nickname,
-        "profile_url": profile_url,
+        "profile_url": "../static/images/level0.png",
     }
     res = requests.post(url, data=json.dumps(data), headers=api_headers)
     res_data = json.loads(res._content.decode("utf-8"))
     return json.dumps(res_data)
-
-
 
 def home(request):
     return render(request,'home.html')
