@@ -190,6 +190,14 @@ def e500(request):
 
 def loginerror(request):
     return render(request, 'error/login.html')
+
+
+def delete(request):
+    user = request.user
+    user.delete()
+    logout(request)
+    return redirect('home')
+
 # # from .models import Authentication
 
 # # 네이버 SMS 인증

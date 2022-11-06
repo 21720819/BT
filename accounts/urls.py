@@ -7,6 +7,7 @@ urlpatterns = [
     path('loginn/',views.login,name='login'),
     path('login/',views.loginHome,name='loginHome'),
     path('activate/<str:uid64>/<str:token>/',views.activate,name='activate'),
+    path('delete/',views.delete, name='adelete'),
     path('loginerror/',views.loginerror, name='loginerror'),
     path('e400/',views.e400, name='e400'),
     path('e404/',views.e404, name='e404'),
