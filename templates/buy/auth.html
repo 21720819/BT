@@ -15,30 +15,25 @@ function createChat(){
 </script>
 
 
+{% if post.check_chat == False %} 
+    <button disabled="true" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 50px;">
+        <a href="#" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
+    </button>
+{% else %}
+    <button onClick="createChat()" class="create_submitButton buttonColor" type="button" id="createChatButton" style="margin-top: 50px;">
+        <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
+    </button>
+{% endif %}
 
 {% extends 'nav.html' %}
 
 {% block content %}
 
-{% for join_user in join_users %}
-<span>
-<a href="{% url 'userProfile' join_user.username %}" class="detail_usrname nav-link nav_change_color">{{join_user.username}}</a>
-</span>
-<!-- removeUser -->
-<form class="detailLikeForm" action="{% url 'removeUser' post.id %}" method="post">
-    {% csrf_token %}
-    <input style="display: none;"  id="your_name" type="text" name="username" value="{{join_user.username}}">
-    <input type="submit" value="거절">
-</form>
-{% endfor %}
-
-
-{% if post.check_chat == False %} 
-<button disabled="true" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
-    <a href="#" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
-</button>
-{% else %}
-
+<script>
+    function createChat(){
+        alert('채팅방 생성완료');
+    }
+</script>
 
 <button onClick="createChat()" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
     <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
