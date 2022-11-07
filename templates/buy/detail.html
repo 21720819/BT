@@ -89,20 +89,28 @@
         <div class="detailBtns">
             <form class="detailLikeForm"action="{% url 'addBookmark' detail.id %}" method="post">
                 {% csrf_token %}
-
+                
                 {% if user in detail.like_users.all %}
-                    <input type="submit" value="♥&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
+                <input type="submit" value="♥&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% else %}
-                    <input type="submit" value="♡&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
+                <input type="submit" value="♡&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% endif %}
             </form>
-            
+            {% if detail.check_chat == True%} 
+            <!-- 채팅방이 생성되어슬때 -->
+            <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('이미 거래가 시작 된글입니다.')">
+                <a href="#" style="text-decoration: none; color: white; padding: 13.75px 0; display: block;">채팅방생성완료</a>
+            </button>
+            {% else %}
+            <!-- 채팅방 생성전 -->
             {% if detail.ID.id == user.id %}
+            <!-- 작성자 -->
                 <button id="view" class="detail_applyButton buttonColor">
                     신청자 보기
                     <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
                 </button>
             {% else  %}
+            <!-- 참가자 -->
                 <div id="view"></div>
                 {% if user in detail.join_users.all %}
                 <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
@@ -114,6 +122,8 @@
                 </button>
                 {% endif %}
             {% endif %}
+            {% endif %}
+
         </div>
     </div>
 

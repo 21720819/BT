@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_str
 from django.conf import settings
-
+from django.http import JsonResponse
 import json, requests
 
 #sendbird 정보 가져오기
@@ -35,41 +35,54 @@ def create_sendbird_user(user_id, nickname):
 
 def home(request):
     return render(request,'home.html')
-
+from django.contrib import messages
 def signup(request):
     if request.method == "POST":
         singForm = UserSignupform(request.POST)
         # loginForm = UserLoginform()
-        if request.POST["password"]==request.POST["password2"]:
-            user = User.objects.create_user(
-                email= request.POST['email'], password=request.POST['password'] ,username = request.POST['username']
-            )
-            create_sendbird_user(request.POST['email'],request.POST['username'])
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request) 
-            # localhost:8000
-            message = render_to_string('accounts/user_activate_email.html',                         
-            {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)).encode().decode(),
-                'token': account_activation_token.make_token(user),
-            })
-            mail_subject = "[buytogether] 회원가입 인증 메일입니다."
-            user_email = user.email
-            email = EmailMessage(mail_subject, message, to=[user_email])
-            email.send()
-            return HttpResponse( #페이지 새로만드는것도 괜찮을듯
-                '<div style="font-size: 40px; width: 100%; height:100%; display:flex; text-align:center; '
-                'justify-content: center; align-items: center;">'
-                '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'
-                '</div>'
-            )
+        if singForm.is_valid():
+        # try:
+            email= request.POST['email']
+            password=request.POST['password']
+            username = request.POST['username']
+            if ("@ynu.ac.kr" not in email):
+                messages.error(request, f"영남대 이메일 사용바람")
+                return redirect('login')
 
+            if request.POST["password"]==request.POST["password2"]:
+                # validate_symbols(email)
+                user = User.objects.create_user(
+                    email= email, password=password ,username = username
+                )
+                create_sendbird_user(request.POST['email'],request.POST['username'])
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request) 
+                # localhost:8000
+                message = render_to_string('accounts/user_activate_email.html',                         
+                {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)).encode().decode(),
+                    'token': account_activation_token.make_token(user),
+                })
+                mail_subject = "[buytogether] 회원가입 인증 메일입니다."
+                user_email = user.email
+                email = EmailMessage(mail_subject, message, to=[user_email])
+                email.send()
+                return HttpResponse( #페이지 새로만드는것도 괜찮을듯
+                    '<div style="font-size: 40px; width: 100%; height:100%; display:flex; text-align:center; '
+                    'justify-content: center; align-items: center;">'
+                    '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'
+                    '</div>'
+                )
             # auth.login(request,user)
             return redirect('home')
-        return redirect('home')
+        # except ValueError as e:
+        #     # return JsonResponse({'message':f"{e.message}"})
+        #     messages.error(request, f"{e.message}")
+        #     return redirect('login')
+        return redirect('loginHome')
     else:
         return redirect('loginHome')
         
@@ -188,6 +201,14 @@ def e500(request):
 
 def loginerror(request):
     return render(request, 'error/login.html')
+
+
+def delete(request):
+    user = request.user
+    user.delete()
+    logout(request)
+    return redirect('home')
+
 # # from .models import Authentication
 
 # # 네이버 SMS 인증

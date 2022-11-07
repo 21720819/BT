@@ -31,9 +31,11 @@
           <div class="">
           {{singForm.email}}
           </div>
-          {# if singForm.email.errors #}
-            <span style="color:red">{{singForm.email.errors}}</span>
-          {# endif #}
+          {% if messages %}
+            {%for message in messages %}
+                {{message.message}}
+            {% endfor %}
+        {% endif %}
           <div class="">
           {{singForm.password}}
           </div>

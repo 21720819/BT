@@ -163,7 +163,7 @@
 
     {% if not user.is_staff %}
     <div class="profile_summary profile_btns">
-        <a class="nav-link nav_change_color" href="{% url 'logout' %}">회원탈퇴</a>
+        <a class="nav-link nav_change_color" href="{% url 'adelete' %}">회원탈퇴</a>
     </div>
     {% endif %}
 </div>
@@ -211,7 +211,7 @@
 
             <!-- 사용자 평가 -->
             <div id="profile_rPosts" class="profile_posts" style="display: none;">
-                {% for review in profileuser.ID.all %}
+                {% for review in user.ID.all %}
                     <p class="profile_list nav-link nav_change_color">★ {{review.rating}} / {{review.content}}</p>
                     {% if not forloop.last %} <hr>
                     {% else %} <hr style="margin-bottom: 0;">
