@@ -18,6 +18,7 @@
            
       
       </script>
+
      <div class = "out detail_container">
             <div id="profile">
                   <p>{{chat_name}}</p>
@@ -66,6 +67,7 @@
             <div>
                   <form id = "send_form" method="post" onsubmit="send_message()">
                         {% csrf_token %}
+
                         <textarea placeholder="채팅을 입력하세요." onfocus="this.placeholder=''" onblur = "this.placeholder ='채팅을 입력하세요.'" id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
                         <button type="button" onclick="send_message()"></button>
                   </form>    
