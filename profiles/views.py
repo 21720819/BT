@@ -125,7 +125,7 @@ def checksms(request,username):# 인증번호 확인
 
                 if verification.auth_number == data:
                     # return JsonResponse({'message': '인증 완료되었습니다.'}, status=200)
-                    messages.success(request, f"인증완료")
+                    messages.success(request, f"인증 완료")
                     return redirect('../../profile/'+username+'/sms')
 
                 else:
