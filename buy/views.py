@@ -59,6 +59,7 @@ def buyDelete(request, post_id):
 
 def buyEdit(request, post_id):
     post = Buy.objects.get(id=post_id)
+    
     # 글을 수정사항을 입력하고 제출을 눌렀을 때
     if request.method == "POST":
         form = BuyModelform(request.POST, request.FILES)
@@ -85,7 +86,6 @@ def buyEdit(request, post_id):
             'form':form,
             'writing':True,
             'now':'edit',
-
         }
         return render(request, 'buy/edit_post.html',context)
 

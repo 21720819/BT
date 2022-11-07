@@ -336,7 +336,7 @@ video { width: 100%; }
   border-radius: 10px;
   background-color: gray;
   
-  margin: 0 0 2px -1px;
+  /* margin: 0 0 0 -1px; */
 
   display: flex;
   justify-content: center;
@@ -394,6 +394,11 @@ video { width: 100%; }
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+}
+.detail_aInButton {
+  color: white;
+  padding: 13.75px 0;
+  display: block;
 }
 /* .detail_applyButton:hover {
   background: #f09fb0;
@@ -738,8 +743,6 @@ video { width: 100%; }
   border-radius: 18px;
   background-color: rgb(207, 141, 141);
 
-  margin-bottom: 2px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1076,7 +1079,10 @@ video { width: 100%; }
 .auth_denyButton:hover {
   background: rgb(250, 247, 247);
 }
-
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 /* ---------password---------- */
 
@@ -1209,7 +1215,7 @@ nav a {
   left: 0;
   width: 100%;
   height: calc(var(--header-height) + 1rem);
-  padding: 0 1rem;
+  padding: 0 calc(1rem + 32px) 0 1rem;
   background-color: #FFF;
   z-index: var(--z-fixed);
   display: flex;
@@ -1421,23 +1427,42 @@ body {
 }
 
 .ai {
-  position: fixed; 
+  width: 100%;
+  height: 100%;
+  font-size: 0.85rem;
+  text-align: center;
+  /* position: fixed; 
   top: 1.8rem; 
-  left: 50.8%; 
+  left: 50.8%;  */
   z-index: 0;
-}
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+.ai_name {
+  width: 2.5rem;
+  height: 2.5rem;
+  /* color: white; */
+  font-size: 0.85rem;
+  line-height: 2.5rem;
+  text-align: center;
+  position: absolute;
+}
 
 .orb {
   animation: spin 4s linear infinite;
-  position: fixed;
-  width: 3rem;
-  height: 3rem;
-  top: 1rem;
-  left: 50%;
+  /* position: fixed; */
+  width: 2.5rem;
+  height: 2.5rem;
+  /* top: 1rem;
+  left: 50%; */
   border-radius: 50%;
   cursor: pointer;
   box-shadow: inset 0 0 5px #fff, inset 5px 0 20px #FB2146, inset -5px 0 20px yellow, inset 5px 0 20px #FB2146, inset -5px 0 20px yellow, 0 0 5px #fff, -5px 0 20px #FB2146, 5px 0 20px yellow;
+  position: absolute;
 }
 
 @keyframes spin {
@@ -1448,14 +1473,15 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .orb {
-    top: 0.5rem;
-    left: 45%;
+  .ai_name {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.65rem;
+    line-height: 1.75rem;
   }
-
-  .ai {
-    top: 1.2rem;
-    left: 47%;
+  .orb {
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
 /*====== category ========*/

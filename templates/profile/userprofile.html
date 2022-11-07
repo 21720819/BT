@@ -23,15 +23,15 @@
         <tr>
             <td style="width: 30px;">
                 {% if user.level == 0 %}
-                <img src="{% static 'images/level0.png'%}" class="profile_img">
+                    <img src="{% static 'images/level0.png'%}" class="profile_img">
                 {% elif user.level == 1 %}
-                <img src="{% static 'images/level1.png'%}" class="profile_img">
+                    <img src="{% static 'images/level1.png'%}" class="profile_img">
                 {% elif user.level == 2 %}
-                <img src="{% static 'images/level2.png'%}"class="profile_img">
+                    <img src="{% static 'images/level2.png'%}"class="profile_img">
                 {% elif user.level == 3 %}
-                <img src="{% static 'images/level3.png'%}" class="profile_img">
+                    <img src="{% static 'images/level3.png'%}" class="profile_img">
                 {% elif user.level == 4 %}
-                <img src="{% static 'images/level4.png'%}" class="profile_img">
+                    <img src="{% static 'images/level4.png'%}" class="profile_img">
                 {% endif %}
             </td>
             <td style="font-size: 20px; text-align: left;">
@@ -86,9 +86,7 @@
             <div class="profile_halfDiv" style="width: 250px; padding: 0; position: relative;">
                 <div style="width: 100%; position: absolute; top: 50%; transform: translate(0, -50%);">
                     <div class="profile_divUpParts">사용자 평가</div>
-
-
-                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%;">★ {{reviews.avg_rate}}</div>
+                    <div name="rating" class="profile_divDownParts" style="font-size: 35px; line-height: 45px; padding-top: 10%; cursor: pointer;">★ {{reviews.avg_rate}}</div>
                     <!-- <div class="profile_posts">
                         {% for review in profileuser.ID.all %}
                             <p class="profile_list nav-link nav_change_color">{{review.rating}} /{{review.content}}</p>
