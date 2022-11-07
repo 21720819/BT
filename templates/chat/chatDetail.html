@@ -8,18 +8,21 @@
 <script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
       <script>
+            set_last_date('{{last_date}}')
       </script>
       <script>
             init_detail('{{application_id}}', '{{channel_url}}', '{{user_id}}');
+           
+      
       </script>
-     <div class = "detail_container">
+
+     <div class = "out detail_container">
             <div id="profile">
-                  <p>Miro Badev</p>
-                  <span>3명</span>
+                  <p>{{chat_name}}</p>
+                  <span name="myPost"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
             </div>
             <div id="chat-messages">
                   {% for message in message_list %}
@@ -36,7 +39,17 @@
                         </div>
                         {% else %}
                         <div class="message">
-                              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+                              {% if message.level == 0 %}
+                              <img src="{% static 'images/level0.png'%}" class="profile_img">
+                              {% elif  message.level == 1 %}
+                              <img src="{% static 'images/level1.png'%}" class="profile_img">
+                              {% elif  message.level == 2 %}
+                              <img src="{% static 'images/level2.png'%}"class="profile_img">
+                              {% elif  message.level == 3 %}
+                              <img src="{% static 'images/level3.png'%}" class="profile_img">
+                              {% elif  message.level == 4 %}
+                              <img src="{% static 'images/level4.png'%}" class="profile_img">
+                              {% endif %}
                               <div class="nickname">{{message.nickname}}</div>
                               <div class="bubble">
                                     {{message.text}}
@@ -51,14 +64,17 @@
             {% endfor%}
             <div id="new_message"></div>
            </div>
-            <div class="div_send">
+            <div>
                   <form id = "send_form" method="post" onsubmit="send_message()">
                         {% csrf_token %}
-                        <textarea id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
+
+                        <textarea placeholder="채팅을 입력하세요." onfocus="this.placeholder=''" onblur = "this.placeholder ='채팅을 입력하세요.'" id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
                         <button type="button" onclick="send_message()"></button>
                   </form>    
             </div>
      </div> 
+
+     </script>
   
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

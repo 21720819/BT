@@ -3,6 +3,11 @@
 var scrollWant = document.getElementById("chat-messages"); 
 scrollWant.scrollTop = scrollWant.scrollHeight;
 
+var last_date;
+function set_last_date(ld){
+    last_date = ld;
+}
+
 
 window.onpageshow = function(event) {
     if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
@@ -11,10 +16,37 @@ window.onpageshow = function(event) {
     }
 }
 
+function check_date(last_date, unix_time){
+    var new_date = new Date(unix_time).setHours(0,0,0,0);
+    let lastDate =  new Date(last_date).setHours(0,0,0,0);
+    let check_date = 0
+    if(lastDate < new_date) 
+         check_date = 1;
+
+    return check_date;
+}
+
+function get_date(unix_time){
+    var date = new Date(unix_time);
+    var year = date.getFullYear();
+
+    var month = date.getMonth()+1;
+    if (month < 10)
+        month = "0"+month
+    var day  = date.getDate();
+    if (day < 10)
+        day = "0"+day
+    var Cdate = year+"-"+month+"-"+day
+
+    return Cdate;
+}
+
 function change_time(unix_time){
     var date = new Date(unix_time);
     var hour = date.getHours();
     var minute = date.getMinutes();
+    if (hour < 10)
+      hour = "0"+hour
     if (minute < 10)
         minute = "0"+minute
     var hour_Min = hour+":"+minute
@@ -72,22 +104,28 @@ function init_detail(application_id, channel_url, user_id){
         // ChannelHandler 객체
         var ChannelHandler = new sb.ChannelHandler();
 
-  
-
           // 메시지 받기
           ChannelHandler.onMessageReceived = function(channel, message){
             if(channel_url == channel.url){
-                let sender_nickname = message.sender.nickname
-                let sent_message = message.message
-                let receive_time = message.createdAt
+                let sender_nickname = message.sender.nickname;
+                let sent_message = message.message;
+                let receive_time = message.createdAt;
+                let profile_url =  message.sender.profileUrl;
                 
                 let get_div = document.getElementById("new_message");
+                if(check_date(last_date, receive_time) == 1 ){
+                    var label = document.createElement('label');
+                    label.innerText = get_date(receive_time);
+                    get_div.appendChild(label);
+                    last_date = receive_time
+               }
                 var Mdiv = document.createElement('div');
                 Mdiv.className = 'message';
                 get_div.append(Mdiv);
                 var img = document.createElement("img");
-                img.src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg";
-                Mdiv.appendChild(img);
+                img.src= profile_url;
+                img.className = "profile_img"
+                Mdiv.appendChild(img)
                 var nick = document.createElement('div');
                 nick.className = 'nickname';
                 nick.innerText = sender_nickname;
@@ -104,11 +142,7 @@ function init_detail(application_id, channel_url, user_id){
                 Bdiv.appendChild(Tspan);
   
                 scrollDown();
-
-
-
-            }
-             
+            }  
         };
 
         sb.addChannelHandler('test_id2_ChannelHandlerIdTmp', ChannelHandler);
@@ -125,6 +159,12 @@ function init_detail(application_id, channel_url, user_id){
 
               $('#tx_send').val("");
               let get_div = document.getElementById("new_message");
+              if(check_date(last_date, receive_time) == 1 ){
+                    var label = document.createElement('label');
+                    label.innerText = get_date(receive_time);
+                    get_div.appendChild(label);
+                    last_date = receive_time
+              }
               var Mdiv = document.createElement('div');
               Mdiv.className = 'message right';
               get_div.append(Mdiv);
@@ -139,7 +179,7 @@ function init_detail(application_id, channel_url, user_id){
               Tspan.innerText = change_time(receive_time);
               Bdiv.appendChild(Tspan);
 
-               scrollDown();
+            scrollDown();
               });
         }
   });

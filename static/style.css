@@ -39,6 +39,55 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'twayair';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SLEIGothicTTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SLEIGothicTTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ImcreSoojin';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMHANNAPro';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ONE-Mobile-POP';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'establishRetrosansOTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RixYeoljeongdo_Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   height: 100%;
   overflow-y: scroll;
@@ -56,6 +105,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "BMHANNAPro";
 }
 
 /* ---------파트명---------- */
@@ -1198,7 +1248,7 @@ nav a {
       font-size: 2rem;
     }
     .nav__perfil {
-      margin-top: 3rem;
+      margin-top: 1rem;
     }
     .nav::-webkit-scrollbar{
       display:none;
@@ -1233,6 +1283,10 @@ i {
   text-decoration: none;
 }
 
+.nav__menu {
+  color: white;
+}
+
 .nav__content {
   display: flex;
   flex-direction: column;
@@ -1241,8 +1295,12 @@ i {
 .nav__perfil {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
+  padding-top: 3rem;
   text-decoration: none;
+}
+
+.nav__list {
+  padding-top: 3rem;
 }
 
 .nav__img {
@@ -1262,6 +1320,7 @@ i {
 .nav__name {
   display: block;
   color: var(--white-color);
+  font-family: 'establishRetrosansOTF';
 }
 
 .nav__item {
@@ -1362,7 +1421,44 @@ body {
   display: none; /* Chrome, Safari, Opera*/
 }
 
+.ai {
+  position: fixed; 
+  top: 1.8rem; 
+  left: 50.8%; 
+  z-index: 0;
+}
 
+
+.orb {
+  animation: spin 4s linear infinite;
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
+  top: 1rem;
+  left: 50%;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: inset 0 0 5px #fff, inset 5px 0 20px #FB2146, inset -5px 0 20px yellow, inset 5px 0 20px #FB2146, inset -5px 0 20px yellow, 0 0 5px #fff, -5px 0 20px #FB2146, 5px 0 20px yellow;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .orb {
+    top: 0.5rem;
+    left: 45%;
+  }
+
+  .ai {
+    top: 1.2rem;
+    left: 47%;
+  }
+}
 /*====== category ========*/
 .category__menu {
   padding-top: 2rem;
@@ -1657,23 +1753,21 @@ body {
   box-shadow: none
 } */
 
-
 /*======== write button =========*/
-
 /*= 글쓰기 버튼 전체 <여기서 고정 위치 조정하면 됨> =*/
 .wirte_btn_container {
-  position: fixed;
-  bottom: 4rem;
-  right: 4rem;
-}
-
-.map_btn_container {
-  position: fixed;
-  bottom: 4rem;
-  right: 7rem;
+ 
 }
 
 .map_button {
+  background-color: var(--first-color);
+  box-shadow: 0 0 5px #000;
+  bottom: 1em;
+  height: 3em;
+  right: 4.5em;
+  position: fixed;
+  width: 3em;
+  border: none;
   border-radius: 100%;
   cursor: pointer;
   color: #fff;
@@ -1685,7 +1779,7 @@ body {
   color: #fff;
 }
 
-.abroad-button > div {
+.abroad-button div {
   display: inline-block;
   font-size: 1.5em;
   margin-left: 50%;
@@ -1705,7 +1799,7 @@ body {
 }
 
 .abroad-secondary-button {
-  background-color: #9b59b6;
+  background-color: #CF8D8D;
   bottom: 1.25em;
   height: 2.5em;
   right: 1.25em;
@@ -1715,109 +1809,21 @@ body {
   z-index: 1;
 }
 
-.abroad-secondary-button > div {
+.abroad-secondary-button div {
   font-size: 1em;
 }
 
 /*======== write 버튼 툴팁 =========*/
 .tooltip > .tooltip-inner {
-  background-color: var(--white-color);
-  text-shadow: 0 1px 1px #000;
+  background-color: #CF8D8D;
   font-weight: normal;
 }
 
 /*================ map 버튼 ================= */
 .map_btn_container {
   position: fixed;
-  bottom: 4rem;
-  right: 6rem;
+
 }
-
-/*================ search button ================= */
-.search_form {
-  position: absolute;
-  right: 1%;
-}
-
-fieldset {
-  position: relative;
-  display: inline-block;
-  padding: 0 0 0 40px;
-  background: #F5F5F6;
-  border: none;
-  border-radius: 5px;
-}
-
-fieldset > input, fieldset > button {
-  background: #F5F5F6;
-  position: relative;
-  width: 10rem;
-  height: 2.5rem;
-  padding: 0;
-  display: inline-block;
-  float: left;
-}
-
-fieldset > input {
-  z-index: 2;
-
-  color: #F5F5F6;
-  border: 0 none;
-}
-
-fieldset > input:focus {
-  outline: 0 none;
-}
-
-fieldset > input:focus + button {
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-}
-fieldset > input:focus + button .fa {
-  -webkit-transform: translate(0px, 0);
-      -ms-transform: translate(0px, 0);
-          transform: translate(0px, 0);
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
-  color: #F5F5F6;
-}
-
-fieldset > button {
-  z-index: 1;
-
-  width: 50px;
-  border: 0 none;
-  background: #FB2146;
-  cursor: pointer;
-  border-radius: 0 5px 5px 0;  
-  -webkit-transform: translate(-50px, 0);
-      -ms-transform: translate(-50px, 0);
-          transform: translate(-50px, 0);
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
-}
-
-.fa-search {
-  z-index: 3;
-
-  font-size: 1.4rem;
-  color: black;
-  top: 25%;
-  -webkit-transform: translate(-190px, 0);
-      -ms-transform: translate(-190px, 0);
-          transform: translate(-190px, 0);
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
-  -webkit-transition: all 0.5s ease-in-out;
-          transition: all 0.5s ease-in-out;
-}
-
-
-/*================ filter dropdown button ================= */
-
 
 /* --------like button----- */
 
@@ -2507,10 +2513,11 @@ fieldset > button {
   }
 }
 
-.searchForm{
-  margin-top: 20vh;
-}
+.searchForm {
+  width: 500px;
+  padding-left: 51%;
 
+}
 
 /* 별점 */
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);

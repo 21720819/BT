@@ -4,18 +4,18 @@ body {
 	font:12px "Open Sans", sans-serif; 
     overflow: hidden;
      height: 100%;
+}
 
+.footer-top{
+	display: none;
 }
 
 /* 채팅 리스트*/
 
 .chats{
-	width:100%;
-	height:90%;
-	overflow-y:auto; 
-
+	overflow-y: auto; 
+	height: 98%;
 }
-
 .chat{
 	height:70px;
 	border-bottom:1px solid #e7ebee;		
@@ -27,6 +27,7 @@ body {
 }
 .chat img{
 	width:40px;
+	height: 40px;
 	border-radius:50%;
 	margin:15px;
 	float:left;
@@ -67,16 +68,9 @@ body {
 
 /* 메시지 전송창*/
 
-.div_send {
-	width: 100%; 
-	background-color: white;
-	position: fixed; 
-    bottom: 0; 
-}
-
 #tx_send{
     border:none;
-	border-top:1px solid #e7ebee;	
+	border-top:1px solid #c7c9ca;	
     overflow-y: auto;
     width: 100%; 
 	background:#fff;
@@ -173,20 +167,15 @@ body {
 	font-size:11px;
 }
 #chat-messages{
+	height: 70%;
     width:100%;
-	height:90%;
 	margin-bottom: 20px;
-	margin-top : 20px;
 	padding : 10px;
 	padding-bottom : 20px;
     overflow-y:auto; 
 	overflow-x:hidden;
+}
 
-}
-#chat-messages.animate{
-	opacity:1;
-	margin-top:0;
-}
 #chat-messages label{
 	color:#aab8c2;
 	font-weight:600;
@@ -212,9 +201,9 @@ body {
 }
 #chat-messages .message img{
 	  float: left;
-	  margin-left: -38px;
+	  margin-left: -45px;
 	  border-radius: 50%;
-	  width: 30px;
+	  width: 35px;
 	  margin-top: 12px;
 }
 #chat-messages div.message.right img{
@@ -249,6 +238,7 @@ div.message.right .corner{
 	left:auto;
 	right:-5px;
 }
+
 .bubble span{
 	  color: #aab8c2;
 	  font-size: 11px;

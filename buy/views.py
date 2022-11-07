@@ -198,9 +198,6 @@ def auth(request,post_id):
     join_user = post.join_users.all()
     return render(request,  'buy/auth.html',{'join_users':join_user,  'post':post})   
 
-
-
-
 #sendbird 그룹채널 생성
 def createChannel(request, post_id):
     #sendbird 정보 가져오기
@@ -214,14 +211,20 @@ def createChannel(request, post_id):
     join_users = post.join_users.all()
     join_user_list = []
     join_user_list.append(writer_email)
+    count = 0
     for join_user in join_users:
+         count+=1
          join_user_list.append(join_user.email)
-
+    try:      
+         cover_url = post.photo.url
+    except: 
+         cover_url ="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80"     
     data = {
         "name": post.title,
         "inviter_id" : writer_email,
         "is_pulic" : False,
         "user_ids" : join_user_list,
+        "cover_url" : cover_url,
     }
     
     res = requests.post(url, data=json.dumps(data), headers=api_headers)
@@ -233,6 +236,7 @@ def createChannel(request, post_id):
     member_list = []
     count = 0
     for i in range(len(members)):
+        count+=1
         member_list.append(members[i]['user_id'])
 
     chat.channel_url = channel_url
