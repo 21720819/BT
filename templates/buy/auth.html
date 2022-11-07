@@ -1,4 +1,7 @@
+{% extends 'nav.html' %}
 
+{% block content %}
+{% load static %}
 <style>
     .btn_area {
     position: fixed; 
@@ -62,10 +65,7 @@ function createChat(){
         비활성화된 버튼이랑,, 누르면 사람 더 모으라는 알림뜨게해주세용ㅎㅎ,,
         {% endif %}
 {% endif %}
-
-{% extends 'nav.html' %}
-
-{% block content %}
+{% endblock %}
 
 <script>
     function createChat(){
@@ -76,6 +76,5 @@ function createChat(){
 <button onClick="createChat()" class = "btn_area btn btn-danger" type="button" id = "createChatButton" >
     <a href="{% url 'createChannel' post.id %}" style="text-decoration: none; color: white;">채팅방 생성</a>
 </button>
-{% endif %}
 
-{% endblock %}
+
