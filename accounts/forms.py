@@ -3,7 +3,6 @@ from wsgiref.validate import validator
 from django import forms
 from .models import User
 from .validators import validate_symbols
-from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import SetPasswordForm
 
 class CustomPasswordSetForm(SetPasswordForm):
@@ -41,6 +40,7 @@ class UserSignupform(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['email','password','username']
+		email = forms.CharField(max_length=80, validators=[validate_symbols])
 		widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control item', 'placeholder':'닉네임'}),
             'email': forms.EmailInput(attrs={'class': 'form-control item', 'placeholder':'이메일'}),

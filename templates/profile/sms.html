@@ -48,7 +48,7 @@
     <div style="height: calc(100% - 362.5px); font-size: 13px; line-height: 30px;">
         {% if messages %}
             {%for message in messages %}
-                {{message.message}}
+                <span style="color: red">{{message.message}}</span>
             {% endfor %}
         {% endif %}
     </div>

@@ -6,7 +6,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 # from django.core.validators import validate_email
-
+from .validators import validate_symbols
       
 
 # from buy.models import Buy
@@ -28,6 +28,7 @@ class User(AbstractUser):
         error_messages={
             'unique': "이미 존재하는 ID 입니다.",
         },
+        
         )
     username = models.CharField(
         max_length=30, 
@@ -48,7 +49,7 @@ class User(AbstractUser):
     like_frees = models.ManyToManyField('free.Free', blank=True, related_name='freeLike_users')
     join_posts = models.ManyToManyField('buy.Buy', blank=True, related_name='join_users') #참가신청한 글 
 
-    phone_number = models.CharField('휴대폰 번호', max_length=30)
+    phone_number = models.CharField('휴대폰 번호', max_length=30, unique = True)
     auth_number = models.CharField('인증번호', max_length=30)
 
     def __str__(self):
