@@ -45,7 +45,7 @@ def signup(request):
             email= request.POST['email']
             password=request.POST['password']
             username = request.POST['username']
-            if ("@ynu.ac.kr" not in email):
+            if ("@ynu.ac.kr" not in email) and ("@yu.ac.kr" not in email):
                 messages.error(request, f"영남대 이메일 사용바람")
                 return redirect('login')
 
