@@ -12,18 +12,22 @@ sendbird_api_token = settings.SENDBIRD_API_TOKEN
 
 def get_chat_members(channel_url):
     member_list= []
-    emails = Chat.objects.get(channel_url = channel_url).emails.replace('[',"").replace(']',"").replace('"',"").replace(" ","").split(',')
-    count = 0
-    for email in emails :
-        try:
-            nick = User.objects.get(email=email).username     
-        except:
-            nick = None
-        if (nick):        
-                profile_url = f"../profile/{nick}"
-                dic = {'nick':nick, 'profile_url':profile_url}   
-                member_list.append(dic)
-    return member_list
+    try:
+        emails = Chat.objects.get(channel_url = channel_url).emails.replace('[',"").replace(']',"").replace('"',"").replace(" ","").split(',')
+    except :
+        emails = None
+
+    if(emails) :
+        for email in emails :
+            try:
+                nick = User.objects.get(email=email).username     
+            except:
+                nick = None
+            if (nick):        
+                    profile_url = f"../profile/{nick}"
+                    dic = {'nick':nick, 'profile_url':profile_url}   
+                    member_list.append(dic)
+        return member_list
 
 
 def set_profile_img(request):
