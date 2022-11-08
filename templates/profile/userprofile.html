@@ -126,8 +126,8 @@
     </div>
 
     <div id="review" class="profile_summary profile_btns">
-        {% if user in profileuser.Review_set.all %} 리뷰수정하기
-        {% else %} 리뷰하기
+        {% if user in profileuser.Review_set.all %} 사용자 평가하기
+        {% else %} 사용자 평가 수정하기
         {% endif %}
         <!-- <a class="nav-link nav_change_color" href="{% url 'review' profileuser.username %}">리뷰남기기</a> -->
     </div>
@@ -250,7 +250,7 @@
     }
 
     review.onclick = function() {
-        setPopup('block', 'none', 'block', 'none', '리뷰하기', 'none', 'none');
+        setPopup('block', 'none', 'block', 'none', '사용자 평가하기', 'none', 'none');
         //background[0].classList.add('blur');
     };
 

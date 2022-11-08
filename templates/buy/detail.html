@@ -74,13 +74,13 @@
         <table>
             <tr>
                 <td><ion-icon name="location" style="color: var(--first-color); margin-right: 5px;"></ion-icon></td>
-                <td><h3 class="detail_loca_time">{{detail.location}}</h3></td>
+                <td><div class="detail_loca_time">{{detail.location}}</div></td>
                 <p style="display: none;" id="lat">{{detail.lat}}</p>
                 <p style="display: none;" id="long">{{detail.long}}</p>
             </tr>   
             <tr>
                 <td><ion-icon name="time" style="color: var(--first-color);"></ion-icon></td>
-                <td><h3 class="detail_loca_time">{{detail.date|date:'m월d일 H:i'}}</h3></td>
+                <td><div class="detail_loca_time">{{detail.date|date:'m월d일 H:i'}}</div></td>
             </tr>
         </table>
 

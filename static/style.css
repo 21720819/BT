@@ -351,6 +351,7 @@ video { width: 100%; }
 }
 .detail_loca_time {
   font-size: 15px;
+  line-height: 15px;
   margin: 0;
   padding-bottom: 3px;
 }
