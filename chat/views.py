@@ -13,12 +13,16 @@ sendbird_api_token = settings.SENDBIRD_API_TOKEN
 def get_chat_members(channel_url):
     member_list= []
     emails = Chat.objects.get(channel_url = channel_url).emails.replace('[',"").replace(']',"").replace('"',"").replace(" ","").split(',')
+    count = 0
     for email in emails :
-        nick = User.objects.get(email=email).username
-        profile_url = f"../profile/{nick}"
-        dic = {'nick':nick, 'profile_url':profile_url}
-        member_list.append(dic)
-
+        try:
+            nick = User.objects.get(email=email).username     
+        except:
+            nick = None
+        if (nick):        
+                profile_url = f"../profile/{nick}"
+                dic = {'nick':nick, 'profile_url':profile_url}   
+                member_list.append(dic)
     return member_list
 
 
@@ -71,9 +75,10 @@ def chatHome(request):
     
     for channel in channels : 
         channel_url = channel['channel_url']
+        member_list = get_chat_members(channel_url)
+        member_count = len(member_list)
         cover_url = channel['cover_url']
         chat_room_name = channel['name']
-        member_count = channel['member_count']
         last = channel['last_message'] 
         try:
             pk = Chat.objects.get(channel_url = channel_url).pk
@@ -101,7 +106,7 @@ def chatDetail(request, chat_id):
     message_ts = int(time()*1000) #현재시간을 unix 타임으로 변환
     channel_url = Chat.objects.get(id = chat_id).channel_url
     member_list = get_chat_members(channel_url)
-    print(member_list)
+    member_count = len(member_list)
 
     url =  f"https://api-{application_id}.sendbird.com/v3/{channel_type}/{channel_url}/messages"
     api_headers = {"Api-Token": sendbird_api_token}
@@ -120,10 +125,6 @@ def chatDetail(request, chat_id):
         chat_name = Chat.objects.get(channel_url = channel_url).channel_name
     except Chat.DoesNotExist:    
         chat_name = None
-    try:
-        member_count = Chat.objects.get(channel_url = channel_url).count
-    except Chat.DoesNotExist:    
-        member_count = None    
 
     messages = parse['messages']
 
@@ -153,7 +154,7 @@ def chatDetail(request, chat_id):
     if(len(message_list)) :  
         last_date = message_list[-1]['sent_date']
 
-    context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id, 'last_date':last_date, 'chat_name':chat_name, 'member_count': member_count, 'member_list' : member_list}
+    context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id, 'last_date':last_date, 'chat_name':chat_name, 'member_list' : member_list, 'member_count':member_count}
    
     return render(request, 'chat/chatDetail.html', context)
 
