@@ -37,7 +37,7 @@
         </div>
         
         <div class="freeUser">
-            <div>
+            <div style="width: 30px;">
                 {% if user.level == 0 %}
                     <img src="{% static 'images/level0.png'%}" class="detail__lev">
                 {% elif user.level == 1 %}
@@ -50,7 +50,11 @@
                     <img src="{% static 'images/level4.png'%}" class="detail__lev">
                 {% endif %}
             </div>
-            <a href="{% url 'userProfile' detail.ID.username %}" class="freeUserName nav-link nav_change_color">{{detail.ID.username}}</a>
+            {% if detail.ID.id == user.id %}
+                <a href="{% url 'profileHome' user.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a>
+                {%else%}
+                <a href="{% url 'userProfile' detail.ID.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a>
+                {%endif%}
             <span>{{detail.writeDate|date:'m-d H:i'}}</span>
         </div>
         <p class="detail_context">{{detail.body}}</p>
