@@ -18,6 +18,7 @@
     {% csrf_token %}
 
     {{form.category}}
+    <hr style="margin: 0 0 15px 0;">
     <textarea class="detail_context report_textarea" type="text" name="content" placeholder="내용을 입력하세요." cols=50 rows=10 ></textarea>
     <input class="create_submitButton buttonColor" type="submit" value="확인" style="margin-top: 50px;">
 </form>

@@ -2,16 +2,31 @@
 
 {% block content %}
 
+<style>
+    .detail_container {
+        max-width: 768px;
+        padding: 20px;
+    }
+    @media screen and (max-width: 768px) {
+        .freeContent {
+            margin: 0px;
+        }
+    }
+</style>
+
+
 <div class="detail_container">
-    <form method="POST" role="form" >
-        {% csrf_token %}
-        <div style = "text-align: right;">
-            <input type="submit" class="rightBtn" placeholder="작성"> </input>
+    <div class="freeContent">
+        <form method="POST" role="form" >
+            {% csrf_token %}
+            <div class="freeTitle">{{form.title}}</div>
+            <div class="freeBody" style="margin-top: 20px">{{form.body}}</div>
+        </form>
+
+        <div>
+            <input type="submit" class="create_submitButton buttonColor" placeholder="작성"> </input>
         </div>
-        <div class="freeTitle">{{form.title}}</div>
-        <div class="freeBody" style="margin-top: 20px">{{form.body}}</div>
-    
-    </form>
+    </div>
 </div>
 {% endblock %}
 

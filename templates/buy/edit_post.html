@@ -8,8 +8,8 @@
         {% csrf_token %}
 
         <!-- 사진 -->
-        <div id="create_tempImage" class="detail_img" style="position: relative; background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url('{{ detail.photo.url }}');">  
-            {{form.photo}}
+        <div id="create_tempImage" class="detail_img" style="position: relative;">  
+            <div style="visibility: hidden;">{{form.photo}}</div>
             <label id="create_pickButton" class="buttonColor" for="photo">
                 <img src="{%static 'images/plus.png' %}" alt="" style="width: 50%; height: 50%;">
             </label>
@@ -37,12 +37,12 @@
             <table>
                 <tr>
                     <!-- <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td> -->
-                    <td><ion-icon name="location" style="color: var(--first-color); margin: 0 5px -1.5px 0;"></ion-icon></td>
+                    <td><ion-icon name="location" style="color: var(--first-color); margin-right: 5px;"></ion-icon></td>
                     <td style="width: 100%;"><h3 class="detail_loca_time">{{form.location}}</h3></td>
                 </tr>
                 <tr>
                     <!-- <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td> -->
-                    <td><ion-icon name="time" style="color: var(--first-color); margin: 0 5px -2px 0;"></ion-icon></td>
+                    <td><ion-icon name="time" style="color: var(--first-color);"></ion-icon></td>
                     <td style="width: 100%;"><h3 class="detail_loca_time">{{form.date}}</h3></td>
                 </tr>
             </table>
@@ -59,6 +59,7 @@
 
         <!-- 사진 스크립트 -->
         <script>
+            // 선택한 사진 표시하기
             function imageView(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -71,6 +72,13 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+
+            // 수정 화면에서 기존 사진 표시
+            var img = document.getElementById('create_tempImage');
+            var url = img.querySelector('a').href;
+            console.log(url)
+
+            img.setAttribute('style', `background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(${url}); position: relative;`);
         </script>
 
         <!-- 지도 스크립트 -->
