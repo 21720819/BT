@@ -80,7 +80,8 @@ def chatHome(request):
     for channel in channels : 
         channel_url = channel['channel_url']
         member_list = get_chat_members(channel_url)
-        member_count = len(member_list)
+        if(member_list):
+            member_count = len(member_list)
         cover_url = channel['cover_url']
         chat_room_name = channel['name']
         last = channel['last_message'] 
