@@ -60,7 +60,11 @@
                         <img src="{% static 'images/level4.png'%}" class="detail__lev">
                     {% endif %}
                 </td>
+                {% if detail.ID.id == user.id %}
+                <td><a href="{% url 'profileHome' user.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a></td>
+                {%else%}
                 <td><a href="{% url 'userProfile' detail.ID.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a></td>
+                {%endif%}
             </tr>
         </table>
         
@@ -96,32 +100,35 @@
                 <input type="submit" value="♡&#10;{{detail.like_count}}" class="detail_likeButton buttonColor">
                 {% endif %}
             </form>
+            
+            
             {% if detail.check_chat == True%} 
             <!-- 채팅방이 생성되어슬때 -->
             <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('이미 거래가 시작 된글입니다.')">
                 <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
             </button>
+            <div id="view" style="display: none;"></div>
             {% else %}
             <!-- 채팅방 생성전 -->
-            {% if detail.ID.id == user.id %}
-            <!-- 작성자 -->
-                <button id="view" class="detail_applyButton buttonColor">
-                    신청자 보기
-                    <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
-                </button>
-            {% else  %}
-            <!-- 참가자 -->
-                <div id="view"></div>
-                {% if user in detail.join_users.all %}
-                <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
-                    <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기</a>
-                </button>
-                {% else %}
-                <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                    <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기</a>
-                </button>
+                {% if detail.ID.id == user.id %}
+                <!-- 작성자 -->
+                    <button id="view" class="detail_applyButton buttonColor">
+                        신청자 보기
+                        <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
+                    </button>
+                {% else  %}
+                <div id="view" style="display: none;"></div>
+                <!-- 참가자 -->
+                    {% if user in detail.join_users.all %}
+                    <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
+                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기</a>
+                    </button>
+                    {% else %}
+                    <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
+                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기</a>
+                    </button>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
             {% endif %}
 
         </div>

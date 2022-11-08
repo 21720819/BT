@@ -185,6 +185,7 @@
     </div>
 </div>
 
+
 <!-- html 불러오기 -->
 <script>
     function insertIntoPopup(url, target) {
@@ -241,11 +242,15 @@
                 setPopup('block', 'block', 'none', 'none', '사용자 평가', 'none', 'block');
                 //background[0].classList.add('blur');
             };
+
+            if (rating[i].textContent == "★ None") { // 평균 평점 기본값 설정
+                rating[i].textContent = "★ 0.0"
+            }
         }
     }
 
     review.onclick = function() {
-        setPopup('block', 'none', 'block', 'none', '사용자 평가 작성', 'none', 'none');
+        setPopup('block', 'none', 'block', 'none', '리뷰하기', 'none', 'none');
         //background[0].classList.add('blur');
     };
 

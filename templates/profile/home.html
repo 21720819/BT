@@ -39,7 +39,7 @@
         </div>
         <div name="rating" class="profile_division" style="cursor: pointer;">
             <div class="profile_divUpParts">사용자 평가</div>
-            <div class="profile_divDownParts">★ {{reviews.avg_rate}}</div>
+            <div id="avg_rate" class="profile_divDownParts">★ {{reviews.avg_rate}}</div>
         </div>
     </div>
 
@@ -136,7 +136,7 @@
     <!-- <div class="profile_summary profile_btns">
         <a class="nav-link nav_change_color" href="{% url 'profileEdit' user.username %}">프로필 수정</a>
     </div> -->
-    <div id="edit" class="profile_summary profile_btns">프로필 수정</div>
+    <div id="edit" class="profile_summary profile_btns">닉네임 변경</div>
     
     <div class="profile_summary profile_btns">
         <a id="sms" class="nav-link nav_change_color" href="" style="width: calc(100% - 40px); float: left;">휴대폰 인증</a>
@@ -220,11 +220,21 @@
             </div>
         </div>
 
-        <!-- 프로필 수정 -->
+        <!-- 닉네임 변경 -->
         <div id="profile_editBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
         <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
     </div>
 </div>
+
+<!-- 평균 평점 기본값 설정 -->
+<script>
+    var avg_rate = document.getElementById('avg_rate');
+
+    console.log(avg_rate.textContent)
+    if (avg_rate.textContent == "★ None") {
+        avg_rate.textContent = "★ 0.0"
+    }
+</script>
 
 
 <!-- html 불러오기 -->
@@ -318,7 +328,7 @@
     }
 
     edit.onclick = function() {
-        setPopup('block', 'none', 'block', '프로필 수정', 'none', 'none', 'none');
+        setPopup('block', 'none', 'block', '닉네임 변경', 'none', 'none', 'none');
         //background[0].classList.add('blur');
         //footer[0].classList.add('blur');
     }
