@@ -1,4 +1,3 @@
-from tkinter import Widget
 from wsgiref.validate import validator
 from django import forms
 from .models import User
