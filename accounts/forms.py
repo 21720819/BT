@@ -42,9 +42,9 @@ class UserSignupform(forms.ModelForm):
 		fields = ['email','password','username']
 		email = forms.CharField(max_length=80, validators=[validate_symbols])
 		widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control item', 'placeholder':'닉네임'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control item', 'placeholder':'이메일'}),
-            'password' : forms.PasswordInput(attrs={'class': 'form-control item', 'placeholder':'비밀번호'}),
+            'username': forms.TextInput(attrs={'class': 'form-control item', 'placeholder':'닉네임', 'style': 'background: rgb(250, 247, 247); border: 0; padding: 0; outline: none;'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control item', 'placeholder':'이메일', 'style': 'background: rgb(250, 247, 247); border: 0; padding: 0; outline: none;'}),
+            'password' : forms.PasswordInput(attrs={'class': 'form-control item', 'placeholder':'비밀번호', 'style': 'background: rgb(250, 247, 247); border: 0; padding: 0; outline: none;'}),
         }
 		
 class Smsform(forms.ModelForm):
