@@ -106,7 +106,7 @@ def chatHome(request):
             chats.append(dic)
 
     context = {'chats' : chats, 'application_id' : application_id, 'user_id' : user_id}
-    return render(request,'chat/chatHome.html', context)
+    return render(request,'chat/chathome.html', context)
 
 def chatDetail(request, chat_id):
     set_profile_img(request)
