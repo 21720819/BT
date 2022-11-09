@@ -24,13 +24,6 @@
             <h3 class="detail_price" style="padding: 0;">모집인원 : {{form.wpeople}}명</h3>
             {{form.lat}}
             {{form.long}}
-            <!-- <hr>
-            <table>
-                <tr>
-                    <td style="width: 40px;"><img class="detail_lev" style="margin-left: -1px;"></td>
-                    <td><h3 style="margin: 0;">{{detail.ID.username}}</h3></td>
-                </tr>
-            </table> -->
 
             <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
 
@@ -55,7 +48,6 @@
 
         <!-- 지도 -->
         <div id="map" class="detail_map"></div>
-        <!-- <div id="clickLatlng"></div> -->
 
         <!-- 사진 스크립트 -->
         <script>
@@ -86,7 +78,7 @@
             
             var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-                        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+            // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
             var mapTypeControl = new kakao.maps.MapTypeControl();
 
             // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
@@ -104,6 +96,9 @@
             }); 
             // 지도에 마커를 표시합니다
             marker.setMap(map);
+
+            lat.value = map.getCenter().getLat(); // 기본 좌표 중심으로 설정
+            long.value = map.getCenter().getLng();
             
             // 지도에 클릭 이벤트를 등록합니다
             // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -129,50 +124,4 @@
     </form>
 </div>
 
-
-<!-- 
-
-<div class="container">
-    <div style="margin-top: 20px;">
-        <form method="POST" role="form" action="{% url 'buyCreate' %}" >
-            {% csrf_token %}
-            <div style = "text-align: right;">
-            </div>
-            <div class = "crt_div">
-                <div>
-                    <table style="margin:auto;">
-                        <tr>
-                            <td>카테고리 </td><td  colspan="3">{{form.category}}</td>
-                        </tr>
-                        <tr>
-                            <td><label for="title">글 제목</label> </td><td colspan="3">{{form.title}}</td>
-                        </tr>
-                        <tr>
-                            <td><label for="wpeople">모집 인원</label></td> <td>{{form.wpeople}}</td>
-                            <td><label for="price">가격</label></td><td>{{form.price}}</td>
-                        </tr>
-                        <tr>
-                            <td><label for="place">거래장소</label></td> <td style="padding-right: 10px;">{{form.location}}</td>
-                            <td><label for="date" >거래날짜</label></td><td>{{form.date}}</td>
-                        </tr>
-
-                    </table>
-                </div>
-                <div>
-                    <table style="margin:auto;">
-                        <tr>
-                            <td>{{form.body}}</td>
-
-                        </tr>
-                    </table>  
-                </div>
-                </div>
-           <div style="margin-top: 10px">
-            {{form.photo}}
-            </div>
-        </form>
-    
-               
-    </div> -->
-</div>
 {% endblock %}
