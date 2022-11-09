@@ -44,6 +44,7 @@
         <!-- 제목 + 가격 + 닉네임 -->
         <h1 class="detail_title">{{detail.title}}</h1>
         <h3 class="detail_price">{{detail.price}}원</h3>
+        <!-- <h3 class="detail_price" style="padding: 0;">{{detail.join_count}}명 / {{detail.wpeople}}명</h3> -->
         <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
         <table>
             <tr>
@@ -113,7 +114,7 @@
                 {% if detail.ID.id == user.id %}
                 <!-- 작성자 -->
                     <button id="view" class="detail_applyButton buttonColor">
-                        신청자 보기
+                        신청자 보기 ({{detail.join_count}}명/{{detail.wpeople}}명)
                         <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
                     </button>
                 {% else  %}
@@ -121,11 +122,11 @@
                 <!-- 참가자 -->
                     {% if user in detail.join_users.all %}
                     <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
-                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기</a>
+                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
                     </button>
                     {% else %}
                     <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기</a>
+                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
                     </button>
                     {% endif %}
                 {% endif %}

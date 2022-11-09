@@ -8,6 +8,24 @@
 <script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+      .pop_blank #closePop {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+            /* margin-right: -11px; */
+            float: right;
+            cursor: pointer;
+          }
+          .pop_blank #closePop:hover{
+            background-color: rgb(250, 247, 247);
+          }
+</style>
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
       <script>
@@ -71,8 +89,61 @@
             </div>
      </div> 
 
-     </script>
+     <!-- 팝업 -->
+      <div id="pop" class="pop_wrap" style="display: none;">
+            <div class="pop_inner">
+                  <!-- 제목 + 닫기 -->
+                  <div class="pop_blank">
+                        <div id="title" style="font-size: 15px; font-weight: bold; line-height: 25px; float: left;"></div>
+                        <div id="closePop">
+                              <img src="{% static 'images/close.png' %}" style="width: 55%; height: 55%;">
+                        </div>
+                  </div>
+            
+                  <!-- postBox -->
+                  <div id="profile_postBox">
+                        <div id="chat_profileList" class="profile_posts" style="display: none;">
+                              {% for post in posts %} <!-- for 내용 수정 -->
+                              <!-- <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a> --> <!-- 프로필 링크 -->
+                              {% if not forloop.last %} <hr>
+                              {% else %} <hr style="margin-bottom: 0;">
+                              {% endif %}
+                              {% endfor %}
+                        </div>
+                  </div>
+            </div>
+      </div>
   
+      <!-- 팝업 스크립트 -->
+      <script>
+            var myPost = document.getElementsByName('myPost');
+      
+            var pop = document.getElementById('pop');
+            var pBox = document.getElementById('profile_postBox');
+            var closeBtn = document.getElementById('closePop');
+            var title = document.getElementById('title');
+
+            var pList = document.getElementById('chat_profileList');
+            //var background = document.getElementsByClassName('detail_container');
+            
+            myPost[0].style.cursor = 'pointer';
+            myPost[0].onclick = function() {
+                  setPopup('block', 'block', '채팅 참가자', 'block');
+            };
+      
+            closeBtn.onclick = function() {
+                  setPopup('none', 'none', '', 'none');
+                  //background[0].classList.remove('blur');
+            };
+      
+            function setPopup(p, pB, t, pL) {
+                  pop.style.display = p;
+                  pBox.style.display = pB;
+            
+                  title.textContent = t;
+                  pList.style.display = pL;
+            }
+      </script>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
