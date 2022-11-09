@@ -8,6 +8,9 @@
 <script type="text/javascript" src="{%static 'js/SendBird.min.js' %}"></script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+   
+</style>
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
       <script>
@@ -19,7 +22,7 @@
      <div class = "out detail_container">
             <div id="profile">
                   <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a></p>
-                  <span name="myPost"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
+                  <span name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
             </div>
             <div id="chat-messages">
                   {% for message in message_list %}
@@ -71,8 +74,74 @@
             </div>
      </div> 
 
-     </script>
+     <!-- 팝업 -->
+      <div id="pop" class="pop_wrap" style="display: none;">
+            <div class="pop_inner">
+                  <!-- 제목 + 닫기 -->
+                  <div class="pop_blank">
+                        <div id="title" style="font-size: 15px; font-weight: bold; line-height: 25px; float: left;"></div>
+                        <div id="closePop">
+                              <img src="{% static 'images/close.png' %}" style="width: 55%; height: 55%;">
+                        </div>
+                  </div>
+            
+                  <!-- postBox -->
+                  <div id="profile_postBox">
+                        <div id="chat_profileList" class="profile_posts" style="display: none;">
+                              {% for member in member_list %} 
+                              <a href="{{member.profile_url}}" class="profile_list nav-link nav_change_color">
+                                    {% if member.level == 0 %}
+                                    <img src="{% static 'images/level0.png'%}" class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 1 %}
+                                    <img src="{% static 'images/level1.png'%}" class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 2 %}
+                                    <img src="{% static 'images/level2.png'%}"class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 3 %}
+                                    <img src="{% static 'images/level3.png'%}" class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 4 %}
+                                    <img src="{% static 'images/level4.png'%}" class="profile_img" style="display: inline-block">
+                                    {% endif %}
+                                          
+                                    <span style = "margin-left: 5px;">  {{member.nick}}</span></a>
+                              {% if not forloop.last %} <hr>
+                              {% else %} <hr style="margin-bottom: 0;">
+                              {% endif %}
+                              {% endfor %}
+                        </div>
+                  </div>
+            </div>
+      </div>
   
+      <!-- 팝업 스크립트 -->
+      <script>
+            var myPost = document.getElementsByName('myPost');
+      
+            var pop = document.getElementById('pop');
+            var pBox = document.getElementById('profile_postBox');
+            var closeBtn = document.getElementById('closePop');
+            var title = document.getElementById('title');
+
+            var pList = document.getElementById('chat_profileList');
+            //var background = document.getElementsByClassName('detail_container');
+            
+            myPost[0].style.cursor = 'pointer';
+            myPost[0].onclick = function() {
+                  setPopup('block', 'block', '채팅 참가자', 'block');
+            };
+      
+            closeBtn.onclick = function() {
+                  setPopup('none', 'none', '', 'none');
+                  //background[0].classList.remove('blur');
+            };
+      
+            function setPopup(p, pB, t, pL) {
+                  pop.style.display = p;
+                  pBox.style.display = pB;
+            
+                  title.textContent = t;
+                  pList.style.display = pL;
+            }
+      </script>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>

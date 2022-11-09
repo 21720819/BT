@@ -20,12 +20,14 @@ def get_chat_members(channel_url):
     if(emails) :
         for email in emails :
             try:
-                nick = User.objects.get(email=email).username     
+                nick = User.objects.get(email=email).username 
+                level =  User.objects.get(email=email).level 
             except:
                 nick = None
+                level = None
             if (nick):        
                     profile_url = f"../profile/{nick}"
-                    dic = {'nick':nick, 'profile_url':profile_url}   
+                    dic = {'nick':nick, 'profile_url':profile_url, 'level' : level}   
                     member_list.append(dic)
         return member_list
 
