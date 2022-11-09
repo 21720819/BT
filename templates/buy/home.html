@@ -28,7 +28,7 @@
   <div class="catext-center category__menu" style="position: relative;">
       <nav class="style-4">
         <ul class="menu-4">
-          <li><a href="{% url 'buyHome' %}" data-hover="전체">전체</a></li>
+          <li class="current"><a href="{% url 'buyHome' %}" data-hover="전체">전체</a></li>
           <li><a href="{% url 'category' 'food' %}" data-hover="식료품">식료품</a></li>
           <li><a href="{% url 'category' 'necessity' %}" data-hover="생필품">생필품</a></li>
           <li><a href="{% url 'category' 'ott' %}" data-hover="OTT">OTT</a></li>
@@ -116,7 +116,11 @@
             <div class="post-entry" style="padding-top: 20px;"> <!-- 내용 -->
               <a href="{% url 'buyDetail' post.id %}" style="text-decoration: none;"><p>{{post.summary}}</p></a>
             </div>
-              <div class="post-more" style="font-family: RixYeoljeongdo_Regular;">{{post.price}}원</div> <!-- 가격 -->
+              <div>
+                <div class="post-more" style="font-family: RixYeoljeongdo_Regular; float: left; ">{{post.price}}원</div> <!-- 가격 -->
+                <div style="font-family: RixYeoljeongdo_Regular; font-size: 1rem; color: #FB2146; float: left; margin-left: 7.2rem; margin-top: 1rem;">{{post.join_count}}명 / {{post.wpeople}}명</div>           
+              </div>
+
             </div>
           </div>
         </div>
@@ -127,7 +131,7 @@
    
     <div class="pagination font-alt">
       {%if posts.has_previous%}<a href="?page={{posts.previous_page_number}}"><i class="fa fa-angle-left"></i></a>{%endif%}
-      <a class="active" href="?page=1">1</a><a href="?page=2">2</a><a href="?page=3">3</a><a href="?page=4">4</a>
+      <a class="active" href="?page=1" style="text-decoration: none;">1</a><a href="?page=2" style="text-decoration: none;">2</a><a href="?page=3" style="text-decoration: none;">3</a>
       {%if posts.has_next%}<a href="?page={{posts.next_page_number}}"><i class="fa fa-angle-right"></i></a>{%endif%}
     </div>
 
@@ -184,11 +188,11 @@
     </div>
     
     <a href="{% url 'buyCreate' %}" data-hover="식료품">
-    <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="식료품">
-      <i class="fa-solid fa-carrot"></i>
-    </div>
+      <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="생필품">
+        <div><i class="fa-solid fa-lemon"></i></div>
+      </div>
     </a>
-
+  
     <a href="{% url 'buyCreate' %}" data-hover="식료품">
     <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="생필품">
       <div><i class="fa-solid fa-box-tissue"></i></div>
