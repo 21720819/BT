@@ -67,7 +67,14 @@ body {
 
 
 /* 메시지 전송창*/
-
+.post_name {
+  color : white;
+  text-decoration: none;
+}
+.post_name:hover {
+	color : rgb(165, 223, 104);
+	text-decoration: none;
+  }
 #tx_send{
     border:none;
 	border-top:1px solid #c7c9ca;	

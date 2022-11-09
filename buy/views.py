@@ -238,7 +238,7 @@ def createChannel(request, post_id):
     for i in range(len(members)):
         count+=1
         member_list.append(members[i]['user_id'])
-
+    chat.post_num = post_id
     chat.channel_url = channel_url
     chat.channel_name = channel_name
     chat.emails = json.dumps(member_list)

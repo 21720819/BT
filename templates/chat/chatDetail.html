@@ -15,13 +15,10 @@
       </script>
       <script>
             init_detail('{{application_id}}', '{{channel_url}}', '{{user_id}}');
-           
-      
       </script>
-
      <div class = "out detail_container">
             <div id="profile">
-                  <p>{{chat_name}}</p>
+                  <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a></p>
                   <span name="myPost"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
             </div>
             <div id="chat-messages">

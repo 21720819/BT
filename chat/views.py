@@ -79,16 +79,16 @@ def chatHome(request):
     
     for channel in channels : 
         channel_url = channel['channel_url']
-        member_list = get_chat_members(channel_url)
-        if(member_list):
-            member_count = len(member_list)
+    
         cover_url = channel['cover_url']
         chat_room_name = channel['name']
         last = channel['last_message'] 
         try:
             pk = Chat.objects.get(channel_url = channel_url).pk
+            mem_list = get_chat_members(channel_url)
         except Chat.DoesNotExist:    
             pk = None
+            mem_list = None
         if last is not None : 
             last_message = channel['last_message']['message']
             last_time = channel['last_message']['created_at']/1000
@@ -97,8 +97,11 @@ def chatHome(request):
             last_message = "메시지를 전송해 보세요."
             last_time = 0
             time  = 0
-        dic = {'channel_url':channel_url, 'chat_room_name' : chat_room_name, 'last_message' : last_message, 'time' : time,'member_count' :member_count, 'application_id' : application_id, 'user_id' : user_id, 'pk' : pk , 'cover_url' : cover_url}
-        chats.append(dic)
+        if  (mem_list):
+            mem_count = len(mem_list)
+            print(mem_count)
+            dic = {'channel_url':channel_url, 'chat_room_name' : chat_room_name, 'last_message' : last_message, 'time' : time,'mem_count' :mem_count, 'application_id' : application_id, 'user_id' : user_id, 'pk' : pk , 'cover_url' : cover_url}
+            chats.append(dic)
 
     context = {'chats' : chats, 'application_id' : application_id, 'user_id' : user_id}
     return render(request,'chat/chatHome.html', context)
@@ -110,6 +113,7 @@ def chatDetail(request, chat_id):
     channel_type = "group_channels"
     message_ts = int(time()*1000) #현재시간을 unix 타임으로 변환
     channel_url = Chat.objects.get(id = chat_id).channel_url
+    post_num = Chat.objects.get(id = chat_id).post_num
     member_list = get_chat_members(channel_url)
     member_count = len(member_list)
 
@@ -159,7 +163,7 @@ def chatDetail(request, chat_id):
     if(len(message_list)) :  
         last_date = message_list[-1]['sent_date']
 
-    context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id, 'last_date':last_date, 'chat_name':chat_name, 'member_list' : member_list, 'member_count':member_count}
+    context = {'message_list' : message_list, 'channel_url':channel_url, 'application_id' : application_id, 'user_id' : user_id, 'last_date':last_date, 'chat_name':chat_name, 'member_list' : member_list, 'member_count':member_count, 'post_num':post_num}
    
     return render(request, 'chat/chatDetail.html', context)
 
