@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+
+
 <style>
   #content__blur {
     height: 100%;
@@ -16,7 +18,6 @@
     }
   }
 </style>
-
 
 
 <a href="{% url 'freeCreate' %}">
@@ -37,8 +38,7 @@
         </a>
     </div>
       <div class="freeContentIcon">
-        <span>{{post.writeDate|date:'m-d H:i'}}</span>
-        <span class="freeUsername">| {{post.ID.username}}</span>
+        <span>{{post.writeDate|date:'m-d H:i'}} | {{post.ID.username}}</span>
         <div class="icons">
           <div class="freeRIcon">
             <img src="{%static 'images/freeLike.png' %}" alt="">

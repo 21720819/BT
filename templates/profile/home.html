@@ -239,7 +239,7 @@
 
 <!-- html 불러오기 -->
 <script>
-    function insertIntoPopup(url, target) {
+    function insertIntoWindow(url, target) {
         fetch(url)
             .then(response => {
                 return response.text()
@@ -249,7 +249,7 @@
             });
     }
 
-    insertIntoPopup("{% url 'profileEdit' user.username %}", 'profile_editBox');
+    insertIntoWindow("{% url 'profileEdit' user.username %}", 'profile_editBox');
 </script>
 
 <!-- 팝업 창 스크립트 -->

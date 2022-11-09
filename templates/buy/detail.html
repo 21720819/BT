@@ -199,7 +199,7 @@
 
 <!-- html 불러오기 -->
 <script>
-    function insertIntoPopup(url, target) {
+    function insertIntoWindow(url, target) {
         fetch(url)
             .then(response => {
                 return response.text()
@@ -209,8 +209,8 @@
             });
     }
 
-    insertIntoPopup("{% url 'reportPost' detail.id %}", 'detail_accuseBox');
-    insertIntoPopup("{% url 'auth' detail.id %}", 'detail_viewBox');
+    insertIntoWindow("{% url 'reportPost' detail.id %}", 'detail_accuseBox');
+    insertIntoWindow("{% url 'auth' detail.id %}", 'detail_viewBox');
 </script>
 
 <!-- 팝업 스크립트 -->
