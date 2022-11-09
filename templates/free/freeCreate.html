@@ -20,11 +20,11 @@
             {% csrf_token %}
             <div class="freeTitle">{{form.title}}</div>
             <div class="freeBody" style="margin-top: 20px">{{form.body}}</div>
-        
+            
+            <input type="submit" class="create_submitButton buttonColor" placeholder="작성">
         </form>
-        <div">
-            <input type="submit" class="create_submitButton buttonColor" placeholder="작성"> </input>
-        </div>
+        
+        
     </div>
 </div>
 {% endblock %}
