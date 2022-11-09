@@ -188,7 +188,7 @@
 
 <!-- html 불러오기 -->
 <script>
-    function insertIntoPopup(url, target) {
+    function insertIntoWindow(url, target) {
         fetch(url)
             .then(response => {
                 return response.text()
@@ -198,8 +198,8 @@
             });
     }
 
-    insertIntoPopup("{% url 'review' profileuser.username %}", 'profile_reviewBox');
-    insertIntoPopup("{% url 'reportUser' profileuser.username %}", 'profile_accuseBox');
+    insertIntoWindow("{% url 'review' profileuser.username %}", 'profile_reviewBox');
+    insertIntoWindow("{% url 'reportUser' profileuser.username %}", 'profile_accuseBox');
 </script>
 
 <!-- 팝업 스크립트 -->
