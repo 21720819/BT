@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .forms import Freemodelform,CommentForm
 from .models import Free
 from accounts.models import User
+from django.contrib.auth.decorators import login_required
 
 def freeHome(request):
     posts= Free.objects.filter().order_by('-writeDate')
 
     return render(request,'free/freehome.html',{'posts':posts})
 
+@login_required(login_url='/accounts/login/')
 def freeCreate(request):
     user_id =request.user.id
     user = User.objects.get(id=user_id)
@@ -25,6 +27,7 @@ def freeCreate(request):
         form  = Freemodelform()
     return render(request,'free/freeCreate.html', {'form':form})
 
+@login_required(login_url='/accounts/login/')
 def freeDetail(request, free_id):
     detail = get_object_or_404(Free,pk=free_id)
     comment_form = CommentForm()

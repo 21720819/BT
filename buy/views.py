@@ -9,7 +9,7 @@ from chat.models import Chat
 from accounts.models import User
 import json, requests
 from django.conf import settings
-
+from django.contrib.auth.decorators import login_required
 
 def p_category(request,category):
     categorys={'food':0,'necessity':1,'ott':2,'delivery':3}
@@ -17,6 +17,7 @@ def p_category(request,category):
     posts = Buy.objects.filter(category=categorys[category]).order_by('-id') #최신순 나열
     return render(request,'buy/home.html',{'category':category,'posts':posts})
 
+@login_required(login_url='/accounts/login/')
 def buyDetail(request, post_id):
     detail= get_object_or_404(Buy,id=post_id)
     # try:
@@ -25,6 +26,7 @@ def buyDetail(request, post_id):
     # except:
     return render(request, 'buy/detail.html',{'detail':detail})
 
+@login_required(login_url='/accounts/login/')
 def buyCreate(request):
     user_id =request.user.id
     user = User.objects.get(id=user_id)
@@ -89,7 +91,7 @@ def buyEdit(request, post_id):
         }
         return render(request, 'buy/edit_post.html',context)
 
-
+@login_required(login_url='/accounts/login/')
 def addBookmark(request, post_id):
     detail = Buy.objects.get(pk=post_id)
     uid = request.user.id
