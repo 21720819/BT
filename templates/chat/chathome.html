@@ -30,7 +30,7 @@
 
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
-
+`
       <script>  
       window.onpageshow = function(event) {
       if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
@@ -38,7 +38,6 @@
       location.reload();
     }
    }
-
             init_home('{{application_id}}', '{{user_id}}');
       </script>
  
@@ -58,15 +57,17 @@
  
           <span> {{chat.last_message}}</span>
         </div>
-       
     </div>
     {% endif %}
     {% endfor%}
     {% else %}
-    생성된 채팅방이 없습니다.
-    {% endif %}
-   
-     
+    <div style = "font-size:2em">
+      생성된 채팅방이 없습니다.<br>
+    </div>  
+    <div style = "font-size:2.5em">
+      <b><a href = "../buy" class="here" >여기</a></b>를 눌러 거래 시작할 글을 찾아보세요!
+    </div>  
+    {% endif %}  
     </div>
 </body>
     

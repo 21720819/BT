@@ -33,7 +33,7 @@ def get_chat_members(channel_url):
         return member_list
 
 
-def set_profile_img(request):
+def set_profileImg_nick(request):
      user_id = request.user.email #유저 이메일 지정
      url = f"https://api-{application_id}.sendbird.com/v3/users/{user_id}"
      api_headers = {"Api-Token": sendbird_api_token}
@@ -48,9 +48,11 @@ def set_profile_img(request):
          profiile_url = "../static/images/level3.png"    
      else :
         profiile_url = "../static/images/level4.png"    
+     nick = User.objects.get(email=user_id).username
         
      data ={
             'profile_url' : profiile_url,
+            'nickname' : nick
      }
 
      res = requests.put(url, data= json.dumps(data), headers=api_headers)
@@ -60,7 +62,7 @@ def set_profile_img(request):
 
 @login_required(login_url='/accounts/login/')
 def chatHome(request):
-    set_profile_img(request)
+    set_profileImg_nick(request)
     user_id = request.user.email #유저 이메일 지정
 
     url = f"https://api-{application_id}.sendbird.com/v3/users/{user_id}/my_group_channels"
@@ -110,7 +112,7 @@ def chatHome(request):
     return render(request,'chat/chathome.html', context)
 
 def chatDetail(request, chat_id):
-    set_profile_img(request)
+    set_profileImg_nick(request)
     user_id = request.user.email 
     # 과거채팅 리스트 가져오기
     channel_type = "group_channels"
