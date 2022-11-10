@@ -186,12 +186,12 @@
 
   <div class="wirte_btn_container">
   
-    <div class="abroad-primary-button abroad-button">
+    <div class="abroad-primary-button abroad-button" id="write_button">
       <div><i class="fas fa-plus"></i></div>
     </div>
     
     <a href="{% url 'buyCreate' %}" data-hover="식료품">
-      <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="생필품">
+      <div class="abroad-secondary-button abroad-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="식료품">
         <div><i class="fa-solid fa-lemon"></i></div>
       </div>
     </a>
@@ -217,4 +217,18 @@
   </div>
 
 </div>
+
+
+<!-- 거래 작성 버튼 스크립트 -->
+<script>
+  var write_btn = document.getElementById('write_button');
+
+  // console.log(lat.value, long.value)
+  write_btn.onclick = function() {
+      { // 마커 안찍으면
+          alert('글을 작성하고 싶다면 로그인이 필요합니다.') // 경고 표시
+      }
+  };
+</script>
+
 {% endblock %}
