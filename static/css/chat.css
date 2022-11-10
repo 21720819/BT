@@ -95,7 +95,7 @@ body {
   }
 #tx_send{
     border:none;
-	border-top:1px solid #c7c9ca;	
+	/* border-top:1px solid #c7c9ca;	 */
     overflow-y: auto;
     width: 100%; 
 	background:#fff;
@@ -166,7 +166,7 @@ body {
 #profile{
 	text-align:center;
 	color:rgb(0, 0, 0);
-	background-color: #e21e3e;
+	background-color: #fb2146;
 	background-size: 100%;
     background-repeat: no-repeat;
 	width: 100%;
@@ -192,11 +192,11 @@ body {
 	font-size:11px;
 }
 #chat-messages{
-	height: 70%;
+	height: calc(100% - 150px);
     width:100%;
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
 	padding : 10px;
-	padding-bottom : 20px;
+	/* padding-bottom : 20px; */
     overflow-y:auto; 
 	overflow-x:hidden;
 }
@@ -274,29 +274,34 @@ div.message.right .corner{
 
 
 #send_form textarea{
+	width: calc(100% - 50px);
+	height: 50px;
 	background:#fff;
-	border-top : 1 solid black ;
-	font-size:14px;
+	/* border-top : 1 solid black ; */
+	font-size:15px;
+	line-height: 50px;
 	font-family:"Open Sans", sans-serif; 
 	font-weight:400px;
 	color: rgb(67, 66, 66);
+	padding-left: 10px;
+	resize: none;
 }
 #send_form input:focus{
 	 outline: 0;
 }
 #send_form button{
-	background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/send.png") 0 -41px no-repeat;
-	width:30px;
-	height:30px;	
-	margin-top: 10px;
+	/* background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/send.png") 12.5px 15px no-repeat; */
+	width:50px;
+	height:50px;	
+	/* margin-top: 10px; */
 
 	border:none;
 	float : right;
-}
-#send_form button:hover{
 	cursor:pointer;
-	background-position: 0 0 ;
 }
+/* #send_form button:hover{
+	background-color: rgb(250, 247, 247);
+} */
 #send_form button:focus{
 	 outline: 0;	 
 }

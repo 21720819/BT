@@ -8,6 +8,26 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<style>
+  .detail_container {
+    max-width: 768px;
+    padding: 40px 0;
+  }
+  .detail_container iframe {
+      width: 100%;
+      height: calc(100% - 80px);
+  }
+  @media screen and (max-width: 768px) {
+      .detail_container {
+        width: auto;
+        padding: 20px;
+      }
+      .detail_container iframe {
+          height: 100%;
+      }
+  }
+</style>
+
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
 
