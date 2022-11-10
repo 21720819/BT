@@ -105,7 +105,7 @@
         <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
           <div class="text">
             <h1 class="mb-4">우리만의 공동구매</h1>
-            <p>다른 사용자들과의 다양한 주제에 대해서 이야기를 나눌 수 있어요</p>
+            <p>다른 사용자들과 다양한 주제에 대해서 이야기를 나눌 수 있어요</p>
             <p><a href="{% url 'freeHome' %}" class="btn btn-primary px-4 py-3 mt-3">자유게시판 둘러보기</a></p>
           </div>
         </div>
@@ -123,12 +123,11 @@
         <div class="heading-section mb-5 pl-md-5">
           <div class="pl-md-5 ml-md-5">
             <span class="subheading subheading-with-line"><small class="pr-2 bg-white">About</small></span>
-            <h2 class="mb-4">Buy Together이 세상에 나오게 될 때까지</h2>
+            <h2 class="mb-4">Buy Together가 세상에 나오게 될 때까지</h2>
           </div>
         </div>
         <div class="pl-md-5 ml-md-5 mb-5">
           <p></p>
-
         </div>
       </div>
     </div>
@@ -145,7 +144,7 @@
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="9">0</strong>
-                <span>달</span>
+                <span style="font-size: 2rem;">달</span>
               </div>
             </div>
           </div>
@@ -153,7 +152,7 @@
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="14">0</strong>
-                <span>일</span>
+                <span style="font-size: 2rem;">일</span>
               </div>
             </div>
           </div>
@@ -161,7 +160,7 @@
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="16">0</strong>
-                <span>시간</span>
+                <span style="font-size: 2rem;">시간</span>
               </div>
             </div>
           </div>
@@ -169,7 +168,7 @@
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="30">0</strong>
-                <span>분</span>
+                <span style="font-size: 2rem;">분</span>
               </div>
             </div>
           </div>
@@ -195,33 +194,33 @@
       <div class="col-md-4 d-flex align-self-stretch ftco-animate">
         <div class="media block-6 services d-block">
           <div class="icon d-flex justify-content-center align-items-center">
-            <span class="flaticon-idea"></span>
+            <i class="fa-solid fa-cart-shopping" style="color: #fff; font-size: 2.5rem;"></i>
           </div>
           <div class="media-body p-2 mt-3">
             <h3 class="heading">첫 번째</h3>
-            <p>사고 싶은 물품을 정하고 몇명이서 같이 살지 정한다</p>
+            <p>사고 싶은 물품을 정하고 몇명이서 같이 살지 정하세요</p>
           </div>
         </div>      
       </div>
       <div class="col-md-4 d-flex align-self-stretch ftco-animate">
         <div class="media block-6 services d-block">
           <div class="icon d-flex justify-content-center align-items-center">
-            <span class="flaticon-compass-symbol"></span>
+            <i class="fa-solid fa-people-group" style="color: #fff; font-size: 2.5rem;"></i>
           </div>
           <div class="media-body p-2 mt-3">
             <h3 class="heading">두 번째</h3>
-            <p>2의 설명</p>
+            <p>같이 살 사람을 모으세요. 양이 많은 물품일수록 사람들을 많이 모으면 이득이겠죠?</p>
           </div>
         </div>    
       </div>
       <div class="col-md-4 d-flex align-self-stretch ftco-animate">
         <div class="media block-6 services d-block">
           <div class="icon d-flex justify-content-center align-items-center">
-            <span class="flaticon-layers"></span>
+            <i class="fa-solid fa-comments" style="color: #fff; font-size: 2.5rem;"></i>
           </div>
           <div class="media-body p-2 mt-3">
             <h3 class="heading">세 번째</h3>
-            <p>3의 설명</p>
+            <p>모인 사람들과 안전하게 거래 채팅을 진행하세요. 정한 장소에 가서 정해진 가격대로 직거래를 하면 완료!</p>
           </div>
         </div>      
       </div>
@@ -229,59 +228,59 @@
     <div class="row justify-content-start mt-5 py-5">
       <div class="col-md-4 heading-section ftco-animate">
         <h2 class="mb-4">Buy Together 공동 거래 품목</h2>
-        <p>거래품목의 설명</p>
+        <p>신선한 식료품, 필요한 만큼의 생필품, 합리적인 가격의 OTT 그리고 부담스럽지 않은 가격의 배달까지 Buy Together에서 공동 거래할 수 있어요!</p>
       </div>
       <div class="col-md-8 ftco-animate">
         <div class="row d-flex">
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="flaticon-layers"></span>
+              <div class="icon d-flex justify-content-center align-items-center" style="background-color: #0033C7;">
+                <i class="fa-solid fa-lemon" style="color: #fff; font-size: 1.5rem;"></i>
               </div>
               <a href="{% url 'category' 'food' %}" style="color: inherit; text-decoration: none;">
               <div class="media-body p-2 mt-3">
                 <h3 class="heading">식료품</h3>
-                <p>식료품설명</p>
+                <p>신선하게 식료품을 원하는 양만큼 같이 거래해보세요</p>
               </div>
               </a>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="flaticon-layers"></span>
+              <div class="icon d-flex justify-content-center align-items-center" style="background-color: #0033C7;">
+                <i class="fa-solid fa-box-tissue" style="color: #fff; font-size: 1.5rem;"></i>
               </div>
               <a href="{% url 'category' 'necessity' %}" style="color: inherit;text-decoration: none;">
                 <div class="media-body p-2 mt-3">
                   <h3 class="heading">생필품</h3>
-                  <p>생필품설명</p>
+                  <p>필요한 생필품을 값싸게 같이 거래해보세요</p>
                 </div>
               </a>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="flaticon-layers"></span>
+              <div class="icon d-flex justify-content-center align-items-center" style="background-color: #0033C7;">
+                <i class="fa-solid fa-circle-play" style="color: #fff; font-size: 1.5rem;"></i>
               </div>
               
               <a href="{% url 'category' 'ott' %}" style="color: inherit;text-decoration: none;">
                 <div class="media-body p-2 mt-3">
                   <h3 class="heading">OTT</h3>
-                  <p>OTT설명</p>
+                  <p>여러가지 종류의 OTT 서비스를 합리적인 가격으로 즐겨보세요</p>
                 </div>
               </a>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="media block-6 services services-2 d-block bg-light p-4 mb-4">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="flaticon-layers"></span>
+              <div class="icon d-flex justify-content-center align-items-center" style="background-color: #0033C7;">
+                <i class="fa-solid fa-motorcycle" style="color: #fff; font-size: 1.5rem;"></i>
               </div>
               <a href="{% url 'category' 'delivery' %}" style="color: inherit;text-decoration: none;">
               <div class="media-body p-2 mt-3">
                 <h3 class="heading">배달</h3>
-                <p>배달설명</p>
+                <p>배달비가 음식값보다 높은 고물가 시대! 먹고 싶은 음식을 부담스럽지 않은 배달비로 주문하고 싶을 때 이용해보세요</p>
               </div>
               </a>
             </div>
@@ -346,20 +345,23 @@
   <div class="container">
     <div class="row justify-content-center mb-5 pb-3">
       <div class="col-md-7 heading-section ftco-animate">
-        <span class="subheading subheading-with-line"><small class="pr-2 bg-white">BuyTogether 개발팀</small></span>
-        <h2 class="mb-4">개발팀</h2>
-        <p>개발팀 설명~</p>
+        <span class="subheading subheading-with-line"><small class="pr-2 bg-white">Buy Together 개발팀</small></span>
+        <h2 class="mb-4">영남대학교 컴퓨터공학과 4명</h2>
+        <p>영남대학교 컴퓨터공학과 학생 4명이 Buy Together를 위해 모였습니다. 작년 소프트웨어공학 수업에서부터 같이 개발을 하기 시작했습니다. 당시 참신하고 다양한 아이디어들 중 하나를 조금씩 발전시켜가면서 지금의 Buy Together가 되었습니다. 
+          졸업 프로젝트이기에 비슷한 다른 상업 서비스에 비해서는 완성도가 다소 떨어져 보일 수 있습니다. 하지만, 그 부분을 채우기 위해서 저희 4명은 9달이 넘는 시간동안 치열하게 고민하고 의견을 주고 받았습니다. 
+          1년에 가까운 시간동안, 4명 각자의 다른 시간대에서 정성을 쏟아 부어 프로젝트를 완성시켰습니다. 4명이 함께 만든 Buy Together를 지금 둘러보세요!
+        </p>
       </div>
     </div>	
     <div class="row">
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="staff">
-          <div class="img" style="background-image: url(images/team-1.jpg);"></div>
+          <div class="img" style="background-image: url(static/images/KimMinSol.png);"></div>
           <div class="text px-4 pt-4">
             <h3>김민솔</h3>
             <span class="position mb-2">컴퓨터공학과 학생</span>
             <div class="faded">
-              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <p></p>
               <ul class="ftco-social d-flex">
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
@@ -369,12 +371,12 @@
       </div>
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="staff">
-          <div class="img" style="background-image: url(images/team-2.jpg);"></div>
+          <div class="img" style="background-image: url(static/images/KimBoMin.png);"></div>
           <div class="text px-4 pt-4">
             <h3>김보민</h3>
             <span class="position mb-2">컴퓨터공학과 학생</span>
             <div class="faded">
-              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <p></p>
               <ul class="ftco-social d-flex">
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
@@ -384,7 +386,7 @@
       </div>
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="staff">
-          <div class="img" style="background-image: url(images/team-3.jpg);"></div>
+          <div class="img" style="background-image: url(static/images/KimJaeHyun.png);"></div>
           <div class="text px-4 pt-4">
             <h3>김재현</h3>
             <span class="position mb-2">컴퓨터공학과 학생</span>
@@ -399,12 +401,12 @@
       </div>
       <div class="col-md-6 col-lg-3 ftco-animate">
         <div class="staff">
-          <div class="img" style="background-image: url(images/team-4.jpg);"></div>
+          <div class="img" style="background-image: url(static/images/YoonJuHyun.png);"></div>
           <div class="text px-4 pt-4">
             <h3>윤주현</h3>
             <span class="position mb-2">컴퓨터공학과 학생</span>
             <div class="faded">
-              <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+              <p></p>
               <ul class="ftco-social d-flex">
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
