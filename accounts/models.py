@@ -51,6 +51,8 @@ class User(AbstractUser):
     phone_number = models.CharField('휴대폰 번호', max_length=30, unique = True, null=True, blank=True)
     auth_number = models.CharField('인증번호', max_length=30)
 
+    sms = models.BooleanField(default = False)
+    
     def __str__(self):
         return "<%d %s>" %(self.pk, self.email)
 
