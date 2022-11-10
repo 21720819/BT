@@ -16,7 +16,7 @@ class Freemodelform(forms.ModelForm):
 			'body' : forms.Textarea (
 				attrs={ 'class': 'form-control, freeBody',
            				'cols':'50', 'rows':'10',
-               			'style': 'width: 100%; resize: none; background: rgb(250, 247, 247); border: 0; padding: 0;',
+               			'style': 'width: 100%; height: 180px; resize: none; background: rgb(250, 247, 247); border: 0; padding: 0;',
                   		'placeholder': '내용을 입력하세요.' }
 			),
 		}
