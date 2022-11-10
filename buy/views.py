@@ -75,7 +75,7 @@ def buyEdit(request, post_id):
             post.price = form.cleaned_data['price']
             post.wpeople = form.cleaned_data['wpeople']
             post.location = form.cleaned_data['location']
-            post.bocategorydy = form.cleaned_data['category']
+            post.category = form.cleaned_data['category']
             post.save()
             return redirect('../../../buy/detail/'+str(post.pk))
         
