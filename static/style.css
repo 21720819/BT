@@ -1171,7 +1171,7 @@ nav a {
   left: 0;
   width: 100%;
   height: calc(var(--header-height) + 1rem);
-  padding: 0 calc(1rem + 32px) 0 1rem;
+  padding: 0 1rem 0 1rem;
   background-color: #FFF;
   z-index: var(--z-fixed);
   display: flex;
