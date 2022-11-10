@@ -53,7 +53,7 @@
         </div><div class="profile_division">
             <div class="profile_divUpParts">휴대폰 인증</div>
             <!-- <div class="profile_divDownParts">{{user.last_login|date:'Y-m-d'}}</div> -->
-            {% if profileuser.phone_number %}
+            {% if profileuser.sms %}
             <div class="profile_divDownParts">인증</div>
             {% else %}
             <div class="profile_divDownParts">미인증</div>
@@ -126,7 +126,7 @@
     </div>
 
     <div id="review" class="profile_summary profile_btns">
-        {% if user not in profileuser.Review_set.all %} 사용자 평가하기
+        {% if user not in profileuser.writer.all %} 사용자 평가하기
         {% else %} 사용자 평가 수정하기
         {% endif %}
         <!-- <a class="nav-link nav_change_color" href="{% url 'review' profileuser.username %}">리뷰남기기</a> -->

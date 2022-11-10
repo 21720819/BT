@@ -143,7 +143,7 @@
         <!-- 휴대폰 인증http://127.0.0.1:8000/profile/admin/sms -->
         <!-- {% url 'sms' user.username %} -->
         <!-- if 인증됨 -->
-        {% if user.phone_number %}
+        {% if user.sms %}
         <ion-icon name="checkmark-circle" style="width: 20px; height: 20px; color: var(--first-color); padding-top: 1px; float: right;"></ion-icon>
         <!-- else -->
         {% else%}

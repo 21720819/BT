@@ -93,23 +93,26 @@ def sendsms(request, username):
         # data = request.POST.get["phone_number"]
         input_mobile_num = data
         auth_num = random.randint(10000, 100000) # 랜덤숫자 생성, 5자리로 계획하였다.
-        try:##인증ㅇ번호 발송
-            auth_mobile = User.objects.get(username=username)
-            auth_mobile.auth_number = auth_num
-            auth_mobile.phone_number = input_mobile_num
-            auth_mobile.save()
-            send_sms(phone_number=data, auth_number=auth_num)
-            # return JsonResponse({'message': '인증번호 발송완료'}, status=200)
-            messages.success(request, f"인증번호가 발송되었습니다. 인증번호를 입력해주세요.")
-        except User.DoesNotExist: # 인증요청번호 미 존재 시 DB 입력 로직 작성
-            User.objects.update_or_create(
-                phone_number=input_mobile_num,
-                auth_number=auth_num,
-            ).save()
-            send_sms(phone_number=input_mobile_num, auth_number=auth_num)
-            # return JsonResponse({'message': '인증번호 발송 및 DB 입력완료'}, status=200)
-            # return HttpResponse('인증번호 발송완료 및 입력완료')
-    
+        if form.is_valid():
+            try:##인증ㅇ번호 발송
+                auth_mobile = User.objects.get(username=username)
+                auth_mobile.auth_number = auth_num
+                auth_mobile.phone_number = input_mobile_num
+                auth_mobile.save()
+                send_sms(phone_number=data, auth_number=auth_num)
+                # return JsonResponse({'message': '인증번호 발송완료'}, status=200)
+                messages.success(request, f"인증번호가 발송되었습니다. 인증번호를 입력해주세요.")
+                return redirect('../../profile/'+username+'/sms')
+            except User.DoesNotExist: # 인증요청번호 미 존재 시 DB 입력 로직 작성
+                User.objects.update_or_create(
+                    phone_number=input_mobile_num,
+                    auth_number=auth_num,
+                ).save()
+                send_sms(phone_number=input_mobile_num, auth_number=auth_num)
+                # return JsonResponse({'message': '인증번호 발송 및 DB 입력완료'}, status=200)
+                # return HttpResponse('인증번호 발송완료 및 입력완료')
+        messages.error(request, f"휴대폰번호오류")
+        return redirect('../../profile/'+username+'/sms')
     return redirect('../../profile/'+username+'/sms')
 
 
@@ -124,6 +127,8 @@ def checksms(request,username):# 인증번호 확인
                 verification = User.objects.get(username=username)
 
                 if verification.auth_number == data:
+                    verification.sms = True
+                    verification.save()
                     # return JsonResponse({'message': '인증 완료되었습니다.'}, status=200)
                     messages.success(request, f"인증 완료")
                     return redirect('../../profile/'+username+'/sms')
@@ -131,10 +136,16 @@ def checksms(request,username):# 인증번호 확인
                 else:
                     # return JsonResponse({'message': '인증 실패입니다.'}, status=400)
                     messages.error(request, f"인증 실패")
+                    verification.phone_number=""
+                    verification.sms=False
+                    verification.save()
                     return redirect('../../profile/'+username+'/sms')
 
             except User.DoesNotExist:
                     messages.error(request, f"인증 실패")
+                    verification.sms=False
+                    verification.phone_number=""
+                    verification.save()
                     return redirect('../../profile/'+username+'/sms')
     
 
