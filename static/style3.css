@@ -1955,6 +1955,7 @@ Google map
 .post-thumbnail {
   width: 100%;
   height: auto;
+  border-radius: 20px;
 }
 
 .post-thumbnail:hover {
@@ -1965,6 +1966,7 @@ Google map
 .img_size {
   width: 100%;
   height: 250px;
+  border-radius: 20px;
 }
 
 .post-quote {
