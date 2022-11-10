@@ -80,7 +80,7 @@
                   <form id = "send_form" method="post" onsubmit="send_message()">
                         {% csrf_token %}
 
-                        <textarea placeholder="채팅을 입력하세요." onfocus="this.placeholder=''" onblur = "this.placeholder ='채팅을 입력하세요.'" id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
+                        <textarea placeholder="내용을 입력하세요." onfocus="this.placeholder=''" onblur = "this.placeholder ='내용을 입력하세요.'" id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
                         <button type="button" onclick="send_message()" class="buttonColor"><i class="fa-solid fa-paper-plane" style="font-size: 17.5px; color: white;"></i></button>
                   </form>    
             </div>

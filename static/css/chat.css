@@ -225,11 +225,11 @@ body {
 	  margin-left: 19px;
 }
 #chat-messages .message img{
-	  float: left;
-	  margin-left: -45px;
+	  float: left; 	
+	  margin-left: -50px;
 	  border-radius: 50%;
-	  width: 35px;
-	  margin-top: 12px;
+	  /* width: 35px; */
+	  /* margin-top: 21px; */
 }
 #chat-messages div.message.right img{
 	float: right;	
@@ -240,15 +240,16 @@ body {
 	background:#f0f4f7;
 	font-size:13px;
 	font-weight:600;
+	margin-top: 5px;
 	padding:12px 13px;
-	border-radius:5px 5px 5px 0px;
+	border-radius:0px 5px 5px 5px;
 	color:#8495a3;
 	position:relative;
 	float:left;
 }
 #chat-messages div.message.right .bubble{
 	float:right;
-	border-radius:5px 5px 0px 5px ;
+	border-radius:5px 0px 5px 5px ;
 }
 .bubble .corner{
 	background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-corner.png") 0 0 no-repeat;
@@ -256,7 +257,8 @@ body {
 	width:7px;
 	height:7px;
 	left:-5px;
-	bottom:0;
+	top:0;
+	transform: scaleY(-1);
 }
 div.message.right .corner{
 	background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-cornerR.png") 0 0 no-repeat;
