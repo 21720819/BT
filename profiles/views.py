@@ -7,6 +7,7 @@ from accounts.forms import Smsform ,Smscheckform
 from profiles.forms import UserReviewform, UserReportform, PostReportform
 from .models import Review
 from django.db.models import Avg
+from django.contrib.auth.decorators import login_required
 
 application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
@@ -28,7 +29,7 @@ def changeChatNick(request, new_nick):
     parse = json.loads(info)
     #print(parse)
 
-
+@login_required(login_url='/accounts/login/')
 def profileHome(request,user_name):
     user = get_object_or_404(User, username=user_name)
     p_post =  Buy.objects.filter(ID=user).order_by('-writeDate')
@@ -149,7 +150,7 @@ def checksms(request,username):# 인증번호 확인
                     return redirect('../../profile/'+username+'/sms')
     
 
-
+@login_required(login_url='/accounts/login/')
 def reportUser(request, username):
     if request.method == 'POST':
         form = UserReportform(request.POST)
@@ -165,6 +166,7 @@ def reportUser(request, username):
     # return render(request,'profile/review.html', {'form':form})
     return render(request, 'profile/report.html', {'form':form})
 
+@login_required(login_url='/accounts/login/')
 def reportPost(request, post_id):
     if request.method == 'POST':
         form = PostReportform(request.POST)
@@ -188,6 +190,7 @@ def userProfile(request, username):
     return render(request, 'profile/userprofile.html', {'profileuser': profileuser , 'posts' : posts,'reviews':reviews})
 
 from django.db.models import Q 
+@login_required(login_url='/accounts/login/')
 def review(request,username): #username 상대방 수정도 넣으면 좋을 듯 유저 한명당 리뷰 하나만 가능
     profileuser = get_object_or_404(User, username=username)
     writer_id = request.user.id
@@ -200,6 +203,7 @@ def review(request,username): #username 상대방 수정도 넣으면 좋을 듯
         return createReview(request,profileuser.username)
      
 
+@login_required(login_url='/accounts/login/')
 def createReview(request,username):
     form = UserReviewform(request.POST)
     profileuser = User.objects.get(username=username)

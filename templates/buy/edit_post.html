@@ -9,7 +9,7 @@
 
         <!-- 사진 -->
         <div id="create_tempImage" class="detail_img" style="position: relative;">  
-            <div style="visibility: visible;">{{form.photo}}</div>
+            <div style="visibility: hidden;">{{form.photo}}</div>
             <label id="create_pickButton" class="buttonColor" for="photo">
                 <img src="{%static 'images/plus.png' %}" alt="" style="width: 50%; height: 50%;">
             </label>
@@ -75,8 +75,8 @@
 
             // 수정 화면에서 기존 사진 표시
             var img = document.getElementById('create_tempImage');
-            var url = img.querySelector('a').href;
-            console.log(url)
+            var url = img.getElementsByTagName('a')[0].href;
+            //console.log(url)
 
             img.setAttribute('style', `background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(${url}); position: relative;`);
         </script>

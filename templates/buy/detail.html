@@ -120,6 +120,7 @@
                 {% else  %}
                 <div id="view" style="display: none;"></div>
                 <!-- 참가자 -->
+                {% if user.sms %}
                     {% if user in detail.join_users.all %}
                     <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
                         <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
@@ -129,6 +130,12 @@
                         <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
                     </button>
                     {% endif %}
+                    {%else%}
+                    <!-- 휴대폰인증안함 -->
+                    <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('휴대폰인증이 필요합니다.')">
+                        <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
+                    </button>
+                    {%endif%}
                 {% endif %}
             {% endif %}
 

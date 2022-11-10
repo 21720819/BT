@@ -14,6 +14,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.conf import settings
 from django.http import JsonResponse
 import json, requests
+from django.contrib.auth.decorators import login_required
+ 
 
 #sendbird 정보 가져오기
 application_id = settings.SENDBIRD_APPLICATION_ID

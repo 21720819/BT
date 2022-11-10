@@ -5,6 +5,7 @@ from django.conf import settings
 from datetime import datetime
 from .models import Chat
 from time import time
+from django.contrib.auth.decorators import login_required
 
 application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
@@ -57,7 +58,7 @@ def set_profile_img(request):
      parse = json.loads(info)
      #print(parse)
 
-
+@login_required(login_url='/accounts/login/')
 def chatHome(request):
     set_profile_img(request)
     user_id = request.user.email #유저 이메일 지정
@@ -169,7 +170,7 @@ def chatDetail(request, chat_id):
    
     return render(request, 'chat/chatDetail.html', context)
 
-
+@login_required(login_url='/accounts/login/')
 def chatAI(request):
     return render(request, 'chat/chatAI.html')
 
