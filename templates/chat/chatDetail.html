@@ -9,22 +9,7 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-      .pop_blank #closePop {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          
-            /* margin-right: -11px; */
-            float: right;
-            cursor: pointer;
-          }
-          .pop_blank #closePop:hover{
-            background-color: rgb(250, 247, 247);
-          }
+   
 </style>
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
@@ -37,7 +22,7 @@
      <div class = "out detail_container">
             <div id="profile">
                   <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a></p>
-                  <span name="myPost"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
+                  <span name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
             </div>
             <div id="chat-messages">
                   {% for message in message_list %}
@@ -103,8 +88,21 @@
                   <!-- postBox -->
                   <div id="profile_postBox">
                         <div id="chat_profileList" class="profile_posts" style="display: none;">
-                              {% for post in posts %} <!-- for 내용 수정 -->
-                              <!-- <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a> --> <!-- 프로필 링크 -->
+                              {% for member in member_list %} 
+                              <a href="{{member.profile_url}}" class="profile_list nav-link nav_change_color">
+                                    {% if member.level == 0 %}
+                                    <img src="{% static 'images/level0.png'%}" class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 1 %}
+                                    <img src="{% static 'images/level1.png'%}" class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 2 %}
+                                    <img src="{% static 'images/level2.png'%}"class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 3 %}
+                                    <img src="{% static 'images/level3.png'%}" class="profile_img" style="display: inline-block">
+                                    {% elif  member.level == 4 %}
+                                    <img src="{% static 'images/level4.png'%}" class="profile_img" style="display: inline-block">
+                                    {% endif %}
+                                          
+                                    <span style = "margin-left: 5px;">  {{member.nick}}</span></a>
                               {% if not forloop.last %} <hr>
                               {% else %} <hr style="margin-bottom: 0;">
                               {% endif %}

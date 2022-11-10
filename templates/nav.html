@@ -74,8 +74,9 @@
             </div>
         </nav>
 
-        <span class="ai"><div class="ai_name">봄봄</div><div class="orb"></div></span>
-
+        <a href="{% url 'chatAI' %}">
+            <button class="ai" id="btn" type="submit"><img class="" src="https://cdn-icons-png.flaticon.com/512/141/141737.png" style="width: 2.5rem; height: 2.5rem;"></button>
+        </a>    
     </header>
 
     <!-- 내용이 들어가는 공간 -->
@@ -179,13 +180,6 @@
     });
    </script>
 
-    <script>
-        $(function() {
-            $(".menu-4").click(function() {
-                $("li").toggleClass("current");
-            });
-        })
-    </script>
     <!-- 툴팁 tooltip js -->
    <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')

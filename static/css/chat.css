@@ -65,12 +65,30 @@ body {
 .chat .status.away{background:#ffce54;}
 .chat .status.inactive{background:#eaeef0;}
 
+/* 팝업 */
+.pop_blank #closePop {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  
+	/* margin-right: -11px; */
+	float: right;
+	cursor: pointer;
+  }
+  .pop_blank #closePop:hover{
+	background-color: rgb(250, 247, 247);
+  }
 
 /* 메시지 전송창*/
 .post_name {
   color : white;
   text-decoration: none;
 }
+
 .post_name:hover {
 	color : rgb(165, 223, 104);
 	text-decoration: none;
