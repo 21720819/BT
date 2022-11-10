@@ -9,7 +9,18 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-   
+      .detail_container {
+            max-width: 768px;
+            height: 100%;
+            padding: 40px 20px;
+      }
+      @media screen and (max-width: 768px) {
+            .detail_container {
+                  width: auto;
+                  height: 100%;
+                  padding: 0;
+            }
+      }
 </style>
 <body>
       <script type="text/javascript" src="{%static 'js/chat.js' %}"></script>
@@ -22,7 +33,7 @@
      <div class = "out detail_container">
             <div id="profile">
                   <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a></p>
-                  <span name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding-right: 3px;"/>{{member_count}}</a></span>
+                  <span name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding: 0 3px 3px 0;"/>{{member_count}}</a></span>
             </div>
             <div id="chat-messages">
                   {% for message in message_list %}
@@ -64,12 +75,13 @@
             {% endfor%}
             <div id="new_message"></div>
            </div>
+           <hr style="margin: 0;"></hr>
             <div>
                   <form id = "send_form" method="post" onsubmit="send_message()">
                         {% csrf_token %}
 
-                        <textarea placeholder="채팅을 입력하세요." onfocus="this.placeholder=''" onblur = "this.placeholder ='채팅을 입력하세요.'" id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
-                        <button type="button" onclick="send_message()"></button>
+                        <textarea placeholder="내용을 입력하세요." onfocus="this.placeholder=''" onblur = "this.placeholder ='내용을 입력하세요.'" id="tx_send" name ="messages" spellcheck="false" rows="1"  cols="40"></textarea>
+                        <button type="button" onclick="send_message()" class="buttonColor"><i class="fa-solid fa-paper-plane" style="font-size: 17.5px; color: white;"></i></button>
                   </form>    
             </div>
      </div> 
@@ -91,15 +103,15 @@
                               {% for member in member_list %} 
                               <a href="{{member.profile_url}}" class="profile_list nav-link nav_change_color">
                                     {% if member.level == 0 %}
-                                    <img src="{% static 'images/level0.png'%}" class="profile_img" style="display: inline-block">
+                                    <img src="{% static 'images/level0.png'%}" class="detail__lev" style="display: inline-block">
                                     {% elif  member.level == 1 %}
-                                    <img src="{% static 'images/level1.png'%}" class="profile_img" style="display: inline-block">
+                                    <img src="{% static 'images/level1.png'%}" class="detail__lev" style="display: inline-block">
                                     {% elif  member.level == 2 %}
-                                    <img src="{% static 'images/level2.png'%}"class="profile_img" style="display: inline-block">
+                                    <img src="{% static 'images/level2.png'%}"class="detail__lev" style="display: inline-block">
                                     {% elif  member.level == 3 %}
-                                    <img src="{% static 'images/level3.png'%}" class="profile_img" style="display: inline-block">
+                                    <img src="{% static 'images/level3.png'%}" class="detail__lev" style="display: inline-block">
                                     {% elif  member.level == 4 %}
-                                    <img src="{% static 'images/level4.png'%}" class="profile_img" style="display: inline-block">
+                                    <img src="{% static 'images/level4.png'%}" class="detail__lev" style="display: inline-block">
                                     {% endif %}
                                           
                                     <span style = "margin-left: 5px;">  {{member.nick}}</span></a>
