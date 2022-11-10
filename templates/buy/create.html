@@ -122,14 +122,15 @@
     });
 </script>
 
+<!-- 거래 작성 버튼 스크립트 -->
 <script>
     var button = document.getElementById('button');
 
-    console.log(lat.value, long.value)
+    // console.log(lat.value, long.value)
     button.onclick = function() {
-        if (lat.value == 0 || long.value() == 0) {
-            alert('지도에 위치를 표시하세요.')
-            event.preventDefault();
+        if (lat.value == 0 || long.value() == 0) { // 마커 안찍으면
+            alert('지도에 거래 장소를 지정하세요.') // 경고 표시
+            event.preventDefault(); // 제출 안함
         }
     };
 </script>
