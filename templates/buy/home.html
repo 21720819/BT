@@ -104,7 +104,7 @@
     <div class="buy-container">
       <div class="row multi-columns-row post-columns">
         {% for post in posts %}
-        <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="col-sm-6 col-md-4 col-lg-4" style="margin-bottom: 50px;">
           <div class="post">
             <div class="post-thumbnail img_size"><a href="{% url 'buyDetail' post.id %}">{% if post.photo %}<img src="{{ post.photo.url }}" class="img_size"/>
               {% elif post.category == 0 %}<img src="{% static 'images/food3.jpg'%}" class="img_size"/>
@@ -121,9 +121,8 @@
             </div>
               <div>
                 <div class="post-more" style="font-family: RixYeoljeongdo_Regular; float: left; ">{{post.price}}원</div> <!-- 가격 -->
-                <div style="font-family: RixYeoljeongdo_Regular; font-size: 1rem; color: #FB2146; float: left; margin-left: 7.2rem; margin-top: 1rem;">{{post.join_count}}명 / {{post.wpeople}}명</div>           
+                <div style="font-family: RixYeoljeongdo_Regular; font-size: 1rem; color: #FB2146; float: left; margin-left: 7rem; margin-top: 1rem;">{{post.join_count}}명 / {{post.wpeople}}명</div>           
               </div>
-
             </div>
           </div>
         </div>
