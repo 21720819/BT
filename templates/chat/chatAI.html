@@ -29,15 +29,87 @@
      .orb{
           display: none;
      }
-</style>
-<body>
-     <div class = "detail_container">
-      <div style = "text-align: center;">
-      <iframe allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/a8fbf369-3266-43cd-9d78-620ac599a02a"></iframe> 
-     </div> 
-      </div>
 
-</body>
+     body { width: 280px; margin: 0 auto;height: 445px; border: 2px solid #1780E7;padding: 10px; margin:0; padding:0     }
+        .chatBox { 
+             width: 280px;height: 355px;overflow: auto; 
+             opacity: 0.9;
+             background-image: url( "배경이미지");
+             background-size: 280px 355px;
+         }
+         .chatheader {
+            width: 280px; height: 50px;
+            line-height: 45px;
+            background-color: #1780E7;
+            color: white;
+            
+         }
+        .userInput{float: left; margin-left: 5px; margin-top:8px; border:3px solid #E6E6E6; border-radius: 5px; background-color: #E6E6E6; font-size:small; display:inline-block; max-width:230px}
+        .responseData{float:right; margin-right: 8px; margin-top:8px; border:3px solid #A9F5F2; border-radius: 5px; background-color: #A9F5F2; font-size:small; display:inline-block; max-width:230px}
+        #input { width: 220px; height:20px; border-radius: 5px;margin-top: 5px }
+        button { width: 43px; border-radius: 5px }
+     
+</style>
+<head>
+     <script type="text/javascript">
+          var accessToken = "AIzaSyCUDt0vdyGP98G37NHQavAFCA9XBbT528E"; // 자신의 토큰값
+          var baseUrl = "https://api.api.ai/v1/";
+          $(document).ready(function() {
+              $("#input").keypress(function(event) {
+                  if (event.which == 13) {
+                      $('.chatBox').append('<span class="userInput">' + $('input').val() + '</span><div style="margin:7px"></div><br><br>')
+                      event.preventDefault();
+                      let query  = $('input').val()
+                      $('input').val('')
+                      send(query);
+                  }
+              });
+              $("#rec").click(function() {
+                  console.log($('input').val())
+                  $('.chatBox').append('<span class="userInput" style="margin:3px">' + $('input').val() + '</span><div style="margin:7px"></div><br><br>');
+                  $('.chatBox').scrollTop($('.chatBox').prop('scrollHeight'));
+                  event.preventDefault();
+                  let query  = $('input').val()
+                  $('input').val('')
+                  send(query);
+              });
+          });
+          function send(query) {           
+              var text = query;
+              $.ajax({
+                  type: "POST",
+                  url: baseUrl + "query?v=20150910",
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  headers: {
+                      "Authorization": "Bearer " + accessToken
+                  },
+                  data: JSON.stringify({ query: text, lang: "ko", sessionId: "somerandomthing" }),
+                  success: function(data) {
+                      setResponse(data);
+                  }
+              });
+          }        
+          function setResponse(val) {
+              $(".chatBox").append('<span class="responseData" style="margin:3px">'+ val.result.fulfillment.speech + '</span><div style="margin:7px"></div><br><br>');
+              $('.chatBox').scrollTop($('.chatBox').prop('scrollHeight'));
+          }
+      </script>
+
+
+
+
+
+
+</head>
+<body>
+     <div class ="chatheader">
+             &nbsp; chatbot
+     </div>
+     <div class ="chatBox">
+     </div>
+     <input id="input" type="text"> <button id="rec"><img src="${pageContext.request.contextPath}/버튼이미지"></button>
+ </body>
 <!-- <script>
      var query = document.getElementById('query');
 
