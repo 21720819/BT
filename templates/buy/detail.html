@@ -9,7 +9,6 @@
         {% if detail.ID.id == user.id %}
             <a href="{% url 'buyDelete' detail.id %}" class="detail_navEle">삭제</a>
             <a href="{% url 'buyEdit' detail.id %}" class="detail_navEle">수정</a>
-            <div id="accuse" style="display: none;"></div> <!-- 이거 없으면 신고 버튼 누를 때 동작 X -> id가 accuse인 거가 있을때가 있고 없을때가 있다 -->
         {% else %}
             <div id="accuse" class="detail_navEle" style="cursor: pointer;">신고</div>
         {% endif %}
@@ -18,7 +17,6 @@
 
     <!-- 사진 -->
     {% if detail.photo %}
-        <!-- <img src="{{ detail.photo.url }}" alt="" class="detail_img"> -->
         <div class="detail_img" style="background-image: url('{{ detail.photo.url }}');"></div>
     {% endif %}
     <!-- {% if detail.photo %}
@@ -118,7 +116,6 @@
                         <a href="{% url 'complete' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">거래완료하기</a>
                         </button>
                     {%endif%}
-                    <div id="view" style="display: none;"></div>
                 {%else%}
                     <!-- 채팅방 생성 후 사용자 -->
                     {% if detail.complete %}
@@ -141,7 +138,6 @@
                         신청자 보기 ({{detail.join_count}}명/{{detail.wpeople}}명)
                         <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
                     </button>
-                    <div id="view" style="display: none;"></div>
                 {% else  %}
                 <!-- 참가자 -->
                     {% if user.sms %}
@@ -257,16 +253,19 @@
     var title = document.getElementById('title');
     
     //var background = document.getElementsByClassName('detail_container');
+    if (accuse != null) {
+        accuse.onclick = function() {
+            setPopup('block', 'block', 'none', '신고하기');
+            //background[0].classList.add('blur');
+        };
+    }
 
-    accuse.onclick = function() {
-        setPopup('block', 'block', 'none', '신고하기');
-        //background[0].classList.add('blur');
-    };
-
-    view.onclick = function() {
-        setPopup('block', 'none', 'block', '신청자 보기');
-        //background[0].classList.add('blur');
-    };
+    if (view != null) {
+        view.onclick = function() {
+            setPopup('block', 'none', 'block', '신청자 보기');
+            //background[0].classList.add('blur');
+        };
+    }
 
     closeBtn.onclick = function() {
         setPopup('none', 'block', 'none', '');

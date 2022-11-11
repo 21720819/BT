@@ -24,24 +24,15 @@
             <h3 class="detail_price" style="padding: 0;">모집인원 : {{form.wpeople}}명</h3>
             {{form.lat}}
             {{form.long}}
-            <!-- <hr>
-            <table>
-                <tr>
-                    <td style="width: 40px;"><img class="detail_lev" style="margin-left: -1px;"></td>
-                    <td><h3 style="margin: 0;">{{detail.ID.username}}</h3></td>
-                </tr>
-            </table> -->
 
             <div class="profile_horizontalHr" style="margin: 1rem 0;"></div>
 
             <table>
                 <tr>
-                    <!-- <td><img src="{%static 'images/location.png' %}" style="width: 20px; height: 20px; margin: 0 0 4px -4.5px;"></td> -->
                     <td><ion-icon name="location" style="color: var(--first-color); margin-right: 5px;"></ion-icon></td>
                     <td style="width: 100%;"><div class="detail_loca_time">{{form.location}}</div></td>
                 </tr>
                 <tr>
-                    <!-- <td><img src="{%static 'images/clock.png' %}" style="width: 20px; height: 20px; margin: -7px 0 0 -0.5px; padding: 4px 8px 4px 0;"></td> -->
                     <td><ion-icon name="time" style="color: var(--first-color);"></ion-icon></td>
                     <td style="width: 100%;"><div class="detail_loca_time">{{form.date}}</div></td>
                 </tr>
@@ -55,7 +46,6 @@
 
         <!-- 지도 -->
         <div id="map" class="detail_map"></div>
-        <!-- <div id="clickLatlng"></div> -->
 
         <!-- 사진 스크립트 -->
         <script>
@@ -135,52 +125,5 @@
         </script>
 
     </form>
-</div>
-
-
-<!-- 
-
-<div class="container">
-    <div style="margin-top: 20px;">
-        <form method="POST" role="form" action="{% url 'buyCreate' %}" >
-            {% csrf_token %}
-            <div style = "text-align: right;">
-            </div>
-            <div class = "crt_div">
-                <div>
-                    <table style="margin:auto;">
-                        <tr>
-                            <td>카테고리 </td><td  colspan="3">{{form.category}}</td>
-                        </tr>
-                        <tr>
-                            <td><label for="title">글 제목</label> </td><td colspan="3">{{form.title}}</td>
-                        </tr>
-                        <tr>
-                            <td><label for="wpeople">모집 인원</label></td> <td>{{form.wpeople}}</td>
-                            <td><label for="price">가격</label></td><td>{{form.price}}</td>
-                        </tr>
-                        <tr>
-                            <td><label for="place">거래장소</label></td> <td style="padding-right: 10px;">{{form.location}}</td>
-                            <td><label for="date" >거래날짜</label></td><td>{{form.date}}</td>
-                        </tr>
-
-                    </table>
-                </div>
-                <div>
-                    <table style="margin:auto;">
-                        <tr>
-                            <td>{{form.body}}</td>
-
-                        </tr>
-                    </table>  
-                </div>
-                </div>
-           <div style="margin-top: 10px">
-            {{form.photo}}
-            </div>
-        </form>
-    
-               
-    </div> -->
 </div>
 {% endblock %}
