@@ -5,7 +5,7 @@
 
 <style>
     .detail_context {
-        margin: 20px 0;
+        margin: 20px 0 0 0;
     }
     @media screen and (max-width: 768px) {
         .detail_container {
@@ -58,8 +58,9 @@
                 {%else%}
                 <a href="{% url 'userProfile' detail.ID.username %}" class="detail_usrname nav-link nav_change_color">{{detail.ID.username}}</a>
                 {%endif%}
-            <span>{{detail.writeDate|date:'m-d H:i'}}</span>
+            
         </div>
+        <div style="font-size: 10px; font-weight: 100; text-align: right; color: gray; margin-top: 1rem;">{{detail.writeDate|date:'m-d H:i'}}</div>
         <p class="detail_context">{{detail.body}}</p>
     </div>
     

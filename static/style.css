@@ -2439,7 +2439,7 @@ body {
   display: flex;
   border-bottom: 1px solid #fff;
   align-items: center;
-  padding: 20px 0;
+  padding: 1rem 0;
 }
 /* .freeUserName{
   margin: auto 10px;
