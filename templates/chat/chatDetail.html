@@ -30,9 +30,20 @@
       <script>
             init_detail('{{application_id}}', '{{channel_url}}', '{{user_id}}');
       </script>
+      <script>
+            function confirmExit(){
+                  if (!confirm("채팅방을 나가시겠습니까?")) {
+                        // 취소(아니오) 버튼 클릭 시 이벤트
+                  } else {
+                        // 확인(예) 버튼 클릭 시 이벤트
+                        location.href = "../out/chat";
+                  }
+            }
+      </script>
+
      <div class = "out detail_container">
             <div id="profile">
-                  <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a></p>
+                  <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a><div class="exit"> <a href="{% url 'outChannel' %}"><i class="fa-solid fa-right-from-bracket" onclick ="confirmExit()"></i></a></div></p>
                   <span name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding: 0 3px 3px 0;"/>{{member_count}}</a></span>
             </div>
             <div id="chat-messages">
