@@ -11,6 +11,19 @@ application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
 
 
+def outChannel(request):
+    user_id = request.user.email #유저 이메일 지정
+    url = f"https://api-{application_id}.sendbird.com/v3/users/{user_id}/my_group_channels/leave"
+    api_headers = {"Api-Token": sendbird_api_token}
+    data = {
+            }
+    res = requests.put(url, data= json.dumps(data), headers=api_headers)
+    
+    info = res.text
+    parse = json.loads(info)
+    #print(parse)
+    return redirect('chatHome')
+
 def get_chat_members(request, channel_url):
     user_id = request.user.email #유저 이메일 지정
     member_list= []
