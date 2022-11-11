@@ -105,10 +105,34 @@
             
             {% if detail.check_chat == True%} 
             <!-- 채팅방이 생성되어슬때 -->
-            <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('이미 거래가 시작 된글입니다.')">
-                <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
-            </button>
-            <div id="view" style="display: none;"></div>
+                {% if detail.ID.id == user.id %}
+                <!-- 채팅방생성후글쓴이 -->
+                    {% if detail.complete %}
+                    <!-- 거래완료 -->
+                        <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('이미 거래가 완료 된글입니다.')">
+                        <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">거래완료</a>
+                        </button>
+                    {%else%}
+                    <!-- 거래완료전 -->
+                        <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('거래가 완료되었습니다.')">
+                        <a href="{% url 'complete' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">거래완료하기</a>
+                        </button>
+                    {%endif%}
+                    <div id="view" style="display: none;"></div>
+                {%else%}
+                    <!-- 채팅방 생성 후 사용자 -->
+                    {% if detail.complete %}
+                    <!-- 거래완료 -->
+                        <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('이미 거래가 완료 된글입니다.')">
+                        <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">거래완료</a>
+                        </button>
+                    {%else%}
+                    <!-- 거래완료전 -->
+                        <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('이미 거래가 시작 된글입니다.')">
+                        <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">채팅방 생성 완료</a>
+                        </button>
+                    {%endif%}
+                {%endif%}
             {% else %}
             <!-- 채팅방 생성전 -->
                 {% if detail.ID.id == user.id %}
@@ -117,24 +141,25 @@
                         신청자 보기 ({{detail.join_count}}명/{{detail.wpeople}}명)
                         <!-- <a href="{% url 'auth' detail.id %}" style="text-decoration: none; color: white;">신청자 보기</a> -->
                     </button>
+                    <div id="view" style="display: none;"></div>
                 {% else  %}
-                <div id="view" style="display: none;"></div>
                 <!-- 참가자 -->
-                {% if user.sms %}
-                    {% if user in detail.join_users.all %}
-                    <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
-                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
-                    </button>
-                    {% else %}
-                    <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
-                        <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
-                    </button>
-                    {% endif %}
+                    {% if user.sms %}
+                    <!-- 휴대폰인증한 참가자 -->
+                        {% if user in detail.join_users.all %}
+                            <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('취소 되었습니다.')">
+                                <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">취소하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
+                            </button>
+                        {% else %}
+                            <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('참가 신청 되었습니다.')">
+                                <a href="{% url 'join' detail.id %}" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
+                            </button>
+                        {% endif %}
                     {%else%}
-                    <!-- 휴대폰인증안함 -->
-                    <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('휴대폰인증이 필요합니다.')">
-                        <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
-                    </button>
+                    <!-- 휴대폰인증안한 참가자 -->
+                        <button class="detail_applyButton buttonColor" id="joinBtn" onClick="alert('휴대폰인증이 필요합니다.')">
+                            <a href="#" class="detail_aInButton" style="text-decoration: none; color: white;">참가하기 ({{detail.join_count}}명/{{detail.wpeople}}명)</a>
+                        </button>
                     {%endif%}
                 {% endif %}
             {% endif %}

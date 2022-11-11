@@ -30,6 +30,8 @@ class Buy(models.Model):
     
     check_chat = models.BooleanField(default = False) # 채팅방 생성되었는지 확인
 
+    complete = models.BooleanField(default=False)
+
     def __str__(self):
         return self.title
     
