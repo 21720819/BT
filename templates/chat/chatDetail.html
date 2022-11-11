@@ -51,15 +51,15 @@
                         {% else %}
                         <div class="message">
                               {% if message.level == 0 %}
-                              <img src="{% static 'images/level0.png'%}" class="profile_img">
+                              <a href = "{{message.profile_url}}"><img src="{% static 'images/level0.png'%}" class="profile_img"></a>
                               {% elif  message.level == 1 %}
-                              <img src="{% static 'images/level1.png'%}" class="profile_img">
+                              <a href = "{{message.profile_url}}"><img src="{% static 'images/level1.png'%}" class="profile_img"></a>
                               {% elif  message.level == 2 %}
-                              <img src="{% static 'images/level2.png'%}"class="profile_img">
+                              <a href = "{{message.profile_url}}"><img src="{% static 'images/level2.png'%}"class="profile_img"></a>
                               {% elif  message.level == 3 %}
-                              <img src="{% static 'images/level3.png'%}" class="profile_img">
+                              <a href = "{{message.profile_url}}"><img src="{% static 'images/level3.png'%}" class="profile_img"></a>
                               {% elif  message.level == 4 %}
-                              <img src="{% static 'images/level4.png'%}" class="profile_img">
+                              <a href = "{{message.profile_url}}"><img src="{% static 'images/level4.png'%}" class="profile_img"></a>
                               {% endif %}
                               <div class="nickname">{{message.nickname}}</div>
                               <div class="bubble">

@@ -11,7 +11,8 @@ application_id = settings.SENDBIRD_APPLICATION_ID
 sendbird_api_token = settings.SENDBIRD_API_TOKEN
 
 
-def get_chat_members(channel_url):
+def get_chat_members(request, channel_url):
+    user_id = request.user.email #유저 이메일 지정
     member_list= []
     try:
         emails = Chat.objects.get(channel_url = channel_url).emails.replace('[',"").replace(']',"").replace('"',"").replace(" ","").split(',')
@@ -26,9 +27,15 @@ def get_chat_members(channel_url):
             except:
                 nick = None
                 level = None
-            if (nick):        
-                    profile_url = f"../profile/{nick}"
-                    dic = {'nick':nick, 'profile_url':profile_url, 'level' : level}   
+            if (nick):
+                    if (email == user_id) :      
+                        profile_url = f"../profile/{nick}"
+                        dic = {'nick':nick, 'profile_url':profile_url, 'level' : level}  
+                    else :
+                        profile_url = f"../profile/userprofile/{nick}"
+                        dic = {'nick':nick, 'profile_url':profile_url, 'level' : level}  
+
+
                     member_list.append(dic)
         return member_list
 
@@ -90,7 +97,7 @@ def chatHome(request):
         last = channel['last_message'] 
         try:
             pk = Chat.objects.get(channel_url = channel_url).pk
-            mem_list = get_chat_members(channel_url)
+            mem_list = get_chat_members(request, channel_url)
         except Chat.DoesNotExist:    
             pk = None
             mem_list = None
@@ -119,7 +126,7 @@ def chatDetail(request, chat_id):
     message_ts = int(time()*1000) #현재시간을 unix 타임으로 변환
     channel_url = Chat.objects.get(id = chat_id).channel_url
     post_num = Chat.objects.get(id = chat_id).post_num
-    member_list = get_chat_members(channel_url)
+    member_list = get_chat_members(request, channel_url)
     member_count = len(member_list)
 
     url =  f"https://api-{application_id}.sendbird.com/v3/{channel_type}/{channel_url}/messages"
@@ -147,11 +154,15 @@ def chatDetail(request, chat_id):
     for i in range(len(messages)):
         check_same = 0
         text = messages[i]['message']
-        nickname = messages[i]['user']['nickname']
         sender_id = messages[i]['user']['user_id']
+        try:
+             nickname =  User.objects.get(email=sender_id).username 
+        except:
+            nickname = messages[i]['user']['nickname']
         sent_date_time = datetime.fromtimestamp(int(messages[i]['created_at']/1000))
         sent_time = sent_date_time.strftime("%H:%M")
         check_same_date = 1
+        profile_url = f"/profile/userprofile/{nickname}"
         level = User.objects.get(email=sender_id).level
 
         sent_date = sent_date_time.strftime("%Y-%m-%d")
@@ -161,7 +172,7 @@ def chatDetail(request, chat_id):
         if (sender_id == user_id) :
             check_same = 1  #보낸 사람이랑 사용중인 사람이랑 같은 경우
 
-        dic = {'text':text, 'nickname':nickname, 'check_same' : check_same, 'sent_date': sent_date, 'sent_time':sent_time, 'check_same_date':check_same_date, 'level':level }
+        dic = {'text':text, 'nickname':nickname, 'check_same' : check_same, 'sent_date': sent_date, 'sent_time':sent_time, 'check_same_date':check_same_date, 'level':level, 'profile_url':profile_url }
         message_list.append(dic)
 
     last_date=0
