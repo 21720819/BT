@@ -181,32 +181,22 @@
         <div id="profile_postBox">
             <!-- 작성한 글 -->
             <div id="profile_pPosts" class="profile_posts" style="display: none;">
-                <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for post in p_post %}
                     <a href="{% url 'buyDetail' post.id %}" class="profile_list nav-link nav_change_color">{{post.title}}</a>
-                    {% if not forloop.last %}
-                        <!-- <div class="profile_horizontalHr" style="margin: 1rem 0;"></div> -->
-                        <hr>
-                    {% else %}
-                        <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
-                        <hr style="margin-bottom: 0;">
+                    {% if not forloop.last %} <hr>
+                    {% else %} <hr style="margin-bottom: 0;">
                     {% endif %}
                 {% endfor %}
-                <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
 
             <!-- 좋아요 누른 글 -->
             <div id="profile_lPosts" class="profile_posts" style="display: none;">
-                <!-- <div class="profile_horizontalHr" style="margin-bottom: 1rem;"></div> -->
                 {% for like in likes %}
                     <a href="{% url 'buyDetail' like.id %}" class="profile_list nav-link nav_change_color">{{like.title}}</a>
-                    {% if not forloop.last %}
-                        <hr>
-                    {% else %}
-                        <hr style="margin-bottom: 0;">
+                    {% if not forloop.last %} <hr>
+                    {% else %} <hr style="margin-bottom: 0;">
                     {% endif %}
                 {% endfor %}
-                <!-- <div class="profile_horizontalHr" style="margin-top: 1rem;"></div> -->
             </div>
 
             <!-- 사용자 평가 -->
@@ -222,7 +212,6 @@
 
         <!-- 닉네임 변경 -->
         <div id="profile_editBox" class="profile_posts" style="height: calc(100% - 115px); margin: 0 30px; display: none;"></div>
-        <!-- <div class="pop_blank"><div id="close" class="buttonColor"><ion-icon name="close-outline" style="width: 80%; height: 80%; color: white;"></ion-icon></div></div> -->
     </div>
 </div>
 
