@@ -50,7 +50,7 @@
 
   <!-- 정렬 -->
     <div style="float: left;">
-      <select id="sort-select" class="select_box" onchange="location = this.value;">
+      <select id="sort-select" class="select_box" onchange="location = this.value;" name ="order">
         <option class="sort-date option_1" value="?sort=date">최신순</option>
         <option class="sort-likes" value="?sort=likes">좋아요순</option>
         <option class="sort-likes" value="?sort=lowprice">낮은가격순</option>
@@ -58,7 +58,7 @@
       </select> 
     </div>
 
-  </div>
+</div>
 
  <!-- 검색창 --> 
   {% if posts %}
