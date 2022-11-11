@@ -200,6 +200,12 @@ def auth(request,post_id):
     join_user = post.join_users.all()
     return render(request,  'buy/auth.html',{'join_users':join_user,  'post':post})   
 
+def complete(request , post_id):
+    post = get_object_or_404(Buy, pk=post_id)
+    post.complete = True
+    post.save()
+    return redirect('buyDetail',str(post_id))
+    
 #sendbird 그룹채널 생성
 def createChannel(request, post_id):
     #sendbird 정보 가져오기
