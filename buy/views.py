@@ -226,7 +226,14 @@ def createChannel(request, post_id):
     try:      
          cover_url = post.photo.url
     except: 
-         cover_url ="https://s.aolcdn.com/images/dims?client=fh7w6q744eiognjk&signature=d59d0cf6af1d779a3dca451e0ba259c33bbc6115&image_uri=https%3A%2F%2Fs.aolcdn.com%2Fos%2Fab%2F_cms%2F2019%2F08%2F30142658%2F2020-jeep-wrangler-16.jpg&thumbnail=750%2C422&quality=80"     
+        if post.category == 0:
+            cover_url = "../static/images/food3.jpg"
+        elif post.category == 1:
+            cover_url = "../static/images/food1.jpg"
+        elif post.category == 2:
+            cover_url = "../static/images/ott1.jpg"
+        else :
+         cover_url = "../static/images/delivery1.jpg"
     data = {
         "name": post.title,
         "inviter_id" : writer_email,
