@@ -182,6 +182,7 @@ def reportPost(request, post_id):
     # return render(request,'profile/review.html', {'form':form})
     return render(request, 'profile/reportpost.html', {'form':form, 'id':post_id})
 
+@login_required(login_url='/accounts/login/')
 def userProfile(request, username):
     profileuser = get_object_or_404(User, username=username) # 사용자 닉네임
     reviews = Review.objects.filter(ID=profileuser).aggregate(avg_rate=Avg('rating'))
