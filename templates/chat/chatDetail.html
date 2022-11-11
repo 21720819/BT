@@ -43,8 +43,13 @@
 
      <div class = "out detail_container">
             <div id="profile">
-                  <p><a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a><div class="exit"> <a href="{% url 'outChannel' %}"><i class="fa-solid fa-right-from-bracket" onclick ="confirmExit()"></i></a></div>
-                  <span name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" width="13" alt="Clipart Person Icon Cliparts" style="padding: 0 3px 3px 0;"/>{{member_count}}</a></span></p>
+                  <div style="width: 100%">
+                        <div style="width: 100%; overflow: hidden;">
+                              <a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a>
+                              <div class="exit"><i class="fa-solid fa-right-from-bracket" onclick ="confirmExit()" style="font-size: 17.5px;"></i></div>
+                        </div>
+                        <div name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" alt="Clipart Person Icon Cliparts"/>{{member_count}}</div>
+                  </div>
             </div>
             <div id="chat-messages">
                   {% for message in message_list %}

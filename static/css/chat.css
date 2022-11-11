@@ -13,10 +13,16 @@ body {
 /* 채팅 리스트*/
 
 .exit{
+	width: 25px;
+	height: 25px;
 	color: white;
 	text-decoration: none;
 	float:right; 
-	margin-right:10px;
+	margin-right:15px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;	
 }
 
 .exit:hover{
@@ -24,7 +30,7 @@ body {
 }
 .chats{
 	overflow-y: auto; 
-	height: 98%;
+	height: 100%;
 }
 .chat{
 	height:70px;
@@ -95,9 +101,14 @@ body {
 
 /* 메시지 전송창*/
 .post_name {
+	width: calc(100% - 80px);
+	height: 25px;
 	font-size: 20px;
+	line-height: 25px;
 	color : white;
 	text-decoration: none;
+	float: left;
+	margin-left: 40px;
 }
 
 .here{
@@ -113,6 +124,18 @@ body {
 	color : rgb(165, 223, 104);
 	text-decoration: none;
   }
+.person_num {
+	width: 100%;
+	height: 20px;
+	font-size: 15px;
+	color: white;
+	margin-top: 12.5px;
+}
+.person_num > img{
+	width: 13px;
+	height: 13px;
+	margin: 0 3px 5px 0;
+}
 #tx_send{
     border:none;
 	/* border-top:1px solid #c7c9ca;	 */
@@ -192,6 +215,9 @@ body {
 	width: 100%;
 	height:100px;
 
+	display: flex;
+	justify-content: center;
+	align-items: center;	
 }	
 
 #profile .avatar{
