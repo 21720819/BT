@@ -136,7 +136,13 @@
     <!-- <div class="profile_summary profile_btns">
         <a class="nav-link nav_change_color" href="{% url 'profileEdit' user.username %}">프로필 수정</a>
     </div> -->
-    <div id="edit" class="profile_summary profile_btns">닉네임 변경</div>
+    <div id="edit" class="profile_summary profile_btns">닉네임 변경
+        {% if messages %}
+            {%for message in messages %}
+                <span style="color: red">{{message.message}}</span>
+            {% endfor %}
+        {% endif %}
+    </div>
     
     <div class="profile_summary profile_btns">
         <a id="sms" class="nav-link nav_change_color" href="" style="width: calc(100% - 40px); float: left;">휴대폰 인증</a>

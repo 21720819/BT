@@ -43,6 +43,9 @@ def profileEdit(request,user_name):
     user = get_object_or_404(User, username=user_name)
     if request.method == "POST":
         new_nick = request.POST['content']
+        if User.objects.filter(username=new_nick):
+            messages.error(request, f"닉네임중복")
+            return redirect('../'+user.username)
         user.username = new_nick
         changeChatNick(request, new_nick)
         user.save()

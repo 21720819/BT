@@ -50,6 +50,9 @@ def signup(request):
             if ("@ynu.ac.kr" not in email) and ("@yu.ac.kr" not in email):
                 messages.error(request, f"영남대 이메일 사용바람")
                 return redirect('login')
+            if User.objects.filter(email=email):
+                messages.error(request, f"이메일중복")
+                return redirect('login')
 
             if request.POST["password"]==request.POST["password2"]:
                 # validate_symbols(email)
