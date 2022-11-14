@@ -1750,9 +1750,9 @@ body {
 
 /*======== write button =========*/
 /*= 글쓰기 버튼 전체 <여기서 고정 위치 조정하면 됨> =*/
-.wirte_btn_container {
+/* .wirte_btn_container {
  
-}
+} */
 
 .map_button {
   background-color: var(--first-color);
