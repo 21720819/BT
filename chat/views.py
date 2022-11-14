@@ -14,7 +14,8 @@ sendbird_api_token = settings.SENDBIRD_API_TOKEN
 
 def outChannel(request, chat_id):
     user_id = request.user.email #유저 이메일 지정
-    url = f"https://api-{application_id}.sendbird.com/v3/users/{user_id}/my_group_channels/leave"
+    channel_url = Chat.objects.get(pk = chat_id).channel_url
+    url = f"https://api-{application_id}.sendbird.com/v3/users/{channel_url}/my_group_channels/leave"
     api_headers = {"Api-Token": sendbird_api_token}
     data = {
             }
