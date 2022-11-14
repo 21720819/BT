@@ -70,7 +70,9 @@
                         </div>
                         {% else %}
                         <div class="message">
-                              {% if message.level == 0 %}
+                              {% if message.level == -1 %}
+                              <a href = "{{message.profile_url}}"><img src="https://www.freeiconspng.com/uploads/x-png-18.png" class="profile_img"></a>
+                              {% elif message.level == 0 %}
                               <a href = "{{message.profile_url}}"><img src="{% static 'images/level0.png'%}" class="profile_img"></a>
                               {% elif  message.level == 1 %}
                               <a href = "{{message.profile_url}}"><img src="{% static 'images/level1.png'%}" class="profile_img"></a>
