@@ -67,25 +67,31 @@ def get_chat_members(request, channel_url):
 def set_chatImg(channel_url, post_id) :
     url = f"https://api-{application_id}.sendbird.com/v3/group_channels/{channel_url}"
     api_headers = {"Api-Token": sendbird_api_token}
-    post = get_object_or_404(Buy, pk=post_id)
-    try:      
-         cover_url = post.photo.url
-    except: 
-        if post.category == 0:
-            cover_url = "../static/images/food3.jpg"
-        elif post.category == 1:
-            cover_url = "../static/images/food1.jpg"
-        elif post.category == 2:
-            cover_url = "../static/images/ott1.jpg"
-        else :
-         cover_url = "../static/images/delivery1.jpg"
-    data ={
-            'cover_url' : cover_url,
-        }     
-    res = requests.put(url, data= json.dumps(data), headers=api_headers)
-    info = res.text
-    parse = json.loads(info)
-    #print(parse)    
+    try:
+        #post = get_object_or_404(Buy, pk=post_id)
+        post = User.objects.get(empkail=post_id).username 
+        if(post) : 
+                try:      
+                    cover_url = post.photo.url
+                except: 
+                    if post.category == 0:
+                        cover_url = "../static/images/food3.jpg"
+                    elif post.category == 1:
+                        cover_url = "../static/images/food1.jpg"
+                    elif post.category == 2:
+                        cover_url = "../static/images/ott1.jpg"
+                    else :
+                        cover_url = "../static/images/delivery1.jpg"
+                data ={
+                        'cover_url' : cover_url,
+                    }     
+                res = requests.put(url, data= json.dumps(data), headers=api_headers)
+                info = res.text
+                parse = json.loads(info)
+                #print(parse)    
+    except:
+        post = None
+
 
 def set_profileImg_nick(request):
      user_id = request.user.email #유저 이메일 지정
@@ -175,7 +181,10 @@ def chatDetail(request, chat_id):
     message_ts = int(time()*1000) #현재시간을 unix 타임으로 변환
     channel_url = Chat.objects.get(id = chat_id).channel_url
     post_num = Chat.objects.get(id = chat_id).post_num
-    post_completed = Buy.objects.get(id=post_num).complete
+    try:
+        post_completed = Buy.objects.get(id=post_num).complete
+    except:
+        post_completed = -1
     member_list = get_chat_members(request, channel_url)
     member_count = len(member_list)
 

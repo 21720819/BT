@@ -48,6 +48,8 @@
                               <a href = "../buy/detail/{{post_num}}" class="post_name">{{chat_name}}</a>
                               {% if post_completed  %}
                               <div class="exit"><i class="fa-solid fa-right-from-bracket" onclick ="confirmExit()" style="font-size: 17.5px;"></i></div>
+                              {% elif post_completed == -1  %}
+                              <div class="exit"><i class="fa-solid fa-right-from-bracket" onclick ="confirmExit()" style="font-size: 17.5px;"></i></div>
                               {% endif %}
                         </div>
                         <div name="myPost" class="person_num"><img src="{% static 'images/person.png'%}" alt="Clipart Person Icon Cliparts"/>{{member_count}}</div>
