@@ -46,6 +46,9 @@ def profileEdit(request,user_name):
         if User.objects.filter(username=new_nick):
             messages.error(request, f"닉네임중복")
             return redirect('../'+user.username)
+        if new_nick=="":
+            messages.error(request, f"닉네임입력란을 작성하세요")
+            return redirect('../'+user.username)            
         user.username = new_nick
         changeChatNick(request, new_nick)
         user.save()
