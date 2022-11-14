@@ -222,7 +222,10 @@ def chatDetail(request, chat_id):
         sent_time = sent_date_time.strftime("%H:%M")
         check_same_date = 1
         profile_url = f"/profile/userprofile/{nickname}"
-        level = User.objects.get(email=sender_id).level
+        try:
+            level = User.objects.get(email=sender_id).level
+        except :
+            level = -1
 
         sent_date = sent_date_time.strftime("%Y-%m-%d")
         if(i>=1 and message_list[i-1]['sent_date']==sent_date): #인덱스가 1보다 크고 이전 날짜와 같은 경우 0을 넣어라
